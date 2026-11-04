@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1200px;
+  height: 675px;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #0f172a;
+}
+.card {
+  width: 1200px;
+  height: 675px;
+  position: relative;
+  background: radial-gradient(circle at 20% 20%, #064e3b 0%, #022c22 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 34px 48px 24px 48px;
+  color: #f8fafc;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.badge {
+  background: rgba(52, 211, 153, 0.15);
+  border: 1.5px solid #34d399;
+  color: #34d399;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+}
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  color: #94a3b8;
+  letter-spacing: -0.5px;
+}
+.logo span { color: #ffffff; }
+.title-area {
+  text-align: center;
+  margin-top: 6px;
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.headline {
+  font-size: 34px;
+  font-weight: 900;
+  color: #6ee7b7;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.subheadline {
+  font-size: 21px;
+  font-weight: 600;
+  color: #ecfdf5;
+  max-width: 950px;
+  margin: 0 auto;
+  line-height: 1.35;
+}
+.graphic-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div class="badge">VALUE OPTIMIZATION</div>
+    <div class="logo">iTBA <span>Mentor</span></div>
+  </div>
+  <div class="title-area">
+    <div class="headline">Outcome vs Output: Bận rộn hay hiệu quả?</div>
+    <div class="subheadline">Đừng đếm số lượng màn hình hoàn thành, hãy đo giá trị tạo ra</div>
+  </div>
+  <div class="graphic-area">
+    
+    <svg width="640" height="260" viewBox="0 0 640 260">
+      <!-- Output (busy conveyor belt) vs Outcome (Target Bullseye) -->
+      <g transform="translate(40, 30)">
+        <rect x="0" y="0" width="250" height="195" rx="14" fill="#27272a" stroke="#71717a" stroke-width="2"/>
+        <text x="125" y="32" text-anchor="middle" fill="#e4e4e7" font-size="14" font-weight="bold">OUTPUT (Số lượng việc)</text>
+        <rect x="25" y="55" width="200" height="35" rx="6" fill="#18181b"/>
+        <text x="125" y="77" text-anchor="middle" fill="#a1a1aa" font-size="11">Hoàn thành 50 màn hình</text>
+        <rect x="25" y="98" width="200" height="35" rx="6" fill="#18181b"/>
+        <text x="125" y="120" text-anchor="middle" fill="#a1a1aa" font-size="11">Đóng 120 task Jira</text>
+        <rect x="25" y="141" width="200" height="35" rx="6" fill="#18181b"/>
+        <text x="125" y="163" text-anchor="middle" fill="#f87171" font-size="11" font-weight="bold">⚠️ Bận rộn nhưng không hiệu quả</text>
+      </g>
+      <text x="320" y="135" text-anchor="middle" fill="#f59e0b" font-size="28" font-weight="bold">→</text>
+      <g transform="translate(350, 30)">
+        <rect x="0" y="0" width="250" height="195" rx="14" fill="#064e3b" stroke="#34d399" stroke-width="2"/>
+        <text x="125" y="32" text-anchor="middle" fill="#a7f3d0" font-size="14" font-weight="bold">OUTCOME (Giá trị tạo ra)</text>
+        <circle cx="125" cy="100" r="50" fill="#065f46" stroke="#34d399" stroke-width="2"/>
+        <circle cx="125" cy="100" r="32" fill="#047857" stroke="#34d399" stroke-width="2"/>
+        <circle cx="125" cy="100" r="14" fill="#ef4444"/>
+        <text x="125" y="175" text-anchor="middle" fill="#6ee7b7" font-size="12" font-weight="bold">🎯 Tăng 25% tỷ lệ chuyển đổi đơn</text>
+      </g>
+    </svg>
+    
+  </div>
+  <div class="footer">
+    <div>Day 99/100 · Sách 100 ngày làm BA</div>
+    <div>Nguyễn Bá Phú — ITBA Mentor</div>
+  </div>
+</div>
+</body>
+</html>

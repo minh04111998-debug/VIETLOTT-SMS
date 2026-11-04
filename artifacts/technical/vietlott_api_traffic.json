@@ -1,0 +1,12 @@
+[
+  {
+    "timestamp": "2026-08-08 18:46:03",
+    "method": "POST",
+    "url": "https://api.vietlottsms.vn/v1/ticket/calculate",
+    "headers": {
+      "User-Agent": "VietlottSMS/4.4.18 (Android)"
+    },
+    "body": "{\"game_type\": \"MEGA_645\", \"numbers\": [3, 12, 19, 25, 33, 42]}",
+    "type": "HTTP_REQUEST"
+  }
+]

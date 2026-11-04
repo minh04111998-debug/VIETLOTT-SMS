@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AgentSpecification",
+  "description": "Schema chuẩn cho các Agent trong hệ sinh thái Multi-Agent Engineering",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "enum": ["pm", "po", "ba", "da", "dev", "qa", "governance"]
+    },
+    "name": {
+      "type": "string"
+    },
+    "role_type": {
+      "type": "string",
+      "enum": ["lead", "consultation", "review", "guardian"]
+    },
+    "persona_path": {
+      "type": "string"
+    },
+    "rules_path": {
+      "type": "string"
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "workflows": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "permissions": {
+      "type": "object",
+      "properties": {
+        "read_paths": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "write_paths": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "can_signoff_baseline": {
+          "type": "boolean",
+          "default": false
+        },
+        "can_trigger_hard_stop": {
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "required": ["read_paths", "write_paths", "can_signoff_baseline"]
+    },
+    "quality_gate": {
+      "type": "object",
+      "properties": {
+        "checklist": { "type": "string" },
+        "validators": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "max_critique_loops": {
+          "type": "integer",
+          "default": 2
+        }
+      },
+      "required": ["checklist", "validators"]
+    }
+  },
+  "required": ["id", "name", "role_type", "persona_path", "rules_path", "permissions", "quality_gate"]
+}

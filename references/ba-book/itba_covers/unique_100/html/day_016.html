@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1200px;
+  height: 675px;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #0f172a;
+}
+.card {
+  width: 1200px;
+  height: 675px;
+  position: relative;
+  background: radial-gradient(circle at 20% 20%, #431407 0%, #1c1917 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 34px 48px 24px 48px;
+  color: #f8fafc;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.badge {
+  background: rgba(251, 146, 60, 0.15);
+  border: 1.5px solid #fb923c;
+  color: #fb923c;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+}
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  color: #94a3b8;
+  letter-spacing: -0.5px;
+}
+.logo span { color: #ffffff; }
+.title-area {
+  text-align: center;
+  margin-top: 6px;
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.headline {
+  font-size: 40px;
+  font-weight: 900;
+  color: #fed7aa;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.subheadline {
+  font-size: 21px;
+  font-weight: 600;
+  color: #ffedd5;
+  max-width: 950px;
+  margin: 0 auto;
+  line-height: 1.35;
+}
+.graphic-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div class="badge">QUALITY · DESTRUCTIVE TESTING</div>
+    <div class="logo">iTBA <span>Mentor</span></div>
+  </div>
+  <div class="title-area">
+    <div class="headline">Bạn chỉ viết flow cho người dùng?</div>
+    <div class="subheadline">Vậy ai viết cho thằng... Phá? Idempotency &amp; Edge Case</div>
+  </div>
+  <div class="graphic-area">
+    
+    <svg width="640" height="260" viewBox="0 0 640 260">
+      <!-- Happy Path vs Destructive Edge Case -->
+      <g transform="translate(40, 30)">
+        <rect x="0" y="0" width="260" height="195" rx="16" fill="#064e3b" stroke="#10b981" stroke-width="2.5"/>
+        <text x="130" y="35" text-anchor="middle" fill="#6ee7b7" font-size="15" font-weight="bold">HAPPY PATH (User thường)</text>
+        <rect x="30" y="55" width="200" height="35" rx="8" fill="#022c22"/>
+        <text x="130" y="78" text-anchor="middle" fill="#a7f3d0" font-size="12">1. Điền form đúng chuẩn</text>
+        <rect x="30" y="100" width="200" height="35" rx="8" fill="#022c22"/>
+        <text x="130" y="123" text-anchor="middle" fill="#a7f3d0" font-size="12">2. Nhấn nút 1 lần</text>
+        <rect x="30" y="145" width="200" height="35" rx="8" fill="#022c22"/>
+        <text x="130" y="168" text-anchor="middle" fill="#34d399" font-size="12" font-weight="bold">✅ Giao dịch thành công</text>
+      </g>
+      <text x="320" y="135" text-anchor="middle" fill="#f87171" font-size="28" font-weight="bold">VS</text>
+      <g transform="translate(340, 30)">
+        <rect x="0" y="0" width="260" height="195" rx="16" fill="#450a0a" stroke="#ef4444" stroke-width="2.5"/>
+        <text x="130" y="35" text-anchor="middle" fill="#fca5a5" font-size="15" font-weight="bold">EDGE CASE (Thằng... Phá)</text>
+        <rect x="30" y="55" width="200" height="35" rx="8" fill="#1c1917"/>
+        <text x="130" y="78" text-anchor="middle" fill="#fecdd3" font-size="12">1. Spam click 10 lần liên tục</text>
+        <rect x="30" y="100" width="200" height="35" rx="8" fill="#1c1917"/>
+        <text x="130" y="123" text-anchor="middle" fill="#fecdd3" font-size="12">2. Đổi URL token, tắt wifi</text>
+        <rect x="30" y="145" width="200" height="35" rx="8" fill="#1c1917"/>
+        <text x="130" y="168" text-anchor="middle" fill="#f87171" font-size="12" font-weight="bold">🛡️ Idempotency &amp; Fallback</text>
+      </g>
+    </svg>
+    
+  </div>
+  <div class="footer">
+    <div>Day 16/100 · Sách 100 ngày làm BA</div>
+    <div>Nguyễn Bá Phú — ITBA Mentor</div>
+  </div>
+</div>
+</body>
+</html>

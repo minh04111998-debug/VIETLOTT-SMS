@@ -1,0 +1,92 @@
+[
+  {
+    "day": 1,
+    "file_upload_id": "40b10ebd-f4c0-8135-91d7-00b2db920333",
+    "upload_url": "https://api.notion.com/v1/mcp/file_uploads/40b10ebd-f4c0-8135-91d7-00b2db920333/send",
+    "upload_headers": {
+      "authorization": "Bearer eyJwdXJwb3NlIjoibWNwX2ZpbGVfdXBsb2FkIiwiZmlsZVVwbG9hZElkIjoiNDBiMTBlYmQtZjRjMC04MTM1LTkxZDctMDBiMmRiOTIwMzMzIiwiYm90SWQiOiI0MGExMGViZC1mNGMwLTgxNTUtOGFjMC0wMDI3OWE3OTZkYTEiLCJzcGFjZUlkIjoiYmFiMTBlYmQtZjRjMC04MWU2LTliY2ItMDAwM2IxZjY3MTA3IiwibWFya2Rvd25Gb3JtYXQiOiJtYXJrZG93bl92bmV4dCIsImV4cGlyZXNBdCI6MTc5MzUwNTM1MTM5M30.uPr2+so2XrawqicXYCvV/Lki8QT6ha25AO+Bw+WTweg="
+    },
+    "file_path": "f:\\VIETLOTT-SMS\\references\\ba-book\\itba_covers\\unique_100\\day_001_cover.png"
+  },
+  {
+    "day": 2,
+    "file_upload_id": "40b10ebd-f4c0-815c-aac9-00b2589d5f12",
+    "upload_url": "https://api.notion.com/v1/mcp/file_uploads/40b10ebd-f4c0-815c-aac9-00b2589d5f12/send",
+    "upload_headers": {
+      "authorization": "Bearer eyJwdXJwb3NlIjoibWNwX2ZpbGVfdXBsb2FkIiwiZmlsZVVwbG9hZElkIjoiNDBiMTBlYmQtZjRjMC04MTVjLWFhYzktMDBiMjU4OWQ1ZjEyIiwiYm90SWQiOiI0MGExMGViZC1mNGMwLTgxNTUtOGFjMC0wMDI3OWE3OTZkYTEiLCJzcGFjZUlkIjoiYmFiMTBlYmQtZjRjMC04MWU2LTliY2ItMDAwM2IxZjY3MTA3IiwibWFya2Rvd25Gb3JtYXQiOiJtYXJrZG93bl92bmV4dCIsImV4cGlyZXNBdCI6MTc5MzUwNTM1MTgwM30.WP2VsHuITjOOQ3AYOze6FaiPnPsKRhMm8mpIstQ9tDo="
+    },
+    "file_path": "f:\\VIETLOTT-SMS\\references\\ba-book\\itba_covers\\unique_100\\day_002_cover.png"
+  },
+  {
+    "day": 3,
+    "file_upload_id": "40b10ebd-f4c0-813c-b128-00b2668239bf",
+    "upload_url": "https://api.notion.com/v1/mcp/file_uploads/40b10ebd-f4c0-813c-b128-00b2668239bf/send",
+    "upload_headers": {
+      "authorization": "Bearer eyJwdXJwb3NlIjoibWNwX2ZpbGVfdXBsb2FkIiwiZmlsZVVwbG9hZElkIjoiNDBiMTBlYmQtZjRjMC04MTNjLWIxMjgtMDBiMjY2ODIzOWJmIiwiYm90SWQiOiI0MGExMGViZC1mNGMwLTgxNTUtOGFjMC0wMDI3OWE3OTZkYTEiLCJzcGFjZUlkIjoiYmFiMTBlYmQtZjRjMC04MWU2LTliY2ItMDAwM2IxZjY3MTA3IiwibWFya2Rvd25Gb3JtYXQiOiJtYXJrZG93bl92bmV4dCIsImV4cGlyZXNBdCI6MTc5MzUwNTM1MjIyNH0.JY8jnd/kiHfpPE4CYej8figApOvw5OoEUNE4fnmXsms="
+    },
+    "file_path": "f:\\VIETLOTT-SMS\\references\\ba-book\\itba_covers\\unique_100\\day_003_cover.png"
+  },
+  {
+    "day": 4,
+    "file_upload_id": "40b10ebd-f4c0-81d4-a25a-00b27d9a3605",
+    "upload_url": "https://api.notion.com/v1/mcp/file_uploads/40b10ebd-f4c0-81d4-a25a-00b27d9a3605/send",
+    "upload_headers": {
+      "authorization": "Bearer eyJwdXJwb3NlIjoibWNwX2ZpbGVfdXBsb2FkIiwiZmlsZVVwbG9hZElkIjoiNDBiMTBlYmQtZjRjMC04MWQ0LWEyNWEtMDBiMjdkOWEzNjA1IiwiYm90SWQiOiI0MGExMGViZC1mNGMwLTgxNTUtOGFjMC0wMDI3OWE3OTZkYTEiLCJzcGFjZUlkIjoiYmFiMTBlYmQtZjRjMC04MWU2LTliY2ItMDAwM2IxZjY3MTA3IiwibWFya2Rvd25Gb3JtYXQiOiJtYXJrZG93bl92bmV4dCIsImV4cGlyZXNBdCI6MTc5MzUwNTM1Mjk3M30.RBeFuc1FgF8gMRF4DFtFbzq2KCFjJsQocPTQ9+GkLRM="
+    },
+    "file_path": "f:\\VIETLOTT-SMS\\references\\ba-book\\itba_covers\\unique_100\\day_004_cover.png"
+  },
+  {
+    "day": 5,
+    "file_upload_id": "40b10ebd-f4c0-8153-95cf-00b2144904e0",
+    "upload_url": "https://api.notion.com/v1/mcp/file_uploads/40b10ebd-f4c0-8153-95cf-00b2144904e0/send",
+    "upload_headers": {
+      "authorization": "Bearer eyJwdXJwb3NlIjoibWNwX2ZpbGVfdXBsb2FkIiwiZmlsZVVwbG9hZElkIjoiNDBiMTBlYmQtZjRjMC04MTUzLTk1Y2YtMDBiMjE0NDkwNGUwIiwiYm90SWQiOiI0MGExMGViZC1mNGMwLTgxNTUtOGFjMC0wMDI3OWE3OTZkYTEiLCJzcGFjZUlkIjoiYmFiMTBlYmQtZjRjMC04MWU2LTliY2ItMDAwM2IxZjY3MTA3IiwibWFya2Rvd25Gb3JtYXQiOiJtYXJrZG93bl92bmV4dCIsImV4cGlyZXNBdCI6MTc5MzUwNTM1MzM4NX0.G4zLBQ5FTUjg2AkSEvn10zyPAxqGW4ZbGXmH1gH0DSw="
+    },
+    "file_path": "f:\\VIETLOTT-SMS\\references\\ba-book\\itba_covers\\unique_100\\day_005_cover.png"
+  },
+  {
+    "day": 6,
+    "file_upload_id": "40b10ebd-f4c0-8156-8443-00b29b8bbc4a",
+    "upload_url": "https://api.notion.com/v1/mcp/file_uploads/40b10ebd-f4c0-8156-8443-00b29b8bbc4a/send",
+    "upload_headers": {
+      "authorization": "Bearer eyJwdXJwb3NlIjoibWNwX2ZpbGVfdXBsb2FkIiwiZmlsZVVwbG9hZElkIjoiNDBiMTBlYmQtZjRjMC04MTU2LTg0NDMtMDBiMjliOGJiYzRhIiwiYm90SWQiOiI0MGExMGViZC1mNGMwLTgxNTUtOGFjMC0wMDI3OWE3OTZkYTEiLCJzcGFjZUlkIjoiYmFiMTBlYmQtZjRjMC04MWU2LTliY2ItMDAwM2IxZjY3MTA3IiwibWFya2Rvd25Gb3JtYXQiOiJtYXJrZG93bl92bmV4dCIsImV4cGlyZXNBdCI6MTc5MzUwNTM2MDQwOX0.DJHAvLL2IMjQOUQX/ZVQW0Ssz+Q53+hedVSHTT0qgSI="
+    },
+    "file_path": "f:\\VIETLOTT-SMS\\references\\ba-book\\itba_covers\\unique_100\\day_006_cover.png"
+  },
+  {
+    "day": 7,
+    "file_upload_id": "40b10ebd-f4c0-8113-8870-00b27bd703f0",
+    "upload_url": "https://api.notion.com/v1/mcp/file_uploads/40b10ebd-f4c0-8113-8870-00b27bd703f0/send",
+    "upload_headers": {
+      "authorization": "Bearer eyJwdXJwb3NlIjoibWNwX2ZpbGVfdXBsb2FkIiwiZmlsZVVwbG9hZElkIjoiNDBiMTBlYmQtZjRjMC04MTEzLTg4NzAtMDBiMjdiZDcwM2YwIiwiYm90SWQiOiI0MGExMGViZC1mNGMwLTgxNTUtOGFjMC0wMDI3OWE3OTZkYTEiLCJzcGFjZUlkIjoiYmFiMTBlYmQtZjRjMC04MWU2LTliY2ItMDAwM2IxZjY3MTA3IiwibWFya2Rvd25Gb3JtYXQiOiJtYXJrZG93bl92bmV4dCIsImV4cGlyZXNBdCI6MTc5MzUwNTM2MDgxNX0.zmQEpB1uFWAtBlmPUbTlO35aMcMEH0vYM9cOwL++qoU="
+    },
+    "file_path": "f:\\VIETLOTT-SMS\\references\\ba-book\\itba_covers\\unique_100\\day_007_cover.png"
+  },
+  {
+    "day": 8,
+    "file_upload_id": "40b10ebd-f4c0-819f-a8ab-00b25f2fc987",
+    "upload_url": "https://api.notion.com/v1/mcp/file_uploads/40b10ebd-f4c0-819f-a8ab-00b25f2fc987/send",
+    "upload_headers": {
+      "authorization": "Bearer eyJwdXJwb3NlIjoibWNwX2ZpbGVfdXBsb2FkIiwiZmlsZVVwbG9hZElkIjoiNDBiMTBlYmQtZjRjMC04MTlmLWE4YWItMDBiMjVmMmZjOTg3IiwiYm90SWQiOiI0MGExMGViZC1mNGMwLTgxNTUtOGFjMC0wMDI3OWE3OTZkYTEiLCJzcGFjZUlkIjoiYmFiMTBlYmQtZjRjMC04MWU2LTliY2ItMDAwM2IxZjY3MTA3IiwibWFya2Rvd25Gb3JtYXQiOiJtYXJrZG93bl92bmV4dCIsImV4cGlyZXNBdCI6MTc5MzUwNTM2MTIxOX0.vdpP0QaDpe72Fb1aIvzZJFDlM/4H9+THdbDyo3PL860="
+    },
+    "file_path": "f:\\VIETLOTT-SMS\\references\\ba-book\\itba_covers\\unique_100\\day_008_cover.png"
+  },
+  {
+    "day": 9,
+    "file_upload_id": "40b10ebd-f4c0-8133-bae1-00b270637f63",
+    "upload_url": "https://api.notion.com/v1/mcp/file_uploads/40b10ebd-f4c0-8133-bae1-00b270637f63/send",
+    "upload_headers": {
+      "authorization": "Bearer eyJwdXJwb3NlIjoibWNwX2ZpbGVfdXBsb2FkIiwiZmlsZVVwbG9hZElkIjoiNDBiMTBlYmQtZjRjMC04MTMzLWJhZTEtMDBiMjcwNjM3ZjYzIiwiYm90SWQiOiI0MGExMGViZC1mNGMwLTgxNTUtOGFjMC0wMDI3OWE3OTZkYTEiLCJzcGFjZUlkIjoiYmFiMTBlYmQtZjRjMC04MWU2LTliY2ItMDAwM2IxZjY3MTA3IiwibWFya2Rvd25Gb3JtYXQiOiJtYXJrZG93bl92bmV4dCIsImV4cGlyZXNBdCI6MTc5MzUwNTM2MTYwOH0.w8NbqpK5+Qpj1d5lMkA8zOTjr28VcJPbTuHsPY/urcQ="
+    },
+    "file_path": "f:\\VIETLOTT-SMS\\references\\ba-book\\itba_covers\\unique_100\\day_009_cover.png"
+  },
+  {
+    "day": 10,
+    "file_upload_id": "40b10ebd-f4c0-813d-b407-00b2283f732e",
+    "upload_url": "https://api.notion.com/v1/mcp/file_uploads/40b10ebd-f4c0-813d-b407-00b2283f732e/send",
+    "upload_headers": {
+      "authorization": "Bearer eyJwdXJwb3NlIjoibWNwX2ZpbGVfdXBsb2FkIiwiZmlsZVVwbG9hZElkIjoiNDBiMTBlYmQtZjRjMC04MTNkLWI0MDctMDBiMjI4M2Y3MzJlIiwiYm90SWQiOiI0MGExMGViZC1mNGMwLTgxNTUtOGFjMC0wMDI3OWE3OTZkYTEiLCJzcGFjZUlkIjoiYmFiMTBlYmQtZjRjMC04MWU2LTliY2ItMDAwM2IxZjY3MTA3IiwibWFya2Rvd25Gb3JtYXQiOiJtYXJrZG93bl92bmV4dCIsImV4cGlyZXNBdCI6MTc5MzUwNTM2MjA2N30.I9kUJIgRQHDkzH7sjWOiiNUk2olb3G8/Otk2X/0IiiE="
+    },
+    "file_path": "f:\\VIETLOTT-SMS\\references\\ba-book\\itba_covers\\unique_100\\day_010_cover.png"
+  }
+]

@@ -1,0 +1,3910 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vietlott SMS 2.0 — High-Fidelity Interactive App Mockup</title>
+  <style>
+/* ==========================================================================
+   VIETLOTT SMS 2.0 - HIGH-FIDELITY MOBILE APP MOCKUP STYLESHEET
+   Includes: Design System Tokens, Dual Theme Support, Glassmorphism, 
+   Responsive Viewport, Micro-animations, & 6 Interactive Screen Styles.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS & CSS VARIABLES
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand Colors */
+  --vietlott-red: #E31937;
+  --vietlott-red-dark: #B71C1C;
+  --vietlott-red-light: #FFEBEE;
+  --vietlott-gold: #FFD700;
+  --vietlott-gold-dark: #FF8F00;
+  --vietlott-green: #00C853;
+  --vietlott-green-dark: #1B5E20;
+
+  /* Neutral Grays */
+  --gray-100: #F8F9FA;
+  --gray-200: #E9ECEF;
+  --gray-300: #DEE2E6;
+  --gray-400: #CED4DA;
+  --gray-500: #ADB5BD;
+  --gray-600: #6C757D;
+  --gray-700: #495057;
+  --gray-800: #343A40;
+  --gray-900: #212529;
+
+  /* Light Mode Semantic Variables */
+  --bg-body-demo: #0F172A; /* Dark slate outer demo background */
+  --bg-app: #F5F5F5;
+  --bg-surface: #FFFFFF;
+  --bg-surface-subtle: #F8F9FA;
+  --bg-card: #FFFFFF;
+  --bg-input: #FFFFFF;
+  --bg-header-gradient: linear-gradient(135deg, #E31937 0%, #B71C1C 100%);
+  --bg-gold-gradient: linear-gradient(135deg, #FFF8E1 0%, #FFE082 100%);
+  --bg-glass: rgba(255, 255, 255, 0.88);
+
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --text-tertiary: #6C757D;
+  --text-on-red: #FFFFFF;
+  --text-gold-highlight: #D84315;
+
+  --border-color: #E9ECEF;
+  --border-color-active: #E31937;
+  --border-color-glass: rgba(255, 255, 255, 0.3);
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.12);
+  --shadow-jackpot-glow: 0 0 16px rgba(255, 215, 0, 0.6);
+  --shadow-red-glow: 0 4px 16px rgba(227, 25, 55, 0.4);
+
+  /* Layout Spacing */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Dark Mode Overrides */
+.dark-theme {
+  --bg-app: #121212;
+  --bg-surface: #1E1E1E;
+  --bg-surface-subtle: #262626;
+  --bg-card: #1E1E1E;
+  --bg-input: #2A2A2A;
+  --bg-header-gradient: linear-gradient(135deg, #8E0E22 0%, #1A0507 100%);
+  --bg-gold-gradient: linear-gradient(135deg, #3E2723 0%, #5D4037 100%);
+  --bg-glass: rgba(30, 30, 30, 0.90);
+
+  --text-primary: #F8F9FA;
+  --text-secondary: #CED4DA;
+  --text-tertiary: #ADB5BD;
+  --text-on-red: #FFFFFF;
+  --text-gold-highlight: #FFD700;
+
+  --border-color: #333333;
+  --border-color-active: #FF5252;
+  --border-color-glass: rgba(255, 255, 255, 0.1);
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.7);
+  --shadow-jackpot-glow: 0 0 20px rgba(255, 215, 0, 0.4);
+  --shadow-red-glow: 0 4px 16px rgba(227, 25, 55, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   2. GLOBAL RESET & BASE STYLES
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg-body-demo);
+  color: #F8F9FA;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* Helper hidden class */
+.hidden {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. DEMO TOP CONTROL BAR
+   -------------------------------------------------------------------------- */
+.demo-top-bar {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.demo-branding {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge-role {
+  background: #7C3AED;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.demo-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #F8F9FA;
+}
+
+.demo-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.demo-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s var(--ease-standard);
+}
+
+.demo-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.quick-nav-dropdown label {
+  font-size: 13px;
+  margin-right: 8px;
+  color: #94A3B8;
+}
+
+.quick-nav-dropdown select {
+  background: #1E293B;
+  color: #FFF;
+  border: 1px solid #334155;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  outline: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. SMARTPHONE VIEWPORT & FRAME MOCKUP
+   -------------------------------------------------------------------------- */
+.app-viewport-wrapper {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 16px;
+}
+
+.smartphone-frame {
+  width: 100%;
+  max-width: 420px;
+  height: 860px;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  border-radius: 48px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 12px #1E293B, 0 0 0 14px #475569;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s var(--ease-standard);
+}
+
+/* Smartphone Notch */
+.smartphone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 28px;
+  background-color: #1E293B;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  z-index: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.camera-lens {
+  width: 10px;
+  height: 10px;
+  background-color: #0F172A;
+  border-radius: 50%;
+  border: 1px solid #334155;
+}
+
+.speaker-grill {
+  width: 40px;
+  height: 4px;
+  background-color: #334155;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   5. APP HEADER & STATUS BAR
+   -------------------------------------------------------------------------- */
+.app-header-container {
+  background: var(--bg-header-gradient);
+  color: var(--text-on-red);
+  padding-top: 28px; /* Safe space for notch */
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  z-index: 800;
+}
+
+.status-bar {
+  padding: 6px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.app-nav-bar {
+  padding: 12px 16px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-circle {
+  width: 38px;
+  height: 38px;
+  background: #FFFFFF;
+  color: var(--vietlott-red);
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.3px;
+}
+
+.v2-tag {
+  background: var(--vietlott-gold);
+  color: #000;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+}
+
+.brand-sub {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.verified-shield-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: #FFF;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.theme-toggle-switch {
+  width: 44px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  padding: 2px;
+}
+
+.switch-ball {
+  width: 18px;
+  height: 18px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.dark-theme .switch-ball {
+  transform: translateX(20px);
+  background: var(--vietlott-gold);
+}
+
+/* --------------------------------------------------------------------------
+   6. APP CONTENT SCROLL & SCREENS
+   -------------------------------------------------------------------------- */
+.app-content-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  padding-bottom: 90px; /* Space for bottom nav */
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for clean UI */
+.app-content-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.app-content-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+
+.screen-view {
+  display: none;
+  animation: fadeInScreen 0.3s var(--ease-standard);
+}
+
+.screen-view.active {
+  display: block;
+}
+
+@keyframes fadeInScreen {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.screen-header {
+  margin-bottom: 16px;
+}
+
+.screen-header h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.screen-header p {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Section Title Bar */
+.section-title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 12px;
+}
+
+.section-title-bar h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.2px;
+}
+
+.live-pulse {
+  background: var(--vietlott-red);
+  color: #FFF;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  animation: pulseBadge 1.5s infinite;
+}
+
+@keyframes pulseBadge {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.link-more {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vietlott-red);
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   7. SCREEN 1: HOME & CARDS
+   -------------------------------------------------------------------------- */
+.user-greeting-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.greeting-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+  color: #FFF;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.vip-badge-mini {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  font-size: 14px;
+}
+
+.greeting-info h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.vip-tag-gold {
+  background: var(--vietlott-gold);
+  color: #000;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  margin-left: 4px;
+}
+
+.greeting-info p {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.btn-checkin-quick {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.checkin-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--vietlott-green);
+  border-radius: 50%;
+}
+
+/* 6-Year Promo Banner */
+.promo-banner-6year {
+  background: linear-gradient(135deg, #B71C1C 0%, #E31937 60%, #FF8F00 100%);
+  color: #FFF;
+  border-radius: var(--radius-xl);
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 20px;
+}
+
+.promo-pill {
+  background: rgba(255, 255, 255, 0.25);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.5px;
+}
+
+.promo-content h3 {
+  font-size: 17px;
+  font-weight: 800;
+  margin: 8px 0 4px;
+}
+
+.promo-content p {
+  font-size: 12px;
+  opacity: 0.9;
+  margin-bottom: 12px;
+}
+
+.btn-banner-action {
+  background: var(--vietlott-gold);
+  color: #000;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.promo-badge-glow {
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  font-size: 42px;
+  font-weight: 900;
+  opacity: 0.15;
+  color: #FFF;
+}
+
+/* Jackpots Grid */
+.jackpots-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.jackpot-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s var(--ease-standard);
+}
+
+.jackpot-card:hover {
+  transform: translateY(-2px);
+}
+
+.card-header-game {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.game-badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  color: #FFF;
+}
+
+.game-badge.power { background: #B71C1C; }
+.game-badge.mega { background: #E31937; }
+.game-badge.bingo { background: #00C853; }
+.game-badge.lotto { background: #FF8F00; color: #000; }
+.game-badge.max { background: #6A1B9A; }
+
+.draw-time {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.jackpot-amount-box {
+  margin: 6px 0 10px;
+}
+
+.jackpot-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+}
+
+.jackpot-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--vietlott-red);
+  text-shadow: 0 0 12px rgba(227, 25, 55, 0.2);
+  animation: jackpotPulse 3s infinite;
+}
+
+.dark-theme .jackpot-value {
+  color: var(--vietlott-gold);
+  text-shadow: var(--shadow-jackpot-glow);
+}
+
+@keyframes jackpotPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.01); }
+  100% { transform: scale(1); }
+}
+
+.card-footer-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  padding-top: 8px;
+}
+
+.jackpot-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.btn-play-sm {
+  background: var(--vietlott-red);
+  color: #FFF;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  min-height: 38px;
+}
+
+/* BINGO18 Turbo Widget */
+.turbo-bingo-widget {
+  background: var(--bg-surface);
+  border: 2px solid var(--vietlott-green);
+  border-radius: var(--radius-xl);
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(0, 200, 83, 0.15);
+  margin-bottom: 20px;
+}
+
+.turbo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.turbo-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bingo-icon {
+  font-size: 24px;
+}
+
+.turbo-title h5 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.turbo-title p {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.countdown-pill {
+  background: rgba(0, 200, 83, 0.12);
+  color: var(--vietlott-green-dark);
+  border: 1px solid var(--vietlott-green);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.dark-theme .countdown-pill {
+  color: #00E676;
+}
+
+.turbo-options-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.turbo-opt-btn {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 4px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.2s var(--ease-standard);
+}
+
+.turbo-opt-btn.active {
+  background: var(--vietlott-green);
+  color: #FFF;
+  border-color: var(--vietlott-green);
+  box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);
+}
+
+.turbo-opt-btn strong {
+  font-size: 14px;
+}
+
+.turbo-opt-btn span {
+  font-size: 10px;
+  opacity: 0.85;
+}
+
+.turbo-bet-amount {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.turbo-bet-amount span {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.chip-group {
+  display: flex;
+  gap: 6px;
+}
+
+.chip {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+}
+
+.chip.active {
+  background: var(--vietlott-red);
+  color: #FFF;
+  border-color: var(--vietlott-red);
+}
+
+.btn-turbo-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #00C853 0%, #1B5E20 100%);
+  color: #FFF;
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(0, 200, 83, 0.4);
+  min-height: 48px;
+  transition: transform 0.15s var(--ease-standard);
+}
+
+.btn-turbo-submit:active {
+  transform: scale(0.97);
+}
+
+.btn-turbo-submit .btn-text {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.btn-turbo-submit .btn-sub {
+  font-size: 10px;
+  opacity: 0.9;
+}
+
+/* Spotlight Lotto 5/35 */
+.spotlight-card {
+  background: var(--bg-gold-gradient);
+  color: #000;
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  border: 1px solid var(--vietlott-gold);
+  margin-bottom: 20px;
+}
+
+.spotlight-badge {
+  font-size: 10px;
+  font-weight: 800;
+  color: #D84315;
+  margin-bottom: 4px;
+}
+
+.spotlight-content h4 {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.spotlight-content p {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+.spotlight-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-tag {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.btn-outline-gold {
+  background: #000;
+  color: var(--vietlott-gold);
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+/* Game Shortcuts Grid */
+.game-shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.game-shortcut-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.shortcut-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  color: #FFF;
+  font-weight: 800;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.mega-bg { background: #E31937; }
+.power-bg { background: #B71C1C; }
+.bingo-bg { background: #00C853; }
+.lotto-bg { background: #FF8F00; }
+.max-bg { background: #6A1B9A; }
+
+.game-shortcut-item span {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   8. SCREEN 2: GAME CATALOG
+   -------------------------------------------------------------------------- */
+.catalog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.catalog-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+.catalog-card.highlight-border {
+  border: 2px solid var(--vietlott-green);
+}
+
+.catalog-card-header {
+  padding: 10px 14px;
+  color: #FFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mega-bg-gradient { background: linear-gradient(135deg, #E31937, #B71C1C); }
+.power-bg-gradient { background: linear-gradient(135deg, #B71C1C, #4A0007); }
+.bingo-bg-gradient { background: linear-gradient(135deg, #00C853, #1B5E20); }
+.lotto-bg-gradient { background: linear-gradient(135deg, #FF8F00, #E65100); }
+.max-bg-gradient { background: linear-gradient(135deg, #6A1B9A, #4A148C); }
+
+.game-title {
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.draw-badge {
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.draw-badge.pulse { animation: pulseBadge 1.5s infinite; }
+
+.catalog-card-body {
+  padding: 14px;
+}
+
+.prize-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.prize-label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.prize-value {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.red-text { color: var(--vietlott-red); }
+.green-text { color: var(--vietlott-green); }
+.gold-text { color: var(--vietlott-gold-dark); }
+.dark-theme .gold-text { color: var(--vietlott-gold); }
+
+.game-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.catalog-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.btn-secondary-sm {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.btn-primary-sm {
+  background: var(--vietlott-red);
+  color: #FFF;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  min-height: 38px;
+}
+
+.btn-primary-sm.green-bg { background: var(--vietlott-green); }
+.btn-primary-sm.gold-bg { background: var(--vietlott-gold); color: #000; }
+
+/* --------------------------------------------------------------------------
+   9. SCREEN 3: STREAMLINED PURCHASE FLOW
+   -------------------------------------------------------------------------- */
+.purchase-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  background: var(--bg-surface);
+  padding: 10px 16px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.5;
+}
+
+.step-item.active {
+  opacity: 1;
+}
+
+.step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--border-color);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.step-item.active .step-num {
+  background: var(--vietlott-red);
+  color: #FFF;
+}
+
+.step-lbl {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.step-line {
+  flex: 1;
+  height: 2px;
+  background: var(--border-color);
+  margin: 0 8px;
+}
+
+.step-header {
+  margin-bottom: 14px;
+}
+
+.game-title-selected {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--vietlott-red);
+  display: block;
+}
+
+.number-picker-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.btn-picker-tool {
+  flex: 1;
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 4px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.selected-balls-display {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  background: var(--bg-surface);
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.ball-slot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  font-size: 16px;
+  transition: all 0.2s var(--ease-spring);
+}
+
+.ball-slot.empty {
+  border: 2px dashed var(--border-color);
+  color: var(--text-tertiary);
+}
+
+.ball-slot.filled {
+  background: var(--vietlott-red);
+  color: #FFF;
+  box-shadow: 0 4px 10px rgba(227, 25, 55, 0.3);
+}
+
+.balls-grid-selector {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.ball-choice {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.15s var(--ease-standard);
+}
+
+.ball-choice:hover {
+  border-color: var(--vietlott-red);
+}
+
+.ball-choice.selected {
+  background: var(--vietlott-red);
+  color: #FFF;
+  border-color: var(--vietlott-red);
+  transform: scale(1.1);
+  box-shadow: var(--shadow-red-glow);
+}
+
+.step1-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.total-preview {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.btn-primary {
+  width: 100%;
+  background: var(--vietlott-red);
+  color: #FFF;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  box-shadow: var(--shadow-red-glow);
+  min-height: 48px;
+  transition: transform 0.15s var(--ease-standard);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-primary.green-bg { background: var(--vietlott-green); }
+
+.btn-secondary {
+  width: 100%;
+  background: var(--bg-surface-subtle);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+/* Step 2 Summary & Cross Sell */
+.order-summary-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.summary-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 13px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.summary-item-row:last-child {
+  border-bottom: none;
+}
+
+.balls-inline-mini {
+  display: flex;
+  gap: 4px;
+}
+
+.ball-mini {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--vietlott-red);
+  color: #FFF;
+  font-weight: 700;
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cross-sell-box {
+  background: var(--bg-gold-gradient);
+  border: 1px solid var(--vietlott-gold);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  color: #000;
+  margin-bottom: 16px;
+}
+
+.cross-tag {
+  font-size: 10px;
+  font-weight: 800;
+  color: #D84315;
+}
+
+.cross-sell-header h5 {
+  font-size: 14px;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.cross-sell-box p {
+  font-size: 12px;
+  margin: 6px 0;
+}
+
+.cross-sell-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.payment-method-selector {
+  margin-bottom: 20px;
+}
+
+.payment-method-selector h5 {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.payment-opt-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.payment-opt-card.active {
+  border-color: var(--vietlott-red);
+  background: rgba(227, 25, 55, 0.05);
+}
+
+.opt-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.opt-info strong {
+  font-size: 13px;
+}
+
+.opt-info span {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.step2-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.final-price-box {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.step2-btns {
+  display: flex;
+  gap: 10px;
+}
+
+/* Step 3 Idempotent Processing */
+.idempotent-processing-box {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  padding: 24px 16px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+}
+
+.idempotent-badge {
+  background: rgba(0, 200, 83, 0.12);
+  color: var(--vietlott-green-dark);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.idempotent-processing-box h3 {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.idempotent-processing-box p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 6px 0 16px;
+}
+
+.countdown-spinner-circle {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 16px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.countdown-number {
+  position: absolute;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--vietlott-red);
+}
+
+.processing-note {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-bottom: 16px;
+}
+
+.btn-biometric-auth {
+  width: 100%;
+  background: #1E293B;
+  color: #FFF;
+  border: 1px solid #334155;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+/* Payment Success Invoice */
+.payment-success-invoice {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  padding: 20px 16px;
+  text-align: center;
+  border: 2px solid var(--vietlott-green);
+  animation: fadeInScreen 0.4s var(--ease-standard);
+}
+
+.success-icon-animated {
+  width: 60px;
+  height: 60px;
+  background: var(--vietlott-green);
+  color: #FFF;
+  border-radius: 50%;
+  font-size: 32px;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 12px;
+  box-shadow: 0 4px 16px rgba(0, 200, 83, 0.4);
+}
+
+.payment-success-invoice h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--vietlott-green);
+}
+
+.success-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.invoice-details-card {
+  background: var(--bg-surface-subtle);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.invoice-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.invoice-row:last-child { border-bottom: none; }
+
+.invoice-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   10. SCREEN 4: RESULTS & NOTIFICATIONS
+   -------------------------------------------------------------------------- */
+.latest-result-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.result-card-header {
+  padding: 10px 14px;
+  color: #FFF;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.result-winning-balls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 14px;
+}
+
+.ball-result {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--vietlott-red);
+  color: #FFF;
+  font-weight: 800;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-red-glow);
+}
+
+.result-jackpot-won {
+  background: var(--bg-surface-subtle);
+  padding: 10px 14px;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  font-size: 12px;
+}
+
+.result-jackpot-won strong {
+  font-size: 16px;
+  display: block;
+}
+
+.win-count {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+.badge-click-test {
+  background: var(--vietlott-gold);
+  color: #000;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.ticket-interactive-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--vietlott-gold);
+  padding: 14px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  box-shadow: var(--shadow-jackpot-glow);
+  transition: transform 0.2s var(--ease-standard);
+}
+
+.ticket-interactive-card:active {
+  transform: scale(0.98);
+}
+
+.ticket-status-badge {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--vietlott-gold-dark);
+  margin-bottom: 8px;
+}
+
+.ticket-game {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.ticket-balls-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.ball-mini.match {
+  background: var(--vietlott-gold);
+  color: #000;
+  font-weight: 800;
+}
+
+.ball-mini.no-match {
+  background: var(--gray-400);
+  color: #FFF;
+}
+
+.ticket-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.history-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.history-item {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   11. SCREEN 5: GAMIFICATION & SYNDICATE
+   -------------------------------------------------------------------------- */
+.streaks-hub-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.streaks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.streaks-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fire-icon { font-size: 22px; }
+
+.streaks-title h4 {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.streaks-title p {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.streak-badge {
+  background: var(--vietlott-gold);
+  color: #000;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.streaks-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.day-box {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.day-box.checked {
+  background: rgba(0, 200, 83, 0.15);
+  border-color: var(--vietlott-green);
+  color: var(--vietlott-green);
+}
+
+.day-box.today-gift {
+  background: var(--bg-gold-gradient);
+  border-color: var(--vietlott-gold);
+  cursor: pointer;
+  animation: pulseBadge 1.5s infinite;
+}
+
+/* Lucky Wheel */
+.lucky-wheel-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.wheel-tag {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--vietlott-red);
+}
+
+.lucky-wheel-card h4 {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 2px 0;
+}
+
+.lucky-wheel-card p {
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.wheel-container {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: var(--vietlott-red);
+  z-index: 10;
+}
+
+.wheel-disc {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 6px solid var(--vietlott-gold);
+  position: relative;
+  overflow: hidden;
+  transition: transform 3s cubic-bezier(0.15, 0.9, 0.3, 1);
+  background: conic-gradient(
+    #E31937 0deg 60deg,
+    #FF8F00 60deg 120deg,
+    #00C853 120deg 180deg,
+    #6A1B9A 180deg 240deg,
+    #1D4ED8 240deg 300deg,
+    #FFD700 300deg 360deg
+  );
+}
+
+.wheel-sector {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  color: #FFF;
+  font-size: 9px;
+  font-weight: 800;
+  transform-origin: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+}
+
+.sec1 { transform: rotate(0deg); }
+.sec2 { transform: rotate(60deg); }
+.sec3 { transform: rotate(120deg); }
+.sec4 { transform: rotate(180deg); }
+.sec5 { transform: rotate(240deg); }
+.sec6 { transform: rotate(300deg); }
+
+.btn-spin-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  color: var(--vietlott-red);
+  border: 3px solid var(--vietlott-gold);
+  font-size: 11px;
+  font-weight: 900;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Syndicate Rooms */
+.btn-xs-gold {
+  background: var(--vietlott-gold);
+  color: #000;
+  border: none;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.syndicate-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.syndicate-card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.room-title strong {
+  font-size: 13px;
+  display: block;
+}
+
+.ticket-type {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.progress-pill {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--vietlott-green);
+}
+
+.syndicate-progress-bar {
+  height: 8px;
+  background: var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--vietlott-green);
+  border-radius: 4px;
+}
+
+.syndicate-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.syndicate-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* VIP Tiers */
+.vip-tiers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.vip-tier-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+
+.vip-tier-card.active {
+  border: 2px solid var(--vietlott-gold);
+  background: var(--bg-gold-gradient);
+  color: #000;
+}
+
+.active-badge {
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  background: #000;
+  color: var(--vietlott-gold);
+  font-size: 8px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.vip-tier-card h5 {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.vip-tier-card p { font-size: 11px; opacity: 0.8; }
+.vip-tier-card span { font-size: 12px; font-weight: 700; display: block; margin-top: 4px; }
+
+/* --------------------------------------------------------------------------
+   12. SCREEN 6: PROFILE & HISTORY
+   -------------------------------------------------------------------------- */
+.profile-user-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.user-avatar-lg {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+  color: #FFF;
+  font-weight: 900;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-user-info h3 {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.profile-user-info p {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.user-vip-pill {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--vietlott-gold-dark);
+  margin-top: 4px;
+}
+
+.verified-security-card {
+  background: rgba(0, 200, 83, 0.1);
+  border: 1px solid var(--vietlott-green);
+  border-radius: var(--radius-lg);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.shield-icon { font-size: 24px; }
+
+.shield-text h5 {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--vietlott-green-dark);
+}
+
+.dark-theme .shield-text h5 { color: #00E676; }
+
+.shield-text p {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.chevron {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  margin-left: auto;
+}
+
+.stats-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stat-box {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-lbl {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.stat-val {
+  font-size: 15px;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.settings-group {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.settings-group h5 {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-tertiary);
+  margin-bottom: 10px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 13px;
+}
+
+.setting-item:last-child { border-bottom: none; }
+
+.status-active {
+  font-size: 12px;
+  color: var(--vietlott-green);
+  font-weight: 700;
+}
+
+.ticket-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-ticket-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.tkt-row-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.tkt-status.won { color: var(--vietlott-green); }
+.tkt-status.pending { color: var(--vietlott-gold-dark); }
+
+.tkt-balls {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.tkt-row-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+/* --------------------------------------------------------------------------
+   13. APP BOTTOM NAVIGATION BAR (5 TABS)
+   -------------------------------------------------------------------------- */
+.app-bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 900;
+}
+
+.nav-tab {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  flex: 1;
+  padding: 8px 0;
+  transition: color 0.2s var(--ease-standard);
+  min-height: 48px;
+}
+
+.nav-tab.active {
+  color: var(--vietlott-red);
+}
+
+.dark-theme .nav-tab.active {
+  color: #FF5252;
+}
+
+.nav-icon {
+  font-size: 20px;
+  transition: transform 0.2s var(--ease-spring);
+}
+
+.nav-tab.active .nav-icon {
+  transform: translateY(-2px) scale(1.15);
+}
+
+.nav-label {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* Indicator line under active tab */
+.nav-active-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 20%;
+  height: 3px;
+  background: var(--vietlott-red);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Đặt Trang chủ ở trung tâm thanh điều hướng: Danh mục • Kết quả • Trang chủ • Mua nhóm • Tài khoản */
+.nav-tab[data-target="catalog"] { order: 1; }
+.nav-tab[data-target="results"] { order: 2; }
+.nav-tab[data-target="home"] { order: 3; }
+.nav-tab[data-target="gamification"] { order: 4; }
+.nav-tab[data-target="profile"] { order: 5; }
+
+/* --------------------------------------------------------------------------
+   14. CONFETTI CANVAS & MODALS
+   -------------------------------------------------------------------------- */
+.confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2000;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 1500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  animation: fadeInScreen 0.25s var(--ease-standard);
+}
+
+.modal-dialog {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-radius: var(--radius-xl);
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.modal-header h4 {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.btn-close-modal {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: var(--text-tertiary);
+  cursor: pointer;
+}
+
+.modal-body {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.sha256-code {
+  background: var(--bg-surface-subtle);
+  padding: 10px;
+  border-radius: var(--radius-md);
+  margin: 10px 0;
+  font-size: 11px;
+}
+
+.sha256-code code {
+  word-break: break-all;
+  color: var(--vietlott-red);
+  font-family: monospace;
+}
+
+.verified-note {
+  font-size: 12px;
+  color: var(--vietlott-green);
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.form-control {
+  width: 100%;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  outline: none;
+}
+
+.syn-note {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 8px;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* --------------------------------------------------------------------------
+   15. RESPONSIVE BREAKPOINTS (375px → 768px → 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .demo-top-bar {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .app-viewport-wrapper {
+    padding: 0;
+  }
+  .smartphone-frame {
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 100%;
+    height: 100vh;
+  }
+  .smartphone-notch {
+    display: none;
+  }
+  .app-header-container {
+    padding-top: 10px;
+    border-radius: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .app-viewport-wrapper {
+    padding: 32px;
+  }
+}
+  </style>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Top Control Bar for Demo / Examiner -->
+  <header class="demo-top-bar">
+    <div class="demo-branding">
+      <span class="badge-role">[🟣 ROLE: Designer]</span>
+      <span class="demo-title">Vietlott SMS 2.0 — Mockup Kỷ Niệm 6 Năm</span>
+    </div>
+    <div class="demo-actions">
+      <button class="demo-btn" id="toggleThemeTopBtn">
+        <span class="theme-icon">🌙</span> <span class="theme-text">Dark Mode</span>
+      </button>
+      <div class="quick-nav-dropdown">
+        <label for="screenSelect">Chuyển nhanh màn hình:</label>
+        <select id="screenSelect" onchange="switchScreen(this.value)">
+          <option value="home">1. Trang Chủ / Dashboard</option>
+          <option value="catalog">2. Danh Mục Game Xổ Số</option>
+          <option value="purchase">3. Luồng Mua Vé (3 Bước)</option>
+          <option value="results">4. Kết Quả & Trả Thưởng</option>
+          <option value="gamification">5. Gamification & Mua Nhóm</option>
+          <option value="profile">6. Tài Khoản & Lịch Sử</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Viewport Container (Smartphone Frame + Responsive View) -->
+  <main class="app-viewport-wrapper">
+    <div class="smartphone-frame">
+      <div class="smartphone-notch">
+        <div class="camera-lens"></div>
+        <div class="speaker-grill"></div>
+      </div>
+
+      <!-- App Header & Status Bar -->
+      <div class="app-header-container">
+        <!-- Phone Status Bar -->
+        <div class="status-bar">
+          <span class="status-time" id="statusClock">12:30</span>
+          <div class="status-icons">
+            <span class="icon-signal">📶</span>
+            <span class="icon-wifi">📡</span>
+            <span class="icon-battery">🔋 98%</span>
+          </div>
+        </div>
+
+        <!-- App Top Navigation Bar -->
+        <div class="app-nav-bar">
+          <div class="nav-brand">
+            <div class="logo-circle">V6</div>
+            <div class="brand-text">
+              <span class="brand-name">Vietlott SMS <span class="v2-tag">2.0</span></span>
+              <span class="brand-sub">Kỷ niệm 6 Năm Ra Mắt</span>
+            </div>
+          </div>
+          <div class="nav-actions">
+            <div class="verified-shield-badge" title="Đã xác thực chính hãng SHA-256" onclick="showVerifiedModal()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+              <span>Chính Hãng</span>
+            </div>
+            <button class="theme-toggle-switch" id="themeToggleSwitch" aria-label="Toggle Dark Mode" title="Bật/Tắt Dark Mode">
+              <span class="switch-ball"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Body Content Area (6 Screens) -->
+      <div class="app-content-scroll" id="appContentScroll">
+
+        <!-- ================= SCREEN 1: HOME / DASHBOARD ================= -->
+        <section class="screen-view active" id="screen-home">
+          <!-- User Greeting Banner -->
+          <div class="user-greeting-card">
+            <div class="greeting-left">
+              <div class="user-avatar">
+                <span>M</span>
+                <span class="vip-badge-mini" title="VIP Gold Member">👑</span>
+              </div>
+              <div class="greeting-info">
+                <h2>Chào anh Minh! <span class="vip-tag-gold">VIP Gold</span></h2>
+                <p>Thứ Ba, 11/08/2026 • 7-Day Streak 🔥</p>
+              </div>
+            </div>
+            <button class="btn-checkin-quick" onclick="switchScreen('gamification')">
+              <span>Điểm Danh</span>
+              <span class="checkin-dot"></span>
+            </button>
+          </div>
+
+          <!-- 6-Year Anniversary Banner -->
+          <div class="promo-banner-6year">
+            <div class="promo-content">
+              <span class="promo-pill">SỰ KIỆN KỶ NIỆM 6 NĂM</span>
+              <h3>Bứt Phá Ý Tưởng — Dẫn Dắt Thay Đổi</h3>
+              <p>Hoàn tiền Cashback 2% • Vòng Quay May Mắn 100% Trúng Quà</p>
+              <button class="btn-banner-action" onclick="switchScreen('gamification')">Tham Gia Ngay 🎁</button>
+            </div>
+            <div class="promo-badge-glow">6 YEARS</div>
+          </div>
+
+          <!-- Jackpot Live Counters (Mega 6/45 & Power 6/55) -->
+          <div class="section-title-bar">
+            <h4>🔥 JACKPOT TÍCH LŨY KHỦNG</h4>
+            <span class="live-pulse">LIVE</span>
+          </div>
+
+          <div class="jackpots-grid">
+            <!-- Power 6/55 -->
+            <div class="jackpot-card power-card">
+              <div class="card-header-game">
+                <span class="game-badge power">POWER 6/55</span>
+                <span class="draw-time">Quay 18:00 Hôm Nay</span>
+              </div>
+              <div class="jackpot-amount-box">
+                <span class="jackpot-label">JACKPOT 1</span>
+                <div class="jackpot-value" id="powerJackpotVal">184.520.000.000đ</div>
+              </div>
+              <div class="card-footer-action">
+                <span class="jackpot-sub">Jackpot 2: 7.45 tỷ đ</span>
+                <button class="btn-play-sm" onclick="startPurchaseFlow('power')">Mua Ngay 10k</button>
+              </div>
+            </div>
+
+            <!-- Mega 6/45 -->
+            <div class="jackpot-card mega-card">
+              <div class="card-header-game">
+                <span class="game-badge mega">MEGA 6/45</span>
+                <span class="draw-time">Quay 18:00 Ngày Mai</span>
+              </div>
+              <div class="jackpot-amount-box">
+                <span class="jackpot-label">JACKPOT</span>
+                <div class="jackpot-value" id="megaJackpotVal">126.850.000.000đ</div>
+              </div>
+              <div class="card-footer-action">
+                <span class="jackpot-sub">Giải Nhất: 10 triệu đ</span>
+                <button class="btn-play-sm" onclick="startPurchaseFlow('mega')">Mua Ngay 10k</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- BINGO18 Turbo Fast-Play Widget (Persona 1 Cash Cow) -->
+          <div class="turbo-bingo-widget">
+            <div class="turbo-header">
+              <div class="turbo-title">
+                <span class="bingo-icon">⚡</span>
+                <div>
+                  <h5>BINGO18 Turbo Fast-Play</h5>
+                  <p>Quay số nhanh 6 phút • ARPU Top 1</p>
+                </div>
+              </div>
+              <div class="countdown-pill" id="bingoCountdown">
+                <span>Kỳ #00881</span>
+                <strong id="timerTick">03:42</strong>
+              </div>
+            </div>
+
+            <div class="turbo-options-row">
+              <button class="turbo-opt-btn active" data-opt="lon" onclick="selectBingoOpt(this)">
+                <strong>LỚN</strong>
+                <span>Tổng 13-18 (x2)</span>
+              </button>
+              <button class="turbo-opt-btn" data-opt="nho" onclick="selectBingoOpt(this)">
+                <strong>NHỎ</strong>
+                <span>Tổng 3-10 (x2)</span>
+              </button>
+              <button class="turbo-opt-btn" data-opt="hoa" onclick="selectBingoOpt(this)">
+                <strong>HÒA</strong>
+                <span>Tổng 11-12 (x4.7)</span>
+              </button>
+            </div>
+
+            <div class="turbo-bet-amount">
+              <span>Mệnh giá:</span>
+              <div class="chip-group">
+                <button class="chip active" onclick="selectChip(this, 10)">10k</button>
+                <button class="chip" onclick="selectChip(this, 20)">20k</button>
+                <button class="chip" onclick="selectChip(this, 50)">50k</button>
+                <button class="chip" onclick="selectChip(this, 100)">100k</button>
+              </div>
+            </div>
+
+            <button class="btn-turbo-submit" id="btnTurboSubmit" onclick="executeTurboCheckout()">
+              <span class="btn-text">⚡ Chốt Đơn Turbo (1-Tap Checkout)</span>
+              <span class="btn-sub">Kháng Lag Idempotent • Response &lt;3s</span>
+            </button>
+          </div>
+
+          <!-- Lotto 5/35 Top Gainer Spotlight -->
+          <div class="spotlight-card lotto535-card">
+            <div class="spotlight-badge">⭐ TOP GAINER — DAT 198% KPI T8</div>
+            <div class="spotlight-content">
+              <h4>LOTTO 5/35 — Xổ Số Mới Bứt Phá</h4>
+              <p>Xác suất trúng cao gấp 4 lần • Jackpot từ 5 Tỷ đồng</p>
+              <div class="spotlight-action">
+                <span class="price-tag">Chỉ 10.000đ / Bộ số</span>
+                <button class="btn-outline-gold" onclick="startPurchaseFlow('lotto535')">Thử Vận May 🎯</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Game Grid Shortcuts -->
+          <div class="section-title-bar">
+            <h4>DANH MỤC GAME XỔ SỐ</h4>
+            <span class="link-more" onclick="switchScreen('catalog')">Xem Tất Cả &rarr;</span>
+          </div>
+
+          <div class="game-shortcuts-grid">
+            <div class="game-shortcut-item" onclick="startPurchaseFlow('mega')">
+              <div class="shortcut-icon mega-bg">6/45</div>
+              <span>Mega 6/45</span>
+            </div>
+            <div class="game-shortcut-item" onclick="startPurchaseFlow('power')">
+              <div class="shortcut-icon power-bg">6/55</div>
+              <span>Power 6/55</span>
+            </div>
+            <div class="game-shortcut-item" onclick="startPurchaseFlow('bingo')">
+              <div class="shortcut-icon bingo-bg">B18</div>
+              <span>BINGO18</span>
+            </div>
+            <div class="game-shortcut-item" onclick="startPurchaseFlow('lotto535')">
+              <div class="shortcut-icon lotto-bg">5/35</div>
+              <span>Lotto 5/35</span>
+            </div>
+            <div class="game-shortcut-item" onclick="startPurchaseFlow('max3d')">
+              <div class="shortcut-icon max-bg">3D</div>
+              <span>Max 3D Pro</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SCREEN 2: GAME CATALOG ================= -->
+        <section class="screen-view" id="screen-catalog">
+          <div class="screen-header">
+            <h3>Danh Mục Sản Phẩm Xổ Số</h3>
+            <p>Chọn game xổ số tự chọn chính thống Vietlott</p>
+          </div>
+
+          <div class="catalog-list">
+            <!-- Mega 6/45 -->
+            <div class="catalog-card">
+              <div class="catalog-card-header mega-bg-gradient">
+                <span class="game-title">Mega 6/45</span>
+                <span class="draw-badge">Thứ 4, 6, Chủ Nhật</span>
+              </div>
+              <div class="catalog-card-body">
+                <div class="prize-info">
+                  <span class="prize-label">Jackpot Tích Lũy</span>
+                  <span class="prize-value red-text">126.850.000.000đ</span>
+                </div>
+                <p class="game-desc">Chọn 6 số trong tập hợp 01 đến 45. Trúng Jackpot khi trùng cả 6 số.</p>
+                <div class="catalog-actions">
+                  <button class="btn-secondary-sm" onclick="showGameDetail('mega')">Chi Tiết Luật</button>
+                  <button class="btn-primary-sm" onclick="startPurchaseFlow('mega')">Mua Vé 10k</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Power 6/55 -->
+            <div class="catalog-card">
+              <div class="catalog-card-header power-bg-gradient">
+                <span class="game-title">Power 6/55</span>
+                <span class="draw-badge">Thứ 2, 4, 6</span>
+              </div>
+              <div class="catalog-card-body">
+                <div class="prize-info">
+                  <span class="prize-label">Jackpot 1 Khủng</span>
+                  <span class="prize-value red-text">184.520.000.000đ</span>
+                </div>
+                <p class="game-desc">Chọn 6 số trong tập 01 đến 55. Jackpot 1 từ 30 tỷ đ, Jackpot 2 từ 3 tỷ đ.</p>
+                <div class="catalog-actions">
+                  <button class="btn-secondary-sm" onclick="showGameDetail('power')">Chi Tiết Luật</button>
+                  <button class="btn-primary-sm" onclick="startPurchaseFlow('power')">Mua Vé 10k</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- BINGO18 -->
+            <div class="catalog-card highlight-border">
+              <div class="catalog-card-header bingo-bg-gradient">
+                <span class="game-title">BINGO18 (Fast Gaming)</span>
+                <span class="draw-badge pulse">Quay Số 6 Phút/Kỳ</span>
+              </div>
+              <div class="catalog-card-body">
+                <div class="prize-info">
+                  <span class="prize-label">Cơ Cấu Giải Thưởng</span>
+                  <span class="prize-value green-text">Thắng Lên Đến x120 Lần</span>
+                </div>
+                <p class="game-desc">Xổ số quay nhanh 6 phút/kỳ, từ 06:00 đến 21:54 hàng ngày. Chọn số hoặc kết quả Lớn/Nhỏ/Hòa.</p>
+                <div class="catalog-actions">
+                  <button class="btn-secondary-sm" onclick="showGameDetail('bingo')">Bảng Tỷ Lệ</button>
+                  <button class="btn-primary-sm green-bg" onclick="startPurchaseFlow('bingo')">Chơi Ngay (6 Phút)</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lotto 5/35 -->
+            <div class="catalog-card">
+              <div class="catalog-card-header lotto-bg-gradient">
+                <span class="game-title">Lotto 5/35 (Mới)</span>
+                <span class="draw-badge gold">⭐ Top Gainer T8</span>
+              </div>
+              <div class="catalog-card-body">
+                <div class="prize-info">
+                  <span class="prize-label">Jackpot Khởi Điểm</span>
+                  <span class="prize-value gold-text">5.000.000.000đ</span>
+                </div>
+                <p class="game-desc">Sản phẩm mới bứt phá 198% KPI. Chọn 5 số từ 01 đến 35, xác suất trúng cao vượt trội.</p>
+                <div class="catalog-actions">
+                  <button class="btn-secondary-sm" onclick="showGameDetail('lotto535')">Luật Chơi</button>
+                  <button class="btn-primary-sm gold-bg" onclick="startPurchaseFlow('lotto535')">Mua Ngay 10k</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Max 3D Pro -->
+            <div class="catalog-card">
+              <div class="catalog-card-header max-bg-gradient">
+                <span class="game-title">Max 3D Pro</span>
+                <span class="draw-badge">Thứ 3, 5, 7</span>
+              </div>
+              <div class="catalog-card-body">
+                <div class="prize-info">
+                  <span class="prize-label">Giải Đặc Biệt</span>
+                  <span class="prize-value red-text">2.000.000.000đ</span>
+                </div>
+                <p class="game-desc">Chọn 2 bộ 3 chữ số (VD: 123 - 456). Đa dạng hình thức chơi Bao & Nhiều giải thưởng.</p>
+                <div class="catalog-actions">
+                  <button class="btn-secondary-sm" onclick="showGameDetail('max3d')">Xem Bao Số</button>
+                  <button class="btn-primary-sm" onclick="startPurchaseFlow('max3d')">Mua Vé 10k</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SCREEN 3: STREAMLINED PURCHASE FLOW ================= -->
+        <section class="screen-view" id="screen-purchase">
+          <div class="purchase-stepper">
+            <div class="step-item active" id="stepIndicator1">
+              <span class="step-num">1</span>
+              <span class="step-lbl">Chọn Số</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-item" id="stepIndicator2">
+              <span class="step-num">2</span>
+              <span class="step-lbl">Xác Nhận</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-item" id="stepIndicator3">
+              <span class="step-num">3</span>
+              <span class="step-lbl">Thanh Toán</span>
+            </div>
+          </div>
+
+          <!-- Step 1 Content: Number Picker -->
+          <div class="purchase-step-content" id="purchaseStep1">
+            <div class="step-header">
+              <span class="game-title-selected" id="selectedGameName">Mega 6/45</span>
+              <span class="step-desc">Chọn 6 số may mắn từ 01 đến 45</span>
+            </div>
+
+            <div class="number-picker-actions">
+              <button class="btn-picker-tool" onclick="quickPickRandom()">🎲 Chọn Nhanh (Random)</button>
+              <button class="btn-picker-tool" onclick="quickPickAI()">🔮 AI Smart Pick</button>
+              <button class="btn-picker-tool" onclick="clearSelectedNumbers()">🗑️ Xóa Chọn</button>
+            </div>
+
+            <!-- Selected Numbers Display Grid -->
+            <div class="selected-balls-display" id="selectedBallsDisplay">
+              <span class="ball-slot empty">?</span>
+              <span class="ball-slot empty">?</span>
+              <span class="ball-slot empty">?</span>
+              <span class="ball-slot empty">?</span>
+              <span class="ball-slot empty">?</span>
+              <span class="ball-slot empty">?</span>
+            </div>
+
+            <!-- Grid 1-45 Balls -->
+            <div class="balls-grid-selector" id="ballsGridSelector">
+              <!-- Dynamically generated 1-45 balls -->
+            </div>
+
+            <div class="step1-footer">
+              <div class="total-preview">
+                <span>Số bộ số: <strong id="ticketCountPreview">1</strong></span>
+                <span>Tạm tính: <strong class="red-text" id="totalPricePreview">10.000đ</strong></span>
+              </div>
+              <button class="btn-primary" id="btnGoToStep2" onclick="goToStep(2)">Tiếp Theo (Xác Nhận Đơn) &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 2 Content: Order Confirmation & Cross-Sell -->
+          <div class="purchase-step-content hidden" id="purchaseStep2">
+            <div class="step-header">
+              <h4>Xác Nhận Đơn Hàng Mua Vé</h4>
+              <p>Kiểm tra bộ số & chọn phương thức thanh toán</p>
+            </div>
+
+            <div class="order-summary-card">
+              <div class="summary-item-row">
+                <span class="label">Sản phẩm:</span>
+                <strong id="summaryGameName">Mega 6/45</strong>
+              </div>
+              <div class="summary-item-row">
+                <span class="label">Kỳ quay thưởng:</span>
+                <span>#01248 (18:00 Ngày Mai)</span>
+              </div>
+              <div class="summary-item-row">
+                <span class="label">Bộ số đã chọn:</span>
+                <div class="balls-inline-mini" id="summaryBalls">
+                  <span class="ball-mini">05</span>
+                  <span class="ball-mini">12</span>
+                  <span class="ball-mini">18</span>
+                  <span class="ball-mini">24</span>
+                  <span class="ball-mini">33</span>
+                  <span class="ball-mini">41</span>
+                </div>
+              </div>
+              <div class="summary-item-row">
+                <span class="label">Giá vé:</span>
+                <span>10.000đ</span>
+              </div>
+            </div>
+
+            <!-- Smart Cross-Sell Lotto 5/35 Widget (R1/R2 Requirement) -->
+            <div class="cross-sell-box" id="crossSellBox">
+              <div class="cross-sell-header">
+                <span class="cross-tag">⭐ GỢI Ý BÁN KÈM — TOP GAINER</span>
+                <h5>Thử Vận May Lotto 5/35 Chỉ 10.000đ</h5>
+              </div>
+              <p>Gợi ý bộ số AI: <strong class="gold-text">[08 - 14 - 19 - 27 - 35]</strong></p>
+              <div class="cross-sell-action">
+                <label class="cross-sell-checkbox">
+                  <input type="checkbox" id="chkAddCrossSell" onchange="toggleCrossSell(this)">
+                  <span>Mua kèm 1 bộ số Lotto 5/35 (+10.000đ)</span>
+                </label>
+              </div>
+            </div>
+            <div class="payment-method-selector">
+              <h5>Phương Thức Thanh Toán</h5>
+              <div class="payment-opt-card active" onclick="selectPaymentOpt(this, 'wallet')">
+                <input type="radio" name="payOpt" checked>
+                <div class="opt-info">
+                  <strong>Ví Dự Thưởng Vietlott SMS</strong>
+                  <span>Số dư: 450.000đ (Nạp tức thì, 0% phí)</span>
+                </div>
+              </div>
+              <div class="payment-opt-card" onclick="selectPaymentOpt(this, 'bank')">
+                <input type="radio" name="payOpt">
+                <div class="opt-info">
+                  <strong>Ngân Hàng VCB Digibank (Liên kết)</strong>
+                  <span>Xác thực FaceID / OTP</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step2-footer">
+              <div class="final-price-box">
+                <span>Tổng Thanh Toán:</span>
+                <strong class="red-text" id="finalPayAmount">10.000đ</strong>
+              </div>
+              <div class="step2-btns">
+                <button class="btn-secondary" onclick="goToStep(1)">&larr; Sửa Số</button>
+                <button class="btn-primary green-bg" id="btnExecutePay" onclick="goToStep(3)">Thanh Toán 1-Tap &rarr;</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 Content: Idempotent Payment & Zero Latency Loading -->
+          <div class="purchase-step-content hidden" id="purchaseStep3">
+            <div class="idempotent-processing-box" id="idempotentBox">
+              <div class="idempotent-badge">🔒 IDEMPOTENT PROTECTED ENGINE</div>
+              <h3>Đang Xử Lý Thanh Toán An Toàn</h3>
+              <p>Mã Giao Dịch Duy Nhất: <code id="idemKeyVal">IDEM-20260811-99812</code></p>
+              
+              <div class="countdown-spinner-circle">
+                <svg width="100" height="100" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="42" stroke="var(--border-color)" stroke-width="8" fill="none"/>
+                  <circle id="spinnerCircle" cx="50" cy="50" r="42" stroke="var(--vietlott-red)" stroke-width="8" fill="none" stroke-dasharray="264" stroke-dashoffset="0"/>
+                </svg>
+                <span class="countdown-number" id="payCountdownNum">3</span>
+              </div>
+
+              <p class="processing-note">Vui lòng không đóng ứng dụng. Nút thanh toán đã được tự động vô hiệu hóa để chống trùng đơn 100%.</p>
+
+              <button class="btn-biometric-auth" id="btnBiometricAuth" onclick="triggerBiometricAuth()">
+                <span>🔓 Biometric Quick Auth (FaceID)</span>
+              </button>
+            </div>
+
+            <!-- Success Invoice (Shows after payment finishes) -->
+            <div class="payment-success-invoice hidden" id="paymentSuccessInvoice">
+              <div class="success-icon-animated">✓</div>
+              <h3>THANH TOÁN THÀNH CÔNG!</h3>
+              <p class="success-sub">Vé số điện tử chính hãng Vietlott đã được phát hành</p>
+
+              <div class="invoice-details-card">
+                <div class="invoice-row">
+                  <span>Mã Vé Điện Tử:</span>
+                  <strong>VTL-2026-998123</strong>
+                </div>
+                <div class="invoice-row">
+                  <span>Sản phẩm:</span>
+                  <span id="invGameName">Mega 6/45</span>
+                </div>
+                <div class="invoice-row">
+                  <span>Bộ số:</span>
+                  <strong class="gold-text" id="invBalls">05 - 12 - 18 - 24 - 33 - 41</strong>
+                </div>
+                <div class="invoice-row">
+                  <span>Thời gian:</span>
+                  <span>11/08/2026 12:30:45</span>
+                </div>
+                <div class="invoice-row">
+                  <span>Số tiền:</span>
+                  <strong class="red-text" id="invAmount">10.000đ</strong>
+                </div>
+              </div>
+
+              <div class="invoice-actions">
+                <button class="btn-primary" onclick="switchScreen('results')">Xem Trong Lịch Sử Vé</button>
+                <button class="btn-secondary" onclick="resetPurchaseFlow()">Mua Thêm Vé Khác</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SCREEN 4: RESULTS & NOTIFICATIONS ================= -->
+        <section class="screen-view" id="screen-results">
+          <div class="screen-header">
+            <h3>Kết Quả Quay Số & Tra Cứu</h3>
+            <p>Cập nhật tự động trực tiếp từ Hội đồng Mở thưởng Vietlott</p>
+          </div>
+
+          <!-- Latest Result Highlight -->
+          <div class="latest-result-card">
+            <div class="result-card-header mega-bg-gradient">
+              <span class="game-tag">MEGA 6/45</span>
+              <span class="draw-info">Kỳ quay #01247 • 09/08/2026</span>
+            </div>
+            <div class="result-winning-balls">
+              <span class="ball-result">04</span>
+              <span class="ball-result">11</span>
+              <span class="ball-result">18</span>
+              <span class="ball-result">29</span>
+              <span class="ball-result">35</span>
+              <span class="ball-result">42</span>
+            </div>
+            <div class="result-jackpot-won">
+              <span>Giá Trị Jackpot Kỳ Này:</span>
+              <strong class="gold-text">126.850.000.000đ</strong>
+              <span class="win-count">(Chưa có người trúng Jackpot)</span>
+            </div>
+          </div>
+
+          <!-- Test Interactive Winning Ticket (Confetti Animation Trigger) -->
+          <div class="section-title-bar">
+            <h4>VÉ CỦA BẠN TRONG KỲ NÀY</h4>
+            <span class="badge-click-test">CHẠM ĐỂ THỬ ĂN MỪNG 🎉</span>
+          </div>
+
+          <div class="ticket-interactive-card winning" onclick="triggerCelebrationConfetti()">
+            <div class="ticket-status-badge won">🎉 TRÚNG GIẢI NHẤT — 10.000.000đ</div>
+            <div class="ticket-body-info">
+              <div class="ticket-game">Mega 6/45 • Kỳ quay #01247</div>
+              <div class="ticket-balls-row">
+                <span class="ball-mini match">04</span>
+                <span class="ball-mini match">11</span>
+                <span class="ball-mini match">18</span>
+                <span class="ball-mini match">29</span>
+                <span class="ball-mini match">35</span>
+                <span class="ball-mini no-match">10</span>
+              </div>
+              <div class="ticket-meta">
+                <span>Thuế TNCN (10% >10M): 0đ</span>
+                <span class="payout-status green-text">✓ Tự Động Trả Thưởng Về Ví</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Historical Results List -->
+          <div class="section-title-bar">
+            <h4>LỊCH SỬ KẾT QUẢ CÁC GAME</h4>
+          </div>
+
+          <div class="history-results-list">
+            <div class="history-item">
+              <div class="item-left">
+                <span class="game-badge power">Power 6/55</span>
+                <span class="draw-num">Kỳ #00912 • 10/08/2026</span>
+              </div>
+              <div class="item-balls">
+                <span>08 - 15 - 22 - 31 - 40 - 52</span> <strong class="gold-text">| 19</strong>
+              </div>
+            </div>
+            <div class="history-item">
+              <div class="item-left">
+                <span class="game-badge bingo">BINGO18</span>
+                <span class="draw-num">Kỳ #00880 • 11/08/2026</span>
+              </div>
+              <div class="item-balls">
+                <span class="green-text">LỚN (Tổng 15) • Kết quả: 4 - 5 - 6</span>
+              </div>
+            </div>
+            <div class="history-item">
+              <div class="item-left">
+                <span class="game-badge lotto">Lotto 5/35</span>
+                <span class="draw-num">Kỳ #00104 • 10/08/2026</span>
+              </div>
+              <div class="item-balls">
+                <span>02 - 12 - 18 - 25 - 34</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SCREEN 5: GAMIFICATION & SYNDICATE HUB ================= -->
+        <section class="screen-view" id="screen-gamification">
+          <div class="screen-header">
+            <h3>Trung Tâm Gamification & Mua Nhóm</h3>
+            <p>Điểm danh nhận quà • Vòng quay 6 năm • Mua chung vé Bao</p>
+          </div>
+
+          <!-- Daily Streaks Hub -->
+          <div class="streaks-hub-card">
+            <div class="streaks-header">
+              <div class="streaks-title">
+                <span class="fire-icon">🔥</span>
+                <div>
+                  <h4>Chuỗi Ngày May Mắn (Daily Streaks)</h4>
+                  <p>Bạn đã điểm danh <strong id="streakCount">6/7</strong> ngày liên tiếp!</p>
+                </div>
+              </div>
+              <span class="streak-badge">Mốc 7 Ngày 🎁</span>
+            </div>
+
+            <!-- 7-Day Checklist -->
+            <div class="streaks-days-grid">
+              <div class="day-box checked"><span>N1</span><span class="check-mark">✓</span></div>
+              <div class="day-box checked"><span>N2</span><span class="check-mark">✓</span></div>
+              <div class="day-box checked"><span>N3</span><span class="check-mark">✓</span></div>
+              <div class="day-box checked"><span>N4</span><span class="check-mark">✓</span></div>
+              <div class="day-box checked"><span>N5</span><span class="check-mark">✓</span></div>
+              <div class="day-box checked"><span>N6</span><span class="check-mark">✓</span></div>
+              <div class="day-box today-gift" id="day7Box" onclick="claimDay7Streak()">
+                <span>N7</span>
+                <span class="gift-icon">🎁</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lucky Wheel 6-Year Anniversary -->
+          <div class="lucky-wheel-card">
+            <div class="wheel-header">
+              <span class="wheel-tag">SỰ KIỆN KỶ NIỆM 6 NĂM</span>
+              <h4>Vòng Quay May Mắn Vietlott</h4>
+              <p>Lượt quay khả dụng: <strong class="gold-text" id="spinsCount">1 Lượt</strong></p>
+            </div>
+
+            <div class="wheel-container">
+              <div class="wheel-pointer">▼</div>
+              <div class="wheel-disc" id="wheelDisc">
+                <div class="wheel-sector sec1">Voucher 20k</div>
+                <div class="wheel-sector sec2">50 Points</div>
+                <div class="wheel-sector sec3">Vé 10k</div>
+                <div class="wheel-sector sec4">Chúc May Mắn</div>
+                <div class="wheel-sector sec5">Voucher 50k</div>
+                <div class="wheel-sector sec6">100 Points</div>
+              </div>
+              <button class="btn-spin-center" id="btnSpinWheel" onclick="spinLuckyWheel()">QUAY NGAY</button>
+            </div>
+          </div>
+
+          <!-- Syndicate Group Play (Mua Vé Nhóm) -->
+          <div class="section-title-bar">
+            <h4>👥 MUA VÉ NHÓM (SYNDICATE PLAY)</h4>
+            <button class="btn-xs-gold" onclick="openCreateSyndicateModal()">+ Tạo Nhóm Mới</button>
+          </div>
+
+          <div class="syndicate-rooms-list">
+            <!-- Active Syndicate Room -->
+            <div class="syndicate-card">
+              <div class="syndicate-card-header">
+                <div class="room-title">
+                  <strong>Phòng #SYN-8812: Săn Jackpot 180 Tỷ</strong>
+                  <span class="ticket-type">Power 6/55 — Vé Bao 9 (840k)</span>
+                </div>
+                <span class="progress-pill">Đã Góp 8/10 Suất</span>
+              </div>
+
+              <div class="syndicate-progress-bar">
+                <div class="progress-fill" style="width: 80%;"></div>
+              </div>
+
+              <div class="syndicate-meta">
+                <span>Mỗi suất: <strong>84.000đ</strong></span>
+                <span>Thời hạn: <strong>Còn 45 phút</strong></span>
+              </div>
+
+              <div class="syndicate-actions">
+                <button class="btn-secondary-sm" onclick="shareSyndicateLink('#SYN-8812')">🔗 Mời Bạn Bè</button>
+                <button class="btn-primary-sm green-bg" onclick="joinSyndicateRoom('#SYN-8812')">Góp 1 Suất (84k)</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIP Club Tiers Showcase -->
+          <div class="section-title-bar">
+            <h4>👑 HẠNG THÀNH VIÊN VIETLOTT VIP CLUB</h4>
+          </div>
+
+          <div class="vip-tiers-grid">
+            <div class="vip-tier-card bronze">
+              <h5>VIP Đồng</h5>
+              <p>Chi tiêu >0đ</p>
+              <span>Cashback 0.5%</span>
+            </div>
+            <div class="vip-tier-card silver">
+              <h5>VIP Bạc</h5>
+              <p>Chi tiêu >500k/tháng</p>
+              <span>Cashback 1.0%</span>
+            </div>
+            <div class="vip-tier-card gold active">
+              <span class="active-badge">BẠN ĐANG Ở ĐÂY</span>
+              <h5>VIP Vàng</h5>
+              <p>Chi tiêu >2M/tháng</p>
+              <span>Cashback 1.5%</span>
+            </div>
+            <div class="vip-tier-card diamond">
+              <h5>VIP Kim Cương</h5>
+              <p>Chi tiêu >5M/tháng</p>
+              <span>Cashback 2.0%</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SCREEN 6: PROFILE & HISTORY ================= -->
+        <section class="screen-view" id="screen-profile">
+          <!-- Profile Header Card -->
+          <div class="profile-user-card">
+            <div class="user-avatar-lg">
+              <span>M</span>
+            </div>
+            <div class="profile-user-info">
+              <h3>Nguyễn Văn Minh</h3>
+              <p>SĐT: 0908 *** 888 • CCCD: Đã định danh ✓</p>
+              <div class="user-vip-pill">👑 Thành Viên VIP Gold (Cashback 1.5%)</div>
+            </div>
+          </div>
+
+          <!-- Verified Security SHA-256 Badge -->
+          <div class="verified-security-card" onclick="showVerifiedModal()">
+            <div class="shield-icon">🛡️</div>
+            <div class="shield-text">
+              <h5>Đã Xác Thực Chính Hãng SHA-256</h5>
+              <p>Ứng dụng chính thức Vietlott SMS • Cập nhật ngầm In-App Auto Updater</p>
+            </div>
+            <span class="chevron">&rsaquo;</span>
+          </div>
+
+          <!-- Statistics Widget -->
+          <div class="stats-overview-grid">
+            <div class="stat-box">
+              <span class="stat-lbl">Tổng Chi T8</span>
+              <strong class="stat-val">2.439.700đ</strong>
+            </div>
+            <div class="stat-box">
+              <span class="stat-lbl">Tổng Trúng Thưởng</span>
+              <strong class="stat-val green-text">10.500.000đ</strong>
+            </div>
+            <div class="stat-box">
+              <span class="stat-lbl">Chuỗi Điểm Danh</span>
+              <strong class="stat-val gold-text">6 Ngày 🔥</strong>
+            </div>
+            <div class="stat-box">
+              <span class="stat-lbl">Điểm Loyalty</span>
+              <strong class="stat-val">1.250 PTS</strong>
+            </div>
+          </div>
+
+          <!-- Personal Settings & Controls -->
+          <div class="settings-group">
+            <h5>CÀI ĐẶT ỨNG DỤNG & BẢO MẬT</h5>
+            <div class="setting-item">
+              <span class="setting-lbl">🌙 Dark Theme (Giao diện tối)</span>
+              <button class="theme-toggle-switch" id="profileThemeToggle">
+                <span class="switch-ball"></span>
+              </button>
+            </div>
+            <div class="setting-item">
+              <span class="setting-lbl">🔓 Xác Thực FaceID / TouchID</span>
+              <span class="status-active">Đã Bật ✓</span>
+            </div>
+            <div class="setting-item">
+              <span class="setting-lbl">🛑 Hạn Mức Chi Tiêu Chơi Có Trách Nhiệm</span>
+              <span>200.000đ / Ngày</span>
+            </div>
+            <div class="setting-item">
+              <span class="setting-lbl">📲 In-App Auto Updater</span>
+              <span class="status-active">Phiên bản v2.0.0 (Mới nhất)</span>
+            </div>
+          </div>
+
+          <!-- Ticket Purchase History -->
+          <div class="section-title-bar">
+            <h4>LỊCH SỬ MUA VÉ GẦN ĐÂY</h4>
+          </div>
+
+          <div class="ticket-history-list">
+            <div class="history-ticket-card">
+              <div class="tkt-row-top">
+                <span class="tkt-game mega">Mega 6/45</span>
+                <span class="tkt-status won">Trúng 10.000.000đ</span>
+              </div>
+              <div class="tkt-balls">04 - 11 - 18 - 29 - 35 - 10</div>
+              <div class="tkt-row-bottom">
+                <span>Mã vé: VTL-2026-998123</span>
+                <span>09/08/2026</span>
+              </div>
+            </div>
+
+            <div class="history-ticket-card">
+              <div class="tkt-row-top">
+                <span class="tkt-game bingo">BINGO18</span>
+                <span class="tkt-status pending">Đang Chờ Quay</span>
+              </div>
+              <div class="tkt-balls">LỚN (Tổng 13-18) • 20.000đ</div>
+              <div class="tkt-row-bottom">
+                <span>Mã vé: VTL-2026-998155</span>
+                <span>11/08/2026 12:30</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div> <!-- End App Content Scroll -->
+
+      <!-- App Bottom Navigation Bar (5 Tabs) -->
+      <nav class="app-bottom-nav">
+        <button class="nav-tab active" data-target="home" onclick="switchScreen('home')">
+          <div class="nav-icon">🏠</div>
+          <span class="nav-label">Trang Chủ</span>
+        </button>
+        <button class="nav-tab" data-target="catalog" onclick="switchScreen('catalog')">
+          <div class="nav-icon">🎮</div>
+          <span class="nav-label">Danh Mục</span>
+        </button>
+        <button class="nav-tab" data-target="results" onclick="switchScreen('results')">
+          <div class="nav-icon">🏆</div>
+          <span class="nav-label">Kết Quả</span>
+        </button>
+        <button class="nav-tab" data-target="gamification" onclick="switchScreen('gamification')">
+          <div class="nav-icon">👥</div>
+          <span class="nav-label">Mua Nhóm</span>
+        </button>
+        <button class="nav-tab" data-target="profile" onclick="switchScreen('profile')">
+          <div class="nav-icon">👤</div>
+          <span class="nav-label">Tài Khoản</span>
+        </button>
+        <div class="nav-active-indicator" id="navIndicator"></div>
+      </nav>
+
+    </div> <!-- End Smartphone Frame -->
+  </main>
+
+  <!-- Canvas Overlay for Celebration Confetti Micro-Animation -->
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+  <!-- Interactive Modal Overlays -->
+
+  <!-- Modal 1: Verified Security SHA-256 -->
+  <div class="modal-backdrop hidden" id="modalVerified">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h4>🛡️ Chứng Nhận Bảo Mật Chính Hãng Vietlott</h4>
+        <button class="btn-close-modal" onclick="closeModal('modalVerified')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Ứng dụng Vietlott SMS 2.0 đã được xác thực mã hóa SHA-256 chính chủ trực thuộc Vietlott & Bộ Tài Chính.</p>
+        <div class="sha256-code">
+          <span>SHA-256 Checksum Hash:</span>
+          <code>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code>
+        </div>
+        <p class="verified-note">✓ Tự động cập nhật ngầm an toàn (In-App Auto Updater)<br>✓ Tích hợp trực tiếp 14 Ngân hàng & Ví MoMo, ZaloPay, VNPT Money.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" onclick="closeModal('modalVerified')">Đã Hiểu & An Tâm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Create Syndicate Group -->
+  <div class="modal-backdrop hidden" id="modalCreateSyndicate">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h4>👥 Tạo Phòng Mua Vé Nhóm (Syndicate)</h4>
+        <button class="btn-close-modal" onclick="closeModal('modalCreateSyndicate')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Tên Phòng Nhóm:</label>
+          <input type="text" id="synRoomName" class="form-control" value="Phòng Săn Jackpot 180 Tỷ">
+        </div>
+        <div class="form-group">
+          <label>Sản phẩm vé Bao:</label>
+          <select class="form-control" id="synGameSelect">
+            <option>Power 6/55 — Vé Bao 9 (840.000đ)</option>
+            <option>Mega 6/45 — Vé Bao 8 (280.000đ)</option>
+            <option>Lotto 5/35 — Vé Bao 7 (210.000đ)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Số lượng suất góp (Chia đều):</label>
+          <select class="form-control" id="synShareSelect">
+            <option>10 Suất (84.000đ / Suất)</option>
+            <option>5 Suất (168.000đ / Suất)</option>
+            <option>20 Suất (42.000đ / Suất)</option>
+          </select>
+        </div>
+        <p class="syn-note">Hệ thống Vietlott SMS sẽ tự động khóa vé khi đủ 100% tiền và tự động trả thưởng về Ví cá nhân từng thành viên theo đúng % đóng góp.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeModal('modalCreateSyndicate')">Hủy</button>
+        <button class="btn-primary green-bg" onclick="submitCreateSyndicate()">Tạo Phòng & Khóa Suất 1</button>
+      </div>
+    </div>
+  </div>
+  <script>
+/* ==========================================================================
+   VIETLOTT SMS 2.0 - INTERACTIVE MOCKUP JAVASCRIPT ENGINE
+   Controls: 6 Screen Views, Dark Mode Switching, 3 Micro-Animations, 
+   Streamlined 3-Step Purchase Flow, Gamification & Celebration Confetti.
+   ========================================================================== */
+
+// --- Global App State ---
+const state = {
+  currentScreen: 'home',
+  isDarkMode: false,
+  selectedGame: 'mega', // 'mega', 'power', 'bingo', 'lotto535', 'max3d'
+  selectedNumbers: [],
+  maxNumbers: 6,
+  maxNumberVal: 45,
+  includeCrossSell: false,
+  bingoOption: 'lon',
+  bingoAmount: 10,
+  spinsRemaining: 1,
+  streakDays: 6,
+  hasCheckedInToday: false
+};
+
+// --- DOM Loaded Initialization ---
+document.addEventListener('DOMContentLoaded', () => {
+  initClock();
+  initBingoCountdown();
+  initBallsGrid(45);
+  initThemeToggles();
+  initButtonRippleEffects();
+  initConfettiCanvas();
+  
+  // Set default active tab
+  switchScreen('home');
+});
+
+/* --------------------------------------------------------------------------
+   1. SCREEN & TAB NAVIGATION ENGINE
+   -------------------------------------------------------------------------- */
+function switchScreen(screenId) {
+  state.currentScreen = screenId;
+
+  // 1. Toggle screen views
+  const screens = document.querySelectorAll('.screen-view');
+  screens.forEach(screen => {
+    if (screen.id === `screen-${screenId}`) {
+      screen.classList.add('active');
+    } else {
+      screen.classList.remove('active');
+    }
+  });
+
+  // 2. Update Bottom Nav Tabs
+  const tabs = document.querySelectorAll('.nav-tab');
+  let activeIndex = 0;
+
+  tabs.forEach((tab, index) => {
+    if (tab.dataset.target === screenId) {
+      tab.classList.add('active');
+      activeIndex = index;
+    } else {
+      tab.classList.remove('active');
+    }
+  });
+
+  // 3. Move Nav Active Indicator Line
+  const indicator = document.getElementById('navIndicator');
+  if (indicator) {
+    indicator.style.transform = `translateX(${activeIndex * 100}%)`;
+  }
+
+  // 4. Update Dropdown Select
+  const dropdown = document.getElementById('screenSelect');
+  if (dropdown && dropdown.value !== screenId) {
+    dropdown.value = screenId;
+  }
+
+  // Scroll to top of app content
+  const content = document.getElementById('appContentScroll');
+  if (content) content.scrollTop = 0;
+}
+
+/* --------------------------------------------------------------------------
+   2. DARK MODE THEME TOGGLER
+   -------------------------------------------------------------------------- */
+function initThemeToggles() {
+  const toggleRootBtn = document.getElementById('themeToggleSwitch');
+  const toggleTopBtn = document.getElementById('toggleThemeTopBtn');
+  const toggleProfileBtn = document.getElementById('profileThemeToggle');
+
+  const toggleHandler = () => {
+    state.isDarkMode = !state.isDarkMode;
+    if (state.isDarkMode) {
+      document.documentElement.classList.add('dark-theme');
+    } else {
+      document.documentElement.classList.remove('dark-theme');
+    }
+    // Sync top btn text
+    if (toggleTopBtn) {
+      toggleTopBtn.querySelector('.theme-text').textContent = state.isDarkMode ? 'Light Mode' : 'Dark Mode';
+    }
+  };
+
+  if (toggleRootBtn) toggleRootBtn.addEventListener('click', toggleHandler);
+  if (toggleTopBtn) toggleTopBtn.addEventListener('click', toggleHandler);
+  if (toggleProfileBtn) toggleProfileBtn.addEventListener('click', toggleHandler);
+}
+
+/* --------------------------------------------------------------------------
+   3. MICRO-ANIMATION 1: BUTTON RIPPLE & PRESS SCALE
+   -------------------------------------------------------------------------- */
+function initButtonRippleEffects() {
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('button, .ball-choice, .turbo-opt-btn, .chip');
+    if (!btn) return;
+
+    // Trigger scale animation effect
+    btn.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      btn.style.transform = '';
+    }, 150);
+  });
+}
+
+/* --------------------------------------------------------------------------
+   4. MICRO-ANIMATION 2: CELEBRATION CONFETTI CANVAS
+   -------------------------------------------------------------------------- */
+let confettiCtx = null;
+let confettiParticles = [];
+let confettiAnimationId = null;
+
+function initConfettiCanvas() {
+  const canvas = document.getElementById('confettiCanvas');
+  if (!canvas) return;
+  
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  confettiCtx = canvas.getContext('2d');
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+}
+
+function triggerCelebrationConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  if (!canvas || !confettiCtx) return;
+
+  confettiParticles = [];
+  const colors = ['#FFD700', '#E31937', '#00C853', '#FFFFFF', '#3B82F6', '#FF8F00'];
+
+  for (let i = 0; i < 120; i++) {
+    confettiParticles.push({
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2 - 100,
+      vx: (Math.random() - 0.5) * 14,
+      vy: Math.random() * -12 - 4,
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.random() * 360,
+      rSpeed: (Math.random() - 0.5) * 10,
+      opacity: 1
+    });
+  }
+
+  if (confettiAnimationId) cancelAnimationFrame(confettiAnimationId);
+  renderConfetti();
+
+  // Play sound indicator log
+  console.log('🎉 Confetti Celebration Activated!');
+}
+
+function renderConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  if (!canvas || !confettiCtx) return;
+
+  confettiCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+  let activeCount = 0;
+  confettiParticles.forEach(p => {
+    if (p.opacity <= 0) return;
+    activeCount++;
+
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.3; // gravity
+    p.rotation += p.rSpeed;
+    p.opacity -= 0.008;
+
+    confettiCtx.save();
+    confettiCtx.translate(p.x, p.y);
+    confettiCtx.rotate((p.rotation * Math.PI) / 180);
+    confettiCtx.globalAlpha = Math.max(0, p.opacity);
+    confettiCtx.fillStyle = p.color;
+    confettiCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+    confettiCtx.restore();
+  });
+
+  if (activeCount > 0) {
+    confettiAnimationId = requestAnimationFrame(renderConfetti);
+  } else {
+    confettiCtx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. MICRO-ANIMATION 3: CLOCK & BINGO COUNTDOWN TIMER
+   -------------------------------------------------------------------------- */
+function initClock() {
+  const updateClock = () => {
+    const now = new Date();
+    const hrs = String(now.getHours()).padStart(2, '0');
+    const mins = String(now.getMinutes()).padStart(2, '0');
+    const clockEl = document.getElementById('statusClock');
+    if (clockEl) clockEl.textContent = `${hrs}:${mins}`;
+  };
+  updateClock();
+  setInterval(updateClock, 10000);
+}
+
+let bingoSeconds = 222; // 03:42
+
+function initBingoCountdown() {
+  const timerTick = document.getElementById('timerTick');
+  setInterval(() => {
+    if (!timerTick) return;
+    bingoSeconds--;
+    if (bingoSeconds < 0) bingoSeconds = 360; // Reset to 6 mins
+
+    const m = String(Math.floor(bingoSeconds / 60)).padStart(2, '0');
+    const s = String(bingoSeconds % 60).padStart(2, '0');
+    timerTick.textContent = `${m}:${s}`;
+  }, 1000);
+}
+
+/* --------------------------------------------------------------------------
+   6. BINGO18 TURBO FAST-PLAY WIDGET MECHANICS
+   -------------------------------------------------------------------------- */
+function selectBingoOpt(btn) {
+  document.querySelectorAll('.turbo-opt-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  state.bingoOption = btn.dataset.opt;
+}
+
+function selectChip(btn, amount) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  state.bingoAmount = amount;
+}
+
+function executeTurboCheckout() {
+  // Simulate 1-tap fast checkout
+  const btn = document.getElementById('btnTurboSubmit');
+  if (btn) {
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+    btn.querySelector('.btn-text').textContent = '⏳ Đang Chốt Đơn Turbo (Idempotent Key...)...';
+  }
+
+  setTimeout(() => {
+    if (btn) {
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.querySelector('.btn-text').textContent = '⚡ Chốt Đơn Turbo (1-Tap Checkout)';
+    }
+    triggerCelebrationConfetti();
+    alert(`🎉 THÀNH CÔNG! Đơn BINGO18 [${state.bingoOption.toUpperCase()} - ${state.bingoAmount}.000đ] đã được chốt tức thì trong 1.8 giây với Idempotency Key!`);
+  }, 1800);
+}
+
+/* --------------------------------------------------------------------------
+   7. STREAMLINED 3-STEP PURCHASE FLOW MECHANICS
+   -------------------------------------------------------------------------- */
+function startPurchaseFlow(gameType) {
+  state.selectedGame = gameType;
+  state.selectedNumbers = [];
+
+  if (gameType === 'power') {
+    state.maxNumbers = 6;
+    state.maxNumberVal = 55;
+    document.getElementById('selectedGameName').textContent = 'Power 6/55';
+    document.querySelector('.step-desc').textContent = 'Chọn 6 số may mắn từ 01 đến 55';
+  } else if (gameType === 'lotto535') {
+    state.maxNumbers = 5;
+    state.maxNumberVal = 35;
+    document.getElementById('selectedGameName').textContent = 'Lotto 5/35 (Top Gainer)';
+    document.querySelector('.step-desc').textContent = 'Chọn 5 số may mắn từ 01 đến 35';
+  } else if (gameType === 'bingo') {
+    switchScreen('home');
+    const turboWidget = document.querySelector('.turbo-bingo-widget');
+    if (turboWidget) turboWidget.scrollIntoView({ behavior: 'smooth' });
+    return;
+  } else {
+    // Mega 6/45 default
+    state.maxNumbers = 6;
+    state.maxNumberVal = 45;
+    document.getElementById('selectedGameName').textContent = 'Mega 6/45';
+    document.querySelector('.step-desc').textContent = 'Chọn 6 số may mắn từ 01 đến 45';
+  }
+
+  initBallsGrid(state.maxNumberVal);
+  updateSelectedBallsUI();
+  switchScreen('purchase');
+  goToStep(1);
+}
+
+function initBallsGrid(maxVal) {
+  const grid = document.getElementById('ballsGridSelector');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  for (let i = 1; i <= maxVal; i++) {
+    const numStr = String(i).padStart(2, '0');
+    const ball = document.createElement('button');
+    ball.className = 'ball-choice';
+    ball.textContent = numStr;
+    ball.onclick = () => toggleBallSelection(numStr, ball);
+    grid.appendChild(ball);
+  }
+}
+
+function toggleBallSelection(numStr, ballEl) {
+  const index = state.selectedNumbers.indexOf(numStr);
+  if (index > -1) {
+    state.selectedNumbers.splice(index, 1);
+    ballEl.classList.remove('selected');
+  } else {
+    if (state.selectedNumbers.length >= state.maxNumbers) {
+      alert(`Bạn chỉ được chọn tối đa ${state.maxNumbers} số!`);
+      return;
+    }
+    state.selectedNumbers.push(numStr);
+    ballEl.classList.add('selected');
+  }
+  updateSelectedBallsUI();
+}
+
+function quickPickRandom() {
+  state.selectedNumbers = [];
+  while (state.selectedNumbers.length < state.maxNumbers) {
+    const rand = String(Math.floor(Math.random() * state.maxNumberVal) + 1).padStart(2, '0');
+    if (!state.selectedNumbers.includes(rand)) {
+      state.selectedNumbers.push(rand);
+    }
+  }
+  state.selectedNumbers.sort((a, b) => parseInt(a) - parseInt(b));
+  updateGridSelections();
+  updateSelectedBallsUI();
+}
+
+function quickPickAI() {
+  quickPickRandom();
+}
+
+function clearSelectedNumbers() {
+  state.selectedNumbers = [];
+  updateGridSelections();
+  updateSelectedBallsUI();
+}
+
+function updateGridSelections() {
+  const balls = document.querySelectorAll('.ball-choice');
+  balls.forEach(b => {
+    if (state.selectedNumbers.includes(b.textContent)) {
+      b.classList.add('selected');
+    } else {
+      b.classList.remove('selected');
+    }
+  });
+}
+
+function updateSelectedBallsUI() {
+  const container = document.getElementById('selectedBallsDisplay');
+  if (!container) return;
+
+  container.innerHTML = '';
+  for (let i = 0; i < state.maxNumbers; i++) {
+    const slot = document.createElement('span');
+    if (state.selectedNumbers[i]) {
+      slot.className = 'ball-slot filled';
+      slot.textContent = state.selectedNumbers[i];
+    } else {
+      slot.className = 'ball-slot empty';
+      slot.textContent = '?';
+    }
+    container.appendChild(slot);
+  }
+
+  // Update footer price
+  const btnNext = document.getElementById('btnGoToStep2');
+  if (btnNext) {
+    if (state.selectedNumbers.length === state.maxNumbers) {
+      btnNext.disabled = false;
+      btnNext.style.opacity = '1';
+    } else {
+      btnNext.disabled = true;
+      btnNext.style.opacity = '0.5';
+    }
+  }
+}
+
+function goToStep(stepNum) {
+  // Step indicators
+  document.querySelectorAll('.step-item').forEach((item, idx) => {
+    if (idx + 1 <= stepNum) item.classList.add('active');
+    else item.classList.remove('active');
+  });
+
+  // Step contents
+  document.getElementById('purchaseStep1').classList.add('hidden');
+  document.getElementById('purchaseStep2').classList.add('hidden');
+  document.getElementById('purchaseStep3').classList.add('hidden');
+
+  document.getElementById(`purchaseStep${stepNum}`).classList.remove('hidden');
+
+  if (stepNum === 2) {
+    // Populate summary
+    document.getElementById('summaryGameName').textContent = getGameName(state.selectedGame);
+    const ballsBox = document.getElementById('summaryBalls');
+    ballsBox.innerHTML = '';
+    state.selectedNumbers.forEach(n => {
+      const b = document.createElement('span');
+      b.className = 'ball-mini';
+      b.textContent = n;
+      ballsBox.appendChild(b);
+    });
+    updateFinalPayAmount();
+  }
+
+  if (stepNum === 3) {
+    startIdempotentPaymentSimulation();
+  }
+}
+
+function getGameName(type) {
+  if (type === 'power') return 'Power 6/55';
+  if (type === 'lotto535') return 'Lotto 5/35';
+  if (type === 'max3d') return 'Max 3D Pro';
+  return 'Mega 6/45';
+}
+
+function toggleCrossSell(chk) {
+  state.includeCrossSell = chk.checked;
+  updateFinalPayAmount();
+}
+
+function updateFinalPayAmount() {
+  const base = 10000;
+  const total = state.includeCrossSell ? base + 10000 : base;
+  const payEl = document.getElementById('finalPayAmount');
+  if (payEl) payEl.textContent = `${total.toLocaleString('vi-VN')}đ`;
+}
+
+function selectPaymentOpt(card, type) {
+  document.querySelectorAll('.payment-opt-card').forEach(c => c.classList.remove('active'));
+  card.classList.add('active');
+  card.querySelector('input').checked = true;
+}
+
+/* Simulated Idempotent Payment */
+let payTimer = null;
+
+function startIdempotentPaymentSimulation() {
+  document.getElementById('idempotentBox').classList.remove('hidden');
+  document.getElementById('paymentSuccessInvoice').classList.add('hidden');
+
+  // Random Idempotency Key
+  const randKey = 'IDEM-20260811-' + Math.floor(10000 + Math.random() * 90000);
+  document.getElementById('idemKeyVal').textContent = randKey;
+
+  let countdown = 3;
+  const numEl = document.getElementById('payCountdownNum');
+  if (numEl) numEl.textContent = countdown;
+
+  if (payTimer) clearInterval(payTimer);
+
+  payTimer = setInterval(() => {
+    countdown--;
+    if (numEl) numEl.textContent = countdown;
+
+    if (countdown <= 0) {
+      clearInterval(payTimer);
+      finishPaymentSuccess();
+    }
+  }, 1000);
+}
+
+function triggerBiometricAuth() {
+  if (payTimer) clearInterval(payTimer);
+  finishPaymentSuccess();
+}
+
+function finishPaymentSuccess() {
+  document.getElementById('idempotentBox').classList.add('hidden');
+  const invoice = document.getElementById('paymentSuccessInvoice');
+  invoice.classList.remove('hidden');
+
+  document.getElementById('invGameName').textContent = getGameName(state.selectedGame);
+  document.getElementById('invBalls').textContent = state.selectedNumbers.join(' - ');
+  const total = state.includeCrossSell ? 20000 : 10000;
+  document.getElementById('invAmount').textContent = `${total.toLocaleString('vi-VN')}đ`;
+
+  triggerCelebrationConfetti();
+}
+
+function resetPurchaseFlow() {
+  state.selectedNumbers = [];
+  state.includeCrossSell = false;
+  const chk = document.getElementById('chkAddCrossSell');
+  if (chk) chk.checked = false;
+  startPurchaseFlow('mega');
+}
+
+/* --------------------------------------------------------------------------
+   8. GAMIFICATION & SYNDICATE INTERACTIVITY
+   -------------------------------------------------------------------------- */
+function claimDay7Streak() {
+  if (state.hasCheckedInToday) {
+    alert('Bạn đã điểm danh ngày hôm nay rồi!');
+    return;
+  }
+  state.hasCheckedInToday = true;
+  state.spinsRemaining++;
+  
+  const box = document.getElementById('day7Box');
+  if (box) {
+    box.classList.remove('today-gift');
+    box.classList.add('checked');
+    box.innerHTML = '<span>N7</span><span class="check-mark">✓</span>';
+  }
+
+  document.getElementById('streakCount').textContent = '7/7';
+  document.getElementById('spinsCount').textContent = `${state.spinsRemaining} Lượt`;
+
+  triggerCelebrationConfetti();
+  alert('🎉 CHÚC MỪNG! Bạn đã hoàn thành chuỗi 7 ngày điểm danh & nhận +1 Lượt quay Vòng Quay 6 Năm!');
+}
+
+let isSpinning = false;
+
+function spinLuckyWheel() {
+  if (state.spinsRemaining <= 0) {
+    alert('Bạn đã hết lượt quay! Hãy mua vé hoặc điểm danh để tích thêm lượt.');
+    return;
+  }
+  if (isSpinning) return;
+
+  isSpinning = true;
+  state.spinsRemaining--;
+  document.getElementById('spinsCount').textContent = `${state.spinsRemaining} Lượt`;
+
+  const disc = document.getElementById('wheelDisc');
+  const randomDegrees = 1440 + 60 * Math.floor(Math.random() * 6) + 30; // Spin at least 4 full rounds
+
+  if (disc) {
+    disc.style.transform = `rotate(${randomDegrees}deg)`;
+  }
+
+  setTimeout(() => {
+    isSpinning = false;
+    triggerCelebrationConfetti();
+    alert('🎁 CHÚC MỪNG! Bạn đã quay trúng: [Voucher Mua Vé 20.000 VNĐ] nhân dịp Kỷ Niệm 6 Năm!');
+  }, 3200);
+}
+
+function openCreateSyndicateModal() {
+  const modal = document.getElementById('modalCreateSyndicate');
+  if (modal) modal.classList.remove('hidden');
+}
+
+function submitCreateSyndicate() {
+  closeModal('modalCreateSyndicate');
+  triggerCelebrationConfetti();
+  alert('🎉 THÀNH CÔNG! Phòng Mua Vé Nhóm #SYN-8813 đã được tạo. Hợp đồng mua chung số hóa đã phát hành link mời nhóm!');
+}
+
+function shareSyndicateLink(roomId) {
+  alert(`🔗 Đã chép link mời tham gia phòng ${roomId} vào khay nhớ tạm! Gửi ngay cho bạn bè qua Zalo/SMS.`);
+}
+
+function joinSyndicateRoom(roomId) {
+  triggerCelebrationConfetti();
+  alert(`🎉 THÀNH CÔNG! Bạn đã nộp 84.000đ tham gia 1 suất trong phòng ${roomId}. Tiền thưởng sẽ tự động chia về Ví của bạn.`);
+}
+
+/* Modal Helpers */
+function showVerifiedModal() {
+  const modal = document.getElementById('modalVerified');
+  if (modal) modal.classList.remove('hidden');
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) modal.classList.add('hidden');
+}
+
+function showGameDetail(gameType) {
+  alert(`ℹ️ Thông tin chi tiết luật chơi & cơ cấu giải thưởng cho game: ${getGameName(gameType)}`);
+}
+  </script>
+</body>
+</html>

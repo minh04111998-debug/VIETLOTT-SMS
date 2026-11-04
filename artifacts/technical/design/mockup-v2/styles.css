@@ -1,0 +1,1479 @@
+/*
+ * Vietlott SMS - Light Premium Theme with Red Accents
+ * File: styles.css
+ * Font: Inter
+ * Target: 375px x 812px mobile frame
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Assuming FontAwesome is included in HTML, but adding here as comment for reference */
+
+/* ==========================================================================
+   1. CSS VARIABLES (DESIGN TOKENS)
+   ========================================================================== */
+:root {
+  /* Backgrounds */
+  --bg-app: #FFFFFF;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #F5F6FA;
+  --bg-card: #FFFFFF;
+  
+  /* Text */
+  --text-primary: #1A1A2E;
+  --text-secondary: #6B7280;
+  --text-tertiary: #9CA3AF;
+  --text-inverse: #FFFFFF;
+  
+  /* Accents */
+  --accent-red: #E31937;
+  --accent-red-dark: #B91430;
+  --accent-red-light: rgba(227, 25, 55, 0.08);
+  --accent-gold: #FFB800;
+  --accent-gold-dark: #E5A600;
+  
+  /* UI Elements */
+  --border-color: #E5E7EB;
+  --divider: #F3F4F6;
+  
+  /* Status */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --info: #3B82F6;
+  --danger: #EF4444;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  --shadow-glow-red: 0 0 20px rgba(227, 25, 55, 0.2);
+  --shadow-glow-red-strong: 0 0 30px rgba(227, 25, 55, 0.4);
+  
+  /* Gradients */
+  --gradient-header: linear-gradient(135deg, #E31937, #B91430);
+  --gradient-hero: linear-gradient(135deg, #C41230, #8B0A20);
+  --gradient-power: linear-gradient(135deg, #FEE2E2, #FECACA);
+  --gradient-mega: linear-gradient(135deg, #D1FAE5, #A7F3D0);
+  --gradient-keno: linear-gradient(135deg, #FEF3C7, #FDE68A);
+  --gradient-max3d: linear-gradient(135deg, #DBEAFE, #BFDBFE);
+  --gradient-lotto: linear-gradient(135deg, #D1FAE5, #6EE7B7);
+  --gradient-bingo: linear-gradient(135deg, #E0E7FF, #C7D2FE);
+  
+  /* Animation */
+  --transition-fast: 150ms ease-in-out;
+  --transition-normal: 250ms ease-in-out;
+  --transition-bounce: 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ==========================================================================
+   2. RESET & BASE
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #E5E7EB; /* Subtle grey for outside device frame */
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  outline: none;
+}
+
+/* ==========================================================================
+   3. DEVICE FRAME & APP CONTAINER
+   ========================================================================== */
+.device-frame {
+  width: 375px;
+  height: 812px;
+  background-color: var(--bg-app);
+  border-radius: 40px;
+  border: 10px solid #222222;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Inner App Container to handle safe areas */
+.app-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--bg-app);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.app-container::-webkit-scrollbar {
+  display: none;
+}
+
+.page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(20px);
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+  background-color: var(--bg-app);
+  overflow-y: auto;
+  padding-bottom: 90px; /* Space for bottom nav */
+}
+
+.page.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  z-index: 10;
+}
+
+/* Hide scrollbar for pages */
+.page::-webkit-scrollbar {
+  display: none;
+}
+
+/* Screen wrapper for pages that don't use absolute positioning */
+.screen {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 90px;
+  animation: fadeIn var(--transition-normal) forwards;
+}
+
+.screen.active {
+  display: flex;
+}
+
+.screen::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==========================================================================
+   4. STATUS BAR & NOTCH
+   ========================================================================== */
+.status-bar {
+  height: 44px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFFFFF; /* Since header is red, status bar text is white */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* Dynamic status bar colors depending on page background */
+.status-bar.dark-text {
+  color: var(--text-primary);
+}
+
+.notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 30px;
+  background-color: #222222;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  z-index: 101;
+}
+
+/* ==========================================================================
+   5. APP HEADER (Home Page)
+   ========================================================================== */
+.app-header {
+  background: var(--gradient-header);
+  padding: 50px 20px 20px; /* Padding top for status bar */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  z-index: 20;
+}
+
+.greeting-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.greeting-text p {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.greeting-text h1 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 18px;
+  position: relative;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(5px);
+}
+
+.icon-btn:active {
+  transform: scale(0.92);
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.icon-btn .badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent-gold);
+  border-radius: 50%;
+  border: 2px solid var(--accent-red);
+}
+
+/* Inner Headers (for child pages) */
+.inner-header {
+  padding: 50px 20px 15px;
+  background-color: var(--bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.inner-header.no-border {
+  border-bottom: none;
+}
+
+.inner-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+  text-align: center;
+}
+
+.btn-back {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--text-primary);
+  font-size: 18px;
+  background-color: var(--bg-elevated);
+  transition: transform var(--transition-fast);
+}
+
+.btn-back:active {
+  transform: scale(0.9);
+}
+
+/* Empty div to balance flex for centered header titles */
+.header-right-placeholder {
+  width: 36px;
+}
+
+/* ==========================================================================
+   6. MAIN LAYOUT ELEMENTS (CONTAINERS, SECTIONS)
+   ========================================================================== */
+.section {
+  padding: 24px 20px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.section-action {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-red);
+}
+
+.scroll-horizontal {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 12px;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  scroll-snap-type: x mandatory;
+}
+
+.scroll-horizontal::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==========================================================================
+   7. HERO JACKPOT CARD
+   ========================================================================== */
+.hero-jackpot {
+  background: var(--gradient-hero);
+  border-radius: 20px;
+  padding: 24px;
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-glow-red);
+  margin-top: -20px; /* Overlap with header */
+  position: relative;
+  z-index: 25;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.hero-jackpot::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  transform: translate(30%, -30%);
+}
+
+.hero-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.hero-logo {
+  font-size: 24px;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -1px;
+}
+
+.hero-tag {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+}
+
+.hero-amount-wrapper {
+  margin-bottom: 16px;
+}
+
+.hero-label {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+
+.hero-amount {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--accent-gold);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  line-height: 1.2;
+}
+
+.hero-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.hero-countdown-label {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+.hero-countdown {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  gap: 6px;
+}
+
+.hero-countdown span {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+
+.btn-hero {
+  background-color: var(--bg-surface);
+  color: var(--accent-red);
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.btn-hero:active {
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   8. FAVORITE NUMBERS / QUICK PLAY
+   ========================================================================== */
+.favorite-card, .fav-card {
+  background-color: var(--bg-card);
+  border-radius: 16px;
+  padding: 16px;
+  min-width: 280px;
+  scroll-snap-align: start;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fav-game-name {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 16px;
+}
+
+.fav-type {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background-color: var(--bg-elevated);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.fav-numbers {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.fav-ball {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,0.02);
+}
+
+.fav-ball.special {
+  background-color: var(--accent-red-light);
+  color: var(--accent-red);
+}
+
+.fav-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.btn-fav-play {
+  flex: 1;
+  background-color: transparent;
+  color: var(--accent-red);
+  border: 1px solid var(--accent-red);
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  transition: all var(--transition-fast);
+}
+
+.btn-fav-play:active {
+  background-color: var(--accent-red-light);
+}
+
+/* ==========================================================================
+   9. GAME GRID
+   ========================================================================== */
+.game-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.game-card {
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.game-card:active {
+  transform: scale(0.97);
+}
+
+/* Pastel Gradients for Games */
+.game-card.power { background: var(--gradient-power); }
+.game-card.mega { background: var(--gradient-mega); }
+.game-card.keno { background: var(--gradient-keno); }
+.game-card.max3d { background: var(--gradient-max3d); }
+.game-card.lotto { background: var(--gradient-lotto); }
+.game-card.bingo { background: var(--gradient-bingo); }
+
+.game-card-bg-icon {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  font-size: 80px;
+  opacity: 0.1;
+  color: #000;
+}
+
+.game-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.game-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  font-style: italic;
+  letter-spacing: -0.5px;
+}
+
+.game-badge {
+  background-color: var(--accent-red);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.game-amount-box {
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.game-amount-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.game-amount {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--accent-red);
+  line-height: 1.2;
+}
+
+/* Override for specific games if needed */
+.game-card.power .game-amount { color: var(--accent-red-dark); }
+.game-card.mega .game-amount { color: #047857; }
+
+.btn-play-sm {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  position: relative;
+  z-index: 2;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* ==========================================================================
+   10. BOTTOM NAVIGATION & FAB
+   ========================================================================== */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: var(--bg-surface);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 20px; /* Safe area padding */
+  border-top: 1px solid var(--border-color);
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.03);
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-tertiary);
+  width: 60px;
+  transition: color var(--transition-fast);
+}
+
+.nav-item.active {
+  color: var(--accent-red);
+}
+
+.nav-icon {
+  font-size: 20px;
+  position: relative;
+}
+
+.nav-label {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.nav-item.active .nav-icon {
+  animation: bounce var(--transition-bounce);
+}
+
+/* Center FAB */
+.nav-fab-container {
+  position: relative;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-fab {
+  position: absolute;
+  bottom: -15px; /* Pull up */
+  width: 60px;
+  height: 60px;
+  background: var(--gradient-header);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  box-shadow: var(--shadow-glow-red);
+  border: 4px solid var(--bg-surface);
+  transition: transform var(--transition-fast);
+}
+
+.nav-fab:active {
+  transform: scale(0.9);
+}
+
+.nav-fab-label {
+  position: absolute;
+  bottom: -35px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-red);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   11. NUMBER GRID & BALLS (Play Screen)
+   ========================================================================== */
+.play-board {
+  background-color: var(--bg-surface);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.board-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.board-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-icon-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent-red);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.number-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px 8px;
+}
+
+.ball {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--bg-elevated);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.ball:active {
+  transform: scale(0.9);
+}
+
+.ball.selected {
+  background-color: var(--accent-red);
+  color: white;
+  box-shadow: var(--shadow-glow-red);
+  border-color: var(--accent-red);
+}
+
+.ball.special-selected {
+  background-color: var(--accent-gold);
+  color: var(--text-primary);
+  box-shadow: 0 0 15px rgba(255, 184, 0, 0.4);
+}
+
+/* Selected Numbers Preview Row */
+.selected-preview {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 0;
+  margin-bottom: 16px;
+}
+
+.preview-ball {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px dashed var(--text-tertiary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-tertiary);
+}
+
+.preview-ball.filled {
+  border: 2px solid var(--accent-red);
+  background-color: var(--accent-red-light);
+  color: var(--accent-red);
+  border-style: solid;
+}
+
+/* ==========================================================================
+   12. TICKET CARDS (Cart / Summary)
+   ========================================================================== */
+.ticket-card {
+  background-color: var(--bg-surface);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.ticket-type {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.ticket-price {
+  font-weight: 700;
+  color: var(--accent-red);
+}
+
+.ticket-numbers {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ticket-ball {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--accent-red-light);
+  color: var(--accent-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid rgba(227, 25, 55, 0.2);
+}
+
+.ticket-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px dashed var(--divider);
+  padding-top: 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.btn-remove {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: var(--text-tertiary);
+  font-size: 16px;
+}
+
+/* ==========================================================================
+   13. BUTTONS
+   ========================================================================== */
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background-color: var(--accent-red);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+  background-color: var(--accent-red-dark);
+}
+
+.btn-secondary {
+  background-color: var(--accent-red-light);
+  color: var(--accent-red);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+/* Fixed Bottom Action Bar */
+.bottom-action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-surface);
+  padding: 16px 20px 36px; /* Safe area padding */
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 90;
+  border-top: 1px solid var(--border-color);
+}
+
+.price-summary {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.price-total {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--accent-red);
+}
+
+.bottom-action-bar .btn {
+  width: 160px;
+}
+
+/* ==========================================================================
+   14. FORMS & INPUTS
+   ========================================================================== */
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.input-field {
+  width: 100%;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 15px;
+  color: var(--text-primary);
+  transition: border-color var(--transition-fast);
+}
+
+.input-field:focus {
+  border-color: var(--accent-red);
+  box-shadow: 0 0 0 3px var(--accent-red-light);
+}
+
+.input-field::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* ==========================================================================
+   15. PAYMENT OPTIONS
+   ========================================================================== */
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: all var(--transition-fast);
+}
+
+.payment-option.selected {
+  border-color: var(--accent-red);
+  background-color: var(--accent-red-light);
+}
+
+.payment-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: var(--bg-app);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 12px;
+  font-size: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+.payment-details {
+  flex: 1;
+}
+
+.payment-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.payment-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.payment-radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-option.selected .payment-radio {
+  border-color: var(--accent-red);
+}
+
+.payment-option.selected .payment-radio::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--accent-red);
+}
+
+/* ==========================================================================
+   16. HISTORY & TABS
+   ========================================================================== */
+.tabs {
+  display: flex;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 20px;
+  position: sticky;
+  top: 65px; /* Below inner header */
+  z-index: 40;
+}
+
+.tab {
+  padding: 16px 0;
+  margin-right: 24px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 15px;
+  position: relative;
+}
+
+.tab.active {
+  color: var(--accent-red);
+}
+
+.tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent-red);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+/* History Cards */
+.history-list {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.history-card {
+  background-color: var(--bg-surface);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.history-card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.history-game {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.history-status {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.status-pending { background-color: #FEF3C7; color: #D97706; }
+.status-won { background-color: #D1FAE5; color: #059669; }
+.status-lost { background-color: var(--bg-elevated); color: var(--text-secondary); }
+
+.history-body {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.history-date {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.history-amount {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.history-numbers {
+  display: flex;
+  gap: 6px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--divider);
+}
+
+.history-ball {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--bg-elevated);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.history-card.won .history-ball.match {
+  background-color: var(--success);
+  color: white;
+}
+
+/* ==========================================================================
+   17. PROFILE SCREEN
+   ========================================================================== */
+.profile-header {
+  background: var(--gradient-header);
+  padding: 60px 20px 30px;
+  text-align: center;
+  color: white;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: white;
+  margin: 0 auto 16px;
+  border: 3px solid rgba(255,255,255,0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  color: var(--accent-red);
+}
+
+.profile-name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.profile-phone {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.wallet-card {
+  background-color: var(--bg-surface);
+  border-radius: 16px;
+  padding: 20px;
+  margin: -20px 20px 24px;
+  position: relative;
+  z-index: 10;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wallet-info h3 {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.wallet-balance {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--accent-red);
+}
+
+.btn-deposit {
+  background-color: var(--accent-red-light);
+  color: var(--accent-red);
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.menu-list {
+  background-color: var(--bg-surface);
+  border-radius: 16px;
+  margin: 0 20px 24px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--divider);
+  transition: background-color var(--transition-fast);
+}
+
+.menu-item:active {
+  background-color: var(--bg-elevated);
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background-color: var(--accent-red-light);
+  color: var(--accent-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  margin-right: 16px;
+}
+
+.menu-text {
+  flex: 1;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.menu-arrow {
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   18. UTILITIES, BADGES, EMPTY STATES
+   ========================================================================== */
+.badge-hot {
+  background-color: #EF4444;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.badge-new {
+  background-color: var(--info);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 64px;
+  color: var(--border-color);
+  margin-bottom: 16px;
+}
+
+.empty-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.empty-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 250px;
+}
+
+/* ==========================================================================
+   19. ANIMATIONS
+   ========================================================================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(227, 25, 55, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(227, 25, 55, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(227, 25, 55, 0); }
+}
+
+.pulse-anim {
+  animation: pulse 2s infinite;
+}
+
+/* ==========================================================================
+   20. RESPONSIVE / FALLBACK
+   ========================================================================== */
+@media (max-height: 700px) {
+  .device-frame {
+    transform: scale(0.9);
+  }
+}
+
+@media (max-width: 400px) {
+  /* On very small screens, just show the app without the frame */
+  body {
+    background-color: var(--bg-app);
+  }
+  .device-frame {
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .notch {
+    display: none;
+  }
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1200px;
+  height: 675px;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #0f172a;
+}
+.card {
+  width: 1200px;
+  height: 675px;
+  position: relative;
+  background: radial-gradient(circle at 15% 20%, #1e293b 0%, #0f172a 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 34px 48px 24px 48px;
+  color: #f8fafc;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.badge {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1.5px solid #38bdf8;
+  color: #38bdf8;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+}
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  color: #94a3b8;
+  letter-spacing: -0.5px;
+}
+.logo span { color: #ffffff; }
+.title-area {
+  text-align: center;
+  margin-top: 6px;
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.headline {
+  font-size: 34px;
+  font-weight: 900;
+  color: #38bdf8;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.subheadline {
+  font-size: 21px;
+  font-weight: 600;
+  color: #cbd5e1;
+  max-width: 950px;
+  margin: 0 auto;
+  line-height: 1.35;
+}
+.graphic-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div class="badge">POST-RELEASE · TELEMETRY</div>
+    <div class="logo">iTBA <span>Mentor</span></div>
+  </div>
+  <div class="title-area">
+    <div class="headline">BA nên làm gì sau khi tính năng được Release?</div>
+    <div class="subheadline">5 việc sống còn để chứng minh giá trị và giữ hệ thống ổn định</div>
+  </div>
+  <div class="graphic-area">
+    
+    <svg width="640" height="260" viewBox="0 0 640 260">
+      <!-- Live Monitoring Dashboard with Rocket Launch -->
+      <rect x="40" y="30" width="340" height="200" rx="16" fill="#1e293b" stroke="#38bdf8" stroke-width="2"/>
+      <rect x="55" y="45" width="310" height="30" rx="6" fill="#0f172a"/>
+      <circle cx="75" cy="60" r="5" fill="#ef4444"/>
+      <circle cx="92" cy="60" r="5" fill="#f59e0b"/>
+      <circle cx="109" cy="60" r="5" fill="#10b981"/>
+      <text x="210" y="65" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="bold">PROD TELEMETRY · LIVE</text>
+      
+      <!-- Metrics bars -->
+      <rect x="65" y="95" width="70" height="110" rx="8" fill="#0f172a" stroke="#334155"/>
+      <rect x="75" y="145" width="50" height="50" rx="4" fill="#10b981"/>
+      <text x="100" y="115" text-anchor="middle" fill="#94a3b8" font-size="11">Active User</text>
+      <text x="100" y="135" text-anchor="middle" fill="#34d399" font-size="14" font-weight="bold">98.4%</text>
+
+      <rect x="150" y="95" width="105" height="110" rx="8" fill="#0f172a" stroke="#334155"/>
+      <polyline points="160,175 180,165 200,180 220,140 240,150" fill="none" stroke="#38bdf8" stroke-width="3"/>
+      <text x="202" y="115" text-anchor="middle" fill="#94a3b8" font-size="11">Funnel Drop</text>
+      <text x="202" y="135" text-anchor="middle" fill="#38bdf8" font-size="14" font-weight="bold">-4.2% (Pass)</text>
+
+      <rect x="270" y="95" width="95" height="110" rx="8" fill="#0f172a" stroke="#334155"/>
+      <circle cx="317" cy="155" r="28" fill="none" stroke="#f59e0b" stroke-width="6" stroke-dasharray="140, 40"/>
+      <text x="317" y="115" text-anchor="middle" fill="#94a3b8" font-size="11">CSKH Ticket</text>
+      <text x="317" y="160" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="bold">0 Bug</text>
+
+      <!-- Rocket launching -->
+      <g transform="translate(420, 20)">
+        <!-- Booster flame -->
+        <polygon points="100,160 85,210 100,195 115,210" fill="#f97316"/>
+        <polygon points="100,165 92,200 100,190 108,200" fill="#fde047"/>
+        <!-- Rocket Body -->
+        <path d="M100,30 C85,60 75,110 75,160 L125,160 C125,110 115,60 100,30 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+        <path d="M100,30 C92,45 85,70 85,85 L115,85 C115,70 108,45 100,30 Z" fill="#ef4444"/>
+        <!-- Wings -->
+        <polygon points="75,130 50,165 75,160" fill="#3b82f6"/>
+        <polygon points="125,130 150,165 125,160" fill="#3b82f6"/>
+        <!-- Window -->
+        <circle cx="100" cy="110" r="14" fill="#38bdf8" stroke="#0f172a" stroke-width="2.5"/>
+        <circle cx="100" cy="110" r="10" fill="#e0f2fe"/>
+      </g>
+    </svg>
+    
+  </div>
+  <div class="footer">
+    <div>Day 1/100 · Sách 100 ngày làm BA</div>
+    <div>Nguyễn Bá Phú — ITBA Mentor</div>
+  </div>
+</div>
+</body>
+</html>

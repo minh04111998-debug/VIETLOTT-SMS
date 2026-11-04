@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "slicer_metric",
+  "position": {
+    "x": 1700,
+    "y": 15,
+    "z": 1003,
+    "width": 200,
+    "height": 60,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Chon_Chi_So"
+                    }
+                  },
+                  "Property": "Chỉ Số Hiển Thị"
+                }
+              },
+              "queryRef": "Chon_Chi_So.Chỉ Số Hiển Thị",
+              "nativeQueryRef": "Chỉ Số Hiển Thị",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Chỉ Số Hiển Thị'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fdfa5ff00c9b237262a4",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Chon_Chi_So"
+              }
+            },
+            "Property": "Chỉ Số Hiển Thị"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

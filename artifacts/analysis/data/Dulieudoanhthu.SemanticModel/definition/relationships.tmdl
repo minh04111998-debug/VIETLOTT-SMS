@@ -1,0 +1,8 @@
+relationship Fact_Sales_Date_Dim_Date_Date
+	fromColumn: Fact_Sales.Date
+	toColumn: Dim_Date.Date
+
+relationship Fact_Sales_ProductId_Dim_Product_ProductId
+	fromColumn: Fact_Sales.ProductId
+	toColumn: Dim_Product.ProductId
+

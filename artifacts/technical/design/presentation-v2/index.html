@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phương Án 2 - UI Refresh Vietlott SMS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="deck-container">
+    
+    <!-- Slide 1: Title -->
+    <div class="slide slide-title-page active">
+      <div style="background: white; padding: 20px 40px; border-radius: 100px; margin-bottom: 40px; display: inline-block;">
+        <img src="https://vietlott.vn/images/logo.png" alt="Vietlott" height="40" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'40\'%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'20\' fill=\'%23E31937\'%3EVietlott%3C/text%3E%3C/svg%3E'">
+      </div>
+      <h3>PHƯƠNG ÁN 2: BÌNH CŨ - RƯỢU MỚI</h3>
+      <h1>Diện Mạo Mới<br>Trải Nghiệm Mới</h1>
+      <p style="font-size: 24px; margin-top: 20px; opacity: 0.9;">Tối ưu hóa Giao diện (UI) - Giữ nguyên Giá trị Cốt lõi (Core Functions)</p>
+    </div>
+
+    <!-- Slide 2: Why? -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>1. Vấn Đề Của Giao Diện Hiện Tại (As-Is UI)</h2>
+      </div>
+      <div class="slide-content grid-2">
+        <div class="card">
+          <h3>Phân mảnh Ngôn ngữ Thiết kế</h3>
+          <p>Dựa trên 25 ảnh chụp màn hình thực tế (Audit ngày 11/08/2026):</p>
+          <ul>
+            <li><strong>BINGO18</strong> có giao diện hoàn toàn tách biệt (Dark Green, Casino style) so với tổng thể ứng dụng.</li>
+            <li>Các trò chơi (Lotto, Mega, Max3D) sử dụng màu sắc và layout thẻ (cards) không đồng nhất.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Trải Nghiệm Thiếu Tinh Tế</h3>
+          <ul>
+            <li><strong>Theme lỗi thời:</strong> Màn hình Splash và Tiện ích vẫn dùng hình ảnh Hoa đào / Hội Xuân vào tháng 8, gây cảm giác ứng dụng bị bỏ rơi.</li>
+            <li><strong>Thiếu phản hồi:</strong> Quá trình thanh toán không có loading indicator rõ ràng.</li>
+            <li><strong>Mật độ thông tin:</strong> Màn hình Trang chủ và Kết quả có quá nhiều chữ, thiếu tính phân cấp phân giác (Visual Hierarchy).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Methodology -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>2. Phương Pháp Luận - Giải Pháp "UI Refresh"</h2>
+      </div>
+      <div class="slide-content">
+        <div style="text-align: center; margin-bottom: 40px;">
+          <p style="font-size: 28px; font-weight: 600; color: var(--text-secondary);">Mục tiêu: <span style="color: var(--brand-red);">Nâng cấp Giao diện mà không làm xáo trộn Thói quen Người dùng</span></p>
+        </div>
+        
+        <div class="grid-2" style="grid-template-columns: 1fr 1fr 1fr;">
+          <div class="card" style="text-align: center; padding: 20px;">
+            <i class="fas fa-layer-group" style="font-size: 48px; color: var(--brand-red); margin-bottom: 20px;"></i>
+            <h4 style="font-size: 20px; margin-bottom: 10px;">Đồng Nhất Design System</h4>
+            <p style="font-size: 16px;">Quy chuẩn hóa màu sắc (Brand Red làm chủ đạo), bo góc (Rounded Corners) và đổ bóng mềm (Soft Shadows) xuyên suốt các màn hình.</p>
+          </div>
+          <div class="card" style="text-align: center; padding: 20px;">
+            <i class="fas fa-magic" style="font-size: 48px; color: var(--brand-gold); margin-bottom: 20px;"></i>
+            <h4 style="font-size: 20px; margin-bottom: 10px;">Thị Giác Hiện Đại (2026 UI)</h4>
+            <p style="font-size: 16px;">Loại bỏ các banner lỗi thời. Sử dụng icon phẳng/3D hiện đại. Tối ưu hóa khoảng trắng (Whitespace) để giảm tải nhận thức.</p>
+          </div>
+          <div class="card" style="text-align: center; padding: 20px;">
+            <i class="fas fa-code-branch" style="font-size: 48px; color: var(--color-lotto); margin-bottom: 20px;"></i>
+            <h4 style="font-size: 20px; margin-bottom: 10px;">Giữ Nguyên Chức Năng</h4>
+            <p style="font-size: 16px;">Flow mua vé, thanh toán, kiểm tra lịch sử được giữ nguyên 100%. Rủi ro triển khai gần như bằng không (Zero Logic Changes).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Feature Demo 1 -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>3. Trải Nghiệm Mới: Trang Chủ & Danh Mục</h2>
+      </div>
+      <div class="slide-content">
+        <ul style="font-size: 22px;">
+          <li><strong>Cards Gọn Gàng Hơn:</strong> Thiết kế lại các thẻ Game Xổ số, hiển thị nổi bật Giá trị Jackpot và Thời gian đếm ngược.</li>
+          <li><strong>Đồng Bộ BINGO18:</strong> BINGO18 không còn "lạc loài" mà được đưa vào chung template thẻ với Lotto và Mega.</li>
+          <li><strong>Thanh Điều Hướng Rõ Ràng:</strong> Bottom Navigation được thiết kế tinh giản, làm nổi bật nút "Mua vé" (Logo ticket ở giữa).</li>
+        </ul>
+        <div style="margin-top: 40px; text-align: center; background: #FFEBED; padding: 20px; border-radius: 12px; border: 1px dashed var(--brand-red);">
+          <i class="fas fa-mobile-alt" style="margin-right: 10px; color: var(--brand-red);"></i> 
+          <strong>Hãy xem file Mockup HTML đính kèm để trải nghiệm tương tác thực tế!</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5: Feature Demo 2 -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>4. Trải Nghiệm Mới: Thanh Toán Tinh Tế</h2>
+      </div>
+      <div class="slide-content">
+        <ul style="font-size: 22px;">
+          <li><strong>Giao diện Chọn Nguồn Tiền:</strong> Cấu trúc lại danh sách "Hạn mức" và "Ví điện tử" rõ ràng hơn, dễ bấm trên mobile (Touch Targets lớn).</li>
+          <li><strong>Chi Tiết Đặt Vé Gọn Gàng:</strong> Ẩn bớt các thông tin thừa, cho phép bấm "Xem chi tiết" để mở rộng khi cần.</li>
+          <li><strong>Micro-animations:</strong> Nút "Thanh toán" hiển thị vòng quay Loading rõ ràng, sau đó đổi sang màu xanh thành công trước khi chuyển trang Lịch sử. Ngăn chặn triệt để lỗi "Bấm thanh toán 2 lần".</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 6: Expected Outcomes -->
+    <div class="slide">
+      <div class="slide-header">
+        <h2>5. Tác Động Dự Kiến (Expected Outcomes)</h2>
+      </div>
+      <div class="slide-content grid-2">
+        <div class="card">
+          <h3><i class="fas fa-rocket" style="color: var(--brand-red);"></i> Ưu Điểm Tuyệt Đối</h3>
+          <ul style="font-size: 20px;">
+            <li><strong>Thời gian triển khai cực ngắn:</strong> Dev team chỉ cần cập nhật CSS/XML Layout, không cần đụng vào Core Logic hay Backend API.</li>
+            <li><strong>Risk-Free:</strong> Phù hợp để làm bản cập nhật "Quick Win" trước khi đập đi xây lại toàn bộ app.</li>
+            <li><strong>Nâng tầm thương hiệu:</strong> Hình ảnh Vietlott SMS trở nên cao cấp, hiện đại, uy tín hơn trong mắt người dùng.</li>
+          </ul>
+        </div>
+        <div class="card" style="background: var(--brand-red); color: white;">
+          <h3 style="color: var(--brand-gold);">Kết Luận Phương Án 2</h3>
+          <p style="font-size: 20px; line-height: 1.8;">
+            "Diện mạo mới - Trải nghiệm mới" là bước đệm hoàn hảo. <br><br>
+            Nó không đòi hỏi nguồn lực khổng lồ như việc xây dựng các tính năng Social hay Gamification mới, nhưng ngay lập tức giải quyết 80% các phàn nàn của người dùng về tính thẩm mỹ và độ giật/lag của giao diện hiện tại.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="slide-counter">
+      <span id="currentSlideNum">1</span> / <span id="totalSlideNum">6</span>
+    </div>
+    
+    <div class="controls">
+      <button id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+      <button id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+  </div>
+
+  <script src="deck.js"></script>
+</body>
+</html>

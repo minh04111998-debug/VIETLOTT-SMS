@@ -1,0 +1,57 @@
+{
+  "$comment": "Bản đồ 7 AI Harnesses -> thư mục thực tế (DEC-008). Máy kiểm tra: validators/harness_integrity_checker.py (check HARNESS_MAP). Thêm thư mục gốc mới mà không khai báo ở đây -> FAIL.",
+  "version": "1.0",
+  "decision": "DEC-008",
+  "framework_source": "Đề cương công khai khóa AI Agent Engineering (mentora.edu.vn/course/ai-agent-engineering, truy cập 2026-10-10) — khung riêng của khóa học, chưa đăng ký trong source-registry",
+  "harnesses": {
+    "context": {
+      "name": "Context Harness",
+      "legacy": "Context",
+      "purpose": "Cung cấp đúng tri thức cho agent, không trôi dạt, không vượt context budget",
+      "paths": ["knowledge", "references", "templates", "memory", "artifacts"],
+      "evidence": ["AGENTS.md", ".agents/rules/context-budget.md", "knowledge/glossary/glossary.md"]
+    },
+    "tool": {
+      "name": "Tool Harness",
+      "legacy": "Tools",
+      "purpose": "Kết nối agent với công cụ, script, MCP server và hệ thống ngoài theo quyền tối thiểu",
+      "paths": ["tools", "scripts", ".agents/skills"],
+      "evidence": ["tools/tool-registry.md"]
+    },
+    "orchestration": {
+      "name": "Orchestration Harness",
+      "legacy": "Loop",
+      "purpose": "Điều phối workflow đa bước, persona, bàn giao giữa vai trò và vòng lặp 6 bước",
+      "paths": ["workflows", ".agents/personas", ".agents/definitions", "plans"],
+      "evidence": [".agents/definitions/handoff-contracts.md", ".agents/rules/self-correction-rules.md"]
+    },
+    "evaluation": {
+      "name": "Evaluation Harness",
+      "legacy": "Verification",
+      "purpose": "Đo chất lượng: gate trực tuyến (validators) và hồi quy ngoại tuyến (evaluations)",
+      "paths": ["evaluations", "validators"],
+      "evidence": ["evaluations/run_evals.py", "validators/gate_runner.py"]
+    },
+    "security": {
+      "name": "Security Harness",
+      "legacy": "Guardrails",
+      "purpose": "Chặn lộ PII, lộ secret và prompt injection từ nội dung bên ngoài",
+      "paths": ["validators", ".agents/rules"],
+      "evidence": ["validators/pii_scanner.py", "validators/secret_scanner.py", ".agents/rules/privacy-and-pii-rules.md", ".agents/rules/security-checklist.md"]
+    },
+    "governance": {
+      "name": "Governance Harness",
+      "legacy": "Guardrails",
+      "purpose": "Ranh giới Human/AI, phân quyền, Hard Stop, sổ quyết định (audit trail)",
+      "paths": [".agents/rules", ".agents/definitions", "observability"],
+      "evidence": [".agents/rules/boundaries.md", ".agents/definitions/role-permission-matrix.md", "observability/decisions-log.md"]
+    },
+    "agentops": {
+      "name": "AgentOps Harness",
+      "legacy": "Observation + Feedback",
+      "purpose": "Giám sát vận hành: hook tự động, gate report, chỉ số tổng hợp, phản hồi cải tiến",
+      "paths": ["observability", "hooks", "memory"],
+      "evidence": ["hooks/agent_gate_hook.py", "validators/ops_metrics.py", "evaluations/workflows/feedback-protocol.md"]
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "card_avg_price",
+  "position": {
+    "x": 970,
+    "y": 90,
+    "z": 1006,
+    "width": 455,
+    "height": 150,
+    "tabOrder": 7
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Sales"
+                    }
+                  },
+                  "Property": "Giá Vé Trung Bình"
+                }
+              },
+              "queryRef": "Fact_Sales.Giá Vé Trung Bình",
+              "nativeQueryRef": "Giá Vé Trung Bình"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'GIÁ VÉ BÌNH QUÂN (ARPU)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

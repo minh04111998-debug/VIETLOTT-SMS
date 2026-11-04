@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "column_product_category",
+  "position": {
+    "x": 20,
+    "y": 700,
+    "z": 1011,
+    "width": 1120,
+    "height": 360,
+    "tabOrder": 12
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Product"
+                    }
+                  },
+                  "Property": "Nhóm Sản Phẩm"
+                }
+              },
+              "queryRef": "Dim_Product.Nhóm Sản Phẩm",
+              "nativeQueryRef": "Nhóm Sản Phẩm",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Sales"
+                    }
+                  },
+                  "Property": "Doanh Thu Thuần"
+                }
+              },
+              "queryRef": "Fact_Sales.Doanh Thu Thuần",
+              "nativeQueryRef": "Doanh Thu Thuần"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'DOANH THU THEO PHÂN LOẠI SẢN PHẨM'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

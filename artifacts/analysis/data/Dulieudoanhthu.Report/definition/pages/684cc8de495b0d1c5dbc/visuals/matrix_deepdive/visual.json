@@ -1,0 +1,235 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "matrix_deepdive",
+  "position": {
+    "x": 1160,
+    "y": 700,
+    "z": 1012,
+    "height": 360,
+    "width": 740,
+    "tabOrder": 13
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Date"
+                    }
+                  },
+                  "Property": "Tháng"
+                }
+              },
+              "queryRef": "Dim_Date.Tháng",
+              "nativeQueryRef": "Tháng",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Sales"
+                    }
+                  },
+                  "Property": "Số Lượng Vé"
+                }
+              },
+              "queryRef": "Fact_Sales.Số Lượng Vé",
+              "nativeQueryRef": "Số Lượng Vé"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Sales"
+                    }
+                  },
+                  "Property": "Doanh Thu Thuần"
+                }
+              },
+              "queryRef": "Fact_Sales.Doanh Thu Thuần",
+              "nativeQueryRef": "Doanh Thu Thuần"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Sales"
+                    }
+                  },
+                  "Property": "Giá Vé Trung Bình"
+                }
+              },
+              "queryRef": "Fact_Sales.Giá Vé Trung Bình",
+              "nativeQueryRef": "Giá Vé Trung Bình"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Sales"
+                    }
+                  },
+                  "Property": "Tăng Trưởng MoM %"
+                }
+              },
+              "queryRef": "Fact_Sales.Tăng Trưởng MoM %",
+              "nativeQueryRef": "Tăng Trưởng MoM %"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "rowHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BẢNG TỔNG HỢP HIỆU QUẢ KINH DOANH CHI TIẾT'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2e2c68f676000db77239",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Date"
+              }
+            },
+            "Property": "Tháng"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a5c8d56f6e3186107ed2",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_Sales"
+              }
+            },
+            "Property": "Số Lượng Vé"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "bac85416ad1b820db345",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_Sales"
+              }
+            },
+            "Property": "Doanh Thu Thuần"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d05a55aed13dd009d2ad",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_Sales"
+              }
+            },
+            "Property": "Giá Vé Trung Bình"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "75496b0b52a80d31d326",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Fact_Sales"
+              }
+            },
+            "Property": "Tăng Trưởng MoM %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

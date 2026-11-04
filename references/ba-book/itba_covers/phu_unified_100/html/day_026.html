@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face {
+  font-family: 'MontserratLocal';
+  src: local('Montserrat Bold'), url('file:///C:/Windows/Fonts/Montserrat-Bold.ttf') format('truetype');
+  font-weight: 800;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1200px;
+  height: 675px;
+  overflow: hidden;
+  background: #FAEFD3;
+  font-family: 'MontserratLocal', 'Montserrat', 'Segoe UI', sans-serif;
+}
+.card {
+  width: 1200px;
+  height: 675px;
+  position: relative;
+  background: radial-gradient(circle at 50% 45%, #FBF2DA 0%, #FAEFD3 70%, #F8EBD0 100%);
+}
+/* Subtle warm paper grain overlay */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(139, 105, 60, 0.045) 1px, transparent 0);
+  background-size: 18px 18px;
+  pointer-events: none;
+}
+.layout-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 46px 64px 0 64px;
+}
+.headline-top {
+  text-align: center;
+  color: #054AA3;
+  font-size: 32px;
+  font-weight: 800;
+  -webkit-text-stroke: 0.55px #054AA3;
+  line-height: 1.32;
+  letter-spacing: -0.2px;
+  z-index: 2;
+}
+.scene-bottom {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+}
+.scene-bottom svg {
+  max-width: 900px;
+  max-height: 468px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+.layout-split {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 68px 0 68px;
+  gap: 24px;
+}
+.headline-side {
+  flex: 0 0 510px;
+  color: #054AA3;
+  font-size: 32px;
+  font-weight: 800;
+  -webkit-text-stroke: 0.55px #054AA3;
+  line-height: 1.36;
+  padding-bottom: 36px;
+  z-index: 2;
+}
+.headline-side.left { text-align: left; }
+.headline-side.right { text-align: left; }
+.scene-side {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1;
+}
+.scene-side svg {
+  max-width: 560px;
+  max-height: 545px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+</style>
+</head>
+<body>
+
+        <div class="card layout-split">
+          <div class="headline-side left">Đầu tháng, bạn là BA mới toanh<br>Chào mừng đến với chiến trường!</div>
+          <div class="scene-side"><svg width="560" height="500" viewBox="0 0 560 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="softShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#8C6D46" flood-opacity="0.16"/>
+    </filter>
+    <linearGradient id="skyWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#DCE8F4" stop-opacity="0.78"/>
+      <stop offset="100%" stop-color="#EBF1E6" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="sandWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F1DFB6" stop-opacity="0.82"/>
+      <stop offset="100%" stop-color="#F6E9CB" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="sageWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#DCECE0" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#F1E6C8" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="peachWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F6DDD2" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#F3E4C2" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+
+    <path d="M 35,285.0 C 47.25,95.0 231.0,55.0 365.75,85.0 C 512.75,115.0 544.6,295.0 463.75,421.0 C 365.75,481.0 120.75,469.0 35,285.0 Z" fill="url(#sandWash)" />
+    <!-- Swirling lines -->
+    <path d="M 75,240 C 60,120 480,110 485,240" fill="none" stroke="#B89B72" stroke-width="3" stroke-dasharray="10 8"/>
+    <g transform="rotate(-12 114.5 131.0)">
+<rect x="42" y="95" width="145" height="72" rx="8" fill="#FFE699" stroke="#3B2518" stroke-width="3.2" filter="url(#softShadow)"/>
+<rect x="96.5" y="88" width="36" height="14" rx="3" fill="#E8C266" opacity="0.85"/>
+<text x="114.5" y="137.0" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" font-size="17" fill="#3B2518">SRS gấp!</text>
+</g>
+    <g transform="rotate(11 442.5 124.0)">
+<rect x="365" y="88" width="155" height="72" rx="8" fill="#FAD7CE" stroke="#3B2518" stroke-width="3.2" filter="url(#softShadow)"/>
+<rect x="424.5" y="81" width="36" height="14" rx="3" fill="#E8C266" opacity="0.85"/>
+<text x="442.5" y="130.0" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" font-size="17" fill="#3B2518">Họp khách!</text>
+</g>
+    <g transform="rotate(8 110.5 301.0)">
+<rect x="38" y="265" width="145" height="72" rx="8" fill="#D8ECFA" stroke="#3B2518" stroke-width="3.2" filter="url(#softShadow)"/>
+<rect x="92.5" y="258" width="36" height="14" rx="3" fill="#E8C266" opacity="0.85"/>
+<text x="110.5" y="307.0" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" font-size="17" fill="#3B2518">CR mới!</text>
+</g>
+    <g transform="rotate(-9 449.0 301.0)">
+<rect x="375" y="265" width="148" height="72" rx="8" fill="#DCF2E2" stroke="#3B2518" stroke-width="3.2" filter="url(#softShadow)"/>
+<rect x="431.0" y="258" width="36" height="14" rx="3" fill="#E8C266" opacity="0.85"/>
+<text x="449.0" y="307.0" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" font-size="17" fill="#3B2518">Dev hỏi!</text>
+</g>
+    <g transform="translate(280,315) scale(1.0)">
+<rect x="-14" y="48" width="28" height="22" rx="8" fill="#F0C19C" stroke="#3B2518" stroke-width="3.2"/>
+<path d="M -56,162 C -54,96 -38,66 0,66 C 38,66 54,96 56,162 Z" fill="#8AB4DF" stroke="#3B2518" stroke-width="3.8" stroke-linejoin="round"/>
+<polygon points="-20,67 0,115 20,67" fill="#FFFFFF" stroke="#3B2518" stroke-width="3.2" stroke-linejoin="round"/>
+<polygon points="-5,74 5,74 8,112 0,124 -8,112" fill="#2B5B9E" stroke="#3B2518" stroke-width="2.6" stroke-linejoin="round"/>
+<polygon points="-24,66 -4,76 -15,88" fill="#FFFFFF" stroke="#3B2518" stroke-width="2.8" stroke-linejoin="round"/>
+<polygon points="24,66 4,76 15,88" fill="#FFFFFF" stroke="#3B2518" stroke-width="2.8" stroke-linejoin="round"/>
+<path d="M -46,90 C -84,62 -82,10 -56,-18" fill="none" stroke="#8AB4DF" stroke-width="19" stroke-linecap="round"/>
+<path d="M -46,90 C -84,62 -82,10 -56,-18" fill="none" stroke="#3B2518" stroke-width="3.6" stroke-linecap="round"/>
+<circle cx="-55" cy="-20" r="10" fill="#FAD9BE" stroke="#3B2518" stroke-width="3.2"/>
+<path d="M 46,90 C 84,62 82,10 56,-18" fill="none" stroke="#8AB4DF" stroke-width="19" stroke-linecap="round"/>
+<path d="M 46,90 C 84,62 82,10 56,-18" fill="none" stroke="#3B2518" stroke-width="3.6" stroke-linecap="round"/>
+<circle cx="55" cy="-20" r="10" fill="#FAD9BE" stroke="#3B2518" stroke-width="3.2"/>
+<circle cx="-56" cy="4" r="12" fill="#FAD9BE" stroke="#3B2518" stroke-width="3.4"/>
+<circle cx="56" cy="4" r="12" fill="#FAD9BE" stroke="#3B2518" stroke-width="3.4"/>
+<rect x="-56" y="-52" width="112" height="108" rx="48" fill="#FAD9BE" stroke="#3B2518" stroke-width="3.8"/>
+<ellipse cx="-34" cy="18" rx="10" ry="6" fill="#F2A294" opacity="0.55"/>
+<ellipse cx="34" cy="18" rx="10" ry="6" fill="#F2A294" opacity="0.55"/>
+<path d="M -58,-10 C -64,-52 -28,-72 6,-68 C 42,-66 64,-44 58,-8 C 46,-26 28,-32 8,-26 C -8,-36 -26,-30 -40,-22 C -48,-20 -54,-14 -58,-10 Z" fill="#3D281D" stroke="#3B2518" stroke-width="3.6" stroke-linejoin="round"/>
+<path d="M -62,-26 C -58,-72 58,-72 62,-26 Z" fill="#F5B82E" stroke="#3B2518" stroke-width="3.6" stroke-linejoin="round"/>
+<rect x="-68" y="-30" width="136" height="10" rx="5" fill="#E09B1B" stroke="#3B2518" stroke-width="3.2"/>
+<path d="M -34,-18 L -14,-12" stroke="#3B2518" stroke-width="3.4" stroke-linecap="round"/>
+<path d="M 34,-18 L 14,-12" stroke="#3B2518" stroke-width="3.4" stroke-linecap="round"/>
+<circle cx="-22" cy="0" r="5.5" fill="#3B2518"/>
+<circle cx="22" cy="0" r="5.5" fill="#3B2518"/>
+<path d="M -14,28 Q -7,22 0,28 T 14,28" fill="none" stroke="#3B2518" stroke-width="3.4" stroke-linecap="round"/>
+<path d="M 46,-26 C 52,-14 54,-6 46,-4 C 38,-6 40,-14 46,-26 Z" fill="#7CC4F8" stroke="#3B2518" stroke-width="2.6"/>
+<rect x="-39" y="-11" width="32" height="23" rx="6" fill="#FFFFFF" fill-opacity="0.22" stroke="#3B2518" stroke-width="3.4"/>
+<rect x="7" y="-11" width="32" height="23" rx="6" fill="#FFFFFF" fill-opacity="0.22" stroke="#3B2518" stroke-width="3.4"/>
+<line x1="-7" y1="0" x2="7" y2="0" stroke="#3B2518" stroke-width="3.4"/>
+<line x1="-55" y1="-2" x2="-39" y2="-1" stroke="#3B2518" stroke-width="3"/>
+<line x1="39" y1="-1" x2="55" y2="-2" stroke="#3B2518" stroke-width="3"/>
+</g>
+    </svg></div>
+        </div>
+        
+</body>
+</html>

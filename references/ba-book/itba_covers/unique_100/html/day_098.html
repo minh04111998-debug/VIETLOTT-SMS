@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1200px;
+  height: 675px;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #0f172a;
+}
+.card {
+  width: 1200px;
+  height: 675px;
+  position: relative;
+  background: radial-gradient(circle at 20% 20%, #312e81 0%, #1e1b4b 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 34px 48px 24px 48px;
+  color: #f8fafc;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.badge {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1.5px solid #f59e0b;
+  color: #f59e0b;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+}
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  color: #94a3b8;
+  letter-spacing: -0.5px;
+}
+.logo span { color: #ffffff; }
+.title-area {
+  text-align: center;
+  margin-top: 6px;
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.headline {
+  font-size: 34px;
+  font-weight: 900;
+  color: #fbbf24;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.subheadline {
+  font-size: 21px;
+  font-weight: 600;
+  color: #e0e7ff;
+  max-width: 950px;
+  margin: 0 auto;
+  line-height: 1.35;
+}
+.graphic-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div class="badge">SEARCH ARCHITECTURE · UX</div>
+    <div class="logo">iTBA <span>Mentor</span></div>
+  </div>
+  <div class="title-area">
+    <div class="headline">Auto-Suggest vs Auto-Complete vs ML Recommendation</div>
+    <div class="subheadline">Phân biệt bản chất kỹ thuật để viết đặc tả chuẩn xác</div>
+  </div>
+  <div class="graphic-area">
+    
+    <svg width="640" height="260" viewBox="0 0 640 260">
+      <!-- 3 Search Features Comparison -->
+      <g transform="translate(40, 25)">
+        <rect x="0" y="0" width="170" height="200" rx="12" fill="#1e1b4b" stroke="#38bdf8" stroke-width="2"/>
+        <text x="85" y="30" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="bold">AUTO-COMPLETE</text>
+        <rect x="15" y="45" width="140" height="28" rx="6" fill="#0f172a" stroke="#334155"/>
+        <text x="25" y="64" fill="#f8fafc" font-size="11">ipho| <tspan fill="#64748b">ne 16</tspan></text>
+        <text x="85" y="105" text-anchor="middle" fill="#cbd5e1" font-size="11">Điền nốt từ khóa</text>
+        <text x="85" y="125" text-anchor="middle" fill="#94a3b8" font-size="10">Dựa trên Prefix Matching</text>
+        <rect x="25" y="150" width="120" height="28" rx="4" fill="#312e81"/>
+        <text x="85" y="168" text-anchor="middle" fill="#7dd3fc" font-size="10" font-weight="bold">Search bar</text>
+      </g>
+      <g transform="translate(235, 25)">
+        <rect x="0" y="0" width="170" height="200" rx="12" fill="#1e1b4b" stroke="#f59e0b" stroke-width="2"/>
+        <text x="85" y="30" text-anchor="middle" fill="#fde047" font-size="13" font-weight="bold">AUTO-SUGGEST</text>
+        <rect x="15" y="45" width="140" height="28" rx="6" fill="#0f172a" stroke="#334155"/>
+        <text x="25" y="64" fill="#f8fafc" font-size="11">áo len...</text>
+        <rect x="15" y="78" width="140" height="60" rx="4" fill="#0f172a"/>
+        <text x="25" y="96" fill="#94a3b8" font-size="10">• áo len nam cổ lọ</text>
+        <text x="25" y="114" fill="#94a3b8" font-size="10">• áo len nữ oversize</text>
+        <text x="25" y="132" fill="#94a3b8" font-size="10">• áo len cardigan</text>
+        <rect x="25" y="150" width="120" height="28" rx="4" fill="#78350f"/>
+        <text x="85" y="168" text-anchor="middle" fill="#fef08a" font-size="10" font-weight="bold">Query Popularity</text>
+      </g>
+      <g transform="translate(430, 25)">
+        <rect x="0" y="0" width="170" height="200" rx="12" fill="#1e1b4b" stroke="#10b981" stroke-width="2"/>
+        <text x="85" y="30" text-anchor="middle" fill="#6ee7b7" font-size="13" font-weight="bold">ML RECOMMEND</text>
+        <rect x="15" y="45" width="140" height="28" rx="6" fill="#0f172a" stroke="#334155"/>
+        <text x="25" y="64" fill="#f8fafc" font-size="11">Dành riêng cho bạn</text>
+        <text x="85" y="105" text-anchor="middle" fill="#cbd5e1" font-size="11">Cá nhân hóa theo User</text>
+        <text x="85" y="125" text-anchor="middle" fill="#94a3b8" font-size="10">Lịch sử xem &amp; mua sắm</text>
+        <rect x="25" y="150" width="120" height="28" rx="4" fill="#064e3b"/>
+        <text x="85" y="168" text-anchor="middle" fill="#a7f3d0" font-size="10" font-weight="bold">User Embedding</text>
+      </g>
+    </svg>
+    
+  </div>
+  <div class="footer">
+    <div>Day 98/100 · Sách 100 ngày làm BA</div>
+    <div>Nguyễn Bá Phú — ITBA Mentor</div>
+  </div>
+</div>
+</body>
+</html>

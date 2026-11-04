@@ -1,0 +1,22 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Table_22","Table_23","Table_24","Table_26","Table_25","Table_27","Table_29","Table_28","Table_30","Table_31","Table_32","Table_33","Table_34","Table_35","Table_36","Table_38","Table_37","MBF","Table_39"]
+
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
+
+ref table Dim_Date
+ref table Dim_Product
+ref table Fact_Sales
+ref table Chon_Chi_So
+
+ref cultureInfo en-US
+

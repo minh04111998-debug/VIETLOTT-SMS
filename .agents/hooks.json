@@ -1,0 +1,29 @@
+{
+  "quality-gate": {
+    "PostToolUse": [
+      {
+        "matcher": "write_to_file",
+        "hooks": [
+          { "type": "command", "command": "python ../hooks/agent_gate_hook.py post-tool", "timeout": 30 }
+        ]
+      },
+      {
+        "matcher": "replace_file_content",
+        "hooks": [
+          { "type": "command", "command": "python ../hooks/agent_gate_hook.py post-tool", "timeout": 30 }
+        ]
+      },
+      {
+        "matcher": "multi_replace_file_content",
+        "hooks": [
+          { "type": "command", "command": "python ../hooks/agent_gate_hook.py post-tool", "timeout": 30 }
+        ]
+      }
+    ]
+  },
+  "quality-gate-feedback": {
+    "PreInvocation": [
+      { "type": "command", "command": "python ../hooks/agent_gate_hook.py pre-invocation", "timeout": 10 }
+    ]
+  }
+}

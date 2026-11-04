@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face {
+  font-family: 'MontserratLocal';
+  src: local('Montserrat Bold'), url('file:///C:/Windows/Fonts/Montserrat-Bold.ttf') format('truetype');
+  font-weight: 800;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1200px;
+  height: 675px;
+  overflow: hidden;
+  background: #FAEFD3;
+  font-family: 'MontserratLocal', 'Montserrat', 'Segoe UI', sans-serif;
+}
+.card {
+  width: 1200px;
+  height: 675px;
+  position: relative;
+  background: radial-gradient(circle at 50% 45%, #FBF2DA 0%, #FAEFD3 70%, #F8EBD0 100%);
+}
+/* Subtle warm paper grain overlay */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(139, 105, 60, 0.045) 1px, transparent 0);
+  background-size: 18px 18px;
+  pointer-events: none;
+}
+.layout-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 46px 64px 0 64px;
+}
+.headline-top {
+  text-align: center;
+  color: #054AA3;
+  font-size: 40px;
+  font-weight: 800;
+  -webkit-text-stroke: 0.55px #054AA3;
+  line-height: 1.32;
+  letter-spacing: -0.2px;
+  z-index: 2;
+}
+.scene-bottom {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+}
+.scene-bottom svg {
+  max-width: 900px;
+  max-height: 468px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+.layout-split {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 68px 0 68px;
+  gap: 24px;
+}
+.headline-side {
+  flex: 0 0 510px;
+  color: #054AA3;
+  font-size: 40px;
+  font-weight: 800;
+  -webkit-text-stroke: 0.55px #054AA3;
+  line-height: 1.36;
+  padding-bottom: 36px;
+  z-index: 2;
+}
+.headline-side.left { text-align: left; }
+.headline-side.right { text-align: left; }
+.scene-side {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1;
+}
+.scene-side svg {
+  max-width: 560px;
+  max-height: 545px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+</style>
+</head>
+<body>
+
+        <div class="card layout-split">
+          <div class="headline-side left">3 dạng comment dễ khiến<br>BA rơi vào bẫy<br>tưởng đã DONE rồi</div>
+          <div class="scene-side"><svg width="560" height="500" viewBox="0 0 560 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="softShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#8C6D46" flood-opacity="0.16"/>
+    </filter>
+    <linearGradient id="skyWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#DCE8F4" stop-opacity="0.78"/>
+      <stop offset="100%" stop-color="#EBF1E6" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="sandWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F1DFB6" stop-opacity="0.82"/>
+      <stop offset="100%" stop-color="#F6E9CB" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="sageWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#DCECE0" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#F1E6C8" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="peachWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F6DDD2" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#F3E4C2" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+
+    <path d="M 40,284.5 C 52.0,99.25 232.0,60.25 364.0,89.5 C 508.0,118.75 539.2,294.25 460.0,417.1 C 364.0,475.6 124.0,463.9 40,284.5 Z" fill="url(#skyWash)" />
+    <polygon points="118.5,136 142.5,136 126.5,156" fill="#FAD8CE" stroke="#3B2518" stroke-width="3.2" stroke-linejoin="round"/>
+<rect x="28" y="72" width="205" height="66" rx="16" fill="#FAD8CE" stroke="#3B2518" stroke-width="3.2" filter="url(#softShadow)"/>
+<line x1="120.5" y1="138" x2="140.5" y2="138" stroke="#FAD8CE" stroke-width="5"/>
+<text x="130.5" y="110.1" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" font-size="15" fill="#9E2424">“Cơ bản ok rồi em”</text>
+    <polygon points="410.5,129 434.5,129 418.5,149" fill="#FFF4C7" stroke="#3B2518" stroke-width="3.2" stroke-linejoin="round"/>
+<rect x="315" y="65" width="215" height="66" rx="16" fill="#FFF4C7" stroke="#3B2518" stroke-width="3.2" filter="url(#softShadow)"/>
+<line x1="412.5" y1="131" x2="432.5" y2="131" stroke="#FFF4C7" stroke-width="5"/>
+<text x="422.5" y="103.1" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" font-size="15" fill="#3B2518">“Tạm duyệt UI nhé”</text>
+    <polygon points="218,196.0 218,216.0 238,212.0" fill="#DCEBFB" stroke="#3B2518" stroke-width="3.2" stroke-linejoin="round"/>
+<rect x="35" y="175" width="185" height="62" rx="16" fill="#DCEBFB" stroke="#3B2518" stroke-width="3.2" filter="url(#softShadow)"/>
+<line x1="220" y1="198.0" x2="220" y2="214.0" stroke="#DCEBFB" stroke-width="5"/>
+<text x="127.5" y="211.1" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" font-size="15" fill="#054AA3">Khoan! Chốt biên đã!</text>
+    <g transform="translate(335,285) scale(0.94)">
+<rect x="-14" y="48" width="28" height="22" rx="8" fill="#F0C19C" stroke="#3B2518" stroke-width="3.2"/>
+<path d="M -56,162 C -54,96 -38,66 0,66 C 38,66 54,96 56,162 Z" fill="#D9824B" stroke="#3B2518" stroke-width="3.8" stroke-linejoin="round"/>
+<polygon points="-20,67 0,115 20,67" fill="#FFF9EE" stroke="#3B2518" stroke-width="3.2" stroke-linejoin="round"/>
+<polygon points="-5,74 5,74 8,112 0,124 -8,112" fill="#8C4A27" stroke="#3B2518" stroke-width="2.6" stroke-linejoin="round"/>
+<polygon points="-24,66 -4,76 -15,88" fill="#FFFFFF" stroke="#3B2518" stroke-width="2.8" stroke-linejoin="round"/>
+<polygon points="24,66 4,76 15,88" fill="#FFFFFF" stroke="#3B2518" stroke-width="2.8" stroke-linejoin="round"/>
+<path d="M -48,92 C -64,118 -60,142 -48,158" fill="none" stroke="#D9824B" stroke-width="18" stroke-linecap="round"/>
+<path d="M -48,92 C -64,118 -60,142 -48,158" fill="none" stroke="#3B2518" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M 48,92 C 64,118 60,142 48,158" fill="none" stroke="#D9824B" stroke-width="18" stroke-linecap="round"/>
+<path d="M 48,92 C 64,118 60,142 48,158" fill="none" stroke="#3B2518" stroke-width="3.6" stroke-linecap="round"/>
+<circle cx="-56" cy="4" r="12" fill="#FAD9BE" stroke="#3B2518" stroke-width="3.4"/>
+<circle cx="56" cy="4" r="12" fill="#FAD9BE" stroke="#3B2518" stroke-width="3.4"/>
+<rect x="-56" y="-52" width="112" height="108" rx="48" fill="#FAD9BE" stroke="#3B2518" stroke-width="3.8"/>
+<ellipse cx="-34" cy="18" rx="10" ry="6" fill="#F2A294" opacity="0.55"/>
+<ellipse cx="34" cy="18" rx="10" ry="6" fill="#F2A294" opacity="0.55"/>
+<path d="M -57,-8 C -62,-50 -32,-68 4,-67 C 38,-66 62,-46 57,-8 C 48,-26 30,-35 8,-33 C -6,-24 -22,-22 -36,-28 C -46,-24 -52,-16 -57,-8 Z" fill="#3D281D" stroke="#3B2518" stroke-width="3.6" stroke-linejoin="round"/>
+<path d="M -34,-14 L -12,-10" stroke="#3B2518" stroke-width="3.8" stroke-linecap="round"/>
+<path d="M 34,-14 L 12,-10" stroke="#3B2518" stroke-width="3.8" stroke-linecap="round"/>
+<circle cx="-22" cy="1" r="5" fill="#3B2518"/>
+<circle cx="22" cy="1" r="5" fill="#3B2518"/>
+<path d="M -10,27 Q 2,31 12,25" fill="none" stroke="#3B2518" stroke-width="3.4" stroke-linecap="round"/>
+<rect x="-39" y="-11" width="32" height="23" rx="6" fill="#FFFFFF" fill-opacity="0.22" stroke="#3B2518" stroke-width="3.4"/>
+<rect x="7" y="-11" width="32" height="23" rx="6" fill="#FFFFFF" fill-opacity="0.22" stroke="#3B2518" stroke-width="3.4"/>
+<line x1="-7" y1="0" x2="7" y2="0" stroke="#3B2518" stroke-width="3.4"/>
+<line x1="-55" y1="-2" x2="-39" y2="-1" stroke="#3B2518" stroke-width="3"/>
+<line x1="39" y1="-1" x2="55" y2="-2" stroke="#3B2518" stroke-width="3"/>
+</g>
+    
+    <g transform="translate(265,425) scale(0.95)">
+      <polygon points="-68,-44 68,-44 58,34 -58,34" fill="#7D8794" stroke="#3B2518" stroke-width="3.6" stroke-linejoin="round"/>
+      <polygon points="-60,-36 60,-36 52,28 -52,28" fill="#9BB3C9" stroke="#3B2518" stroke-width="2.4"/>
+      <circle cx="0" cy="-4" r="16" fill="#EDF3F8" stroke="#3B2518" stroke-width="2.6"/>
+      <text x="0" y="2" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" font-size="13" fill="#3B2518">BA</text>
+      <rect x="-82" y="34" width="164" height="12" rx="6" fill="#B5BDC7" stroke="#3B2518" stroke-width="3.6"/>
+    </g>
+    
+    </svg></div>
+        </div>
+        
+</body>
+</html>

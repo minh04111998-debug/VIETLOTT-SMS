@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vietlott SMS - Light Premium</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-white: #FFFFFF;
+            --bg-light: #F5F6FA;
+            --border-color: #E5E7EB;
+            --text-dark: #1A1A2E;
+            --text-grey: #6B7280;
+            --accent-red: #E31937;
+            --accent-gold: #FFB800;
+            --success: #10B981;
+        }
+
+        body {
+            background-color: #F0F0F5;
+            font-family: 'Inter', sans-serif;
+            margin: 0; padding: 0;
+            display: flex; justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .app-container {
+            width: 100%; max-width: 375px;
+            background-color: var(--bg-white);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+
+        /* Screen System */
+        .screen {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            visibility: hidden;
+            pointer-events: none;
+            z-index: 1;
+            overflow-y: auto;
+            background: var(--bg-white);
+            padding-bottom: 90px;
+        }
+        .screen.active {
+            position: relative;
+            visibility: visible;
+            pointer-events: auto;
+            z-index: 10;
+        }
+        .screen.slide-in-right { animation: slideInRight 0.3s forwards; visibility: visible; pointer-events: auto; z-index: 10; }
+        .screen.slide-out-left { animation: slideOutLeft 0.3s forwards; visibility: visible; }
+        .screen.slide-in-left { animation: slideInLeft 0.3s forwards; visibility: visible; pointer-events: auto; z-index: 10; }
+        .screen.slide-out-right { animation: slideOutRight 0.3s forwards; visibility: visible; }
+        .screen.fade-in { animation: fadeIn 0.25s forwards; visibility: visible; pointer-events: auto; z-index: 10; }
+        .screen.fade-out { animation: fadeOut 0.25s forwards; visibility: visible; }
+        @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        @keyframes slideOutLeft { from { transform: translateX(0); } to { transform: translateX(-30%); opacity: 0; } }
+        @keyframes slideInLeft { from { transform: translateX(-30%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideOutRight { from { transform: translateX(0); } to { transform: translateX(100%); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+        /* Typography & Utilities */
+        h1, h2, h3, h4, p { margin: 0; }
+        .text-dark { color: var(--text-dark); }
+        .text-grey { color: var(--text-grey); }
+        .text-red { color: var(--accent-red); }
+        .text-gold { color: var(--accent-gold); }
+        .text-white { color: #FFF; }
+        .fw-500 { font-weight: 500; }
+        .fw-600 { font-weight: 600; }
+        .fw-700 { font-weight: 700; }
+        .fz-12 { font-size: 12px; }
+        .fz-14 { font-size: 14px; }
+        .fz-16 { font-size: 16px; }
+        .fz-24 { font-size: 24px; }
+        
+        .flex { display: flex; }
+        .justify-between { justify-content: space-between; }
+        .align-center { align-items: center; }
+        .gap-8 { gap: 8px; }
+        .gap-12 { gap: 12px; }
+        .gap-16 { gap: 16px; }
+        .w-100 { width: 100%; }
+        
+        /* App Headers */
+        .header-red {
+            background: linear-gradient(135deg, var(--accent-red), #B91430);
+            padding: 20px 20px 30px;
+            color: #FFF;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+        }
+        .header-red .icon-btn {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex; justify-content: center; align-items: center;
+            color: #FFF; border: none; cursor: pointer;
+        }
+        .header-inner {
+            background: var(--bg-white);
+            padding: 16px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            position: sticky; top: 0; z-index: 20;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .back-btn {
+            background: none; border: none; font-size: 20px;
+            color: var(--text-dark); cursor: pointer;
+            padding: 4px;
+        }
+        
+        /* Balance Bar */
+        .balance-card {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 16px;
+            margin: -20px 20px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex; justify-content: space-between; align-items: center;
+            position: relative; z-index: 2;
+            border: 1px solid var(--border-color);
+        }
+        .balance-btn {
+            background: var(--bg-light);
+            border: none; padding: 6px 12px;
+            border-radius: 20px; font-weight: 600;
+            color: var(--text-dark); cursor: pointer;
+            font-size: 12px;
+        }
+        
+        /* Hero Jackpot Card */
+        .hero-jackpot {
+            background: linear-gradient(135deg, #C41230, #8B0A20);
+            border-radius: 20px;
+            padding: 24px; margin: 0 20px 24px;
+            color: #FFF;
+            position: relative; overflow: hidden;
+            box-shadow: 0 8px 20px rgba(227, 25, 55, 0.3);
+        }
+        .hero-jackpot::after {
+            content: ''; position: absolute;
+            top: -50px; right: -50px;
+            width: 150px; height: 150px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+        }
+        .jackpot-amount { font-size: 32px; font-weight: 800; color: var(--accent-gold); margin: 8px 0; }
+        .countdown-timer { background: rgba(0,0,0,0.3); padding: 4px 12px; border-radius: 12px; font-size: 12px; display: inline-block; }
+        .btn-hero-play {
+            background: #FFF; color: var(--accent-red);
+            border: none; padding: 10px 24px; border-radius: 24px;
+            font-weight: 700; cursor: pointer; margin-top: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Fav Section */
+        .section-title { padding: 0 20px; margin-bottom: 12px; font-size: 18px; font-weight: 700; color: var(--text-dark); }
+        .fav-scroll {
+            display: flex; overflow-x: auto; gap: 16px; padding: 0 20px 24px;
+            scrollbar-width: none;
+        }
+        .fav-scroll::-webkit-scrollbar { display: none; }
+        .fav-card {
+            background: var(--bg-white); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 16px; min-width: 240px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .fav-balls-row { display: flex; gap: 6px; margin: 12px 0; }
+        .fav-ball {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: var(--bg-light); color: var(--text-dark);
+            display: flex; justify-content: center; align-items: center;
+            font-size: 12px; font-weight: 600;
+        }
+        .btn-fav-buy {
+            width: 100%; padding: 8px; background: transparent;
+            border: 1px solid var(--accent-red); color: var(--accent-red);
+            border-radius: 8px; font-weight: 600; cursor: pointer;
+        }
+
+        /* Game Grid */
+        .game-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+            padding: 0 20px 24px;
+        }
+        .game-card {
+            border-radius: 16px; padding: 16px;
+            position: relative; overflow: hidden; cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: flex; flex-direction: column; justify-content: space-between;
+            min-height: 140px;
+        }
+        /* Pastel backgrounds */
+        .power-card { background: linear-gradient(135deg, #FFE5E5, #FFF0F0); }
+        .mega-card { background: linear-gradient(135deg, #E5F6EB, #F0FAF4); }
+        .keno-card { background: linear-gradient(135deg, #FFF5E5, #FFF9F0); }
+        .max3d-card { background: linear-gradient(135deg, #E5F0FF, #F0F5FF); }
+        .lotto-card { background: linear-gradient(135deg, #E8F5E9, #F1F8E9); }
+        .bingo-card { background: linear-gradient(135deg, #EDE7F6, #F3E5F5); }
+        
+        .game-name { font-weight: 700; font-size: 16px; color: var(--text-dark); margin-bottom: 4px; }
+        .game-prize { font-weight: 700; font-size: 16px; color: var(--accent-red); }
+        .game-card .btn-play {
+            background: var(--bg-white); border: none;
+            padding: 6px 12px; border-radius: 16px;
+            font-size: 12px; font-weight: 600; color: var(--text-dark);
+            margin-top: 12px; align-self: flex-start;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            max-width: 375px; margin: 0 auto;
+            background: var(--bg-white);
+            border-top: 1px solid var(--border-color);
+            display: flex; justify-content: space-around; align-items: center;
+            height: 70px; padding-bottom: 10px; z-index: 100;
+        }
+        .bottom-nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 4px;
+            color: var(--text-grey); text-decoration: none; font-size: 11px; font-weight: 500;
+            width: 20%; cursor: pointer; transition: color 0.2s;
+        }
+        .bottom-nav-item i { font-size: 20px; }
+        .bottom-nav-item.active { color: var(--accent-red); }
+        .nav-fab-wrap { position: relative; width: 20%; display: flex; justify-content: center; }
+        .nav-fab {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-red), #B91430);
+            display: flex; justify-content: center; align-items: center;
+            color: #FFF; font-size: 24px;
+            position: absolute; top: -25px;
+            box-shadow: 0 4px 12px rgba(227, 25, 55, 0.4);
+            cursor: pointer;
+        }
+        .nav-fab-text { margin-top: 30px; font-size: 11px; font-weight: 500; color: var(--text-grey); }
+
+        /* General Forms & Cards */
+        .content-wrap { padding: 20px; }
+        .card-white {
+            background: var(--bg-white); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 16px; margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        
+        /* Ball Displays */
+        .display-row { display: flex; gap: 8px; justify-content: center; margin: 16px 0; }
+        .display-ball {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: var(--accent-red); color: #FFF;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 16px; font-weight: 700; box-shadow: 0 2px 6px rgba(227, 25, 55, 0.3);
+        }
+        .display-ball.empty {
+            background: var(--bg-light); color: var(--text-grey);
+            border: 1px dashed #D1D5DB; box-shadow: none;
+        }
+        
+        /* Number Grids */
+        .number-grid {
+            display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px;
+            margin-top: 20px;
+        }
+        .number-ball {
+            aspect-ratio: 1; border-radius: 50%;
+            background: var(--bg-light); color: var(--text-dark);
+            display: flex; justify-content: center; align-items: center;
+            font-size: 14px; font-weight: 600; cursor: pointer;
+            transition: all 0.2s; border: 1px solid var(--border-color);
+        }
+        .number-ball.selected {
+            background: var(--accent-red); color: #FFF; border-color: var(--accent-red);
+            transform: scale(1.1); box-shadow: 0 2px 8px rgba(227, 25, 55, 0.4);
+        }
+        
+        /* Action Buttons */
+        .btn-primary {
+            background: var(--accent-red); color: #FFF;
+            border: none; padding: 14px 24px; border-radius: 12px;
+            font-weight: 600; font-size: 16px; cursor: pointer;
+            text-align: center; width: 100%; transition: opacity 0.2s;
+        }
+        .btn-primary:active { opacity: 0.8; }
+        .btn-secondary {
+            background: var(--bg-light); color: var(--text-dark);
+            border: 1px solid var(--border-color); padding: 14px 24px; border-radius: 12px;
+            font-weight: 600; font-size: 16px; cursor: pointer;
+            text-align: center; width: 100%;
+        }
+        .action-row { display: flex; gap: 12px; margin-top: 20px; }
+        
+        /* Bottom Fixed Bar (Buy) */
+        .bottom-action-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--bg-white); padding: 16px 20px 24px;
+            border-top: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.05); z-index: 50;
+        }
+        
+        /* Bingo */
+        .bingo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .bingo-bet-btn {
+            background: var(--bg-white); border: 1px solid var(--border-color);
+            border-radius: 12px; padding: 16px 8px; text-align: center;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .bingo-bet-btn.selected {
+            border-color: var(--accent-red); background: #FFF0F2;
+        }
+        .bingo-bet-val { font-size: 18px; font-weight: 700; color: var(--text-dark); }
+        .bingo-bet-btn.selected .bingo-bet-val { color: var(--accent-red); }
+        .bingo-bet-desc { font-size: 11px; color: var(--text-grey); margin-top: 4px; }
+        
+        /* Payment */
+        .payment-option {
+            display: flex; align-items: center; padding: 16px;
+            border: 1px solid var(--border-color); border-radius: 12px;
+            margin-bottom: 12px; cursor: pointer; background: var(--bg-white);
+        }
+        .payment-option.selected {
+            border-color: var(--accent-red); background: #FFF0F2;
+        }
+        .pay-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-right: 12px; }
+        .pay-icon img { width: 24px; height: 24px; }
+        .pay-icon.momo { background: #A50064; color: #FFF; }
+        .pay-icon.vnpay { background: #005BAA; color: #FFF; }
+        .pay-icon.viettel { background: #EE0033; color: #FFF; }
+        .pay-radio { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border-color); margin-left: auto; position: relative; }
+        .payment-option.selected .pay-radio { border-color: var(--accent-red); }
+        .payment-option.selected .pay-radio::after {
+            content: ''; position: absolute; top: 3px; left: 3px;
+            width: 10px; height: 10px; background: var(--accent-red); border-radius: 50%;
+        }
+
+        /* Success Screen */
+        .success-circle {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: var(--success); color: #FFF;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 40px; margin: 40px auto 20px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Results & History */
+        .result-card {
+            background: var(--bg-white); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 16px; margin-bottom: 16px;
+        }
+        .history-tabs { display: flex; border-bottom: 1px solid var(--border-color); margin-bottom: 16px; }
+        .history-tab {
+            flex: 1; text-align: center; padding: 12px; font-weight: 600;
+            color: var(--text-grey); cursor: pointer; border-bottom: 2px solid transparent;
+        }
+        .history-tab.active { color: var(--accent-red); border-bottom-color: var(--accent-red); }
+        
+        /* Utils & Profile */
+        .utils-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .util-card {
+            background: var(--bg-white); border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 20px; text-align: center;
+        }
+        .util-icon {
+            width: 48px; height: 48px; border-radius: 50%;
+            background: #FEE2E2; color: var(--accent-red);
+            display: flex; justify-content: center; align-items: center;
+            font-size: 20px; margin: 0 auto 12px;
+        }
+        .profile-menu { margin-top: 20px; }
+        .menu-item {
+            display: flex; align-items: center; padding: 16px;
+            background: var(--bg-white); border: 1px solid var(--border-color);
+            border-radius: 12px; margin-bottom: 12px; cursor: pointer;
+        }
+        .menu-icon { width: 32px; color: var(--accent-red); font-size: 18px; }
+        .menu-text { flex: 1; font-weight: 500; color: var(--text-dark); }
+        
+        /* Toggle */
+        .toggle-switch { width: 44px; height: 24px; background: var(--border-color); border-radius: 12px; position: relative; cursor: pointer; transition: 0.3s; }
+        .toggle-switch.active { background: var(--accent-red); }
+        .toggle-thumb { width: 20px; height: 20px; background: #FFF; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .toggle-switch.active .toggle-thumb { transform: translateX(20px); }
+
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- SCREEN: HOME -->
+    <div id="screen-home" class="screen active">
+        <div class="header-red">
+            <div class="flex justify-between align-center">
+                <div>
+                    <p class="fz-14" style="opacity: 0.9;">Xin chào,</p>
+                    <h2 class="fw-700" style="font-size: 20px;">Nguyễn Văn Minh 👋</h2>
+                </div>
+                <div class="flex gap-12">
+                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+                    <button class="icon-btn"><i class="fa-solid fa-headset"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="balance-card">
+            <div>
+                <p class="fz-12 text-grey mb-4">Số dư tài khoản</p>
+                <h3 class="fw-700 text-red fz-24">49.810.000đ</h3>
+            </div>
+            <div class="flex gap-8">
+                <button class="balance-btn">Nạp</button>
+                <button class="balance-btn">Rút</button>
+            </div>
+        </div>
+
+        <div class="hero-jackpot">
+            <div class="flex justify-between align-center mb-8">
+                <span class="fw-700" style="font-size: 18px;">MEGA 6/45</span>
+                <span class="countdown-timer" data-time="86400"><i class="fa-regular fa-clock mr-4"></i> 24:00:00</span>
+            </div>
+            <p class="fz-14">Giá trị Jackpot hiện tại</p>
+            <h1 class="jackpot-amount">18.520.400.000đ</h1>
+            <button class="btn-hero-play" data-nav="screen-mega">Chơi ngay <i class="fa-solid fa-arrow-right ml-4"></i></button>
+        </div>
+
+        <h3 class="section-title">Dãy số yêu thích</h3>
+        <div class="fav-scroll">
+            <div class="fav-card">
+                <div class="flex justify-between align-center">
+                    <span class="fw-700 text-dark">Lotto 5/35</span>
+                    <i class="fa-solid fa-star text-gold"></i>
+                </div>
+                <div class="fav-balls-row">
+                    <div class="fav-ball">05</div>
+                    <div class="fav-ball">12</div>
+                    <div class="fav-ball">24</div>
+                    <div class="fav-ball">31</div>
+                    <div class="fav-ball">34</div>
+                </div>
+                <button class="btn-fav-buy" data-nav="screen-payment">Mua nhanh 10.000đ</button>
+            </div>
+            <div class="fav-card">
+                <div class="flex justify-between align-center">
+                    <span class="fw-700 text-dark">Mega 6/45</span>
+                    <i class="fa-solid fa-star text-gold"></i>
+                </div>
+                <div class="fav-balls-row">
+                    <div class="fav-ball">02</div>
+                    <div class="fav-ball">08</div>
+                    <div class="fav-ball">15</div>
+                    <div class="fav-ball">22</div>
+                    <div class="fav-ball">30</div>
+                    <div class="fav-ball">41</div>
+                </div>
+                <button class="btn-fav-buy" data-nav="screen-payment">Mua nhanh 10.000đ</button>
+            </div>
+        </div>
+
+        <h3 class="section-title">Các loại Xổ số</h3>
+        <div class="game-grid">
+            <div class="game-card power-card">
+                <div>
+                    <h4 class="game-name">Power 6/55</h4>
+                    <p class="game-prize">42.5 Tỷ</p>
+                </div>
+                <button class="btn-play">Chơi ngay</button>
+            </div>
+            <div class="game-card mega-card" data-nav="screen-mega">
+                <div>
+                    <h4 class="game-name">Mega 6/45</h4>
+                    <p class="game-prize">18.5 Tỷ</p>
+                </div>
+                <button class="btn-play">Chơi ngay</button>
+            </div>
+            <div class="game-card keno-card">
+                <div>
+                    <h4 class="game-name">Keno</h4>
+                    <p class="game-prize">Quay trong 5p</p>
+                </div>
+                <button class="btn-play">Chơi ngay</button>
+            </div>
+            <div class="game-card max3d-card">
+                <div>
+                    <h4 class="game-name">Max 3D Pro</h4>
+                    <p class="game-prize">2 Tỷ</p>
+                </div>
+                <button class="btn-play">Chơi ngay</button>
+            </div>
+            <div class="game-card lotto-card" data-nav="screen-lotto">
+                <div>
+                    <h4 class="game-name">Lotto 5/35</h4>
+                    <p class="game-prize">350 Triệu</p>
+                </div>
+                <button class="btn-play">Chơi ngay</button>
+            </div>
+            <div class="game-card bingo-card" data-nav="screen-bingo">
+                <div>
+                    <h4 class="game-name">BINGO18</h4>
+                    <p class="game-prize">Quay trong 10p</p>
+                </div>
+                <button class="btn-play">Chơi ngay</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN: LOTTO 5/35 -->
+    <div id="screen-lotto" class="screen">
+        <div class="header-inner">
+            <button class="back-btn" data-nav="screen-home"><i class="fa-solid fa-arrow-left"></i></button>
+            <h2 class="fw-600 fz-16 text-dark">Lotto 5/35</h2>
+            <div style="width: 28px;"></div>
+        </div>
+        <div class="content-wrap">
+            <div class="card-white">
+                <p class="text-center text-grey fz-14 mb-8">Kỳ quay #00123 • Chọn 5 số</p>
+                <div class="lotto-selection-row display-row">
+                    <div class="display-ball empty">?</div>
+                    <div class="display-ball empty">?</div>
+                    <div class="display-ball empty">?</div>
+                    <div class="display-ball empty">?</div>
+                    <div class="display-ball empty">?</div>
+                </div>
+            </div>
+            
+            <div class="action-row">
+                <button class="btn-secondary btn-random-lotto"><i class="fa-solid fa-dice mr-4"></i> Chọn máy</button>
+                <button class="btn-secondary btn-clear-lotto"><i class="fa-solid fa-trash mr-4"></i> Xóa hết</button>
+            </div>
+
+            <div class="lotto-grid number-grid">
+                <!-- JS fills 35 balls here -->
+            </div>
+        </div>
+        
+        <div class="bottom-action-bar">
+            <div>
+                <p class="fz-12 text-grey">Tổng tiền</p>
+                <h3 class="fw-700 text-red lotto-price">0đ</h3>
+            </div>
+            <button class="btn-primary btn-buy-lotto" style="width: auto; min-width: 140px;" data-nav="screen-payment" disabled>Đặt vé SMS</button>
+        </div>
+    </div>
+
+    <!-- SCREEN: MEGA 6/45 -->
+    <div id="screen-mega" class="screen">
+        <div class="header-inner">
+            <button class="back-btn" data-nav="screen-home"><i class="fa-solid fa-arrow-left"></i></button>
+            <h2 class="fw-600 fz-16 text-dark">Mega 6/45</h2>
+            <div style="width: 28px;"></div>
+        </div>
+        <div class="content-wrap">
+            <div class="card-white">
+                <p class="text-center text-grey fz-14 mb-8">Kỳ quay #01025 • Chọn 6 số</p>
+                <div class="mega-selection-row display-row">
+                    <div class="display-ball empty">?</div>
+                    <div class="display-ball empty">?</div>
+                    <div class="display-ball empty">?</div>
+                    <div class="display-ball empty">?</div>
+                    <div class="display-ball empty">?</div>
+                    <div class="display-ball empty">?</div>
+                </div>
+            </div>
+            
+            <div class="action-row">
+                <button class="btn-secondary btn-random-lotto"><i class="fa-solid fa-dice mr-4"></i> Chọn máy</button>
+                <button class="btn-secondary btn-clear-lotto"><i class="fa-solid fa-trash mr-4"></i> Xóa hết</button>
+            </div>
+
+            <div class="mega-grid number-grid">
+                <!-- JS fills 45 balls here -->
+            </div>
+        </div>
+        
+        <div class="bottom-action-bar">
+            <div>
+                <p class="fz-12 text-grey">Tổng tiền</p>
+                <h3 class="fw-700 text-red mega-price">0đ</h3>
+            </div>
+            <button class="btn-primary btn-buy-lotto" style="width: auto; min-width: 140px;" data-nav="screen-payment" disabled>Đặt vé SMS</button>
+        </div>
+    </div>
+
+    <!-- SCREEN: BINGO18 -->
+    <div id="screen-bingo" class="screen">
+        <div class="header-inner">
+            <button class="back-btn" data-nav="screen-home"><i class="fa-solid fa-arrow-left"></i></button>
+            <h2 class="fw-600 fz-16 text-dark">BINGO18</h2>
+            <div class="text-red fw-700 bingo-timer">05:45</div>
+        </div>
+        <div class="content-wrap">
+            <div class="card-white text-center">
+                <h3 class="text-dark mb-16">Chọn cửa cược</h3>
+                <div class="bingo-grid">
+                    <div class="bingo-bet-btn" data-val="Lớn">
+                        <div class="bingo-bet-val">LỚN</div>
+                        <div class="bingo-bet-desc">11-18 (x2.0)</div>
+                    </div>
+                    <div class="bingo-bet-btn" data-val="Hòa">
+                        <div class="bingo-bet-val">HÒA</div>
+                        <div class="bingo-bet-desc">10 (x4.0)</div>
+                    </div>
+                    <div class="bingo-bet-btn" data-val="Nhỏ">
+                        <div class="bingo-bet-val">NHỎ</div>
+                        <div class="bingo-bet-desc">3-9 (x2.0)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-action-bar">
+            <div>
+                <p class="fz-12 text-grey">Tiền cược</p>
+                <h3 class="fw-700 text-red bingo-total-price">0đ</h3>
+            </div>
+            <button class="btn-primary btn-bingo-confirm" style="width: auto; min-width: 140px;" data-nav="screen-payment" disabled>Đặt cược</button>
+        </div>
+    </div>
+
+    <!-- SCREEN: PAYMENT -->
+    <div id="screen-payment" class="screen">
+        <div class="header-inner">
+            <button class="back-btn" data-nav="screen-home"><i class="fa-solid fa-arrow-left"></i></button>
+            <h2 class="fw-600 fz-16 text-dark">Thanh toán & Đặt vé</h2>
+            <div style="width: 28px;"></div>
+        </div>
+        <div class="content-wrap">
+            <div class="card-white">
+                <div class="flex justify-between mb-8">
+                    <span class="text-grey">Sản phẩm</span>
+                    <span class="fw-600 text-dark">Vé số tự chọn</span>
+                </div>
+                <div class="flex justify-between mb-8">
+                    <span class="text-grey">Kỳ quay</span>
+                    <span class="fw-600 text-dark">#00123</span>
+                </div>
+                <div class="flex justify-between border-top pt-12 mt-12" style="border-top: 1px dashed var(--border-color);">
+                    <span class="fw-600">Tổng thanh toán</span>
+                    <span class="fw-700 text-red fz-16">10.000đ</span>
+                </div>
+            </div>
+
+            <h3 class="fz-14 fw-600 text-grey mb-12">Nguồn tiền thanh toán</h3>
+            <div class="payment-option selected">
+                <div class="pay-icon viettel"><i class="fa-solid fa-wallet"></i></div>
+                <div>
+                    <div class="fw-600 text-dark">Tài khoản Vietlott</div>
+                    <div class="fz-12 text-grey">Số dư: 49.810.000đ</div>
+                </div>
+                <div class="pay-radio"></div>
+            </div>
+            <div class="payment-option">
+                <div class="pay-icon momo"><i class="fa-solid fa-wallet"></i></div>
+                <div>
+                    <div class="fw-600 text-dark">Ví MoMo</div>
+                    <div class="fz-12 text-grey">Miễn phí giao dịch</div>
+                </div>
+                <div class="pay-radio"></div>
+            </div>
+            <div class="payment-option">
+                <div class="pay-icon vnpay"><i class="fa-solid fa-building-columns"></i></div>
+                <div>
+                    <div class="fw-600 text-dark">VNPAY / Ngân hàng</div>
+                    <div class="fz-12 text-grey">Hỗ trợ 40+ ngân hàng</div>
+                </div>
+                <div class="pay-radio"></div>
+            </div>
+            
+            <button class="btn-primary btn-submit-payment mt-16"><i class="fa-regular fa-comment-sms mr-8"></i> SMS Đặt vé ngay</button>
+            <p class="text-center text-grey fz-12 mt-12">Hệ thống sẽ tự động soạn tin nhắn SMS cho bạn.</p>
+        </div>
+    </div>
+
+    <!-- SCREEN: PAYMENT SUCCESS -->
+    <div id="screen-payment-success" class="screen">
+        <div class="content-wrap text-center" style="padding-top: 60px;">
+            <div class="success-circle">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h2 class="fw-700 text-dark mb-8">Đặt vé thành công!</h2>
+            <p class="text-grey mb-24">Tin nhắn SMS đã được gửi tới tổng đài 9969.</p>
+            
+            <div class="card-white text-left mb-24">
+                <div class="flex justify-between mb-8">
+                    <span class="text-grey">Mã vé</span>
+                    <span class="fw-600 text-dark">VTLT-839201</span>
+                </div>
+                <div class="flex justify-between mb-8">
+                    <span class="text-grey">Thời gian</span>
+                    <span class="fw-600 text-dark">13/08/2026 20:45</span>
+                </div>
+                <div class="flex justify-between border-top pt-12 mt-12" style="border-top: 1px dashed var(--border-color);">
+                    <span class="fw-600">Thanh toán</span>
+                    <span class="fw-700 text-red">10.000đ</span>
+                </div>
+            </div>
+
+            <button class="btn-primary btn-view-history mb-12" data-nav="screen-history">Xem lịch sử vé</button>
+            <button class="btn-secondary btn-buy-more" data-nav="screen-home">Mua thêm vé</button>
+        </div>
+    </div>
+
+    <!-- SCREEN: RESULTS -->
+    <div id="screen-results" class="screen">
+        <div class="header-red" style="padding-bottom: 20px;">
+            <h2 class="text-center fw-600">Kết quả QSMT</h2>
+        </div>
+        <div class="content-wrap">
+            <div class="result-card" data-nav="screen-result-detail" style="cursor: pointer;">
+                <div class="flex justify-between align-center mb-12">
+                    <span class="fw-700 text-dark">Mega 6/45</span>
+                    <span class="fz-12 text-grey">Kỳ #01024 - 12/08/2026</span>
+                </div>
+                <div class="display-row" style="margin: 0;">
+                    <div class="display-ball">03</div>
+                    <div class="display-ball">11</div>
+                    <div class="display-ball">24</div>
+                    <div class="display-ball">29</div>
+                    <div class="display-ball">33</div>
+                    <div class="display-ball">41</div>
+                </div>
+            </div>
+            <div class="result-card">
+                <div class="flex justify-between align-center mb-12">
+                    <span class="fw-700 text-dark">Lotto 5/35</span>
+                    <span class="fz-12 text-grey">Kỳ #00122 - 13/08/2026</span>
+                </div>
+                <div class="display-row" style="margin: 0;">
+                    <div class="display-ball">07</div>
+                    <div class="display-ball">14</div>
+                    <div class="display-ball">18</div>
+                    <div class="display-ball">22</div>
+                    <div class="display-ball">31</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN: RESULT DETAIL -->
+    <div id="screen-result-detail" class="screen">
+        <div class="header-inner">
+            <button class="back-btn" data-nav="screen-results"><i class="fa-solid fa-arrow-left"></i></button>
+            <h2 class="fw-600 fz-16 text-dark">Chi tiết kết quả</h2>
+            <div style="width: 28px;"></div>
+        </div>
+        <div class="content-wrap">
+            <div class="card-white text-center">
+                <h3 class="fw-700 text-dark">Mega 6/45</h3>
+                <p class="text-grey fz-14 mb-16">Kỳ quay thưởng #01024</p>
+                <div class="display-row">
+                    <div class="display-ball">03</div>
+                    <div class="display-ball">11</div>
+                    <div class="display-ball">24</div>
+                    <div class="display-ball">29</div>
+                    <div class="display-ball">33</div>
+                    <div class="display-ball">41</div>
+                </div>
+            </div>
+            
+            <h3 class="fw-600 text-dark mb-12">Cơ cấu giải thưởng</h3>
+            <div class="card-white" style="padding: 0; overflow: hidden;">
+                <div class="flex justify-between p-12" style="background: var(--bg-light); border-bottom: 1px solid var(--border-color);">
+                    <span class="fw-600">Giải thưởng</span>
+                    <span class="fw-600">Trị giá</span>
+                </div>
+                <div class="flex justify-between p-12" style="border-bottom: 1px solid var(--border-color);">
+                    <span>Jackpot (Trùng 6 số)</span>
+                    <span class="text-red fw-600">18.520.400.000đ</span>
+                </div>
+                <div class="flex justify-between p-12" style="border-bottom: 1px solid var(--border-color);">
+                    <span>Giải Nhất (Trùng 5 số)</span>
+                    <span class="fw-600">10.000.000đ</span>
+                </div>
+                <div class="flex justify-between p-12">
+                    <span>Giải Nhì (Trùng 4 số)</span>
+                    <span class="fw-600">300.000đ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN: HISTORY -->
+    <div id="screen-history" class="screen">
+        <div class="header-red" style="padding-bottom: 20px;">
+            <h2 class="text-center fw-600">Lịch sử đặt vé</h2>
+        </div>
+        <div class="history-tabs">
+            <div class="history-tab active" data-target="all">Tất cả</div>
+            <div class="history-tab" data-target="win">Trúng thưởng</div>
+            <div class="history-tab" data-target="pending">Chờ KQ</div>
+        </div>
+        <div class="content-wrap history-content">
+            <div class="card-white">
+                <div class="flex justify-between align-center mb-8">
+                    <span class="fw-600 text-dark">Mega 6/45 - Kỳ #01025</span>
+                    <span class="fz-12" style="color: #F59E0B; background: #FEF3C7; padding: 2px 8px; border-radius: 4px;">Chờ QSMT</span>
+                </div>
+                <div class="fz-14 text-grey mb-8">05-12-18-24-30-41</div>
+                <div class="flex justify-between">
+                    <span class="fz-12 text-grey">13/08/2026 15:30</span>
+                    <span class="fw-600 text-dark">10.000đ</span>
+                </div>
+            </div>
+            <div class="card-white">
+                <div class="flex justify-between align-center mb-8">
+                    <span class="fw-600 text-dark">BINGO18 - Kỳ #05432</span>
+                    <span class="fz-12" style="color: var(--success); background: #D1FAE5; padding: 2px 8px; border-radius: 4px;">Trúng 20.000đ</span>
+                </div>
+                <div class="fz-14 text-grey mb-8">Cược: LỚN</div>
+                <div class="flex justify-between">
+                    <span class="fz-12 text-grey">12/08/2026 10:15</span>
+                    <span class="fw-600 text-dark">10.000đ</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN: UTILITIES -->
+    <div id="screen-utilities" class="screen">
+        <div class="header-red" style="padding-bottom: 20px;">
+            <h2 class="text-center fw-600">Tiện ích</h2>
+        </div>
+        <div class="content-wrap">
+            <div class="utils-grid">
+                <div class="util-card">
+                    <div class="util-icon"><i class="fa-solid fa-chart-bar"></i></div>
+                    <div class="fw-600 text-dark">Thống kê KQ</div>
+                </div>
+                <div class="util-card">
+                    <div class="util-icon"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="fw-600 text-dark">Thể lệ chơi</div>
+                </div>
+                <div class="util-card">
+                    <div class="util-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <div class="fw-600 text-dark">Điểm bán hàng</div>
+                </div>
+                <div class="util-card">
+                    <div class="util-icon"><i class="fa-solid fa-gift"></i></div>
+                    <div class="fw-600 text-dark">Khuyến mãi</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN: PROFILE -->
+    <div id="screen-profile" class="screen">
+        <div class="header-red" style="padding-bottom: 40px;">
+            <div class="flex align-center gap-16">
+                <div style="width: 60px; height: 60px; border-radius: 50%; background: #FFF; display: flex; justify-content: center; align-items: center; font-size: 24px; color: var(--accent-red); font-weight: 700;">
+                    NM
+                </div>
+                <div>
+                    <h2 class="fw-700">Nguyễn Văn Minh</h2>
+                    <p style="opacity: 0.9;">090****123</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-wrap" style="margin-top: -20px;">
+            <div class="card-white flex justify-between align-center" style="position: relative; z-index: 2;">
+                <div>
+                    <p class="fz-12 text-grey">Hạn mức dự thưởng</p>
+                    <p class="fw-600 text-dark">Còn lại: 500.000đ / ngày</p>
+                </div>
+                <i class="fa-solid fa-chevron-right text-grey"></i>
+            </div>
+            
+            <div class="profile-menu">
+                <div class="menu-item">
+                    <div class="menu-icon"><i class="fa-solid fa-wallet"></i></div>
+                    <div class="menu-text">Quản lý tài khoản thanh toán</div>
+                    <i class="fa-solid fa-chevron-right text-grey"></i>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="menu-text">Xác thực tài khoản (KYC)</div>
+                    <i class="fa-solid fa-chevron-right text-grey"></i>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-icon"><i class="fa-solid fa-circle-question"></i></div>
+                    <div class="menu-text">Hỗ trợ & Góp ý</div>
+                    <i class="fa-solid fa-chevron-right text-grey"></i>
+                </div>
+                <div class="menu-item justify-between">
+                    <div class="flex align-center">
+                        <div class="menu-icon"><i class="fa-solid fa-moon"></i></div>
+                        <div class="menu-text">Chế độ ban đêm</div>
+                    </div>
+                    <div class="toggle-switch" id="dark-mode-toggle">
+                        <div class="toggle-thumb"></div>
+                    </div>
+                </div>
+                <div class="menu-item mt-24" style="justify-content: center;">
+                    <div class="text-red fw-600">Đăng xuất</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- BOTTOM NAV -->
+    <div class="bottom-nav">
+        <div class="bottom-nav-item" data-target="screen-results">
+            <i class="fa-solid fa-file-invoice"></i>
+            <span>Kết quả</span>
+        </div>
+        <div class="bottom-nav-item" data-target="screen-history">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>Lịch sử</span>
+        </div>
+        <div class="nav-fab-wrap">
+            <div class="nav-fab bottom-nav-item active" data-target="screen-home" style="width: 50px; flex-direction: row; color: #FFF;">
+                <i class="fa-solid fa-house"></i>
+            </div>
+            <div class="nav-fab-text">Trang chủ</div>
+        </div>
+        <div class="bottom-nav-item" data-target="screen-utilities">
+            <i class="fa-solid fa-th-large"></i>
+            <span>Tiện ích</span>
+        </div>
+        <div class="bottom-nav-item" data-target="screen-profile">
+            <i class="fa-solid fa-user"></i>
+            <span>Cá nhân</span>
+        </div>
+    </div>
+
+</div>
+
+<!-- REQUIRED JS HOOKS / MOCK LOGIC -->
+<script>
+    // Navigation
+    document.querySelectorAll('[data-nav], .bottom-nav-item').forEach(el => {
+        el.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('data-target') || this.getAttribute('data-nav');
+            if(!targetId) return;
+            
+            // Bottom nav active state
+            if(this.classList.contains('bottom-nav-item')) {
+                document.querySelectorAll('.bottom-nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                    if(nav.classList.contains('nav-fab')) nav.style.color = '#FFF'; // keep fab white icon
+                });
+                this.classList.add('active');
+            }
+
+            const currentScreen = document.querySelector('.screen.active');
+            const targetScreen = document.getElementById(targetId);
+            
+            if(currentScreen && currentScreen !== targetScreen) {
+                currentScreen.classList.remove('active', 'slide-in-right', 'slide-in-left', 'fade-in');
+                currentScreen.classList.add('fade-out');
+                setTimeout(() => {
+                    currentScreen.classList.remove('fade-out');
+                }, 250);
+            }
+            
+            if(targetScreen) {
+                targetScreen.classList.remove('fade-out');
+                targetScreen.classList.add('active', 'fade-in');
+            }
+        });
+    });
+
+    // Dark Mode Toggle Mock
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    if(darkModeToggle) {
+        darkModeToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+    }
+
+    // Payment Option Select
+    document.querySelectorAll('.payment-option').forEach(el => {
+        el.addEventListener('click', function() {
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+    
+    // Submit Payment
+    const btnSubmit = document.querySelector('.btn-submit-payment');
+    if(btnSubmit) {
+        btnSubmit.addEventListener('click', () => {
+            const currentScreen = document.querySelector('.screen.active');
+            const targetScreen = document.getElementById('screen-payment-success');
+            currentScreen.classList.remove('active');
+            targetScreen.classList.add('active', 'fade-in');
+        });
+    }
+
+    // History Tabs
+    document.querySelectorAll('.history-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.history-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+</script>
+<script src="app.js"></script>
+</body>
+</html>

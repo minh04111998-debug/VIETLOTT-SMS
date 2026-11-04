@@ -1,0 +1,95 @@
+Copy đoạn này tiếp theo: "Hãy phát triển dự án này thành một hệ thống harness hoàn chỉnh, phù hợp với những gì tôi làm (không nhất thiết phải là code). Dựa trên cấu trúc cây sau, CHỈ tạo những gì thực sự cần thiết, giải thích mỗi lần thêm bằng 1 câu."
+
+Cấu trúc cây tham chiếu:
+mon-projet/
+├── CLAUDE.md            # Bạn là ai, làm việc thế nào
+├── CLAUDE.local.md      # Sở thích cá nhân của bạn
+├── AGENTS.md            # Quy tắc cho tất cả agent
+├── MAP.md               # Bản đồ dự án
+├── SPEC.md              # Chúng ta muốn đạt được gì
+├── PLAN.md              # Các bước thực hiện
+├── .mcp.json            # Các công cụ kết nối
+├── .worktreeinclude     # Những gì theo mỗi phiên chạy song song
+├── .claude/
+│   ├── settings.json
+│   ├── settings.local.json
+│   ├── rules/           # Quy tắc
+│   ├── skills/          # Kỹ năng
+│   ├── agents/          # Tác tử
+│   ├── agent-memory/    # Bộ nhớ agent
+│   ├── workflows/       # Luồng công việc
+│   └── output-styles/   # Định dạng đầu ra
+├── contexte/            # Những gì AI học được
+├── sources/             # Tài liệu thô của bạn
+├── livrables/           # Những gì AI tạo ra
+├── scripts/             # Tự động hóa
+├── docs/
+├── . /workflows/   # Tác vụ chạy tự động
+├── .env                 # Chứa secrets
+├── .env.example
+├── .gitignore
+└── README.md
+
+Lưu ý : Với mỗi file được tạo, thêm dòng mô tả vào MAP.md. Chỉ lưu secrets (mật khẩu, API key) trong .env, tuyệt đối không lưu ở file khác. Đảm bảo .env nằm trong .gitignore.
+
+3⃣ Tầng 3 — Đồng bộ & chạy đa nhiệm (parallel sessions)
+Mục tiêu: Đưa dự án lên và thiết lập quy tắc làm việc nhóm.
+
+Dùng khi nào:
+- Làm trên nhiều máy: sáng ở công ty, tối ở nhà - push/pull để file và context đi theo.
+- Nhiều người chung dự án: mỗi người 1 branch, gộp qua Pull Request, không đạp lên nhau.
+- Chạy nhiều task song song (lợi ích lớn nhất): mở 5 phiên Claude làm 5 việc cùng lúc (API, bug UI, test, docs, refactor), mỗi phiên 1 worktree riêng nên không conflict file.
+- Cần an toàn / quay lui: có lịch sử commit để rollback khi hỏng.
+- Chưa cần Tầng 3 nếu chỉ làm 1 mình, 1 máy, từng việc một - Tầng 1-2 là đủ.
+
+Copy đoạn này tiếp theo: "Tôi muốn dự án này có thể đồng bộ ở mọi nơi và nhiều session có thể làm việc cùng lúc mà không phá vỡ code."
+🔥 BÍ KÍP THIẾT LẬP "HARNESS" 3 TẦNG CHO CLAUDE CODE - ĐỪNG BAO GIỜ VIBECODE TRONG THƯ MỤC TRỐNG NỮA.
+
+Bạn vừa tạo một folder trống, mở Claude Code lên và gõ prompt? Đó là sai lầm lớn nhất: AI sẽ tạo ra hàng tá file rác, quên sạch context cũ, và biến dự án thành một mớ hỗn độn.
+
+Đây là phương pháp thiết lập cấu trúc 3 tầng (3-Level Structure) biến Claude Code thành một "nhân viên" thực thụ: có bộ nhớ, có quy tắc, biết tự quản lý công việc.
+
+Reels LEVEL 1 - 2 - 3: facebook.com/reel/1099551546308986 
+
+Dưới đây là 3 prompt, chỉ cần paste lần lượt vào Claude Code:
+
+1⃣ Tầng 1 — Thiết lập nền tảng cơ bản
+Mục tiêu: Tạo bộ não, bản đồ dự án và vùng chứa tài nguyên.
+
+Dùng khi nào:
+- Bắt đầu bất kỳ dự án/thư mục mới nào với Claude Code - làm nền tối thiểu.
+- Việc cá nhân, ghi chú, nghiên cứu: cần AI nhớ bạn là ai và đã quyết gì.
+- Chỉ cần AI đừng quên context và đừng tạo file lung tung - chưa cần gì phức tạp.
+
+Copy đoạn dưới vào Claude Code: "Tôi muốn bạn làm việc trên thư mục này như một dự án thực thụ, ở cấp độ chuyên nghiệp cao nhất trong mọi cuộc hội thoại."
+
+Hãy tạo cấu trúc cơ bản sau:
+- CLAUDE.md: Tôi là ai, dự án này làm gì, tôi làm việc như thế nào và các quy tắc cần tuân thủ. Hãy đặt cho tôi 5 câu hỏi (hỏi từng câu một) để điền thông tin.
+- MAP.md: Bản đồ dự án. Mỗi thư mục chứa gì, tìm thông tin ở đâu, lưu thông tin ở đâu. Cập nhật nó mỗi khi bạn tạo hoặc di chuyển file.
+- contexte/: Mọi thứ bạn học được về dự án (quyết định, sở thích, thông tin hữu ích). Mỗi chủ đề một file.
+- livrables/: Mọi thứ bạn tạo ra cho tôi.
+
+Quy tắc:
+- Đầu mỗi cuộc hội thoại, hãy đọc CLAUDE.md và MAP.md trước khi trả lời.
+- Khi học được điều gì đó lâu dài, hãy ghi vào contexte/.
+- Các phần còn lại (nguồn, script, docs), bạn tự tạo khi cần và thêm vào MAP.md.
+
+2⃣ Tầng 2 — Nâng cấp thành hệ thống harness hoàn chỉnh
+Mục tiêu: Xây dựng hệ thống quản lý chuyên sâu, phân quyền, bảo mật và tự động hóa.
+
+Dùng khi nào:
+- Dự án thật, làm dài hạn: cần rules, skills, agent và tách secrets rõ ràng.
+- Việc lặp lại nhiều: đóng gói thành skill/workflow để Claude làm đúng chuẩn mỗi lần.
+- Có khóa/mật khẩu (API key, DB): cần .env + .gitignore để không lộ.
+- Muốn giao việc cho nhiều agent, kết nối công cụ ngoài qua .mcp.json.
+- Khởi tạo Git và tạo một private repo trên tài khoản GitHub của tôi (hướng dẫn tôi từng bước nếu cần).
+- Kiểm tra trước khi đẩy lần đầu, đảm bảo .env và các file nhạy cảm bị loại trừ.
+- Giải thích cho tôi trong 3 câu đơn giản cách lưu công việc và lấy nó về từ thiết bị khác.
+- Trước khi tôi chạy nhiều session song song, hãy đề xuất một quy tắc đơn giản (ví dụ: Git Worktree) để chúng không sửa cùng một file cùng lúc.
+
+4️⃣ Tóm lại
+Đừng biến Claude Code thành một công cụ "vibe code" vô tội vạ. Hãy thiết lập cho nó một quy trình làm việc có kỷ luật.
+
+CHÚC AE ÁP DỤNG TỐT NHÉ!
+
+#ClaudeCode #VibeCoding #Harness #AIAgent #CodeWebKhongKho #AI #CleanCode #PromptEngineering

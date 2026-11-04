@@ -1,0 +1,82 @@
+table Fact_Sales
+	lineageTag: 580c152b-c9f0-49cd-8a6d-5d8d2ea9b1db
+
+	measure 'Doanh Thu Thuần' = SUM(Fact_Sales[Revenue])
+		formatString: #,##0 "VNĐ"
+		lineageTag: 909e32de-810e-4de6-98c1-33642e86490d
+
+	measure 'Số Lượng Vé' = SUM(Fact_Sales[TicketCount])
+		formatString: #,##0
+		lineageTag: 502fb990-5263-4b06-ae65-f0babe03b85d
+
+	measure 'Giá Vé Trung Bình' = DIVIDE([Doanh Thu Thuần], [Số Lượng Vé])
+		formatString: #,##0 "VNĐ"
+		lineageTag: 37acdd28-a9c9-477c-abd1-8cc72350e52d
+
+	measure 'Tăng Trưởng MoM %' =
+			VAR CurrentMonth = [Doanh Thu Thuần]
+			VAR PrevMonth = CALCULATE([Doanh Thu Thuần], DATEADD('Dim_Date'[Date], -1, MONTH))
+			RETURN
+			DIVIDE(CurrentMonth - PrevMonth, PrevMonth)
+		formatString: 0.0%
+		lineageTag: a03cf059-7079-4f06-b899-138b3cf094f1
+
+	measure 'Tăng Trưởng MoM' =
+			VAR Val = [Tăng Trưởng MoM %]
+			RETURN
+			IF(ISBLANK(Val), "-", IF(Val >= 0, "▲ +" & FORMAT(Val, "0.0%"), "▼ " & FORMAT(Val, "0.0%")))
+		lineageTag: 4131e560-4a62-454a-9173-e5fc18657c9c
+
+	measure 'Total Revenue' = [Doanh Thu Thuần]
+		formatString: #,##0 "VNĐ"
+		lineageTag: 680b48d9-b660-4a20-8810-3e4e2d2da41b
+
+	measure 'Total Tickets' = [Số Lượng Vé]
+		formatString: #,##0
+		lineageTag: c0aac2b1-a3e3-4c6c-a805-950c06045bfb
+
+	measure 'Avg Ticket Price' = [Giá Vé Trung Bình]
+		formatString: #,##0 "VNĐ"
+		lineageTag: 040f8e05-cd6a-4173-9ecc-2564ebe3bb1f
+
+	measure 'Revenue MoM %' = [Tăng Trưởng MoM %]
+		formatString: 0.0%
+		lineageTag: 5574afde-3068-41b4-9587-07f324169a37
+
+	measure 'Revenue MoM Badge' = [Tăng Trưởng MoM]
+		lineageTag: 8917884b-ef45-4728-98aa-9e8d19b0e150
+
+	column Date
+		lineageTag: f8f086a4-7dff-4bb0-84b6-2465778e69af
+		isNameInferred
+		sourceColumn: [Date]
+
+	column ProductId
+		lineageTag: 6729e528-bd88-4cf9-9b28-45d2bed1103e
+		isNameInferred
+		sourceColumn: [ProductId]
+
+	column Channel
+		lineageTag: 42bdb28e-b185-4d87-90b6-1a0d677d42ce
+		isNameInferred
+		sourceColumn: [Channel]
+
+	column TicketCount
+		lineageTag: b193722d-f2f5-4d5a-b2be-000f78e9a1bc
+		isNameInferred
+		sourceColumn: [TicketCount]
+
+	column Revenue
+		lineageTag: 3e31c8b0-e722-470e-9bc1-ba74097fe8fd
+		isNameInferred
+		sourceColumn: [Revenue]
+
+	column 'Nhà Mạng'
+		lineageTag: c6bea5fa-8420-4e12-bfde-a724e70383a0
+		isNameInferred
+		sourceColumn: [Nhà Mạng]
+
+	partition Fact_Sales = calculated
+		mode: import
+		source = ADDCOLUMNS( DATATABLE( "Date", DATETIME, "ProductId", INTEGER, "Channel", STRING, "TicketCount", INTEGER, "Revenue", CURRENCY, { {"2026-07-01", 1, "Viettel", 407380, 65776010000}, {"2026-07-01", 2, "Viettel", 55368, 8241560000}, {"2026-07-01", 3, "Viettel", 51703, 92726490000}, {"2026-07-01", 4, "Viettel", 177763, 28107790000}, {"2026-07-01", 1, "VinaPhone", 132477, 26757130000}, {"2026-07-01", 2, "VinaPhone", 15349, 3109010000}, {"2026-07-01", 3, "VinaPhone", 13102, 29867480000}, {"2026-07-01", 4, "VinaPhone", 55187, 10862040000}, {"2026-07-01", 1, "MobiFone", 160686, 30262450000}, {"2026-07-01", 2, "MobiFone", 17475, 3730770000}, {"2026-07-01", 3, "MobiFone", 15594, 47618490000}, {"2026-07-01", 4, "MobiFone", 58769, 10741610000}, {"2026-06-01", 1, "Viettel", 422706, 86151820000}, {"2026-06-01", 2, "Viettel", 61667, 12039260000}, {"2026-06-01", 3, "Viettel", 51705, 121199810000}, {"2026-06-01", 4, "Viettel", 205772, 53361450000}, {"2026-06-01", 1, "VinaPhone", 141217, 35701900000}, {"2026-06-01", 2, "VinaPhone", 17967, 4900260000}, {"2026-06-01", 3, "VinaPhone", 14490, 37665860000}, {"2026-06-01", 4, "VinaPhone", 66839, 20791520000}, {"2026-06-01", 1, "MobiFone", 171801, 40820040000}, {"2026-06-01", 2, "MobiFone", 20855, 5626450000}, {"2026-06-01", 3, "MobiFone", 17150, 61460920000}, {"2026-06-01", 4, "MobiFone", 73475, 21368920000}, {"2026-05-01", 1, "Viettel", 400443, 89573950000}, {"2026-05-01", 2, "Viettel", 58909, 11852000000}, {"2026-05-01", 3, "Viettel", 47942, 126227760000}, {"2026-05-01", 4, "Viettel", 189810, 48854700000}, {"2026-05-01", 1, "VinaPhone", 132289, 37290310000}, {"2026-05-01", 2, "VinaPhone", 17229, 4643020000}, {"2026-05-01", 3, "VinaPhone", 13224, 39532380000}, {"2026-05-01", 4, "VinaPhone", 61826, 19423120000}, {"2026-05-01", 1, "MobiFone", 169089, 44294010000}, {"2026-05-01", 2, "MobiFone", 20240, 5785750000}, {"2026-05-01", 3, "MobiFone", 16827, 62636140000}, {"2026-05-01", 4, "MobiFone", 70826, 20123550000}, {"2026-04-01", 1, "Viettel", 396059, 85965900000}, {"2026-04-01", 2, "Viettel", 58935, 11283840000}, {"2026-04-01", 3, "Viettel", 47116, 117066420000}, {"2026-04-01", 4, "Viettel", 188392, 53209970000}, {"2026-04-01", 1, "VinaPhone", 131076, 36051540000}, {"2026-04-01", 2, "VinaPhone", 17700, 4255360000}, {"2026-04-01", 3, "VinaPhone", 13407, 35938290000}, {"2026-04-01", 4, "VinaPhone", 61225, 20455080000}, {"2026-04-01", 1, "MobiFone", 170561, 43908970000}, {"2026-04-01", 2, "MobiFone", 20820, 5194220000}, {"2026-04-01", 3, "MobiFone", 17603, 64531560000}, {"2026-04-01", 4, "MobiFone", 72073, 21516320000}, {"2026-03-01", 1, "Viettel", 412649, 90511440000}, {"2026-03-01", 2, "Viettel", 62373, 11309380000}, {"2026-03-01", 3, "Viettel", 53994, 122553810000}, {"2026-03-01", 4, "Viettel", 200924, 56553710000}, {"2026-03-01", 1, "VinaPhone", 134962, 37680970000}, {"2026-03-01", 2, "VinaPhone", 18482, 4187710000}, {"2026-03-01", 3, "VinaPhone", 14716, 36448110000}, {"2026-03-01", 4, "VinaPhone", 66009, 22109110000}, {"2026-03-01", 1, "MobiFone", 175952, 46086610000}, {"2026-03-01", 2, "MobiFone", 21813, 5227830000}, {"2026-03-01", 3, "MobiFone", 19611, 69440750000}, {"2026-03-01", 4, "MobiFone", 78474, 23447730000}, {"2026-02-01", 1, "Viettel", 405034, 86493390000}, {"2026-02-01", 2, "Viettel", 57399, 9934220000}, {"2026-02-01", 3, "Viettel", 53859, 110715850000}, {"2026-02-01", 4, "Viettel", 194357, 51879010000}, {"2026-02-01", 1, "VinaPhone", 139815, 38068200000}, {"2026-02-01", 2, "VinaPhone", 19132, 3884610000}, {"2026-02-01", 3, "VinaPhone", 16283, 32923970000}, {"2026-02-01", 4, "VinaPhone", 67924, 21536120000}, {"2026-02-01", 1, "MobiFone", 179106, 45732960000}, {"2026-02-01", 2, "MobiFone", 21536, 4771080000}, {"2026-02-01", 3, "MobiFone", 21209, 55518880000}, {"2026-02-01", 4, "MobiFone", 79722, 22234160000}, {"2026-01-01", 1, "Viettel", 413318, 122258900000}, {"2026-01-01", 2, "Viettel", 49032, 9135230000}, {"2026-01-01", 3, "Viettel", 45393, 120298830000}, {"2026-01-01", 4, "Viettel", 176927, 46934690000}, {"2026-01-01", 1, "VinaPhone", 136278, 52626980000}, {"2026-01-01", 2, "VinaPhone", 14589, 3493240000}, {"2026-01-01", 3, "VinaPhone", 12281, 32978570000}, {"2026-01-01", 4, "VinaPhone", 57226, 18745560000}, {"2026-01-01", 1, "MobiFone", 184812, 64983300000}, {"2026-01-01", 2, "MobiFone", 17951, 4443780000}, {"2026-01-01", 3, "MobiFone", 17903, 68681330000}, {"2026-01-01", 4, "MobiFone", 72094, 20240100000} } ), "Nhà Mạng", [Channel] )
+

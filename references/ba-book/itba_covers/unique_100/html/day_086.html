@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1200px;
+  height: 675px;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #0f172a;
+}
+.card {
+  width: 1200px;
+  height: 675px;
+  position: relative;
+  background: radial-gradient(circle at 20% 25%, #27272a 0%, #18181b 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 34px 48px 24px 48px;
+  color: #f8fafc;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.badge {
+  background: rgba(74, 222, 128, 0.15);
+  border: 1.5px solid #4ade80;
+  color: #4ade80;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+}
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  color: #94a3b8;
+  letter-spacing: -0.5px;
+}
+.logo span { color: #ffffff; }
+.title-area {
+  text-align: center;
+  margin-top: 6px;
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.headline {
+  font-size: 40px;
+  font-weight: 900;
+  color: #4ade80;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.subheadline {
+  font-size: 21px;
+  font-weight: 600;
+  color: #e4e4e7;
+  max-width: 950px;
+  margin: 0 auto;
+  line-height: 1.35;
+}
+.graphic-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div class="badge">REVERSE-ENGINEERING</div>
+    <div class="logo">iTBA <span>Mentor</span></div>
+  </div>
+  <div class="title-area">
+    <div class="headline">Reverse-Engineer: Kỹ năng sống còn</div>
+    <div class="subheadline">Bóc tách hệ thống cũ khi không còn tài liệu và Dev đã nghỉ</div>
+  </div>
+  <div class="graphic-area">
+    
+    <svg width="640" height="260" viewBox="0 0 640 260">
+      <!-- Old Legacy Blackbox -> Reverse Engineer -> Clean Schema -->
+      <g transform="translate(40, 45)">
+        <rect x="0" y="0" width="160" height="160" rx="16" fill="#27272a" stroke="#71717a" stroke-width="2.5"/>
+        <text x="80" y="35" text-anchor="middle" fill="#a1a1aa" font-size="13" font-weight="bold">LEGACY SYSTEM</text>
+        <circle cx="80" cy="95" r="38" fill="none" stroke="#eab308" stroke-width="8" stroke-dasharray="8,6"/>
+        <circle cx="80" cy="95" r="14" fill="#eab308"/>
+        <text x="80" y="150" text-anchor="middle" fill="#71717a" font-size="11">Không tài liệu / Dev nghỉ</text>
+      </g>
+      <!-- Transition arrow -->
+      <g transform="translate(225, 110)">
+        <line x1="0" y1="15" x2="60" y2="15" stroke="#38bdf8" stroke-width="4"/>
+        <polygon points="60,5 80,15 60,25" fill="#38bdf8"/>
+        <text x="40" y="-5" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="bold">BÓC TÁCH</text>
+      </g>
+      <g transform="translate(330, 35)">
+        <rect x="0" y="0" width="270" height="180" rx="16" fill="#0f172a" stroke="#38bdf8" stroke-width="2.5"/>
+        <text x="135" y="32" text-anchor="middle" fill="#38bdf8" font-size="14" font-weight="bold">REVERSE-ENGINEERED MODEL</text>
+        <rect x="20" y="50" width="105" height="48" rx="8" fill="#1e293b" stroke="#334155"/>
+        <text x="72" y="72" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="bold">1. Trace DB Log</text>
+        <text x="72" y="88" text-anchor="middle" fill="#94a3b8" font-size="10">Quan sát data biến thiên</text>
+        <rect x="145" y="50" width="105" height="48" rx="8" fill="#1e293b" stroke="#334155"/>
+        <text x="197" y="72" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="bold">2. Trigger Edge</text>
+        <text x="197" y="88" text-anchor="middle" fill="#94a3b8" font-size="10">Thao tác ép lỗi UI</text>
+        <rect x="20" y="112" width="230" height="50" rx="8" fill="#1e293b" stroke="#10b981"/>
+        <text x="135" y="134" text-anchor="middle" fill="#34d399" font-size="12" font-weight="bold">3. Dựng lại Logic Matrix &amp; ERD</text>
+        <text x="135" y="152" text-anchor="middle" fill="#a7f3d0" font-size="10">Khôi phục 100% luật ngầm</text>
+      </g>
+    </svg>
+    
+  </div>
+  <div class="footer">
+    <div>Day 86/100 · Sách 100 ngày làm BA</div>
+    <div>Nguyễn Bá Phú — ITBA Mentor</div>
+  </div>
+</div>
+</body>
+</html>

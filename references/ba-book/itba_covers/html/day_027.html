@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 1200px;
+  height: 675px;
+  overflow: hidden;
+  background: #F6EED9;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.canvas {
+  width: 1200px;
+  height: 675px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 48px 0 48px;
+  background:
+    radial-gradient(circle at 20% 22%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 48%),
+    radial-gradient(circle at 82% 76%, rgba(226,208,170,0.38) 0%, rgba(226,208,170,0) 52%),
+    linear-gradient(180deg, #F8F0DC 0%, #F4E9CE 100%);
+}
+.topbar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.logo {
+  font-size: 27px;
+  font-weight: 900;
+  color: #141414;
+  letter-spacing: -0.6px;
+  line-height: 1;
+}
+.title-wrap {
+  width: 100%;
+  max-width: 1060px;
+  text-align: center;
+  margin-top: 8px;
+  min-height: 118px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+h1 {
+  color: #004AAD;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.24;
+  letter-spacing: -0.3px;
+}
+.art-wrap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  flex-grow: 1;
+  overflow: hidden;
+}
+.art-wrap svg {
+  width: 620px;
+  height: 430px;
+}
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="topbar">
+      <div class="logo">iTBA M<span style="position:relative; display:inline-block;">e<svg style="position:absolute; top:-8px; left:0px;" width="18" height="11" viewBox="0 0 20 12"><path d="M4 10 Q2 2 8 3 M13 10 Q17 2 11 3" fill="none" stroke="#141414" stroke-width="2.1" stroke-linecap="round"/></svg></span>ntor</div>
+    </div>
+    <div class="title-wrap">
+      <h1>Bạn có đang làm đúng việc nhưng vẫn thấy chông chênh?</h1>
+    </div>
+    <div class="art-wrap">
+      
+        <svg viewBox="70 35 440 295" xmlns="http://www.w3.org/2000/svg">
+          <!-- Left Stakeholder Silhouette (Warm Ochre) -->
+          <g opacity="0.72" transform="translate(-18, 12)">
+            <circle cx="165" cy="135" r="44" fill="#CFA072" stroke="#8C6239" stroke-width="3"/>
+            <path d="M108 320 C114 235, 140 205, 198 205 L220 320 Z" fill="#C98A5B" stroke="#8C6239" stroke-width="3"/>
+          </g>
+          <!-- Right Stakeholder Silhouette (Cool Slate) -->
+          <g opacity="0.72" transform="translate(18, 12)">
+            <circle cx="385" cy="135" r="44" fill="#8EA2B4" stroke="#536878" stroke-width="3"/>
+            <path d="M330 320 L352 205 C410 205, 436 235, 442 320 Z" fill="#768D9E" stroke="#536878" stroke-width="3"/>
+          </g>
+          <!-- Central BA Character with worried/focused eyebrows (just like Card 2!) -->
+          
+      <path d="M188 360 L204 232 C210 218, 232 212, 252 212 L300 212 C320 212, 342 218, 348 232 L364 360 Z" fill="#635852" stroke="#3B2618" stroke-width="3.5" stroke-linejoin="round"/>
+      <polygon points="252,212 300,212 276,296" fill="#EDEBE6" stroke="#3B2618" stroke-width="3"/>
+      <polygon points="252,212 276,236 260,248 242,222" fill="#F7F5F0" stroke="#3B2618" stroke-width="2.8"/>
+      <polygon points="300,212 276,236 292,248 310,222" fill="#F7F5F0" stroke="#3B2618" stroke-width="2.8"/>
+      <polygon points="270,236 282,236 287,316 276,332 265,316" fill="#C9643B" stroke="#4A3222" stroke-width="2.8" stroke-linejoin="round"/>
+      <polyline points="242,220 228,262 256,308" fill="none" stroke="#3B2618" stroke-width="3" stroke-linejoin="round"/>
+      <polyline points="310,220 324,262 296,308" fill="none" stroke="#3B2618" stroke-width="3" stroke-linejoin="round"/>
+    
+          <path d="M195 118 C185 68, 240 42, 295 48 C345 52, 372 86, 362 135 C358 152, 348 162, 342 168 L206 168 Z" fill="#2D2926" stroke="#1E1B18" stroke-width="3.5"/>
+          <ellipse cx="204" cy="152" rx="13" ry="17" fill="#FAD7BA" stroke="#4A3222" stroke-width="3"/>
+          <ellipse cx="348" cy="152" rx="13" ry="17" fill="#FAD7BA" stroke="#4A3222" stroke-width="3"/>
+          <path d="M210 112 C210 82, 342 82, 342 112 L342 158 C342 198, 310 216, 276 216 C242 216, 210 198, 210 158 Z" fill="#FCE2C9" stroke="#4A3222" stroke-width="3.5"/>
+          <path d="M202 124 C212 88, 256 76, 305 84 C326 88, 344 100, 350 120 C332 104, 300 98, 262 102 C234 105, 216 114, 202 124 Z" fill="#3B3531" stroke="#1E1B18" stroke-width="3.2"/>
+          <path d="M232 128 Q248 120 262 122" fill="none" stroke="#2D231E" stroke-width="4" stroke-linecap="round"/>
+          <path d="M290 122 Q304 120 320 128" fill="none" stroke="#2D231E" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="246" cy="152" r="22" fill="#FFFFFF" fill-opacity="0.45" stroke="#5A4638" stroke-width="3.8"/>
+          <circle cx="306" cy="152" r="22" fill="#FFFFFF" fill-opacity="0.45" stroke="#5A4638" stroke-width="3.8"/>
+          <line x1="268" y1="152" x2="284" y2="152" stroke="#5A4638" stroke-width="3.8"/>
+          <circle cx="246" cy="153" r="4.8" fill="#2D231E"/>
+          <circle cx="306" cy="153" r="4.8" fill="#2D231E"/>
+          <path d="M264 190 Q276 184 288 190" fill="none" stroke="#6E4427" stroke-width="3.2" stroke-linecap="round"/>
+        </svg>
+    </div>
+  </div>
+</body>
+</html>

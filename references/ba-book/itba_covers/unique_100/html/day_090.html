@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1200px;
+  height: 675px;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #0f172a;
+}
+.card {
+  width: 1200px;
+  height: 675px;
+  position: relative;
+  background: radial-gradient(circle at 20% 25%, #292524 0%, #1c1917 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 34px 48px 24px 48px;
+  color: #f8fafc;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.badge {
+  background: rgba(234, 179, 8, 0.15);
+  border: 1.5px solid #eab308;
+  color: #eab308;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+}
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  color: #94a3b8;
+  letter-spacing: -0.5px;
+}
+.logo span { color: #ffffff; }
+.title-area {
+  text-align: center;
+  margin-top: 6px;
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.headline {
+  font-size: 40px;
+  font-weight: 900;
+  color: #fef08a;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.subheadline {
+  font-size: 21px;
+  font-weight: 600;
+  color: #f5f5f4;
+  max-width: 950px;
+  margin: 0 auto;
+  line-height: 1.35;
+}
+.graphic-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div class="badge">MANAGEMENT · BA LEAD</div>
+    <div class="logo">iTBA <span>Mentor</span></div>
+  </div>
+  <div class="title-area">
+    <div class="headline">P.O.L.C dành cho BA Lead</div>
+    <div class="subheadline">Planning · Organizing · Leading · Controlling</div>
+  </div>
+  <div class="graphic-area">
+    
+    <svg width="640" height="260" viewBox="0 0 640 260">
+      <!-- 4 Quadrants of P.O.L.C -->
+      <g transform="translate(60, 25)">
+        <rect x="0" y="0" width="245" height="95" rx="12" fill="#292524" stroke="#eab308" stroke-width="2.5"/>
+        <text x="20" y="32" fill="#fef08a" font-size="16" font-weight="bold">1. PLANNING (Kế hoạch)</text>
+        <text x="20" y="58" fill="#d6d3d1" font-size="12">• Lộ trình phân tích by sprint</text>
+        <text x="20" y="78" fill="#a8a29e" font-size="11">• Backup nhân sự &amp; timeline</text>
+      </g>
+      <g transform="translate(335, 25)">
+        <rect x="0" y="0" width="245" height="95" rx="12" fill="#292524" stroke="#38bdf8" stroke-width="2.5"/>
+        <text x="20" y="32" fill="#7dd3fc" font-size="16" font-weight="bold">2. ORGANIZING (Tổ chức)</text>
+        <text x="20" y="58" fill="#d6d3d1" font-size="12">• Xây template, checklist chuẩn</text>
+        <text x="20" y="78" fill="#a8a29e" font-size="11">• Phân chia module &amp; trace CR</text>
+      </g>
+      <g transform="translate(60, 135)">
+        <rect x="0" y="0" width="245" height="95" rx="12" fill="#292524" stroke="#f43f5e" stroke-width="2.5"/>
+        <text x="20" y="32" fill="#fda4af" font-size="16" font-weight="bold">3. LEADING (Dẫn dắt)</text>
+        <text x="20" y="58" fill="#d6d3d1" font-size="12">• Gợi mở tư duy, không soi vặt</text>
+        <text x="20" y="78" fill="#a8a29e" font-size="11">• Bảo vệ team trước vô lý</text>
+      </g>
+      <g transform="translate(335, 135)">
+        <rect x="0" y="0" width="245" height="95" rx="12" fill="#292524" stroke="#10b981" stroke-width="2.5"/>
+        <text x="20" y="32" fill="#6ee7b7" font-size="16" font-weight="bold">4. CONTROLLING (Kiểm soát)</text>
+        <text x="20" y="58" fill="#d6d3d1" font-size="12">• Quản lý chất lượng &amp; logic</text>
+        <text x="20" y="78" fill="#a8a29e" font-size="11">• Đo reject rate &amp; UAT pass</text>
+      </g>
+    </svg>
+    
+  </div>
+  <div class="footer">
+    <div>Day 90/100 · Sách 100 ngày làm BA</div>
+    <div>Nguyễn Bá Phú — ITBA Mentor</div>
+  </div>
+</div>
+</body>
+</html>

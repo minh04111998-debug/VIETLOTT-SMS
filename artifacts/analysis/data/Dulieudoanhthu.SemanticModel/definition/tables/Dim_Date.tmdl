@@ -1,0 +1,52 @@
+table Dim_Date
+	lineageTag: 114c8d63-4614-4b43-98dd-b3b2e00aa389
+
+	column Date
+		lineageTag: d21c4b13-1eb4-4c88-a116-ccf0428200c1
+		isNameInferred
+		sourceColumn: [Date]
+
+	column Year
+		lineageTag: 2be25db6-47d1-4c18-ab8f-60ee22d7b3ec
+		isNameInferred
+		sourceColumn: [Year]
+
+	column Quarter
+		lineageTag: 024e0831-6aed-45fc-a4fc-5fd8b2b9a7e8
+		isNameInferred
+		sourceColumn: [Quarter]
+
+	column Month
+		lineageTag: b6074bc0-0359-4260-a23e-901985db15f2
+		isNameInferred
+		sourceColumn: [Month]
+
+	column Tháng
+		lineageTag: b43591a2-011a-4046-9e15-a0d1df91fdd0
+		isNameInferred
+		sourceColumn: [Tháng]
+
+	column MonthName
+		lineageTag: efc7bc03-2805-4edb-9f91-fb56c06f9981
+		isNameInferred
+		sourceColumn: [MonthName]
+
+	column MonthNo
+		lineageTag: 23a376ff-202f-4c60-9587-7bbdbfcf71a5
+		isNameInferred
+		sourceColumn: [MonthNo]
+
+	column WeekNo
+		lineageTag: 13c23cde-fdad-42fd-a6e0-5e2d6c450f84
+		isNameInferred
+		sourceColumn: [WeekNo]
+
+	column DayOfWeek
+		lineageTag: c82d8e18-24c4-4b36-b102-b9eadddf28f4
+		isNameInferred
+		sourceColumn: [DayOfWeek]
+
+	partition Dim_Date = calculated
+		mode: import
+		source = ADDCOLUMNS(CALENDAR(DATE(2025, 1, 1), DATE(2026, 12, 31)), "Year", YEAR([Date]), "Quarter", "Q" & QUARTER([Date]), "Month", FORMAT([Date], "yyyy-MM"), "Tháng", FORMAT([Date], "yyyy-MM"), "MonthName", FORMAT([Date], "mmmm"), "MonthNo", MONTH([Date]), "WeekNo", WEEKNUM([Date], 2), "DayOfWeek", FORMAT([Date], "dddd"))
+

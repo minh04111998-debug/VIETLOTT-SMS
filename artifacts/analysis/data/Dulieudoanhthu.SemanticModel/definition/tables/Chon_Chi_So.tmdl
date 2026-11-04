@@ -1,0 +1,44 @@
+table Chon_Chi_So
+	lineageTag: ab51b14e-02cb-4f08-a5df-bdc910101042
+
+	column 'Chon_Chi_So Order'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ec21545d-610b-4f12-9e8a-0a34f779052d
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+	column 'Chon_Chi_So Fields'
+		dataType: string
+		isHidden
+		lineageTag: 84a87eee-8b75-4ddb-a7be-f89cf3a9aa75
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Chon_Chi_So Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column Chon_Chi_So
+		dataType: string
+		lineageTag: 478ca47c-ea6e-4e96-8e3b-41bf40de89ab
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Chon_Chi_So Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Chon_Chi_So Fields'
+
+	partition Chon_Chi_So = calculated
+		mode: import
+		source =
+				{
+				    ("Tổng Doanh Thu (VNĐ)", NAMEOF('Fact_Sales'[Doanh Thu Thuần]), 0),
+				    ("Tổng Số Vé Bán Ra", NAMEOF('Fact_Sales'[Số Lượng Vé]), 1),
+				    ("Giá Vé Trung Bình (ARPU)", NAMEOF('Fact_Sales'[Giá Vé Trung Bình]), 2)
+				}
+

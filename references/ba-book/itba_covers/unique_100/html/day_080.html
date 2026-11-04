@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1200px;
+  height: 675px;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #0f172a;
+}
+.card {
+  width: 1200px;
+  height: 675px;
+  position: relative;
+  background: radial-gradient(circle at 15% 20%, #450a0a 0%, #1c1917 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 34px 48px 24px 48px;
+  color: #f8fafc;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.badge {
+  background: rgba(248, 113, 113, 0.15);
+  border: 1.5px solid #f87171;
+  color: #f87171;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+}
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  color: #94a3b8;
+  letter-spacing: -0.5px;
+}
+.logo span { color: #ffffff; }
+.title-area {
+  text-align: center;
+  margin-top: 6px;
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.headline {
+  font-size: 40px;
+  font-weight: 900;
+  color: #fca5a5;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.subheadline {
+  font-size: 21px;
+  font-weight: 600;
+  color: #fecdd3;
+  max-width: 950px;
+  margin: 0 auto;
+  line-height: 1.35;
+}
+.graphic-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div class="badge">QUALITY · ERROR TAXONOMY</div>
+    <div class="logo">iTBA <span>Mentor</span></div>
+  </div>
+  <div class="title-area">
+    <div class="headline">Phân biệt 3 loại lỗi trong dự án</div>
+    <div class="subheadline">Để DEV không fix sai, QA không log nhầm, User không kêu oan</div>
+  </div>
+  <div class="graphic-area">
+    
+    <svg width="640" height="260" viewBox="0 0 640 260">
+      <!-- 3 Types of Errors: Logic Bug, Dev Bug, User Expectation Gap -->
+      <g transform="translate(40, 35)">
+        <rect x="0" y="0" width="170" height="180" rx="14" fill="#450a0a" stroke="#ef4444" stroke-width="2.5"/>
+        <circle cx="85" cy="50" r="22" fill="#7f1d1d"/>
+        <text x="85" y="57" text-anchor="middle" fill="#ffffff" font-size="20">🐛</text>
+        <text x="85" y="95" text-anchor="middle" fill="#fca5a5" font-size="13" font-weight="bold">1. BUG KỸ THUẬT</text>
+        <text x="85" y="125" text-anchor="middle" fill="#fecdd3" font-size="11">Crash, Null Pointer</text>
+        <text x="85" y="145" text-anchor="middle" fill="#fecdd3" font-size="11">500 Server Error</text>
+        <text x="85" y="165" text-anchor="middle" fill="#f87171" font-size="10">DEV Fix Code</text>
+      </g>
+      <g transform="translate(235, 35)">
+        <rect x="0" y="0" width="170" height="180" rx="14" fill="#431407" stroke="#f59e0b" stroke-width="2.5"/>
+        <circle cx="85" cy="50" r="22" fill="#78350f"/>
+        <text x="85" y="57" text-anchor="middle" fill="#ffffff" font-size="20">📐</text>
+        <text x="85" y="95" text-anchor="middle" fill="#fde047" font-size="13" font-weight="bold">2. BUG LOGIC NGHIỆP VỤ</text>
+        <text x="85" y="125" text-anchor="middle" fill="#fef3c7" font-size="11">Thiếu case ngoại lệ</text>
+        <text x="85" y="145" text-anchor="middle" fill="#fef3c7" font-size="11">Tính sai chiết khấu</text>
+        <text x="85" y="165" text-anchor="middle" fill="#fbbf24" font-size="10">BA Fix SRS / Flow</text>
+      </g>
+      <g transform="translate(430, 35)">
+        <rect x="0" y="0" width="170" height="180" rx="14" fill="#1e1b4b" stroke="#38bdf8" stroke-width="2.5"/>
+        <circle cx="85" cy="50" r="22" fill="#312e81"/>
+        <text x="85" y="57" text-anchor="middle" fill="#ffffff" font-size="20">💡</text>
+        <text x="85" y="95" text-anchor="middle" fill="#7dd3fc" font-size="13" font-weight="bold">3. GAP KỲ VỌNG</text>
+        <text x="85" y="125" text-anchor="middle" fill="#e0f2fe" font-size="11">Hệ thống làm đúng spec</text>
+        <text x="85" y="145" text-anchor="middle" fill="#e0f2fe" font-size="11">Nhưng User thấy khó</text>
+        <text x="85" y="165" text-anchor="middle" fill="#38bdf8" font-size="10">PO / BA Cải tiến UX</text>
+      </g>
+    </svg>
+    
+  </div>
+  <div class="footer">
+    <div>Day 80/100 · Sách 100 ngày làm BA</div>
+    <div>Nguyễn Bá Phú — ITBA Mentor</div>
+  </div>
+</div>
+</body>
+</html>

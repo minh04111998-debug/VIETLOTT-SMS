@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vietlott SMS 2.0 — High-Fidelity Interactive App Mockup</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Top Control Bar for Demo / Examiner -->
+  <header class="demo-top-bar">
+    <div class="demo-branding">
+      <span class="badge-role">[🟣 ROLE: Designer]</span>
+      <span class="demo-title">Vietlott SMS 2.0 — Mockup Kỷ Niệm 6 Năm</span>
+    </div>
+    <div class="demo-actions">
+      <button class="demo-btn" id="toggleThemeTopBtn">
+        <span class="theme-icon">🌙</span> <span class="theme-text">Dark Mode</span>
+      </button>
+      <div class="quick-nav-dropdown">
+        <label for="screenSelect">Chuyển nhanh màn hình:</label>
+        <select id="screenSelect" onchange="switchScreen(this.value)">
+          <option value="home">1. Trang Chủ / Dashboard</option>
+          <option value="catalog">2. Danh Mục Game Xổ Số</option>
+          <option value="purchase">3. Luồng Mua Vé (3 Bước)</option>
+          <option value="results">4. Kết Quả & Trả Thưởng</option>
+          <option value="gamification">5. Gamification & Mua Nhóm</option>
+          <option value="profile">6. Tài Khoản & Lịch Sử</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Viewport Container (Smartphone Frame + Responsive View) -->
+  <main class="app-viewport-wrapper">
+    <div class="smartphone-frame">
+      <div class="smartphone-notch">
+        <div class="camera-lens"></div>
+        <div class="speaker-grill"></div>
+      </div>
+
+      <!-- App Header & Status Bar -->
+      <div class="app-header-container">
+        <!-- Phone Status Bar -->
+        <div class="status-bar">
+          <span class="status-time" id="statusClock">12:30</span>
+          <div class="status-icons">
+            <span class="icon-signal">📶</span>
+            <span class="icon-wifi">📡</span>
+            <span class="icon-battery">🔋 98%</span>
+          </div>
+        </div>
+
+        <!-- App Top Navigation Bar -->
+        <div class="app-nav-bar">
+          <div class="nav-brand">
+            <div class="logo-circle">V6</div>
+            <div class="brand-text">
+              <span class="brand-name">Vietlott SMS <span class="v2-tag">2.0</span></span>
+              <span class="brand-sub">Kỷ niệm 6 Năm Ra Mắt</span>
+            </div>
+          </div>
+          <div class="nav-actions">
+            <div class="verified-shield-badge" title="Đã xác thực chính hãng SHA-256" onclick="showVerifiedModal()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+              <span>Chính Hãng</span>
+            </div>
+            <button class="theme-toggle-switch" id="themeToggleSwitch" aria-label="Toggle Dark Mode" title="Bật/Tắt Dark Mode">
+              <span class="switch-ball"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Body Content Area (6 Screens) -->
+      <div class="app-content-scroll" id="appContentScroll">
+
+        <!-- ================= SCREEN 1: HOME / DASHBOARD ================= -->
+        <section class="screen-view active" id="screen-home">
+          <!-- User Greeting Banner -->
+          <div class="user-greeting-card">
+            <div class="greeting-left">
+              <div class="user-avatar">
+                <span>M</span>
+                <span class="vip-badge-mini" title="VIP Gold Member">👑</span>
+              </div>
+              <div class="greeting-info">
+                <h2>Chào anh Minh! <span class="vip-tag-gold">VIP Gold</span></h2>
+                <p>Thứ Ba, 11/08/2026 • 7-Day Streak 🔥</p>
+              </div>
+            </div>
+            <button class="btn-checkin-quick" onclick="switchScreen('gamification')">
+              <span>Điểm Danh</span>
+              <span class="checkin-dot"></span>
+            </button>
+          </div>
+
+          <!-- 6-Year Anniversary Banner -->
+          <div class="promo-banner-6year">
+            <div class="promo-content">
+              <span class="promo-pill">SỰ KIỆN KỶ NIỆM 6 NĂM</span>
+              <h3>Bứt Phá Ý Tưởng — Dẫn Dắt Thay Đổi</h3>
+              <p>Hoàn tiền Cashback 2% • Vòng Quay May Mắn 100% Trúng Quà</p>
+              <button class="btn-banner-action" onclick="switchScreen('gamification')">Tham Gia Ngay 🎁</button>
+            </div>
+            <div class="promo-badge-glow">6 YEARS</div>
+          </div>
+
+          <!-- Jackpot Live Counters (Mega 6/45 & Power 6/55) -->
+          <div class="section-title-bar">
+            <h4>🔥 JACKPOT TÍCH LŨY KHỦNG</h4>
+            <span class="live-pulse">LIVE</span>
+          </div>
+
+          <div class="jackpots-grid">
+            <!-- Power 6/55 -->
+            <div class="jackpot-card power-card">
+              <div class="card-header-game">
+                <span class="game-badge power">POWER 6/55</span>
+                <span class="draw-time">Quay 18:00 Hôm Nay</span>
+              </div>
+              <div class="jackpot-amount-box">
+                <span class="jackpot-label">JACKPOT 1</span>
+                <div class="jackpot-value" id="powerJackpotVal">184.520.000.000đ</div>
+              </div>
+              <div class="card-footer-action">
+                <span class="jackpot-sub">Jackpot 2: 7.45 tỷ đ</span>
+                <button class="btn-play-sm" onclick="startPurchaseFlow('power')">Mua Ngay 10k</button>
+              </div>
+            </div>
+
+            <!-- Mega 6/45 -->
+            <div class="jackpot-card mega-card">
+              <div class="card-header-game">
+                <span class="game-badge mega">MEGA 6/45</span>
+                <span class="draw-time">Quay 18:00 Ngày Mai</span>
+              </div>
+              <div class="jackpot-amount-box">
+                <span class="jackpot-label">JACKPOT</span>
+                <div class="jackpot-value" id="megaJackpotVal">126.850.000.000đ</div>
+              </div>
+              <div class="card-footer-action">
+                <span class="jackpot-sub">Giải Nhất: 10 triệu đ</span>
+                <button class="btn-play-sm" onclick="startPurchaseFlow('mega')">Mua Ngay 10k</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- BINGO18 Turbo Fast-Play Widget (Persona 1 Cash Cow) -->
+          <div class="turbo-bingo-widget">
+            <div class="turbo-header">
+              <div class="turbo-title">
+                <span class="bingo-icon">⚡</span>
+                <div>
+                  <h5>BINGO18 Turbo Fast-Play</h5>
+                  <p>Quay số nhanh 6 phút • ARPU Top 1</p>
+                </div>
+              </div>
+              <div class="countdown-pill" id="bingoCountdown">
+                <span>Kỳ #00881</span>
+                <strong id="timerTick">03:42</strong>
+              </div>
+            </div>
+
+            <div class="turbo-options-row">
+              <button class="turbo-opt-btn active" data-opt="lon" onclick="selectBingoOpt(this)">
+                <strong>LỚN</strong>
+                <span>Tổng 13-18 (x2)</span>
+              </button>
+              <button class="turbo-opt-btn" data-opt="nho" onclick="selectBingoOpt(this)">
+                <strong>NHỎ</strong>
+                <span>Tổng 3-10 (x2)</span>
+              </button>
+              <button class="turbo-opt-btn" data-opt="hoa" onclick="selectBingoOpt(this)">
+                <strong>HÒA</strong>
+                <span>Tổng 11-12 (x4.7)</span>
+              </button>
+            </div>
+
+            <div class="turbo-bet-amount">
+              <span>Mệnh giá:</span>
+              <div class="chip-group">
+                <button class="chip active" onclick="selectChip(this, 10)">10k</button>
+                <button class="chip" onclick="selectChip(this, 20)">20k</button>
+                <button class="chip" onclick="selectChip(this, 50)">50k</button>
+                <button class="chip" onclick="selectChip(this, 100)">100k</button>
+              </div>
+            </div>
+
+            <button class="btn-turbo-submit" id="btnTurboSubmit" onclick="executeTurboCheckout()">
+              <span class="btn-text">⚡ Chốt Đơn Turbo (1-Tap Checkout)</span>
+              <span class="btn-sub">Kháng Lag Idempotent • Response &lt;3s</span>
+            </button>
+          </div>
+
+          <!-- Lotto 5/35 Top Gainer Spotlight -->
+          <div class="spotlight-card lotto535-card">
+            <div class="spotlight-badge">⭐ TOP GAINER — DAT 198% KPI T8</div>
+            <div class="spotlight-content">
+              <h4>LOTTO 5/35 — Xổ Số Mới Bứt Phá</h4>
+              <p>Xác suất trúng cao gấp 4 lần • Jackpot từ 5 Tỷ đồng</p>
+              <div class="spotlight-action">
+                <span class="price-tag">Chỉ 10.000đ / Bộ số</span>
+                <button class="btn-outline-gold" onclick="startPurchaseFlow('lotto535')">Thử Vận May 🎯</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Game Grid Shortcuts -->
+          <div class="section-title-bar">
+            <h4>DANH MỤC GAME XỔ SỐ</h4>
+            <span class="link-more" onclick="switchScreen('catalog')">Xem Tất Cả &rarr;</span>
+          </div>
+
+          <div class="game-shortcuts-grid">
+            <div class="game-shortcut-item" onclick="startPurchaseFlow('mega')">
+              <div class="shortcut-icon mega-bg">6/45</div>
+              <span>Mega 6/45</span>
+            </div>
+            <div class="game-shortcut-item" onclick="startPurchaseFlow('power')">
+              <div class="shortcut-icon power-bg">6/55</div>
+              <span>Power 6/55</span>
+            </div>
+            <div class="game-shortcut-item" onclick="startPurchaseFlow('bingo')">
+              <div class="shortcut-icon bingo-bg">B18</div>
+              <span>BINGO18</span>
+            </div>
+            <div class="game-shortcut-item" onclick="startPurchaseFlow('lotto535')">
+              <div class="shortcut-icon lotto-bg">5/35</div>
+              <span>Lotto 5/35</span>
+            </div>
+            <div class="game-shortcut-item" onclick="startPurchaseFlow('max3d')">
+              <div class="shortcut-icon max-bg">3D</div>
+              <span>Max 3D Pro</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SCREEN 2: GAME CATALOG ================= -->
+        <section class="screen-view" id="screen-catalog">
+          <div class="screen-header">
+            <h3>Danh Mục Sản Phẩm Xổ Số</h3>
+            <p>Chọn game xổ số tự chọn chính thống Vietlott</p>
+          </div>
+
+          <div class="catalog-list">
+            <!-- Mega 6/45 -->
+            <div class="catalog-card">
+              <div class="catalog-card-header mega-bg-gradient">
+                <span class="game-title">Mega 6/45</span>
+                <span class="draw-badge">Thứ 4, 6, Chủ Nhật</span>
+              </div>
+              <div class="catalog-card-body">
+                <div class="prize-info">
+                  <span class="prize-label">Jackpot Tích Lũy</span>
+                  <span class="prize-value red-text">126.850.000.000đ</span>
+                </div>
+                <p class="game-desc">Chọn 6 số trong tập hợp 01 đến 45. Trúng Jackpot khi trùng cả 6 số.</p>
+                <div class="catalog-actions">
+                  <button class="btn-secondary-sm" onclick="showGameDetail('mega')">Chi Tiết Luật</button>
+                  <button class="btn-primary-sm" onclick="startPurchaseFlow('mega')">Mua Vé 10k</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Power 6/55 -->
+            <div class="catalog-card">
+              <div class="catalog-card-header power-bg-gradient">
+                <span class="game-title">Power 6/55</span>
+                <span class="draw-badge">Thứ 2, 4, 6</span>
+              </div>
+              <div class="catalog-card-body">
+                <div class="prize-info">
+                  <span class="prize-label">Jackpot 1 Khủng</span>
+                  <span class="prize-value red-text">184.520.000.000đ</span>
+                </div>
+                <p class="game-desc">Chọn 6 số trong tập 01 đến 55. Jackpot 1 từ 30 tỷ đ, Jackpot 2 từ 3 tỷ đ.</p>
+                <div class="catalog-actions">
+                  <button class="btn-secondary-sm" onclick="showGameDetail('power')">Chi Tiết Luật</button>
+                  <button class="btn-primary-sm" onclick="startPurchaseFlow('power')">Mua Vé 10k</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- BINGO18 -->
+            <div class="catalog-card highlight-border">
+              <div class="catalog-card-header bingo-bg-gradient">
+                <span class="game-title">BINGO18 (Fast Gaming)</span>
+                <span class="draw-badge pulse">Quay Số 6 Phút/Kỳ</span>
+              </div>
+              <div class="catalog-card-body">
+                <div class="prize-info">
+                  <span class="prize-label">Cơ Cấu Giải Thưởng</span>
+                  <span class="prize-value green-text">Thắng Lên Đến x120 Lần</span>
+                </div>
+                <p class="game-desc">Xổ số quay nhanh 6 phút/kỳ, từ 06:00 đến 21:54 hàng ngày. Chọn số hoặc kết quả Lớn/Nhỏ/Hòa.</p>
+                <div class="catalog-actions">
+                  <button class="btn-secondary-sm" onclick="showGameDetail('bingo')">Bảng Tỷ Lệ</button>
+                  <button class="btn-primary-sm green-bg" onclick="startPurchaseFlow('bingo')">Chơi Ngay (6 Phút)</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lotto 5/35 -->
+            <div class="catalog-card">
+              <div class="catalog-card-header lotto-bg-gradient">
+                <span class="game-title">Lotto 5/35 (Mới)</span>
+                <span class="draw-badge gold">⭐ Top Gainer T8</span>
+              </div>
+              <div class="catalog-card-body">
+                <div class="prize-info">
+                  <span class="prize-label">Jackpot Khởi Điểm</span>
+                  <span class="prize-value gold-text">5.000.000.000đ</span>
+                </div>
+                <p class="game-desc">Sản phẩm mới bứt phá 198% KPI. Chọn 5 số từ 01 đến 35, xác suất trúng cao vượt trội.</p>
+                <div class="catalog-actions">
+                  <button class="btn-secondary-sm" onclick="showGameDetail('lotto535')">Luật Chơi</button>
+                  <button class="btn-primary-sm gold-bg" onclick="startPurchaseFlow('lotto535')">Mua Ngay 10k</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Max 3D Pro -->
+            <div class="catalog-card">
+              <div class="catalog-card-header max-bg-gradient">
+                <span class="game-title">Max 3D Pro</span>
+                <span class="draw-badge">Thứ 3, 5, 7</span>
+              </div>
+              <div class="catalog-card-body">
+                <div class="prize-info">
+                  <span class="prize-label">Giải Đặc Biệt</span>
+                  <span class="prize-value red-text">2.000.000.000đ</span>
+                </div>
+                <p class="game-desc">Chọn 2 bộ 3 chữ số (VD: 123 - 456). Đa dạng hình thức chơi Bao & Nhiều giải thưởng.</p>
+                <div class="catalog-actions">
+                  <button class="btn-secondary-sm" onclick="showGameDetail('max3d')">Xem Bao Số</button>
+                  <button class="btn-primary-sm" onclick="startPurchaseFlow('max3d')">Mua Vé 10k</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SCREEN 3: STREAMLINED PURCHASE FLOW ================= -->
+        <section class="screen-view" id="screen-purchase">
+          <div class="purchase-stepper">
+            <div class="step-item active" id="stepIndicator1">
+              <span class="step-num">1</span>
+              <span class="step-lbl">Chọn Số</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-item" id="stepIndicator2">
+              <span class="step-num">2</span>
+              <span class="step-lbl">Xác Nhận</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step-item" id="stepIndicator3">
+              <span class="step-num">3</span>
+              <span class="step-lbl">Thanh Toán</span>
+            </div>
+          </div>
+
+          <!-- Step 1 Content: Number Picker -->
+          <div class="purchase-step-content" id="purchaseStep1">
+            <div class="step-header">
+              <span class="game-title-selected" id="selectedGameName">Mega 6/45</span>
+              <span class="step-desc">Chọn 6 số may mắn từ 01 đến 45</span>
+            </div>
+
+            <div class="number-picker-actions">
+              <button class="btn-picker-tool" onclick="quickPickRandom()">🎲 Chọn Nhanh (Random)</button>
+              <button class="btn-picker-tool" onclick="quickPickAI()">🔮 AI Smart Pick</button>
+              <button class="btn-picker-tool" onclick="clearSelectedNumbers()">🗑️ Xóa Chọn</button>
+            </div>
+
+            <!-- Selected Numbers Display Grid -->
+            <div class="selected-balls-display" id="selectedBallsDisplay">
+              <span class="ball-slot empty">?</span>
+              <span class="ball-slot empty">?</span>
+              <span class="ball-slot empty">?</span>
+              <span class="ball-slot empty">?</span>
+              <span class="ball-slot empty">?</span>
+              <span class="ball-slot empty">?</span>
+            </div>
+
+            <!-- Grid 1-45 Balls -->
+            <div class="balls-grid-selector" id="ballsGridSelector">
+              <!-- Dynamically generated 1-45 balls -->
+            </div>
+
+            <div class="step1-footer">
+              <div class="total-preview">
+                <span>Số bộ số: <strong id="ticketCountPreview">1</strong></span>
+                <span>Tạm tính: <strong class="red-text" id="totalPricePreview">10.000đ</strong></span>
+              </div>
+              <button class="btn-primary" id="btnGoToStep2" onclick="goToStep(2)">Tiếp Theo (Xác Nhận Đơn) &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 2 Content: Order Confirmation & Cross-Sell -->
+          <div class="purchase-step-content hidden" id="purchaseStep2">
+            <div class="step-header">
+              <h4>Xác Nhận Đơn Hàng Mua Vé</h4>
+              <p>Kiểm tra bộ số & chọn phương thức thanh toán</p>
+            </div>
+
+            <div class="order-summary-card">
+              <div class="summary-item-row">
+                <span class="label">Sản phẩm:</span>
+                <strong id="summaryGameName">Mega 6/45</strong>
+              </div>
+              <div class="summary-item-row">
+                <span class="label">Kỳ quay thưởng:</span>
+                <span>#01248 (18:00 Ngày Mai)</span>
+              </div>
+              <div class="summary-item-row">
+                <span class="label">Bộ số đã chọn:</span>
+                <div class="balls-inline-mini" id="summaryBalls">
+                  <span class="ball-mini">05</span>
+                  <span class="ball-mini">12</span>
+                  <span class="ball-mini">18</span>
+                  <span class="ball-mini">24</span>
+                  <span class="ball-mini">33</span>
+                  <span class="ball-mini">41</span>
+                </div>
+              </div>
+              <div class="summary-item-row">
+                <span class="label">Giá vé:</span>
+                <span>10.000đ</span>
+              </div>
+            </div>
+
+            <!-- Smart Cross-Sell Lotto 5/35 Widget (R1/R2 Requirement) -->
+            <div class="cross-sell-box" id="crossSellBox">
+              <div class="cross-sell-header">
+                <span class="cross-tag">⭐ GỢI Ý BÁN KÈM — TOP GAINER</span>
+                <h5>Thử Vận May Lotto 5/35 Chỉ 10.000đ</h5>
+              </div>
+              <p>Gợi ý bộ số AI: <strong class="gold-text">[08 - 14 - 19 - 27 - 35]</strong></p>
+              <div class="cross-sell-action">
+                <label class="cross-sell-checkbox">
+                  <input type="checkbox" id="chkAddCrossSell" onchange="toggleCrossSell(this)">
+                  <span>Mua kèm 1 bộ số Lotto 5/35 (+10.000đ)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="payment-method-selector">
+              <h5>Phương Thức Thanh Toán</h5>
+              <div class="payment-opt-card active" onclick="selectPaymentOpt(this, 'wallet')">
+                <input type="radio" name="payOpt" checked>
+                <div class="opt-info">
+                  <strong>Ví Dự Thưởng Vietlott SMS</strong>
+                  <span>Số dư: 450.000đ (Nạp tức thì, 0% phí)</span>
+                </div>
+              </div>
+              <div class="payment-opt-card" onclick="selectPaymentOpt(this, 'bank')">
+                <input type="radio" name="payOpt">
+                <div class="opt-info">
+                  <strong>Ngân Hàng VCB Digibank (Liên kết)</strong>
+                  <span>Xác thực FaceID / OTP</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="step2-footer">
+              <div class="final-price-box">
+                <span>Tổng Thanh Toán:</span>
+                <strong class="red-text" id="finalPayAmount">10.000đ</strong>
+              </div>
+              <div class="step2-btns">
+                <button class="btn-secondary" onclick="goToStep(1)">&larr; Sửa Số</button>
+                <button class="btn-primary green-bg" id="btnExecutePay" onclick="goToStep(3)">Thanh Toán 1-Tap &rarr;</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 Content: Idempotent Payment & Zero Latency Loading -->
+          <div class="purchase-step-content hidden" id="purchaseStep3">
+            <div class="idempotent-processing-box" id="idempotentBox">
+              <div class="idempotent-badge">🔒 IDEMPOTENT PROTECTED ENGINE</div>
+              <h3>Đang Xử Lý Thanh Toán An Toàn</h3>
+              <p>Mã Giao Dịch Duy Nhất: <code id="idemKeyVal">IDEM-20260811-99812</code></p>
+              
+              <div class="countdown-spinner-circle">
+                <svg width="100" height="100" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="42" stroke="var(--border-color)" stroke-width="8" fill="none"/>
+                  <circle id="spinnerCircle" cx="50" cy="50" r="42" stroke="var(--vietlott-red)" stroke-width="8" fill="none" stroke-dasharray="264" stroke-dashoffset="0"/>
+                </svg>
+                <span class="countdown-number" id="payCountdownNum">3</span>
+              </div>
+
+              <p class="processing-note">Vui lòng không đóng ứng dụng. Nút thanh toán đã được tự động vô hiệu hóa để chống trùng đơn 100%.</p>
+
+              <button class="btn-biometric-auth" id="btnBiometricAuth" onclick="triggerBiometricAuth()">
+                <span>🔓 Biometric Quick Auth (FaceID)</span>
+              </button>
+            </div>
+
+            <!-- Success Invoice (Shows after payment finishes) -->
+            <div class="payment-success-invoice hidden" id="paymentSuccessInvoice">
+              <div class="success-icon-animated">✓</div>
+              <h3>THANH TOÁN THÀNH CÔNG!</h3>
+              <p class="success-sub">Vé số điện tử chính hãng Vietlott đã được phát hành</p>
+
+              <div class="invoice-details-card">
+                <div class="invoice-row">
+                  <span>Mã Vé Điện Tử:</span>
+                  <strong>VTL-2026-998123</strong>
+                </div>
+                <div class="invoice-row">
+                  <span>Sản phẩm:</span>
+                  <span id="invGameName">Mega 6/45</span>
+                </div>
+                <div class="invoice-row">
+                  <span>Bộ số:</span>
+                  <strong class="gold-text" id="invBalls">05 - 12 - 18 - 24 - 33 - 41</strong>
+                </div>
+                <div class="invoice-row">
+                  <span>Thời gian:</span>
+                  <span>11/08/2026 12:30:45</span>
+                </div>
+                <div class="invoice-row">
+                  <span>Số tiền:</span>
+                  <strong class="red-text" id="invAmount">10.000đ</strong>
+                </div>
+              </div>
+
+              <div class="invoice-actions">
+                <button class="btn-primary" onclick="switchScreen('results')">Xem Trong Lịch Sử Vé</button>
+                <button class="btn-secondary" onclick="resetPurchaseFlow()">Mua Thêm Vé Khác</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SCREEN 4: RESULTS & NOTIFICATIONS ================= -->
+        <section class="screen-view" id="screen-results">
+          <div class="screen-header">
+            <h3>Kết Quả Quay Số & Tra Cứu</h3>
+            <p>Cập nhật tự động trực tiếp từ Hội đồng Mở thưởng Vietlott</p>
+          </div>
+
+          <!-- Latest Result Highlight -->
+          <div class="latest-result-card">
+            <div class="result-card-header mega-bg-gradient">
+              <span class="game-tag">MEGA 6/45</span>
+              <span class="draw-info">Kỳ quay #01247 • 09/08/2026</span>
+            </div>
+            <div class="result-winning-balls">
+              <span class="ball-result">04</span>
+              <span class="ball-result">11</span>
+              <span class="ball-result">18</span>
+              <span class="ball-result">29</span>
+              <span class="ball-result">35</span>
+              <span class="ball-result">42</span>
+            </div>
+            <div class="result-jackpot-won">
+              <span>Giá Trị Jackpot Kỳ Này:</span>
+              <strong class="gold-text">126.850.000.000đ</strong>
+              <span class="win-count">(Chưa có người trúng Jackpot)</span>
+            </div>
+          </div>
+
+          <!-- Test Interactive Winning Ticket (Confetti Animation Trigger) -->
+          <div class="section-title-bar">
+            <h4>VÉ CỦA BẠN TRONG KỲ NÀY</h4>
+            <span class="badge-click-test">CHẠM ĐỂ THỬ ĂN MỪNG 🎉</span>
+          </div>
+
+          <div class="ticket-interactive-card winning" onclick="triggerCelebrationConfetti()">
+            <div class="ticket-status-badge won">🎉 TRÚNG GIẢI NHẤT — 10.000.000đ</div>
+            <div class="ticket-body-info">
+              <div class="ticket-game">Mega 6/45 • Kỳ quay #01247</div>
+              <div class="ticket-balls-row">
+                <span class="ball-mini match">04</span>
+                <span class="ball-mini match">11</span>
+                <span class="ball-mini match">18</span>
+                <span class="ball-mini match">29</span>
+                <span class="ball-mini match">35</span>
+                <span class="ball-mini no-match">10</span>
+              </div>
+              <div class="ticket-meta">
+                <span>Thuế TNCN (10% >10M): 0đ</span>
+                <span class="payout-status green-text">✓ Tự Động Trả Thưởng Về Ví</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Historical Results List -->
+          <div class="section-title-bar">
+            <h4>LỊCH SỬ KẾT QUẢ CÁC GAME</h4>
+          </div>
+
+          <div class="history-results-list">
+            <div class="history-item">
+              <div class="item-left">
+                <span class="game-badge power">Power 6/55</span>
+                <span class="draw-num">Kỳ #00912 • 10/08/2026</span>
+              </div>
+              <div class="item-balls">
+                <span>08 - 15 - 22 - 31 - 40 - 52</span> <strong class="gold-text">| 19</strong>
+              </div>
+            </div>
+            <div class="history-item">
+              <div class="item-left">
+                <span class="game-badge bingo">BINGO18</span>
+                <span class="draw-num">Kỳ #00880 • 11/08/2026</span>
+              </div>
+              <div class="item-balls">
+                <span class="green-text">LỚN (Tổng 15) • Kết quả: 4 - 5 - 6</span>
+              </div>
+            </div>
+            <div class="history-item">
+              <div class="item-left">
+                <span class="game-badge lotto">Lotto 5/35</span>
+                <span class="draw-num">Kỳ #00104 • 10/08/2026</span>
+              </div>
+              <div class="item-balls">
+                <span>02 - 12 - 18 - 25 - 34</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SCREEN 5: GAMIFICATION & SYNDICATE HUB ================= -->
+        <section class="screen-view" id="screen-gamification">
+          <div class="screen-header">
+            <h3>Trung Tâm Gamification & Mua Nhóm</h3>
+            <p>Điểm danh nhận quà • Vòng quay 6 năm • Mua chung vé Bao</p>
+          </div>
+
+          <!-- Daily Streaks Hub -->
+          <div class="streaks-hub-card">
+            <div class="streaks-header">
+              <div class="streaks-title">
+                <span class="fire-icon">🔥</span>
+                <div>
+                  <h4>Chuỗi Ngày May Mắn (Daily Streaks)</h4>
+                  <p>Bạn đã điểm danh <strong id="streakCount">6/7</strong> ngày liên tiếp!</p>
+                </div>
+              </div>
+              <span class="streak-badge">Mốc 7 Ngày 🎁</span>
+            </div>
+
+            <!-- 7-Day Checklist -->
+            <div class="streaks-days-grid">
+              <div class="day-box checked"><span>N1</span><span class="check-mark">✓</span></div>
+              <div class="day-box checked"><span>N2</span><span class="check-mark">✓</span></div>
+              <div class="day-box checked"><span>N3</span><span class="check-mark">✓</span></div>
+              <div class="day-box checked"><span>N4</span><span class="check-mark">✓</span></div>
+              <div class="day-box checked"><span>N5</span><span class="check-mark">✓</span></div>
+              <div class="day-box checked"><span>N6</span><span class="check-mark">✓</span></div>
+              <div class="day-box today-gift" id="day7Box" onclick="claimDay7Streak()">
+                <span>N7</span>
+                <span class="gift-icon">🎁</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lucky Wheel 6-Year Anniversary -->
+          <div class="lucky-wheel-card">
+            <div class="wheel-header">
+              <span class="wheel-tag">SỰ KIỆN KỶ NIỆM 6 NĂM</span>
+              <h4>Vòng Quay May Mắn Vietlott</h4>
+              <p>Lượt quay khả dụng: <strong class="gold-text" id="spinsCount">1 Lượt</strong></p>
+            </div>
+
+            <div class="wheel-container">
+              <div class="wheel-pointer">▼</div>
+              <div class="wheel-disc" id="wheelDisc">
+                <div class="wheel-sector sec1">Voucher 20k</div>
+                <div class="wheel-sector sec2">50 Points</div>
+                <div class="wheel-sector sec3">Vé 10k</div>
+                <div class="wheel-sector sec4">Chúc May Mắn</div>
+                <div class="wheel-sector sec5">Voucher 50k</div>
+                <div class="wheel-sector sec6">100 Points</div>
+              </div>
+              <button class="btn-spin-center" id="btnSpinWheel" onclick="spinLuckyWheel()">QUAY NGAY</button>
+            </div>
+          </div>
+
+          <!-- Syndicate Group Play (Mua Vé Nhóm) -->
+          <div class="section-title-bar">
+            <h4>👥 MUA VÉ NHÓM (SYNDICATE PLAY)</h4>
+            <button class="btn-xs-gold" onclick="openCreateSyndicateModal()">+ Tạo Nhóm Mới</button>
+          </div>
+
+          <div class="syndicate-rooms-list">
+            <!-- Active Syndicate Room -->
+            <div class="syndicate-card">
+              <div class="syndicate-card-header">
+                <div class="room-title">
+                  <strong>Phòng #SYN-8812: Săn Jackpot 180 Tỷ</strong>
+                  <span class="ticket-type">Power 6/55 — Vé Bao 9 (840k)</span>
+                </div>
+                <span class="progress-pill">Đã Góp 8/10 Suất</span>
+              </div>
+
+              <div class="syndicate-progress-bar">
+                <div class="progress-fill" style="width: 80%;"></div>
+              </div>
+
+              <div class="syndicate-meta">
+                <span>Mỗi suất: <strong>84.000đ</strong></span>
+                <span>Thời hạn: <strong>Còn 45 phút</strong></span>
+              </div>
+
+              <div class="syndicate-actions">
+                <button class="btn-secondary-sm" onclick="shareSyndicateLink('#SYN-8812')">🔗 Mời Bạn Bè</button>
+                <button class="btn-primary-sm green-bg" onclick="joinSyndicateRoom('#SYN-8812')">Góp 1 Suất (84k)</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIP Club Tiers Showcase -->
+          <div class="section-title-bar">
+            <h4>👑 HẠNG THÀNH VIÊN VIETLOTT VIP CLUB</h4>
+          </div>
+
+          <div class="vip-tiers-grid">
+            <div class="vip-tier-card bronze">
+              <h5>VIP Đồng</h5>
+              <p>Chi tiêu >0đ</p>
+              <span>Cashback 0.5%</span>
+            </div>
+            <div class="vip-tier-card silver">
+              <h5>VIP Bạc</h5>
+              <p>Chi tiêu >500k/tháng</p>
+              <span>Cashback 1.0%</span>
+            </div>
+            <div class="vip-tier-card gold active">
+              <span class="active-badge">BẠN ĐANG Ở ĐÂY</span>
+              <h5>VIP Vàng</h5>
+              <p>Chi tiêu >2M/tháng</p>
+              <span>Cashback 1.5%</span>
+            </div>
+            <div class="vip-tier-card diamond">
+              <h5>VIP Kim Cương</h5>
+              <p>Chi tiêu >5M/tháng</p>
+              <span>Cashback 2.0%</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= SCREEN 6: PROFILE & HISTORY ================= -->
+        <section class="screen-view" id="screen-profile">
+          <!-- Profile Header Card -->
+          <div class="profile-user-card">
+            <div class="user-avatar-lg">
+              <span>M</span>
+            </div>
+            <div class="profile-user-info">
+              <h3>Nguyễn Văn Minh</h3>
+              <p>SĐT: 0908 *** 888 • CCCD: Đã định danh ✓</p>
+              <div class="user-vip-pill">👑 Thành Viên VIP Gold (Cashback 1.5%)</div>
+            </div>
+          </div>
+
+          <!-- Verified Security SHA-256 Badge -->
+          <div class="verified-security-card" onclick="showVerifiedModal()">
+            <div class="shield-icon">🛡️</div>
+            <div class="shield-text">
+              <h5>Đã Xác Thực Chính Hãng SHA-256</h5>
+              <p>Ứng dụng chính thức Vietlott SMS • Cập nhật ngầm In-App Auto Updater</p>
+            </div>
+            <span class="chevron">&rsaquo;</span>
+          </div>
+
+          <!-- Statistics Widget -->
+          <div class="stats-overview-grid">
+            <div class="stat-box">
+              <span class="stat-lbl">Tổng Chi T8</span>
+              <strong class="stat-val">2.439.700đ</strong>
+            </div>
+            <div class="stat-box">
+              <span class="stat-lbl">Tổng Trúng Thưởng</span>
+              <strong class="stat-val green-text">10.500.000đ</strong>
+            </div>
+            <div class="stat-box">
+              <span class="stat-lbl">Chuỗi Điểm Danh</span>
+              <strong class="stat-val gold-text">6 Ngày 🔥</strong>
+            </div>
+            <div class="stat-box">
+              <span class="stat-lbl">Điểm Loyalty</span>
+              <strong class="stat-val">1.250 PTS</strong>
+            </div>
+          </div>
+
+          <!-- Personal Settings & Controls -->
+          <div class="settings-group">
+            <h5>CÀI ĐẶT ỨNG DỤNG & BẢO MẬT</h5>
+            <div class="setting-item">
+              <span class="setting-lbl">🌙 Dark Theme (Giao diện tối)</span>
+              <button class="theme-toggle-switch" id="profileThemeToggle">
+                <span class="switch-ball"></span>
+              </button>
+            </div>
+            <div class="setting-item">
+              <span class="setting-lbl">🔓 Xác Thực FaceID / TouchID</span>
+              <span class="status-active">Đã Bật ✓</span>
+            </div>
+            <div class="setting-item">
+              <span class="setting-lbl">🛑 Hạn Mức Chi Tiêu Chơi Có Trách Nhiệm</span>
+              <span>200.000đ / Ngày</span>
+            </div>
+            <div class="setting-item">
+              <span class="setting-lbl">📲 In-App Auto Updater</span>
+              <span class="status-active">Phiên bản v2.0.0 (Mới nhất)</span>
+            </div>
+          </div>
+
+          <!-- Ticket Purchase History -->
+          <div class="section-title-bar">
+            <h4>LỊCH SỬ MUA VÉ GẦN ĐÂY</h4>
+          </div>
+
+          <div class="ticket-history-list">
+            <div class="history-ticket-card">
+              <div class="tkt-row-top">
+                <span class="tkt-game mega">Mega 6/45</span>
+                <span class="tkt-status won">Trúng 10.000.000đ</span>
+              </div>
+              <div class="tkt-balls">04 - 11 - 18 - 29 - 35 - 10</div>
+              <div class="tkt-row-bottom">
+                <span>Mã vé: VTL-2026-998123</span>
+                <span>09/08/2026</span>
+              </div>
+            </div>
+
+            <div class="history-ticket-card">
+              <div class="tkt-row-top">
+                <span class="tkt-game bingo">BINGO18</span>
+                <span class="tkt-status pending">Đang Chờ Quay</span>
+              </div>
+              <div class="tkt-balls">LỚN (Tổng 13-18) • 20.000đ</div>
+              <div class="tkt-row-bottom">
+                <span>Mã vé: VTL-2026-998155</span>
+                <span>11/08/2026 12:30</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div> <!-- End App Content Scroll -->
+
+      <!-- App Bottom Navigation Bar (5 Tabs) -->
+      <nav class="app-bottom-nav">
+        <button class="nav-tab active" data-target="home" onclick="switchScreen('home')">
+          <div class="nav-icon">🏠</div>
+          <span class="nav-label">Trang Chủ</span>
+        </button>
+        <button class="nav-tab" data-target="catalog" onclick="switchScreen('catalog')">
+          <div class="nav-icon">🎮</div>
+          <span class="nav-label">Danh Mục</span>
+        </button>
+        <button class="nav-tab" data-target="results" onclick="switchScreen('results')">
+          <div class="nav-icon">🏆</div>
+          <span class="nav-label">Kết Quả</span>
+        </button>
+        <button class="nav-tab" data-target="gamification" onclick="switchScreen('gamification')">
+          <div class="nav-icon">👥</div>
+          <span class="nav-label">Mua Nhóm</span>
+        </button>
+        <button class="nav-tab" data-target="profile" onclick="switchScreen('profile')">
+          <div class="nav-icon">👤</div>
+          <span class="nav-label">Tài Khoản</span>
+        </button>
+        <div class="nav-active-indicator" id="navIndicator"></div>
+      </nav>
+
+    </div> <!-- End Smartphone Frame -->
+  </main>
+
+  <!-- Canvas Overlay for Celebration Confetti Micro-Animation -->
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+  <!-- Interactive Modal Overlays -->
+
+  <!-- Modal 1: Verified Security SHA-256 -->
+  <div class="modal-backdrop hidden" id="modalVerified">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h4>🛡️ Chứng Nhận Bảo Mật Chính Hãng Vietlott</h4>
+        <button class="btn-close-modal" onclick="closeModal('modalVerified')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Ứng dụng Vietlott SMS 2.0 đã được xác thực mã hóa SHA-256 chính chủ trực thuộc Vietlott & Bộ Tài Chính.</p>
+        <div class="sha256-code">
+          <span>SHA-256 Checksum Hash:</span>
+          <code>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code>
+        </div>
+        <p class="verified-note">✓ Tự động cập nhật ngầm an toàn (In-App Auto Updater)<br>✓ Tích hợp trực tiếp 14 Ngân hàng & Ví MoMo, ZaloPay, VNPT Money.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" onclick="closeModal('modalVerified')">Đã Hiểu & An Tâm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Create Syndicate Group -->
+  <div class="modal-backdrop hidden" id="modalCreateSyndicate">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h4>👥 Tạo Phòng Mua Vé Nhóm (Syndicate)</h4>
+        <button class="btn-close-modal" onclick="closeModal('modalCreateSyndicate')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Tên Phòng Nhóm:</label>
+          <input type="text" id="synRoomName" class="form-control" value="Phòng Săn Jackpot 180 Tỷ">
+        </div>
+        <div class="form-group">
+          <label>Sản phẩm vé Bao:</label>
+          <select class="form-control" id="synGameSelect">
+            <option>Power 6/55 — Vé Bao 9 (840.000đ)</option>
+            <option>Mega 6/45 — Vé Bao 8 (280.000đ)</option>
+            <option>Lotto 5/35 — Vé Bao 7 (210.000đ)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Số lượng suất góp (Chia đều):</label>
+          <select class="form-control" id="synShareSelect">
+            <option>10 Suất (84.000đ / Suất)</option>
+            <option>5 Suất (168.000đ / Suất)</option>
+            <option>20 Suất (42.000đ / Suất)</option>
+          </select>
+        </div>
+        <p class="syn-note">Hệ thống Vietlott SMS sẽ tự động khóa vé khi đủ 100% tiền và tự động trả thưởng về Ví cá nhân từng thành viên theo đúng % đóng góp.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeModal('modalCreateSyndicate')">Hủy</button>
+        <button class="btn-primary green-bg" onclick="submitCreateSyndicate()">Tạo Phòng & Khóa Suất 1</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

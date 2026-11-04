@@ -1,0 +1,37 @@
+table Dim_Product
+	lineageTag: aab80476-977a-4b7a-97ae-1753de4ee641
+
+	column ProductId
+		lineageTag: b74e8d0e-db7e-48a1-99bd-2afdd1a2b77a
+		isNameInferred
+		sourceColumn: [ProductId]
+
+	column ProductName
+		lineageTag: 07e9375c-c394-42e3-80c4-62538a0f0cc0
+		isNameInferred
+		sourceColumn: [ProductName]
+
+	column 'Tên Sản Phẩm'
+		lineageTag: 2f2335d9-ca33-4c10-a79d-c326f18cf2e2
+		isNameInferred
+		sourceColumn: [Tên Sản Phẩm]
+
+	column ProductCategory
+		lineageTag: e4c83bfe-7538-4704-96a4-e32226c7ecea
+		isNameInferred
+		sourceColumn: [ProductCategory]
+
+	column 'Nhóm Sản Phẩm'
+		lineageTag: 353d8e9b-65ae-4ba2-88f5-c7d3f5d5f0b4
+		isNameInferred
+		sourceColumn: [Nhóm Sản Phẩm]
+
+	column PricePerTicket
+		lineageTag: c4b4facb-f2b3-48e4-ba4f-c5980296ac9d
+		isNameInferred
+		sourceColumn: [PricePerTicket]
+
+	partition Dim_Product = calculated
+		mode: import
+		source = DATATABLE("ProductId", INTEGER, "ProductName", STRING, "Tên Sản Phẩm", STRING, "ProductCategory", STRING, "Nhóm Sản Phẩm", STRING, "PricePerTicket", CURRENCY, {{1, "Nhóm ma trận", "Nhóm ma trận", "Xổ số Ma trận", "Xổ số Ma trận", 10000}, {2, "Nhóm dãy số", "Nhóm dãy số", "Xổ số Dãy số", "Xổ số Dãy số", 10000}, {3, "BINGO18", "BINGO18", "Xổ số Quay nhanh", "Xổ số Quay nhanh", 10000}, {4, "LOTTO 5/35", "LOTTO 5/35", "Xổ số Tự chọn", "Xổ số Tự chọn", 10000}})
+

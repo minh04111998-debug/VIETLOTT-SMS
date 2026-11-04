@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "card_total_tickets",
+  "position": {
+    "x": 495,
+    "y": 90,
+    "z": 1005,
+    "width": 455,
+    "height": 150,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Sales"
+                    }
+                  },
+                  "Property": "Số Lượng Vé"
+                }
+              },
+              "queryRef": "Fact_Sales.Số Lượng Vé",
+              "nativeQueryRef": "Số Lượng Vé"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'SỐ LƯỢNG VÉ BÁN RA'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

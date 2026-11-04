@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face {
+  font-family: 'MontserratLocal';
+  src: local('Montserrat Bold'), url('file:///C:/Windows/Fonts/Montserrat-Bold.ttf') format('truetype');
+  font-weight: 800;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 1200px;
+  height: 675px;
+  overflow: hidden;
+  background: #FAEFD3;
+  font-family: 'MontserratLocal', 'Montserrat', 'Segoe UI', sans-serif;
+}
+.card {
+  width: 1200px;
+  height: 675px;
+  position: relative;
+  background: radial-gradient(circle at 50% 45%, #FBF2DA 0%, #FAEFD3 70%, #F8EBD0 100%);
+}
+/* Subtle warm paper grain overlay */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(139, 105, 60, 0.045) 1px, transparent 0);
+  background-size: 18px 18px;
+  pointer-events: none;
+}
+.layout-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 46px 64px 0 64px;
+}
+.headline-top {
+  text-align: center;
+  color: #054AA3;
+  font-size: 36px;
+  font-weight: 800;
+  -webkit-text-stroke: 0.55px #054AA3;
+  line-height: 1.32;
+  letter-spacing: -0.2px;
+  z-index: 2;
+}
+.scene-bottom {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+}
+.scene-bottom svg {
+  max-width: 900px;
+  max-height: 468px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+.layout-split {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 68px 0 68px;
+  gap: 24px;
+}
+.headline-side {
+  flex: 0 0 510px;
+  color: #054AA3;
+  font-size: 36px;
+  font-weight: 800;
+  -webkit-text-stroke: 0.55px #054AA3;
+  line-height: 1.36;
+  padding-bottom: 36px;
+  z-index: 2;
+}
+.headline-side.left { text-align: left; }
+.headline-side.right { text-align: left; }
+.scene-side {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1;
+}
+.scene-side svg {
+  max-width: 560px;
+  max-height: 545px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+</style>
+</head>
+<body>
+
+        <div class="card layout-split">
+          <div class="scene-side"><svg width="560" height="500" viewBox="0 0 560 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="softShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#8C6D46" flood-opacity="0.16"/>
+    </filter>
+    <linearGradient id="skyWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#DCE8F4" stop-opacity="0.78"/>
+      <stop offset="100%" stop-color="#EBF1E6" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="sandWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F1DFB6" stop-opacity="0.82"/>
+      <stop offset="100%" stop-color="#F6E9CB" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="sageWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#DCECE0" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#F1E6C8" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="peachWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F6DDD2" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#F3E4C2" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+
+    <path d="M 59.19999999999999,235.75 C 100.0,79.75 340.0,66.1 484.0,177.25 C 544.0,304.0 436.0,450.25 256.0,456.1 C 88.0,450.25 28.0,343.0 59.19999999999999,235.75 Z" fill="url(#sageWash)" />
+    <!-- Ascending Warm Wooden Stairs -->
+    <polygon points="45,425 145,425 145,345 255,345 255,265 365,265 365,185 495,185 495,455 45,455" fill="#E5BA73" stroke="#3B2518" stroke-width="3.8" stroke-linejoin="round"/>
+    <rect x="50" y="368" width="92" height="34" rx="17.0" fill="#FFFDF7" stroke="#3B2518" stroke-width="3"/><text x="96.0" y="389.55" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" font-size="13" fill="#3B2518">Junior</text>
+    <rect x="155" y="288" width="96" height="34" rx="17.0" fill="#DCEBFB" stroke="#3B2518" stroke-width="3"/><text x="203.0" y="309.55" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" font-size="13" fill="#054AA3">Middle</text>
+    <rect x="265" y="208" width="98" height="34" rx="17.0" fill="#DCF2E4" stroke="#3B2518" stroke-width="3"/><text x="314.0" y="229.55" text-anchor="middle" font-family="Montserrat, Segoe UI, sans-serif" font-weight="800" font-size="13" fill="#1B6B3A">Senior / Lead</text>
+    <!-- Trophy / Star at Top -->
+    <polygon points="435,95 447,125 480,125 453,144 463,175 435,156 407,175 417,144 390,125 423,125" fill="#F7C948" stroke="#3B2518" stroke-width="3.2"/>
+    <g transform="translate(210,195) scale(0.82)">
+<rect x="-14" y="48" width="28" height="22" rx="8" fill="#F0C19C" stroke="#3B2518" stroke-width="3.2"/>
+<path d="M -56,162 C -54,96 -38,66 0,66 C 38,66 54,96 56,162 Z" fill="#7A6352" stroke="#3B2518" stroke-width="3.8" stroke-linejoin="round"/>
+<polygon points="-20,67 0,115 20,67" fill="#F7F2E8" stroke="#3B2518" stroke-width="3.2" stroke-linejoin="round"/>
+<polygon points="-5,74 5,74 8,112 0,124 -8,112" fill="#A64B38" stroke="#3B2518" stroke-width="2.6" stroke-linejoin="round"/>
+<polygon points="-24,66 -4,76 -15,88" fill="#FFFFFF" stroke="#3B2518" stroke-width="2.8" stroke-linejoin="round"/>
+<polygon points="24,66 4,76 15,88" fill="#FFFFFF" stroke="#3B2518" stroke-width="2.8" stroke-linejoin="round"/>
+<path d="M -50,92 C -72,115 -68,142 -48,156" fill="none" stroke="#7A6352" stroke-width="20" stroke-linecap="round"/>
+<path d="M -50,92 C -72,115 -68,142 -48,156" fill="none" stroke="#3B2518" stroke-width="3.6" stroke-linecap="round"/>
+<path d="M 48,94 C 76,82 88,54 84,26" fill="none" stroke="#7A6352" stroke-width="20" stroke-linecap="round"/>
+<path d="M 48,94 C 76,82 88,54 84,26" fill="none" stroke="#3B2518" stroke-width="3.6" stroke-linecap="round"/>
+<circle cx="84" cy="20" r="11" fill="#FAD9BE" stroke="#3B2518" stroke-width="3.2"/>
+<line x1="84" y1="10" x2="84" y2="-4" stroke="#FAD9BE" stroke-width="8" stroke-linecap="round"/>
+<line x1="84" y1="10" x2="84" y2="-4" stroke="#3B2518" stroke-width="3.2" stroke-linecap="round"/>
+<circle cx="-56" cy="4" r="12" fill="#FAD9BE" stroke="#3B2518" stroke-width="3.4"/>
+<circle cx="56" cy="4" r="12" fill="#FAD9BE" stroke="#3B2518" stroke-width="3.4"/>
+<rect x="-56" y="-52" width="112" height="108" rx="48" fill="#FAD9BE" stroke="#3B2518" stroke-width="3.8"/>
+<ellipse cx="-34" cy="18" rx="10" ry="6" fill="#F2A294" opacity="0.55"/>
+<ellipse cx="34" cy="18" rx="10" ry="6" fill="#F2A294" opacity="0.55"/>
+<path d="M -57,-8 C -62,-50 -32,-68 4,-67 C 38,-66 62,-46 57,-8 C 48,-26 30,-35 8,-33 C -6,-24 -22,-22 -36,-28 C -46,-24 -52,-16 -57,-8 Z" fill="#3D281D" stroke="#3B2518" stroke-width="3.6" stroke-linejoin="round"/>
+<path d="M -32,-15 Q -22,-20 -12,-15" fill="none" stroke="#3B2518" stroke-width="3.2" stroke-linecap="round"/>
+<path d="M 12,-15 Q 22,-20 32,-15" fill="none" stroke="#3B2518" stroke-width="3.2" stroke-linecap="round"/>
+<circle cx="-22" cy="0" r="5.2" fill="#3B2518"/>
+<circle cx="-20" cy="-2" r="1.8" fill="#FFFFFF"/>
+<circle cx="22" cy="0" r="5.2" fill="#3B2518"/>
+<circle cx="24" cy="-2" r="1.8" fill="#FFFFFF"/>
+<path d="M -13,24 Q 0,35 13,24" fill="none" stroke="#3B2518" stroke-width="3.5" stroke-linecap="round"/>
+<rect x="-39" y="-11" width="32" height="23" rx="6" fill="#FFFFFF" fill-opacity="0.22" stroke="#3B2518" stroke-width="3.4"/>
+<rect x="7" y="-11" width="32" height="23" rx="6" fill="#FFFFFF" fill-opacity="0.22" stroke="#3B2518" stroke-width="3.4"/>
+<line x1="-7" y1="0" x2="7" y2="0" stroke="#3B2518" stroke-width="3.4"/>
+<line x1="-55" y1="-2" x2="-39" y2="-1" stroke="#3B2518" stroke-width="3"/>
+<line x1="39" y1="-1" x2="55" y2="-2" stroke="#3B2518" stroke-width="3"/>
+</g>
+    </svg></div>
+          <div class="headline-side right">Cách xây dựng khung năng lực<br>và đánh giá Level team BA</div>
+        </div>
+        
+</body>
+</html>

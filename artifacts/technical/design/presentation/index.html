@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vietlott SMS 2.0 — Interactive Presentation Deck (CEO/BGĐ)</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="deck-container">
+    <!-- Top Progress Bar -->
+    <div class="progress-bar-container">
+      <div class="progress-bar-fill" id="progressBarFill"></div>
+    </div>
+
+    <!-- Header Navigation & Branding -->
+    <header class="deck-header">
+      <div class="brand-badge">
+        <div class="brand-logo">V</div>
+        <div class="brand-title">VIETLOTT SMS 2.0</div>
+        <div class="brand-tag">Kỷ niệm 6 Năm</div>
+      </div>
+      <div class="header-controls">
+        <button class="control-btn-icon" id="overviewBtn" title="Xem tổng quan các slide (Phím O)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </button>
+        <button class="control-btn-icon" id="fullscreenBtn" title="Toàn màn hình (Phím F)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Slides Wrapper -->
+    <main class="slides-wrapper" id="slidesWrapper">
+
+      <!-- SLIDE 1: COVER -->
+      <section class="slide active" id="slide-1">
+        <div class="cover-container">
+          <div class="cover-glow"></div>
+          <div class="cover-badge-anniversary">DỰ ÁN KỶ NIỆM 6 NĂM RA MẮT (2020 – 2026)</div>
+          <h1 class="cover-main-title">BỨT PHÁ Ý TƯỞNG — DẪN DẮT THAY ĐỔI</h1>
+          <p class="cover-subtitle">Đề xuất Tái cấu trúc & Nâng tầm Trải nghiệm Sản phẩm Vietlott SMS 2.0 cho Chủ tịch HĐQT & Ban Tổng Giám đốc</p>
+          <div class="cover-meta-grid">
+            <div class="meta-item">
+              <div class="meta-label">Đội ngũ thực hiện</div>
+              <div class="meta-val">Multi-Role AI Product Team</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Chuyên môn phối hợp</div>
+              <div class="meta-val">PO • BA • Designer • SA • DEV • QA • DA</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Cột mốc dự án</div>
+              <div class="meta-val">Milestone 4 — Presentation Deck</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 2: PROBLEM STATEMENT -->
+      <section class="slide" id="slide-2">
+        <div class="slide-header">
+          <div class="slide-subtitle">01. Bối cảnh & Dữ liệu thực tế</div>
+          <h2 class="slide-title">THỰC TRẠNG SẢN PHẨM & TOP 5 NỖI ĐAU KHÁCH HÀNG</h2>
+        </div>
+        <div class="slide-content">
+          <!-- Data Summary Bar -->
+          <div class="stat-banner">
+            <div class="stat-box">
+              <div class="stat-num">572,2 Tỷ</div>
+              <div class="stat-desc">Doanh thu T7/2026 (690,5B T8 Forecast)</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">~5 Triệu</div>
+              <div class="stat-desc">Tài khoản đăng ký (900k+ active/tháng)</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">2.44M VNĐ</div>
+              <div class="stat-desc">ARPU BINGO18 MobiFone (Cash Cow 46.5% DT)</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">18.5%</div>
+              <div class="stat-desc">Khiếu nại do đút mạng & nạp trùng tiền</div>
+            </div>
+          </div>
+
+          <!-- Top 5 Pain Points Grid -->
+          <div class="pain-cards-grid">
+            <div class="pain-card">
+              <div>
+                <div class="pain-header">1. Lag Thanh Toán</div>
+                <div class="pain-body">Thiếu hiệu ứng phản hồi trạng thái thời gian thực. User bấm liên tục giờ cao điểm 6 phút BINGO18 gây trùng đơn.</div>
+              </div>
+              <div class="pain-metric">18.5% khiếu nại / Nạp trùng 2 lần</div>
+            </div>
+
+            <div class="pain-card">
+              <div>
+                <div class="pain-header">2. Rào Cản APK Android</div>
+                <div class="pain-body">Google Play hạn chế app xổ số. User phải cài APK thủ công, lo lắng ứng dụng lừa đảo giả mạo.</div>
+              </div>
+              <div class="pain-metric">Drop-off high ở người dùng Android</div>
+            </div>
+
+            <div class="pain-card">
+              <div>
+                <div class="pain-header">3. Navigation Phức Tạp</div>
+                <div class="pain-body">Menu 5+ game phẳng cố định. Người dùng mới bối rối không biết chọn sản phẩm nào dễ trúng.</div>
+              </div>
+              <div class="pain-metric">Drop-off Rate 35% user mới</div>
+            </div>
+
+            <div class="pain-card">
+              <div>
+                <div class="pain-header">4. Thiếu Gamification/VIP</div>
+                <div class="pain-body">App thụ động như utility tool. Khách hàng VIP chi >2M/tháng (ARPU 741k MobiFone) không được tri ân.</div>
+              </div>
+              <div class="pain-metric">Lack of retention loop hàng ngày</div>
+            </div>
+
+            <div class="pain-card">
+              <div>
+                <div class="pain-header">5. Chưa Có Mua Nhóm</div>
+                <div class="pain-body">Người dùng muốn góp tiền mua vé Bao lớn (Bao 7-15) cùng bạn bè phải tự chuyển khoản rủi ro.</div>
+              </div>
+              <div class="pain-metric">Chưa khai thác tệp Social Play</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: PRODUCT VISION & PILLARS -->
+      <section class="slide" id="slide-3">
+        <div class="slide-header">
+          <div class="slide-subtitle">02. Định hướng chiến lược</div>
+          <h2 class="slide-title">TẦM NHÌN SẢN PHẨM & 4 TRỤ CỘT CHIẾN LƯỢC</h2>
+        </div>
+        <div class="slide-content">
+          <div class="vision-banner">
+            <div class="vision-text">
+              "Vietlott SMS 2.0 — Nâng tầm trải nghiệm xổ số số hóa toàn diện: An toàn vượt trội, Thanh toán siêu tốc, Cá nhân hóa thông minh & Gắn kết cộng đồng."
+            </div>
+            <div class="vision-goal">
+              <div style="font-size: 12px; color: var(--color-accent-gold); font-weight: 700; text-transform: uppercase;">Mục tiêu Q4/2026</div>
+              <div style="font-size: 32px; font-weight: 900; color: #FFF;">750+ Tỷ</div>
+              <div style="font-size: 12px; color: var(--color-text-muted);">VNĐ / Tháng (Retention +25%)</div>
+            </div>
+          </div>
+
+          <div class="grid-4" style="margin-top: 15px;">
+            <div class="pillar-card">
+              <div class="pillar-icon">⚡</div>
+              <div class="pillar-title">1. Payment Engine Kháng Lag</div>
+              <div class="pillar-desc">Idempotent 1-tap checkout, vô hiệu hóa nút ngay khi bấm, dialog đếm ngược 3s chống trùng tiền 100%.</div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon">🧠</div>
+              <div class="pillar-title">2. Smart Adaptive Personalization</div>
+              <div class="pillar-desc">Giao diện trang chủ tùy biến theo thói quen user & Widget gợi ý bán kèm (Cross-sell) Lotto 5/35 10k.</div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon">🛡️</div>
+              <div class="pillar-title">3. In-App Auto Update & Trust Shield</div>
+              <div class="pillar-desc">Cập nhật ngầm Android 1-click không qua web ngoài + Huy hiệu Xác thực Chính hãng Vietlott SHA-256.</div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon">👥</div>
+              <div class="pillar-title">4. Social Syndicate & VIP Club</div>
+              <div class="pillar-desc">Tạo phòng mua vé nhóm tự động chia thưởng + Vietlott VIP Club hoàn tiền 0.5% - 2.0% vào Ví dự thưởng.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: IDEA 1 - PAYMENT ENGINE -->
+      <section class="slide" id="slide-4">
+        <div class="slide-header">
+          <div class="slide-subtitle">03. Đổi mới cốt lõi — Ý tưởng 1</div>
+          <h2 class="slide-title">IDEMPOTENT ONE-TAP PAYMENT ENGINE & ANTI-DOUBLE BILLING</h2>
+        </div>
+        <div class="slide-content">
+          <div class="idea-layout">
+            <!-- Problem -->
+            <div class="idea-box problem">
+              <div>
+                <span class="card-badge badge-red">VẤN ĐỀ HIỆN TẠI (AS-IS)</span>
+                <div class="box-title red">Lag Thanh Toán & Trừ Tiền 2 Lần</div>
+                <ul class="box-list">
+                  <li>Xử lý giao dịch đồng bộ legacy khiến app bị đút đứng giờ cao điểm quay số BINGO18.</li>
+                  <li>Thiếu loading feedback thời gian thực khiến 12% user bấm liên tiếp nút thanh toán.</li>
+                  <li>Phát sinh 450+ ticket khiếu nại nạp trùng tiền/tháng, giảm NPS xuống 42 điểm.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Solution -->
+            <div class="idea-box solution">
+              <div>
+                <span class="card-badge badge-blue">GIẢI PHÁP ĐỔI MỚI (TO-BE)</span>
+                <div class="box-title blue">Động Cơ Thanh Toán 1-Tap Kháng Lag</div>
+                <ul class="box-list">
+                  <li><strong>Client Idempotency Token:</strong> Sinh Header Idempotency-Key duy nhất cho mỗi đơn hàng chặn trùng lặp ở Gateway.</li>
+                  <li><strong>Debouncing & Status Countdown:</strong> Nút tự động vô hiệu hóa sau 1 chạm; Dialog đếm ngược đếm 3s thời gian thực.</li>
+                  <li><strong>Biometric 1-Tap Auth:</strong> Xác thực FaceID/Fingerprint phê duyệt đơn trong 0.5 giây.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Impact -->
+            <div class="idea-box impact">
+              <div>
+                <span class="card-badge badge-green">TÁC ĐỘNG KINH DOANH (EXPECTED IMPACT)</span>
+                <div class="box-title green">Tốc Độ & Tin Cậy Tuyệt Đối</div>
+                <div class="impact-highlight-num">0%</div>
+                <div class="impact-highlight-label">Rủi ro Double-Billing (Triệt tiêu 100%)</div>
+                <div class="impact-highlight-num">&lt; 3s</div>
+                <div class="impact-highlight-label">Thời gian Checkout (Rút ngắn từ 18s)</div>
+                <div class="impact-highlight-num">+35–45B</div>
+                <div class="impact-highlight-label">VNĐ/tháng Doanh thu BINGO18 bổ sung</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: IDEA 2 - ADAPTIVE UI & CROSS-SELL -->
+      <section class="slide" id="slide-5">
+        <div class="slide-header">
+          <div class="slide-subtitle">04. Đổi mới trải nghiệm — Ý tưởng 2</div>
+          <h2 class="slide-title">SMART ADAPTIVE HOME UI & AUTO CROSS-SELL LOTTO 5/35</h2>
+        </div>
+        <div class="slide-content">
+          <div class="idea-layout">
+            <!-- Problem -->
+            <div class="idea-box problem">
+              <div>
+                <span class="card-badge badge-red">VẤN ĐỀ HIỆN TẠI (AS-IS)</span>
+                <div class="box-title red">Menu Cố Định & Bỏ Lỡ Cross-Sell</div>
+                <ul class="box-list">
+                  <li>Giao diện phẳng 5+ game cố định gây rối mắt cho người dùng mới (Drop-off Rate 35%).</li>
+                  <li>Lotto 5/35 bứt phá kỷ lục (đạt 198% KPI T8 MTD) nhưng chưa có công cụ bán kèm tự động.</li>
+                  <li>Không tận dụng được đà tăng trưởng của tệp 900k active buyers/tháng.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Solution -->
+            <div class="idea-box solution">
+              <div>
+                <span class="card-badge badge-blue">GIẢI PHÁP ĐỔI MỚI (TO-BE)</span>
+                <div class="box-title blue">Trang Chủ Tùy Biến & Widget Gợi Ý</div>
+                <ul class="box-list">
+                  <li><strong>Smart Adaptive Home UI:</strong> Tự động cá nhân hóa (góc "Gợi ý cho người mới" 2 chạm vs BINGO18 Turbo Widget).</li>
+                  <li><strong>Cross-Sell Lotto 5/35 Widget:</strong> Tự động gợi ý mua kèm 1 bộ số Lotto 5/35 (10k VNĐ) tại màn hình hóa đơn BINGO18/Mega.</li>
+                  <li><strong>Turbo Fast-Play:</strong> Đặt cược 6 phút BINGO18 trực tiếp trên Home.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Impact -->
+            <div class="idea-box impact">
+              <div>
+                <span class="card-badge badge-green">TÁC ĐỘNG KINH DOANH (EXPECTED IMPACT)</span>
+                <div class="box-title green">Tăng Tỷ Trọng & Giỏ Hàng ARPU</div>
+                <div class="impact-highlight-num">&gt; 25%</div>
+                <div class="impact-highlight-label">Tỷ trọng doanh thu Lotto 5/35 (đạt 31.3% T8)</div>
+                <div class="impact-highlight-num">+40–50B</div>
+                <div class="impact-highlight-label">VNĐ/tháng Doanh thu Cross-sell mới</div>
+                <div class="impact-highlight-num">720.000</div>
+                <div class="impact-highlight-label">VNĐ ARPU Trung bình (tăng từ 635k)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: IDEA 3 - APK UPDATER & TRUST SHIELD -->
+      <section class="slide" id="slide-6">
+        <div class="slide-header">
+          <div class="slide-subtitle">05. An toàn & Bảo mật — Ý tưởng 3</div>
+          <h2 class="slide-title">NATIVE APK IN-APP AUTO-UPDATER & OFFICIAL TRUST SHIELD</h2>
+        </div>
+        <div class="slide-content">
+          <div class="idea-layout">
+            <!-- Problem -->
+            <div class="idea-box problem">
+              <div>
+                <span class="card-badge badge-red">VẤN ĐỀ HIỆN TẠI (AS-IS)</span>
+                <div class="box-title red">Rào Cản Cập Nhật APK Android</div>
+                <ul class="box-list">
+                  <li>Google Play hạn chế app xổ số làm user Android phải tải APK thủ công rườm rà từ web ngoài.</li>
+                  <li>Ứng dụng giả mạo Vietlott xuất hiện tràn lan trên mạng gây tâm lý hoang mang lừa đảo.</li>
+                  <li>Tỷ lệ nâng cấp phiên bản mới rất chậm (&lt;45% sau 30 ngày).</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Solution -->
+            <div class="idea-box solution">
+              <div>
+                <span class="card-badge badge-blue">GIẢI PHÁP ĐỔI MỚI (TO-BE)</span>
+                <div class="box-title blue">Cập Nhật Ngầm & Huy Hiệu Xác Thực</div>
+                <ul class="box-list">
+                  <li><strong>In-App Auto Updater Service:</strong> Tự động tải ngầm và cài đặt bản cập nhật APK 1-click ngay trong app.</li>
+                  <li><strong>SHA-256 Checksum Integrity:</strong> Kiểm tra toàn vẹn mã băm hash chống bị can thiệp file APK.</li>
+                  <li><strong>Official Verified Security Badge:</strong> Badge chứng nhận chính hãng kèm QR xác thực liên kết SSL 14 ngân hàng.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Impact -->
+            <div class="idea-box impact">
+              <div>
+                <span class="card-badge badge-green">TÁC ĐỘNG KINH DOANH (EXPECTED IMPACT)</span>
+                <div class="box-title green">Tăng Tỷ Lệ Cập Nhật & Niềm Tin</div>
+                <div class="impact-highlight-num">&gt; 92%</div>
+                <div class="impact-highlight-label">Tỷ lệ nâng cấp phiên bản trong 7 ngày</div>
+                <div class="impact-highlight-num">85 / 100</div>
+                <div class="impact-highlight-label">Chỉ số Niềm tin (Trust Index Score)</div>
+                <div class="impact-highlight-num">+20.000</div>
+                <div class="impact-highlight-label">Active Android Users tăng thêm / tháng</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 7: IDEA 4 - GAMIFICATION & VIP LOYALTY -->
+      <section class="slide" id="slide-7">
+        <div class="slide-header">
+          <div class="slide-subtitle">06. Gắn kết & Tri ân — Ý tưởng 4</div>
+          <h2 class="slide-title">GAMIFICATION HUB & VIETLOTT VIP LOYALTY STREAKS</h2>
+        </div>
+        <div class="slide-content">
+          <div class="idea-layout">
+            <!-- Problem -->
+            <div class="idea-box problem">
+              <div>
+                <span class="card-badge badge-red">VẤN ĐỀ HIỆN TẠI (AS-IS)</span>
+                <div class="box-title red">App Thụ Động & Khách VIP Thiếu Tri Ân</div>
+                <ul class="box-list">
+                  <li>Ứng dụng thuần túy là công cụ mua vé (Utility Tool), không có lý do quay lại mở app hàng ngày.</li>
+                  <li>Khách hàng VIP chi tiêu &gt;2 triệu/tháng (MobiFone ARPU 741k) không có đặc quyền tri ân xứng đáng.</li>
+                  <li>Tỷ lệ giữ chân (Retention Rate) giảm dần sau các kỳ Jackpot lớn.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Solution -->
+            <div class="idea-box solution">
+              <div>
+                <span class="card-badge badge-blue">GIẢI PHÁP ĐỔI MỚI (TO-BE)</span>
+                <div class="box-title blue">Hệ Thống Tích Điểm VIP & Check-in Hub</div>
+                <ul class="box-list">
+                  <li><strong>Vietlott VIP Club 4 Cấp Bậc:</strong> Hoàn tiền Cashback 0.5% – 2.0% tự động vào Ví dự thưởng cho hạng Đồng, Bạc, Vàng, Kim Cương.</li>
+                  <li><strong>Gamification Daily Streaks:</strong> Điểm danh 7 ngày nhận lượt quay Vòng Quay Kỷ Niệm 6 Năm.</li>
+                  <li><strong>Celebration Confetti:</strong> Hiệu ứng pháo hoa rực rỡ và Push notification mừng chiến thắng tức thì.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Impact -->
+            <div class="idea-box impact">
+              <div>
+                <span class="card-badge badge-green">TÁC ĐỘNG KINH DOANH (EXPECTED IMPACT)</span>
+                <div class="box-title green">Tăng Retention & Giữ Chân VIP</div>
+                <div class="impact-highlight-num">+25%</div>
+                <div class="impact-highlight-label">Tăng tỷ lệ giữ chân 30-day Retention Rate</div>
+                <div class="impact-highlight-num">0.5 – 2%</div>
+                <div class="impact-highlight-label">Hoàn tiền Cashback tự động cho VIP</div>
+                <div class="impact-highlight-num">&lt; 1.5%</div>
+                <div class="impact-highlight-label">Tỷ lệ Rời bỏ (Churn Rate) tệp VIP</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 8: IDEA 5 - SYNDICATE GROUP PLAY -->
+      <section class="slide" id="slide-8">
+        <div class="slide-header">
+          <div class="slide-subtitle">07. Mạng xã hội & Mua nhóm — Ý tưởng 5</div>
+          <h2 class="slide-title">SYNDICATE GROUP PLAY (MUA VÉ NHÓM) & AUTOMATED SPLIT PAYOUT</h2>
+        </div>
+        <div class="slide-content">
+          <div class="idea-layout">
+            <!-- Problem -->
+            <div class="idea-box problem">
+              <div>
+                <span class="card-badge badge-red">VẤN ĐỀ HIỆN TẠI (AS-IS)</span>
+                <div class="box-title red">Chỉ Mua Cá Nhân & Rủi Ro Gom Tiền</div>
+                <ul class="box-list">
+                  <li>Chỉ hỗ trợ mua vé cá nhân đơn lẻ.</li>
+                  <li>Vé Bao lớn (Bao 7 - Bao 15) có tỷ lệ trúng cao nhưng giá trị đắt (vài triệu VNĐ), người dùng muốn mua chung với bạn bè phải tự gom tiền ngoài.</li>
+                  <li>Tiềm ẩn rủi ro tranh chấp tài chính và tiền thưởng khi vé trúng giải.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Solution -->
+            <div class="idea-box solution">
+              <div>
+                <span class="card-badge badge-blue">GIẢI PHÁP ĐỔI MỚI (TO-BE)</span>
+                <div class="box-title blue">Tạo Phòng Mua Nhóm & Tự Động Chia Thưởng</div>
+                <ul class="box-list">
+                  <li><strong>Tạo Phòng Syndicate:</strong> Phát hành link/QR mời bạn bè góp vốn mua vé Bao lớn (chỉ từ 10.000 VNĐ/suất).</li>
+                  <li><strong>Hợp Đồng Mua Chung Số Hóa:</strong> Tự động khóa vé khi đủ 100% tiền góp.</li>
+                  <li><strong>Automated Split Payout Engine:</strong> Vietlott Core tự động chia tiền thưởng và chuyển thẳng vào Ví cá nhân từng thành viên theo đúng tỷ lệ %.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Impact -->
+            <div class="idea-box impact">
+              <div>
+                <span class="card-badge badge-green">TÁC ĐỘNG KINH DOANH (EXPECTED IMPACT)</span>
+                <div class="box-title green">Sức Mạnh Mua Nhóm & Viral Growth</div>
+                <div class="impact-highlight-num">150.000+</div>
+                <div class="impact-highlight-label">Người dùng tham gia mua nhóm / 3 tháng</div>
+                <div class="impact-highlight-num">+30%</div>
+                <div class="impact-highlight-label">Tăng sản lượng tiêu thụ vé Bao khủng</div>
+                <div class="impact-highlight-num">+0.35</div>
+                <div class="impact-highlight-label">Hệ số giới thiệu lan tỏa tự nhiên (K-factor)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 9: PRODUCT ROADMAP -->
+      <section class="slide" id="slide-9">
+        <div class="slide-header">
+          <div class="slide-subtitle">08. Kế hoạch thực thi</div>
+          <h2 class="slide-title">LỘ TRÌNH PHÁT TRIỂN SẢN PHẨM (NOW — NEXT — LATER)</h2>
+        </div>
+        <div class="slide-content">
+          <div class="roadmap-container">
+            <!-- Phase 1: NOW -->
+            <div class="roadmap-phase now">
+              <div class="phase-header">
+                <div class="phase-name">NOW (Q3/2026)</div>
+                <div class="phase-time" style="color: var(--color-primary-light);">15/08 – 30/09</div>
+              </div>
+              <ul class="phase-deliverables">
+                <li><strong>Idempotent Payment Engine:</strong> Khắc phục 100% nạp trùng đơn & lag thanh toán.</li>
+                <li><strong>Smart Adaptive Home UI:</strong> Trang chủ cá nhân hóa cho người mới & BINGO18.</li>
+                <li><strong>Auto Cross-Sell Lotto 5/35:</strong> Widget bán kèm 10k tại màn hình hóa đơn.</li>
+                <li><strong>In-App Auto Updater & Security Badge:</strong> Cập nhật ngầm APK Android.</li>
+              </ul>
+              <div class="phase-goal">🎯 Mục tiêu: Bảo vệ mốc 690B+ T8, Nạp trùng = 0, Checkout funnel &gt;94%.</div>
+            </div>
+
+            <!-- Phase 2: NEXT -->
+            <div class="roadmap-phase next">
+              <div class="phase-header">
+                <div class="phase-name">NEXT (Q4/2026)</div>
+                <div class="phase-time" style="color: var(--color-warning);">01/10 – 31/12</div>
+              </div>
+              <ul class="phase-deliverables">
+                <li><strong>Syndicate Group Play:</strong> Mua vé nhóm & Tự động chia tiền thưởng về ví.</li>
+                <li><strong>Vietlott VIP Club:</strong> Tích điểm hoàn tiền Cashback 4 cấp bậc.</li>
+                <li><strong>Gamification Hub:</strong> Chuỗi ngày may mắn Daily Streaks & Lucky Wheel 6 năm.</li>
+                <li><strong>BINGO18 Fast Widget & Celebration:</strong> Đặt cược 3s & Pháo hoa mừng chiến thắng.</li>
+              </ul>
+              <div class="phase-goal">🎯 Mục tiêu: Doanh thu cán mốc 750+ Tỷ/tháng, Retention +25%, 150k user mua nhóm.</div>
+            </div>
+
+            <!-- Phase 3: LATER -->
+            <div class="roadmap-phase later">
+              <div class="phase-header">
+                <div class="phase-name">LATER (H1/2027)</div>
+                <div class="phase-time" style="color: var(--color-info);">01/01 – 30/06</div>
+              </div>
+              <ul class="phase-deliverables">
+                <li><strong>AI Smart Pick & Tử vi 12 Con Giáp:</strong> Gợi ý bộ số may mắn cá nhân hóa.</li>
+                <li><strong>Subscription Auto-Renew:</strong> Đăng ký giữ số mua vé tự động định kỳ.</li>
+                <li><strong>Social Share Card:</strong> Xuất ảnh vé trúng đẹp mắt đăng Zalo/Facebook.</li>
+                <li><strong>Analytics Visualizer & Responsible Gaming:</strong> Thống kê tần suất & Hạn mức chi tiêu.</li>
+              </ul>
+              <div class="phase-goal">🎯 Mục tiêu: Hệ sinh thái giải trí số hóa toàn diện 2027–2030.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 10: EXPECTED OUTCOMES & BUSINESS IMPACT -->
+      <section class="slide" id="slide-10">
+        <div class="slide-header">
+          <div class="slide-subtitle">09. Giá trị mang lại</div>
+          <h2 class="slide-title">TÁC ĐỘNG KINH DOANH VÀ KEY METRICS DỰ KIẾN</h2>
+        </div>
+        <div class="slide-content">
+          <div class="outcomes-grid">
+            <div class="outcome-card">
+              <span class="card-badge badge-gold">DOANH THU HÀNG THÁNG</span>
+              <div class="outcome-val">750+ Tỷ</div>
+              <div class="outcome-title">VNĐ / Tháng vào Q4/2026</div>
+              <div class="outcome-desc">Tăng trưởng +31% so với mốc 572 Tỷ (T7/2026), vượt 121% KPI cam kết.</div>
+            </div>
+
+            <div class="outcome-card">
+              <span class="card-badge badge-blue">GIÁ TRỊ GIỎ HÀNG ARPU</span>
+              <div class="outcome-val">720.000</div>
+              <div class="outcome-title">VNĐ / Người dùng active</div>
+              <div class="outcome-desc">Tăng từ 635.000 VNĐ nhờ động cơ Cross-sell Lotto 5/35 và Mua vé nhóm.</div>
+            </div>
+
+            <div class="outcome-card">
+              <span class="card-badge badge-green">TỶ LỆ GIỮ CHÂN RETENTION</span>
+              <div class="outcome-val">+25%</div>
+              <div class="outcome-title">30-Day Active Retention Rate</div>
+              <div class="outcome-desc">Thúc đẩy bởi Gamification Hub Daily Streaks & VIP Club hoàn tiền 2%.</div>
+            </div>
+
+            <div class="outcome-card">
+              <span class="card-badge badge-purple">CHỈ SỐ HÀI LÒNG NPS</span>
+              <div class="outcome-val">68+</div>
+              <div class="outcome-title">NPS Score (Tăng từ 42 điểm)</div>
+              <div class="outcome-desc">Nâng tầm trải nghiệm thương hiệu Vietlott SMS an toàn, mượt mà và minh bạch.</div>
+            </div>
+
+            <div class="outcome-card">
+              <span class="card-badge badge-red">SỰ CỐ NẠP TRÙNG TIỀN</span>
+              <div class="outcome-val">0 Case</div>
+              <div class="outcome-title">Triệt tiêu 100% Double-Billing</div>
+              <div class="outcome-desc">Tốc độ Checkout &lt;3s, giảm 450+ ticket khiếu nại nạp trùng tiền về 0.</div>
+            </div>
+
+            <div class="outcome-card">
+              <span class="card-badge badge-gold">HIỆU NĂNG ĐẦU TƯ ROI</span>
+              <div class="outcome-val">450%</div>
+              <div class="outcome-title">ROI Ước Tính Trong 6 Tháng</div>
+              <div class="outcome-desc">Chi phí phát triển ~1.5 Tỷ VNĐ, đem lại lợi nhuận bổ sung ~6.75 Tỷ VNĐ.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 11: CALL TO ACTION & NEXT STEPS -->
+      <section class="slide" id="slide-11">
+        <div class="slide-header">
+          <div class="slide-subtitle">10. Kêu gọi hành động & Kết luận</div>
+          <h2 class="slide-title">CÙNG HÀNH ĐỘNG, CÙNG BỨT PHÁ!</h2>
+        </div>
+        <div class="slide-content">
+          <div class="cta-container">
+            <div class="cta-box">
+              <div class="cta-heading">VIETLOTT SMS 2.0 — DẪN DẮT THAY ĐỔI 2026</div>
+              <div class="cta-subtext">
+                "Vietlott SMS 2.0 không chỉ là bản nâng cấp tính năng, mà là bước chuyển mình chiến lược khẳng định vị thế dẫn dắt chuyển đổi số xổ số Việt Nam nhân kỷ niệm 6 năm ra mắt. Đội ngũ sẵn sàng biến tầm nhìn thành kết quả đột phá!"
+              </div>
+            </div>
+
+            <!-- Immediate Execution Timeline -->
+            <div class="next-steps-timeline">
+              <div class="step-card">
+                <div class="step-date">15/08/2026</div>
+                <div class="step-title">Phê duyệt Đề xuất Kế hoạch Cải tiến & Ngân sách Sprint</div>
+              </div>
+              <div class="step-card">
+                <div class="step-date">20/08/2026</div>
+                <div class="step-title">Kickoff Sprints Phase NOW (Payment Engine & Adaptive UI)</div>
+              </div>
+              <div class="step-card">
+                <div class="step-date">15/09/2026</div>
+                <div class="step-title">Release 1 MVP chào mừng Cột mốc 6 Năm Vietlott SMS</div>
+              </div>
+              <div class="step-card">
+                <div class="step-date">01/10/2026</div>
+                <div class="step-title">Kích hoạt Chiến dịch Mua Vé Nhóm & VIP Loyalty Club</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Bottom Controls & Counter -->
+    <footer class="deck-footer">
+      <div class="footer-info">Vietlott SMS 6-Year Anniversary — Presentation Deck</div>
+      <div class="slide-nav-controls">
+        <button class="nav-btn" id="prevBtn" title="Slide trước (←)">←</button>
+        <div class="slide-counter">
+          <span id="currentSlideNum">1</span> / <span id="totalSlideNum">11</span>
+        </div>
+        <button class="nav-btn" id="nextBtn" title="Slide tiếp (→)">→</button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Overview Grid Modal (Triggered by 'O' or Header Icon) -->
+  <div class="overview-modal" id="overviewModal">
+    <div class="overview-header">
+      <div class="overview-title">TỔNG QUAN TẤT CẢ SLIDES (OVERVIEW GRID)</div>
+      <button class="control-btn-icon" id="closeOverviewBtn">✕</button>
+    </div>
+    <div class="overview-grid" id="overviewGrid"></div>
+  </div>
+
+  <script src="deck.js"></script>
+</body>
+</html>

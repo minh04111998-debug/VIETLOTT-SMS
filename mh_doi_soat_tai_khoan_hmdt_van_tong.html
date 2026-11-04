@@ -1,0 +1,2849 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đối Soát Tài Khoản HMDT & Kiểm Soát Dòng Tiền VAN Tổng | Vietlott SMS Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d6001c;
+            --primary-dark: #a80016;
+            --primary-light: #fff1f2;
+            --navy-900: #0b1329;
+            --navy-800: #162244;
+            --slate-900: #0f172a;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-600: #475569;
+            --slate-500: #64748b;
+            --slate-400: #94a3b8;
+            --slate-300: #cbd5e1;
+            --slate-200: #e2e8f0;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+            --white: #ffffff;
+
+            --emerald-600: #059669;
+            --emerald-500: #10b981;
+            --emerald-50: #ecfdf5;
+            --emerald-200: #a7f3d0;
+
+            --amber-600: #d97706;
+            --amber-500: #f59e0b;
+            --amber-50: #fffbeb;
+            --amber-200: #fde68a;
+
+            --rose-600: #e11d48;
+            --rose-500: #ef4444;
+            --rose-50: #fef2f2;
+            --rose-200: #fecaca;
+
+            --blue-600: #0284c7;
+            --blue-50: #f0f9ff;
+            --blue-200: #bae6fd;
+
+            --indigo-600: #4f46e5;
+            --indigo-50: #eef2ff;
+            --indigo-200: #c7d2fe;
+
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+            --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+            --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.07);
+            --shadow-lg: 0 12px 28px rgba(15, 23, 42, 0.14);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Roboto, 'Segoe UI', Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #212121;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ========================================================================= */
+        /* CTIN ADMIN PORTAL & APP LAYOUT STYLES (100% MATCHING SCREENSHOT)         */
+        /* ========================================================================= */
+        .app-shell {
+            display: flex;
+            min-height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        /* Left Sidebar (CTIN Admin White Material Sidenav) */
+        .app-sidebar {
+            width: 215px;
+            min-width: 215px;
+            background: #ffffff;
+            border-right: 1px solid #e6e6e6;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.22s cubic-bezier(0.4, 0, 0.2, 1), min-width 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 120;
+            flex-shrink: 0;
+        }
+
+        .app-sidebar.collapsed {
+            width: 56px;
+            min-width: 56px;
+        }
+
+        .app-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .app-sidebar::-webkit-scrollbar-thumb {
+            background: #d0d0d0;
+            border-radius: 4px;
+        }
+
+        .sidebar-header {
+            padding: 18px 10px 14px;
+            border-bottom: 1px solid #ececec;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            background: #ffffff;
+        }
+
+        /* Half-pill collapse tab on right edge of sidebar header matching screenshot */
+        .sidebar-collapse-btn {
+            position: absolute;
+            top: 52px;
+            right: 0;
+            width: 22px;
+            height: 32px;
+            border-radius: 20px 0 0 20px;
+            border: 1px solid #e5e5e5;
+            border-right: none;
+            background: #ffffff;
+            color: #cc0003;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 800;
+            line-height: 1;
+            transition: all 0.15s ease;
+            box-shadow: -2px 1px 5px rgba(0, 0, 0, 0.14);
+        }
+
+        .sidebar-collapse-btn:hover {
+            background: #fafafa;
+        }
+
+        .sidebar-logo-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .sidebar-logo-img {
+            width: 48px;
+            height: 46px;
+            object-fit: contain;
+        }
+
+        .sidebar-admin-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111111;
+            letter-spacing: 0.1px;
+        }
+
+        .sidebar-tools {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        .sidebar-tool-btn {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: #111111;
+            padding: 0;
+        }
+
+        .sidebar-tool-btn.active-tool {
+            color: #cc0003;
+        }
+
+        .app-sidebar.collapsed .sidebar-admin-title,
+        .app-sidebar.collapsed .sidebar-tools {
+            display: none;
+        }
+
+        .app-sidebar.collapsed .sidebar-collapse-btn {
+            top: 14px;
+            border-radius: 12px;
+            right: 16px;
+            transform: rotate(180deg);
+        }
+
+        /* Sidebar Navigation Menu (Material Expansion Panels look) */
+        .sidebar-menu {
+            list-style: none;
+            padding: 0 0 24px;
+            margin: 0;
+            flex: 1;
+            background: #ffffff;
+        }
+
+        .nav-item {
+            margin: 0;
+            position: relative;
+            background: #ffffff;
+            border-bottom: 1px solid #eeeeee;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 12px 11px 14px;
+            color: #111111;
+            background: #ffffff;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.35;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.15s ease;
+            user-select: none;
+        }
+
+        .nav-link:hover {
+            background: #f9f9f9;
+        }
+
+        .nav-link.active {
+            background: #ffffff;
+            color: #111111;
+            font-weight: 700;
+            border-left: 3px solid #cc0003;
+            padding-left: 11px;
+        }
+
+        .nav-text {
+            display: block;
+            white-space: normal;
+            word-break: break-word;
+            flex: 1;
+            padding-right: 6px;
+        }
+
+        .nav-chevron {
+            width: 14px;
+            height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #555555;
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .nav-item.open > .nav-link .nav-chevron {
+            transform: rotate(180deg);
+        }
+
+        .app-sidebar.collapsed .nav-text,
+        .app-sidebar.collapsed .nav-chevron {
+            display: none;
+        }
+
+        /* Submenu */
+        .submenu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            border-top: 1px solid #f2f2f2;
+            display: none;
+        }
+
+        .nav-item.open > .submenu {
+            display: block;
+        }
+
+        .app-sidebar.collapsed .submenu {
+            display: none !important;
+        }
+
+        .submenu-item {
+            margin: 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .submenu-item:last-child {
+            border-bottom: none;
+        }
+
+        .submenu-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 12px 9px 22px;
+            color: #333333;
+            background: #ffffff;
+            font-size: 11.5px;
+            font-weight: 400;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.15s ease;
+        }
+
+        .submenu-link:hover {
+            background: #f7f7f7;
+            color: #cc0003;
+        }
+
+        .submenu-link.active {
+            color: #cc0003;
+            font-weight: 700;
+            background: #fafafa;
+        }
+
+        .submenu-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #999999;
+            flex-shrink: 0;
+        }
+
+        .submenu-link.active .submenu-dot {
+            background: #cc0003;
+        }
+
+        /* App Main Area (100% #f2f2f2 background like screenshot) */
+        .app-main-content {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-color: #f2f2f2;
+        }
+
+        /* Viettel Red Top Banner Header (#cc0003) */
+        .top-header-ctin {
+            background: #cc0003;
+            color: #ffffff;
+            height: 42px;
+            padding: 0 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 110;
+        }
+
+        .header-left-space {
+            min-width: 110px;
+        }
+
+        .header-center-brand {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .header-user-badge {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            min-width: 110px;
+            cursor: pointer;
+        }
+
+        .header-user-badge span {
+            font-size: 12.5px;
+            font-weight: 600;
+        }
+
+        .header-user-avatar {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #ffffff;
+            color: #cc0003;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Portal Page Title directly on #f2f2f2 background (NO white header bar) */
+        .portal-page-header {
+            background: transparent;
+            padding: 20px 20px 10px;
+            text-align: center;
+        }
+
+        .portal-page-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+            margin: 0;
+        }
+
+        /* Floating Filter Toolbar directly on #f2f2f2 background (Matches Screenshot) */
+        .control-bar {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 8px 20px 14px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Search Pill Input matching screenshot (magnifying glass + input + Hủy button) */
+        .ctin-search-pill {
+            background: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 999px;
+            height: 36px;
+            padding: 0 5px 0 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .ctin-search-pill input {
+            border: none !important;
+            box-shadow: none !important;
+            height: 30px !important;
+            padding: 0 4px !important;
+            font-size: 12px !important;
+            font-weight: 400 !important;
+            width: 125px;
+            background: transparent !important;
+            color: #212121 !important;
+        }
+
+        .ctin-search-clear {
+            background: #f2f2f2;
+            border: 1px solid #e0e0e0;
+            border-radius: 999px;
+            height: 26px;
+            padding: 0 12px;
+            font-size: 11px;
+            color: #333333;
+            cursor: pointer;
+        }
+
+        .ctin-search-clear:hover {
+            background: #e6e6e6;
+        }
+
+        /* Floating White Filter Box matching screenshot (Trạng thái TKĐT | Tất cả v) */
+        .control-item {
+            background: #ffffff;
+            border: 1px solid #d9d9d9;
+            border-radius: 3px;
+            height: 36px;
+            padding: 0 10px;
+            display: inline-flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .control-item label {
+            font-size: 12px;
+            font-weight: 400;
+            text-transform: none;
+            color: #333333;
+            letter-spacing: 0;
+            white-space: nowrap;
+        }
+
+        select, input[type="text"] {
+            height: 30px;
+            padding: 0 6px;
+            border: 1px solid #d9d9d9;
+            border-radius: 3px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 500;
+            color: #212121;
+            background: #ffffff;
+            outline: none;
+        }
+
+        .control-item select {
+            border: none;
+            box-shadow: none;
+            height: 32px;
+            padding: 0 4px;
+            font-weight: 400;
+            color: #212121;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .action-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn {
+            height: 36px;
+            padding: 0 14px;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Exact Green Button (#28a745) from Screenshot */
+        .btn-green-ctin {
+            background: #28a745;
+            color: #ffffff;
+            border-color: #28a745;
+        }
+
+        .btn-green-ctin:hover {
+            background: #218838;
+        }
+
+        .btn-outline {
+            background: #ffffff;
+            border-color: #d9d9d9;
+            color: #333333;
+        }
+
+        .btn-outline:hover {
+            background: #f9f9f9;
+            border-color: #bfbfbf;
+        }
+
+        .btn-navy {
+            background: #28a745;
+            color: #ffffff;
+        }
+
+        .btn-navy:hover {
+            background: #218838;
+        }
+
+        .btn-primary {
+            background: #cc0003;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: #a80002;
+        }
+
+        .btn-xs {
+            height: 26px;
+            padding: 0 9px;
+            font-size: 11px;
+            border-radius: 3px;
+            box-shadow: none;
+        }
+
+        /* Main Container on #f2f2f2 background */
+        .container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0 20px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            flex: 1;
+        }
+
+        /* Section Card Wrapper (Clean White Material Card on #f2f2f2) */
+        .section-card {
+            background: #ffffff;
+            border-radius: 2px;
+            border: 1px solid #e2e2e2;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 14px 18px;
+            border-bottom: 1px solid #ececec;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background: #ffffff;
+        }
+
+        .card-title-cluster {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-badge {
+            background: #cc0003;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 3px;
+            letter-spacing: 0.4px;
+        }
+
+        .card-title-cluster h2 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #111111;
+        }
+
+        .card-subtitle {
+            font-size: 11.5px;
+            color: #666666;
+            margin-top: 2px;
+        }
+
+        .card-body {
+            padding: 16px 18px;
+            background: #ffffff;
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .badge-success {
+            background: var(--emerald-50);
+            color: var(--emerald-600);
+            border: 1px solid var(--emerald-200);
+        }
+
+        .badge-warning {
+            background: var(--amber-50);
+            color: var(--amber-600);
+            border: 1px solid var(--amber-200);
+        }
+
+        .badge-danger {
+            background: var(--rose-50);
+            color: var(--rose-600);
+            border: 1px solid var(--rose-200);
+        }
+
+        .badge-info {
+            background: var(--blue-50);
+            color: var(--blue-600);
+            border: 1px solid var(--blue-200);
+        }
+
+        .badge-indigo {
+            background: var(--indigo-50);
+            color: var(--indigo-600);
+            border: 1px solid var(--indigo-200);
+        }
+
+        /* KPI Top Strip in Card 1 */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 1100px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .kpi-box {
+            border: 1px solid #e5e5e5;
+            border-radius: 3px;
+            padding: 12px 14px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: #999999;
+        }
+
+        .kpi-box.van::before { background: #0284c7; }
+        .kpi-box.hmdt::before { background: #cc0003; }
+        .kpi-box.delta-warn::before { background: #f59e0b; }
+        .kpi-box.delta-ok::before { background: #28a745; }
+        .kpi-box.net-err::before { background: #cc0003; }
+        .kpi-box.net-ok::before { background: #28a745; }
+
+        .kpi-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #555555;
+            letter-spacing: 0.2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .kpi-value {
+            font-size: 19px;
+            font-weight: 700;
+            color: #111111;
+            margin: 6px 0 4px;
+        }
+
+        .kpi-meta {
+            font-size: 11.5px;
+            color: #666666;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        /* Data Tables (White Header & Material Shadow matching Screenshot) */
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 2px;
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            background: #ffffff;
+        }
+
+        thead {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            position: relative;
+            z-index: 2;
+        }
+
+        th {
+            background: #ffffff !important;
+            color: #212121 !important;
+            font-weight: 600;
+            text-align: left;
+            padding: 11px 10px;
+            border-bottom: 1px solid #e0e0e0;
+            border-right: 1px solid #eeeeee;
+            font-size: 11.5px;
+            white-space: nowrap;
+        }
+
+        th:last-child, td:last-child {
+            border-right: none;
+        }
+
+        th.group-van,
+        th.group-hmdt,
+        th.group-diff {
+            background: #ffffff !important;
+            color: #212121 !important;
+            text-align: center;
+        }
+
+        td {
+            padding: 10px 10px;
+            border-bottom: 1px solid #eeeeee;
+            border-right: 1px solid #f2f2f2;
+            vertical-align: middle;
+            background: #ffffff;
+        }
+
+        tbody tr:hover td {
+            background-color: #f9f9f9;
+        }
+
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+        .fw-700 { font-weight: 700; }
+        .fw-800 { font-weight: 800; }
+
+        .val-pos { color: var(--emerald-600); font-weight: 700; }
+        .val-neg { color: var(--rose-600); font-weight: 700; }
+        .val-warn { color: var(--amber-600); font-weight: 700; }
+        .val-zero { color: var(--slate-500); }
+
+        tr.total-row td {
+            background: #f7f7f7 !important;
+            color: #111111 !important;
+            font-weight: 700;
+            border-top: 2px solid #d0d0d0;
+            border-right-color: #e5e5e5;
+        }
+
+        tr.total-row td .sub-note {
+            color: #666666;
+            font-weight: 500;
+            font-size: 11px;
+        }
+
+        .site-dot {
+            display: inline-block;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .dot-vtt { background: #ee0033; }
+        .dot-mbf { background: #0066b3; }
+        .dot-vnp { background: #00a1e4; }
+
+        /* Bridge & Roll-forward Panel */
+        .bridge-panel {
+            margin-top: 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 2px;
+            background: #fafafa;
+            padding: 12px 14px;
+        }
+
+        .bridge-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .bridge-header h3 {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #212121;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bridge-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 14px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .bridge-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bridge-card {
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 2px;
+            padding: 12px;
+        }
+
+        .bridge-card h4 {
+            font-size: 12px;
+            font-weight: 700;
+            color: #212121;
+            margin-bottom: 8px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .bridge-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 12px;
+        }
+
+        .bridge-list li {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 4px 0;
+            border-bottom: 1px dotted #e0e0e0;
+        }
+
+        .bridge-list li:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            padding-top: 6px;
+        }
+
+        /* Card 2: Cashflow Dual Section */
+        .cashflow-summary-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 960px) {
+            .cashflow-summary-strip {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cf-pill-card {
+            padding: 12px 14px;
+            border-radius: 2px;
+            border: 1px solid #e5e5e5;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cf-in { border-left: 3px solid #28a745; }
+        .cf-out { border-left: 3px solid #cc0003; }
+        .cf-net { border-left: 3px solid #0284c7; }
+
+        .flow-block-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 12px;
+            border-radius: 2px;
+            font-weight: 700;
+            font-size: 12.5px;
+            margin: 14px 0 8px;
+            background: #fafafa;
+            border: 1px solid #e5e5e5;
+        }
+
+        .flow-block-title.inflow {
+            color: #111111;
+            border-left: 4px solid #28a745;
+        }
+
+        .flow-block-title.outflow {
+            color: #111111;
+            border-left: 4px solid #cc0003;
+        }
+
+        /* Bottom Pagination Bar matching screenshot */
+        .ctin-bottom-bar {
+            background: #ffffff;
+            border-top: 1px solid #e5e5e5;
+            height: 44px;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 16px;
+            font-size: 12px;
+            color: #555555;
+            margin-top: auto;
+        }
+
+        .ctin-page-box {
+            border: 1px solid #cccccc;
+            background: #ffffff;
+            padding: 4px 10px;
+            font-size: 11.5px;
+            color: #333333;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+        }
+
+        .ctin-pager-btns {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: #888888;
+            font-size: 14px;
+            user-select: none;
+        }
+
+        tr.group-row {
+            background: #f8fafc;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        tr.group-row:hover {
+            background: #f1f5f9;
+        }
+
+        tr.sub-item-row {
+            background: var(--white);
+            font-size: 12px;
+        }
+
+        tr.sub-item-row td:first-child {
+            padding-left: 32px;
+        }
+
+        tr.sub-item-row.hidden {
+            display: none;
+        }
+
+        .toggle-icon {
+            display: inline-flex;
+            width: 18px;
+            height: 18px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            background: var(--slate-200);
+            color: var(--slate-700);
+            font-size: 10px;
+            margin-right: 6px;
+            transition: transform 0.15s;
+        }
+
+        .group-row.expanded .toggle-icon {
+            transform: rotate(90deg);
+            background: var(--navy-800);
+            color: var(--white);
+        }
+
+        .bank-behavior-tag {
+            display: inline-block;
+            font-size: 10.5px;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: var(--slate-100);
+            color: var(--slate-600);
+            font-weight: 600;
+        }
+
+        /* Card 3: Detailed Transactions */
+        .group-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--slate-200);
+        }
+
+        .tab-btn {
+            padding: 6px 11px;
+            border-radius: 999px;
+            border: 1px solid var(--slate-300);
+            background: var(--white);
+            color: var(--slate-700);
+            font-family: inherit;
+            font-size: 11.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--navy-800);
+            background: var(--slate-50);
+        }
+
+        .tab-btn.active {
+            background: var(--navy-900);
+            color: var(--white);
+            border-color: var(--navy-900);
+        }
+
+        .tab-btn.tab-alert.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .tx-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .tx-search-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            flex: 1;
+        }
+
+        .tx-search-wrap input {
+            min-width: 280px;
+        }
+
+        tr.row-discrepancy {
+            background: #fffdf7;
+        }
+
+        tr.row-critical {
+            background: #fff5f5;
+        }
+
+        /* Modal */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: blur(2px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 20px;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .modal-dialog {
+            background: var(--white);
+            width: 100%;
+            max-width: 860px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-head {
+            background: var(--navy-900);
+            color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-head h3 {
+            font-size: 14.5px;
+            font-weight: 800;
+        }
+
+        .modal-close {
+            background: rgba(255, 255, 255, 0.14);
+            border: none;
+            color: var(--white);
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .compare-3col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .compare-3col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .source-box {
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            background: var(--slate-50);
+        }
+
+        .source-box h4 {
+            font-size: 11.5px;
+            text-transform: uppercase;
+            color: var(--slate-600);
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--slate-200);
+            padding-bottom: 5px;
+        }
+
+        .kv-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            padding: 3px 0;
+            gap: 8px;
+        }
+
+        .kv-row span:first-child {
+            color: var(--slate-500);
+        }
+
+        .kv-row span:last-child {
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .modal-foot {
+            padding: 12px 20px;
+            background: var(--slate-50);
+            border-top: 1px solid var(--slate-200);
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--navy-900);
+            color: var(--white);
+            padding: 12px 18px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            font-size: 12.5px;
+            font-weight: 600;
+            z-index: 300;
+            display: none;
+            border-left: 4px solid var(--emerald-500);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CTIN ADMIN APP SHELL LAYOUT -->
+    <div class="app-shell">
+
+        <!-- =================================================================== -->
+        <!-- LEFT SIDEBAR: CTIN ADMIN NAVIGATION (GIỐNG ẢNH MẪU 100%)            -->
+        <!-- =================================================================== -->
+        <aside class="app-sidebar" id="appSidebar">
+            <!-- Sidebar Header / Branding (100% Identical to Screenshot) -->
+            <div class="sidebar-header">
+                <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" onclick="toggleSidebar()" title="Thu gọn / Mở rộng menu">‹</button>
+                <div class="sidebar-logo-box">
+                    <img class="sidebar-logo-img" alt="ctinadmin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAE2UlEQVR4nM2Xa1BUZRjH/+ecPbvshcsCpoKBMioZM5oFNVIEIWIjXQgKjQaTcRobncHsYk4zkX1II2comtHR/NJMU6bVkEypcdeRCa1AGTKS0GqKiwjLLgvsOXsuzXmxXdY9u51l+dD/y555L8/72/M+z/+8LyXLsoz/iXSznSgN3oC7/UcInV0Q//wLECXo8x8Bm5kBJvlOgGFCjkmF8mb4M83gjn0JvukcZMd44KDGCBg2b4LlwNshwdD/OUKW4W5tw1hWARwl5eBqvw0KQqZMueBuaIF0cwT2/GJMVtUAghA+zGRVDexPlEK43I1QpFu9ElL/ENnKyXeqMZb5KMSe3vBg2IzVoBclIFTp1+eCWZIE0NNLCD29sN2fB77xbBgwa7MRe+V7mGv2gbKYtZHodNAX5IOKtIBdn+vT5SjaDPfZttnB/Ctj+XOIvdYJ8/5KkqDBpF/7MAGZnlfq128v3gJJqcDZwiiiIgww7tiK2J6LsByuBrMsBWpi1+V4nnX3rfIfwPOq2xVSaatJ5jjIDqdPGx0TDbBeC5OGR3z6KT0L96VuMMmLwCxOUoGRZfBnmuC+8BPgckHmeIB3Ty/mnIA87oTsdJKFpf4BUr6UNQa69Htg2rUd7EMPQIuk/kE4K/aAr28BPS8OsX0d/jDSyChGl6UDgqgpqI8YBsad22DasxNUROB8Erp/wfjz2yH2XvO0RR6phuHZYt+cmfrw6OxAFIkipqoPwZ5VAHnEBjVxx2thz3ncB0TRROV+siteGEnC1PuHEK7EoWHgVhX5iaIg826/ZmnURrbcAyPdHMVcyFheSpJTTYaSQnWfcguQbTYvjGy3zwmMYVPR9APPw7FxK0YS08CdqPX0M0uSVecJl3+eAePiwgZhUpeCTlkM8WofbBl54E83kgoc3/YKnC+8RFLBtPd11bnutoteGCUBwxKrQ9Sxo5D6rmNsXRHE6394+0QRruO1cDy9BfrsTE/lzJR49TfyO+1MszgIzXTlyI8+ALM0Bbb0XMi2MahJcVzuq29IKcuTk+BPnvb0MXenet8MZTJhNqIsZlgOHoC+cAPc59v9yvZ2TeytIikR9clhWA6+BzrOStrZNRleGPqO+JBB6IQFiKr7DIZnniQ+MfFqpccvAkkaGITQ0UWeI8o2Iqa9AcyK5cTFPTCk5HTaj8Ns1hpYO1rB3gqi/Fux73dNc7kvvvb+ofnzYL3QADo+zgujGJKl6i1NwYy7KxBd9ykok9HTpiSs8g3TBHPCC3O7PJ8DJcspvT5ooOimWpjf2OWX8K4jH0OrlHLnTp4KDkOZzTAUP6Y6iElLhfXyObAZ93qOkZ7gLg7c515j06KZlaQKAwqw1LwLKjrKZ0BEWQlimusCuqd8Yxjy1FRoMPUtxAQDw5CVDTDtriDbQCcuhHnfm6R0gx0zha7Qbg2KlKuO9PeAtpOeNDQMOj5Wkxk6yl4M+NoDSbcyDTHnT83tsVOemMTIwhUhzaEXzEdMax3xKT9IhCHx197QQBITYG2vBxUdqd4fDozwwyXNY40v74C1szUgSNhvhv+uOfgAnQ6GpzbA9FoFOWIo5hp0eDgwulVp4Btb/drZnAdhKCyAPi8bdNIizfHCuzdJEoSuK6S86bhY8q1h7lqu/Ro8pzBzrH8AdnnjUU81uXEAAAAASUVORK5CYII=">
+                    <span class="sidebar-admin-title">ctinadmin</span>
+                </div>
+                <!-- 3 Quick Tool Icons (Red Laptop, Black Double-Arrows, Black User Circle) -->
+                <div class="sidebar-tools">
+                    <button class="sidebar-tool-btn active-tool" title="Màn hình quản trị" onclick="showToast('Đang ở màn hình phân hệ Đối soát HMDT')">
+                        <svg width="18" height="16" viewBox="0 0 24 20" fill="none" stroke="#cc0003" stroke-width="2">
+                            <rect x="3" y="2" width="18" height="12" rx="1"></rect>
+                            <line x1="1" y1="17" x2="23" y2="17" stroke-width="2.2"></line>
+                        </svg>
+                    </button>
+                    <button class="sidebar-tool-btn" title="Chuyển đổi / Đồng bộ" onclick="showToast('Đang đồng bộ phiên làm việc...')">
+                        <svg width="17" height="16" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="17 2 21 6 17 10"></polyline>
+                            <line x1="9" y1="6" x2="21" y2="6"></line>
+                            <polyline points="7 22 3 18 7 14"></polyline>
+                            <line x1="15" y1="18" x2="3" y2="18"></line>
+                        </svg>
+                    </button>
+                    <button class="sidebar-tool-btn" title="Thông tin tài khoản: ctinadmin" onclick="showToast('Tài khoản: ctinadmin')">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="#111111">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sidebar Navigation Menu Tree (Exact Match to Screenshot + Đối soát tài khoản HMDT) -->
+            <ul class="sidebar-menu">
+                <!-- 1. Quản lý người dùng & Phân quyền hệ thống -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleNavMenu('menuUser')">
+                        <span class="nav-text">Quản lý người dùng &amp; Phân quyền hệ thống</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuUser">
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Danh sách người dùng')"><span class="submenu-dot"></span>Danh sách người dùng</div></li>
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Phân quyền nhóm Maker & Checker')"><span class="submenu-dot"></span>Phân quyền chức năng</div></li>
+                    </ul>
+                </li>
+
+                <!-- 2. Quản lý tài khoản dự thưởng -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleNavMenu('menuTkdt')">
+                        <span class="nav-text">Quản lý tài khoản dự thưởng</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuTkdt">
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Màn hình: Danh sách tài khoản dự thưởng')"><span class="submenu-dot"></span>Danh sách tài khoản dự thưởng</div></li>
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Tra cứu lịch sử biến động số dư TKĐT')"><span class="submenu-dot"></span>Tra cứu biến động TKĐT</div></li>
+                    </ul>
+                </li>
+
+                <!-- 3. Quản lý game -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleNavMenu('menuGame')">
+                        <span class="nav-text">Quản lý game</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuGame">
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Danh mục sản phẩm Power 6/55, Mega 6/45, Max 3D, Keno')"><span class="submenu-dot"></span>Danh sách sản phẩm xổ số</div></li>
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Cấu hình kỳ quay số và giờ cut-off 17h45')"><span class="submenu-dot"></span>Quản lý kỳ mở thưởng</div></li>
+                    </ul>
+                </li>
+
+                <!-- 4. Quản lý kế toán -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleNavMenu('menuKeToan')">
+                        <span class="nav-text">Quản lý kế toán</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuKeToan">
+                        <li class="submenu-item"><div class="submenu-link" onclick="scrollToSection('cardSummary')"><span class="submenu-dot"></span>Đối soát tài khoản HMDT &amp; VAN Tổng</div></li>
+                        <li class="submenu-item"><div class="submenu-link" onclick="scrollToSection('cardCashflow')"><span class="submenu-dot"></span>Đối soát luồng tiền Vào / Ra</div></li>
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Đối soát doanh thu bán vé D+1')"><span class="submenu-dot"></span>Đối soát doanh thu bán vé</div></li>
+                    </ul>
+                </li>
+
+                <!-- 5. Quản lý tài khoản trả thưởng (No chevron in screenshot) -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="showToast('Màn hình: Quản lý tài khoản trả thưởng')">
+                        <span class="nav-text">Quản lý tài khoản trả thưởng</span>
+                    </div>
+                </li>
+
+                <!-- 6. Quản lý hệ thống -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleNavMenu('menuSys')">
+                        <span class="nav-text">Quản lý hệ thống</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuSys">
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Cấu hình tham số hệ thống SMS Gateway')"><span class="submenu-dot"></span>Cấu hình tham số hệ thống</div></li>
+                    </ul>
+                </li>
+
+                <!-- 7. Quản lý danh mục -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleNavMenu('menuCat')">
+                        <span class="nav-text">Quản lý danh mục</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuCat">
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Danh mục nhà mạng, ngân hàng liên kết')"><span class="submenu-dot"></span>Danh mục nhà mạng &amp; Ngân hàng</div></li>
+                    </ul>
+                </li>
+
+                <!-- 8. Quản lý cấu hình biểu phí -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleNavMenu('menuFee')">
+                        <span class="nav-text">Quản lý cấu hình biểu phí</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuFee">
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Cấu hình biểu phí dịch vụ')"><span class="submenu-dot"></span>Danh sách biểu phí</div></li>
+                    </ul>
+                </li>
+
+                <!-- 9. Cấu hình hạn mức trả thưởng theo kênh (Top-level item in screenshot) -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="showToast('Màn hình: Cấu hình hạn mức trả thưởng theo kênh')">
+                        <span class="nav-text">Cấu hình hạn mức trả thưởng theo kênh</span>
+                    </div>
+                </li>
+
+                <!-- 10. Cấu hình hạn mức thanh toán (Top-level item with chevron in screenshot) -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleNavMenu('menuLimitPay')">
+                        <span class="nav-text">Cấu hình hạn mức thanh toán</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuLimitPay">
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Cấu hình hạn mức thanh toán HMDT')"><span class="submenu-dot"></span>Hạn mức thanh toán ngày</div></li>
+                    </ul>
+                </li>
+
+                <!-- 11. Quản lý Trúng thưởng - Trả thưởng -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleNavMenu('menuPrize')">
+                        <span class="nav-text">Quản lý Trúng thưởng - Trả thưởng</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuPrize">
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Danh sách vé trúng thưởng kỳ hiện tại')"><span class="submenu-dot"></span>Danh sách vé trúng thưởng</div></li>
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Lệnh chi thưởng tự động & thủ công')"><span class="submenu-dot"></span>Lệnh chi thưởng tự động</div></li>
+                    </ul>
+                </li>
+
+                <!-- 12. Quản lý lịch sử tin nhắn SMS (No chevron in screenshot) -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="showToast('Màn hình: Quản lý lịch sử tin nhắn SMS')">
+                        <span class="nav-text">Quản lý lịch sử tin nhắn SMS</span>
+                    </div>
+                </li>
+
+                <!-- 13. Quản lý Rút tiền HMDT -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleNavMenu('menuRutTien')">
+                        <span class="nav-text">Quản lý Rút tiền HMDT</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuRutTien">
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Danh sách yêu cầu rút tiền từ HMDT')"><span class="submenu-dot"></span>Danh sách yêu cầu rút tiền</div></li>
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Hoàn ứng tiền chi hộ rút tiền')"><span class="submenu-dot"></span>Hoàn ứng chi hộ rút tiền</div></li>
+                    </ul>
+                </li>
+
+                <!-- 14. MENU CHỨC NĂNG MỚI: ĐỐI SOÁT TÀI KHOẢN HMDT -->
+                <li class="nav-item open">
+                    <div class="nav-link active" onclick="toggleNavMenu('menuDoiSoatHmdt')">
+                        <span class="nav-text">Đối soát tài khoản HMDT</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuDoiSoatHmdt" style="display:block;">
+                        <li class="submenu-item">
+                            <div class="submenu-link active" onclick="scrollToSection('cardSummary')">
+                                <span class="submenu-dot"></span>
+                                <span>Cân đối VAN Tổng &amp; HMDT</span>
+                            </div>
+                        </li>
+                        <li class="submenu-item">
+                            <div class="submenu-link" onclick="scrollToSection('cardCashflow')">
+                                <span class="submenu-dot"></span>
+                                <span>Bóc tách luồng tiền Vào / Ra</span>
+                            </div>
+                        </li>
+                        <li class="submenu-item">
+                            <div class="submenu-link" onclick="scrollToSection('cardTransactions')">
+                                <span class="submenu-dot"></span>
+                                <span>Tra soát &amp; Xử lý sai lệch D+1</span>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- 15. Quản lý sao kê -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleNavMenu('menuSaoKe')">
+                        <span class="nav-text">Quản lý sao kê</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuSaoKe">
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Sao kê tài khoản VAN VPBank & BIDV')"><span class="submenu-dot"></span>Sao kê ngân hàng VAN Tổng</div></li>
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Sao kê cổng ví điện tử VNPAY, VTPay, VNPT')"><span class="submenu-dot"></span>Sao kê cổng thanh toán &amp; Ví</div></li>
+                    </ul>
+                </li>
+
+                <!-- 16. Danh sách trả phí -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleNavMenu('menuTraPhi')">
+                        <span class="nav-text">Danh sách trả phí</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuTraPhi">
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Danh sách trả phí viễn thông và hoa hồng bán hàng')"><span class="submenu-dot"></span>Danh sách trả phí viễn thông</div></li>
+                    </ul>
+                </li>
+
+                <!-- 17. Quản lý hoàn tiền -->
+                <li class="nav-item">
+                    <div class="nav-link" onclick="toggleNavMenu('menuHoanTien')">
+                        <span class="nav-text">Quản lý hoàn tiền</span>
+                        <span class="nav-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                    </div>
+                    <ul class="submenu" id="menuHoanTien">
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Danh sách hoàn tiền tự động')"><span class="submenu-dot"></span>Danh sách hoàn tiền tự động</div></li>
+                        <li class="submenu-item"><div class="submenu-link" onclick="showToast('Hàng đợi duyệt hoàn tiền thủ công')"><span class="submenu-dot"></span>Duyệt hoàn tiền thủ công</div></li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- =================================================================== -->
+        <!-- MAIN CONTENT AREA (#f2f2f2 BACKGROUND 100% MATCHING SCREENSHOT)     -->
+        <!-- =================================================================== -->
+        <div class="app-main-content">
+
+            <!-- TOP BRAND HEADER (PURE #cc0003 VIETTEL RED BAR) -->
+            <header class="top-header-ctin">
+                <div class="header-left-space"></div>
+                <div class="header-center-brand">VIETTEL</div>
+                <div class="header-user-badge" onclick="showToast('Tài khoản: ctinadmin | Phân quyền: Kế toán đối soát')">
+                    <span>ctinadmin</span>
+                    <div class="header-user-avatar">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                </div>
+            </header>
+
+            <!-- CENTERED PAGE TITLE DIRECTLY ON #f2f2f2 BACKGROUND -->
+            <div class="portal-page-header">
+                <h1 class="portal-page-title">ĐỐI SOÁT TÀI KHOẢN HMDT &amp; KIỂM SOÁT DÒNG TIỀN VAN TỔNG</h1>
+            </div>
+
+            <!-- FLOATING FILTER BAR DIRECTLY ON #f2f2f2 BACKGROUND (MATCHING SCREENSHOT) -->
+            <section class="control-bar">
+                <div class="filter-group">
+                    <!-- Search Pill matching screenshot (🔍 0835615556 [Hủy]) -->
+                    <div class="ctin-search-pill">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="globalQuickSearch" value="0835615556" placeholder="SĐT / Mã GD..." oninput="document.getElementById('txSearchInput').value=this.value; renderTransactions();">
+                        <button type="button" class="ctin-search-clear" onclick="document.getElementById('globalQuickSearch').value=''; document.getElementById('txSearchInput').value=''; renderTransactions();">Hủy</button>
+                    </div>
+
+                    <div class="control-item">
+                        <label for="periodSelect">Kỳ đối soát</label>
+                        <select id="periodSelect" onchange="handleGlobalFilterChange()">
+                            <option value="K20261101">01/11/2026 (Đang đối soát)</option>
+                            <option value="K20261031">31/10/2026 (Đã khóa sổ)</option>
+                        </select>
+                    </div>
+                    <div class="control-item">
+                        <label for="siteSelect">Site Nhà mạng</label>
+                        <select id="siteSelect" onchange="handleGlobalFilterChange()">
+                            <option value="ALL">Tất cả</option>
+                            <option value="Viettel">Viettel</option>
+                            <option value="Mobifone">Mobifone</option>
+                            <option value="Vinaphone">Vinaphone</option>
+                        </select>
+                    </div>
+                    <div class="control-item">
+                        <label for="bankSelect">Ngân hàng VAN</label>
+                        <select id="bankSelect" onchange="handleGlobalFilterChange()">
+                            <option value="ALL">Tất cả</option>
+                            <option value="VPBank">VPBank</option>
+                            <option value="BIDV">BIDV</option>
+                        </select>
+                    </div>
+                    <div id="periodStatusBadge" style="display:none;"></div>
+                </div>
+
+                <div class="action-group">
+                    <button class="btn btn-outline" onclick="showToast('Đã đồng bộ sao kê VAN (VPBank, BIDV), Cổng TT và Sổ cái HMDT mới nhất.')">Đồng bộ sao kê</button>
+                    <button class="btn btn-outline" onclick="showToast('Đã kết xuất file Báo cáo Đối soát HMDT - VAN Tổng (.xlsx).')">Xuất Excel</button>
+                    <button class="btn btn-green-ctin" onclick="handleGlobalFilterChange(); showToast('Đã thực thi tìm kiếm & đối soát dữ liệu kỳ hiện tại.')">Tìm kiếm</button>
+                </div>
+            </section>
+
+    <main class="container">
+
+        <!-- =================================================================== -->
+        <!-- THẺ 1: THẺ THÔNG TIN TỔNG HỢP                                       -->
+        <!-- =================================================================== -->
+        <section class="section-card" id="cardSummary">
+            <div class="card-header">
+                <div>
+                    <div class="card-title-cluster">
+                        <span class="step-badge">THẺ 1</span>
+                        <h2>THẺ THÔNG TIN TỔNG HỢP — CÂN ĐỐI SỐ DƯ TÀI KHOẢN VAN TỔNG & HMDT</h2>
+                    </div>
+                    <p class="card-subtitle">Tổng hợp số dư cuối kỳ tại tài khoản HMDT (Viettel, Mobifone, Vinaphone) đối ứng với tài khoản VAN Tổng tại 2 ngân hàng (VPBank, BIDV)</p>
+                </div>
+                <div id="solvencyBanner"></div>
+            </div>
+
+            <div class="card-body">
+                <!-- 4 KPI Cards -->
+                <div class="kpi-grid" id="kpiSummaryStrip"></div>
+
+                <!-- Summary Matrix Table by Telco Site & Bank -->
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th rowspan="2" style="width: 170px;">Site Nhà Mạng</th>
+                                <th rowspan="2" class="text-right">SL Tài Khoản HMDT</th>
+                                <th colspan="1" class="group-hmdt">TÀI KHOẢN HMDT (CORE SMS)</th>
+                                <th colspan="3" class="group-van">TÀI KHOẢN VAN TỔNG TẠI NGÂN HÀNG</th>
+                                <th colspan="3" class="group-diff">KIỂM SOÁT CHÊNH LỆCH DÒNG TIỀN</th>
+                            </tr>
+                            <tr>
+                                <th class="text-right">Tổng Số Dư HMDT (A)</th>
+                                <th class="text-right">VAN Tổng VPBank (B1)</th>
+                                <th class="text-right">VAN Tổng BIDV (B2)</th>
+                                <th class="text-right">Tổng VAN Tổng (B = B1+B2)</th>
+                                <th class="text-right" title="Công thức gốc: Tổng số dư VAN Tổng - Tổng số dư HMDT">Chênh Lệch (C = B − A)</th>
+                                <th class="text-right" title="Các khoản lệch thời điểm hợp lệ: Doanh thu vé chưa kết chuyển, rút tiền chi hộ chờ hoàn ứng, tiền cổng VNPAY/Ví chờ T+n, MKT tự động chờ bù quỹ">Khoản Chờ Kết Chuyển (D)</th>
+                                <th class="text-right" title="Sai lệch đối soát thực tế cần xử lý (E = C - D)">Lệch Cần Xử Lý (E = C − D)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="summaryTableBody"></tbody>
+                    </table>
+                </div>
+
+                <!-- Explainable Reconciliation Bridge & Roll-forward (FL-ING-17) -->
+                <div class="bridge-panel">
+                    <div class="bridge-header" onclick="toggleBridge()">
+                        <h3>🔎 Giải trình Cầu nối Chênh lệch (B − A) & Công thức Cân đối Cuối kỳ (FL-ING-17)</h3>
+                        <span class="badge badge-info" id="bridgeToggleText">Thu gọn ▲</span>
+                    </div>
+                    <div class="bridge-grid" id="bridgeContent"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- THẺ 2: THẺ LUỒNG TIỀN (HMDT & NGÂN HÀNG THEO NHÓM NGHIỆP VỤ)        -->
+        <!-- =================================================================== -->
+        <section class="section-card" id="cardCashflow">
+            <div class="card-header">
+                <div>
+                    <div class="card-title-cluster">
+                        <span class="step-badge">THẺ 2</span>
+                        <h2>THẺ LUỒNG TIỀN — TỔNG HỢP GIÁ TRỊ VÀO / RA TẠI HMDT & NGÂN HÀNG THEO NHÓM NGHIỆP VỤ</h2>
+                    </div>
+                    <p class="card-subtitle">Bóc tách đầy đủ 5 nhóm Luồng Tiền Vào (21 nghiệp vụ) & 4 nhóm Luồng Tiền Ra + Kết chuyển Doanh thu theo chuẩn đặc tả Google Sheet</p>
+                </div>
+                <div style="display:flex; gap:8px;">
+                    <button class="btn btn-outline btn-xs" onclick="expandAllGroups(true)">➕ Mở rộng tất cả 28 dòng nghiệp vụ</button>
+                    <button class="btn btn-outline btn-xs" onclick="expandAllGroups(false)">➖ Thu gọn theo nhóm</button>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <!-- Strip summary of Inflow / Outflow -->
+                <div class="cashflow-summary-strip" id="cashflowTopStrip"></div>
+
+                <!-- LUỒNG TIỀN VÀO -->
+                <div class="flow-block-title inflow">
+                    <span>📥 I. LUỒNG TIỀN VÀO (BIẾN ĐỘNG TĂNG HMDT) — 5 NHÓM NGHIỆP VỤ (STT 01 → 21)</span>
+                    <span style="font-size:11.5px; font-weight:600;">Nhấp vào từng nhóm để xem nghiệp vụ con hoặc lọc giao dịch bên dưới</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 340px;">Nhóm Nghiệp Vụ / Tên Nghiệp Vụ Chi Tiết</th>
+                                <th class="text-right" style="width: 90px;">Số Lượng GD</th>
+                                <th class="text-right" style="width: 165px;">Giá Trị Tại TK HMDT (+)</th>
+                                <th class="text-right" style="width: 175px;">Giá Trị Tại VAN Tổng Bank (+)</th>
+                                <th style="width: 220px;">Bản Chất Dòng Tiền Ngân Hàng / Trung Gian</th>
+                                <th class="text-right" style="width: 155px;">Chênh Lệch (Bank − HMDT)</th>
+                                <th class="text-center" style="width: 115px;">GD Lệch</th>
+                                <th class="text-center" style="width: 105px;">Tra Cứu</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inflowTableBody"></tbody>
+                    </table>
+                </div>
+
+                <!-- LUỒNG TIỀN RA -->
+                <div class="flow-block-title outflow" style="margin-top: 22px;">
+                    <span>📤 II. LUỒNG TIỀN RA (BIẾN ĐỘNG GIẢM HMDT & KẾT CHUYỂN NGÂN HÀNG) — NHÓM NGHIỆP VỤ (STT 01 → 06 & FL-ING-16)</span>
+                    <span style="font-size:11.5px; font-weight:600;">Bao gồm dòng chi qua TK Chi Hộ (Rút tiền) & Kết chuyển Doanh thu khỏi VAN Tổng</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 340px;">Nhóm Nghiệp Vụ / Tên Nghiệp Vụ Chi Tiết</th>
+                                <th class="text-right" style="width: 90px;">Số Lượng GD</th>
+                                <th class="text-right" style="width: 165px;">Giá Trị Giảm TK HMDT (−)</th>
+                                <th class="text-right" style="width: 175px;">Giá Trị Giảm VAN Tổng (−)</th>
+                                <th style="width: 220px;">Bản Chất Dòng Tiền Ngân Hàng / TK Chi Hộ</th>
+                                <th class="text-right" style="width: 155px;">Chênh Lệch (Bank − HMDT)</th>
+                                <th class="text-center" style="width: 115px;">GD Lệch</th>
+                                <th class="text-center" style="width: 105px;">Tra Cứu</th>
+                            </tr>
+                        </thead>
+                        <tbody id="outflowTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- THẺ 3: THẺ GIAO DỊCH CHI TIẾT                                       -->
+        <!-- =================================================================== -->
+        <section class="section-card" id="cardTransactions">
+            <div class="card-header">
+                <div>
+                    <div class="card-title-cluster">
+                        <span class="step-badge">THẺ 3</span>
+                        <h2>THẺ GIAO DỊCH CHI TIẾT — TRA SOÁT & XỬ LÝ THEO TỪNG NHÓM NGHIỆP VỤ</h2>
+                    </div>
+                    <p class="card-subtitle">Hiển thị chi tiết từng cặp giao dịch đối chiếu giữa Sổ cái HMDT (Core SMS / BGT) và Sao kê Ngân hàng / Cổng thanh toán</p>
+                </div>
+                <div id="txCountSummary"></div>
+            </div>
+
+            <div class="card-body">
+                <!-- Business Group Pill Tabs -->
+                <div class="group-tabs" id="groupTabs"></div>
+
+                <!-- Search & Status Filter -->
+                <div class="tx-toolbar">
+                    <div class="tx-search-wrap">
+                        <input type="text" id="txSearchInput" placeholder="🔍 Tìm Mã GD Core, Mã Bank, SĐT, Số TK VAN con, Ticket ID..." oninput="renderTransactions()">
+                        <select id="txStatusFilter" onchange="renderTransactions()">
+                            <option value="ALL">Tất cả trạng thái đối soát</option>
+                            <option value="MISMATCH_ONLY">⚠️ Chỉ hiển thị Giao dịch Lệch / Cần xử lý</option>
+                            <option value="MATCHED">🟢 Khớp thành công (Happy Case)</option>
+                            <option value="CODE_01">🟡 Mã 01: Bank/Cổng có — SMS không</option>
+                            <option value="CODE_02">🔴 Mã 02: SMS có — Bank/Cổng không (Cảnh báo đỏ)</option>
+                            <option value="CODE_03">🟠 Mã 03: Lệch số tiền / mã VAN / ngày giá trị</option>
+                            <option value="REFUND_ISSUE">🟣 Lỗi chưa nhả Block / Lệch hoàn tiền & phí</option>
+                            <option value="TRANSIT_MKT">🔵 Chờ quyết toán T+n / Chờ bù quỹ MKT</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="btn btn-outline btn-xs" onclick="resetTxFilters()">↺ Đặt lại bộ lọc Thẻ 3</button>
+                    </div>
+                </div>
+
+                <!-- Transactions Table -->
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Thời Gian (UTC+7)</th>
+                                <th>Site</th>
+                                <th>Nhóm & Nghiệp Vụ (Excel)</th>
+                                <th>SĐT / TK VAN Con</th>
+                                <th>Mã GD HMDT / Vé</th>
+                                <th class="text-right">Biến Động HMDT</th>
+                                <th>Kênh / Ngân Hàng</th>
+                                <th>Mã Sao Kê / Đối Tác</th>
+                                <th class="text-right">Giá Trị Bank / Cổng</th>
+                                <th class="text-right">Chênh Lệch</th>
+                                <th>Trạng Thái Đối Soát</th>
+                                <th class="text-center">Thao Tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="txTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+            <!-- BOTTOM PAGINATION BAR MATCHING SCREENSHOT -->
+            <footer class="ctin-bottom-bar">
+                <span>Items per page:</span>
+                <div class="ctin-page-box">ĐỐI SOÁT TÀI KHOẢN HMDT</div>
+                <div class="ctin-pager-btns">
+                    <span>|&lt;</span>
+                    <span>&lt;</span>
+                    <span>&gt;</span>
+                    <span>&gt;|</span>
+                </div>
+            </footer>
+        </div><!-- /.app-main-content -->
+    </div><!-- /.app-shell -->
+
+    <!-- DETAIL & ACTION MODAL -->
+    <div class="modal-backdrop" id="detailModal" onclick="if(event.target===this) closeModal()">
+        <div class="modal-dialog">
+            <div class="modal-head">
+                <h3 id="modalTitle">Chi tiết đối soát giao dịch</h3>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-foot" id="modalFoot"></div>
+        </div>
+    </div>
+
+    <div class="toast" id="toastMsg"></div>
+
+    <script>
+        // =========================================================================
+        // DATASET MẪU CHUẨN TOÁN HỌC 100% THEO ĐẶC TẢ GOOGLE SHEET (21 VÀO - 6 RA)
+        // =========================================================================
+        const PERIOD_DATA = {
+            K20261101: {
+                label: "Kỳ K20261101 — Ngày 01/11/2026",
+                statusHtml: `<span class="badge badge-warning">⏳ Đang đối soát — Còn 14 GD lệch cần xử lý</span>`,
+                openingHmdt: 144000000000,
+                openingVan: 144000000000,
+                sites: [
+                    { site: "Viettel", dot: "dot-vtt", accounts: 1085400, hmdt: 82500000000, vpb: 54200000000, bidv: 29650000000, transit: 1335000000, netErr: 15000000, errCount: 6 },
+                    { site: "Mobifone", dot: "dot-mbf", accounts: 512300, hmdt: 39400000000, vpb: 26150000000, bidv: 13890000000, transit: 643000000, netErr: -3000000, errCount: 4 },
+                    { site: "Vinaphone", dot: "dot-vnp", accounts: 326800, hmdt: 24350000000, vpb: 16060000000, bidv: 8670500000, transit: 377000000, netErr: 3500000, errCount: 4 }
+                ],
+                bridgeItems: [
+                    { label: "(+) Doanh thu Mua vé, Combo, Giữ đêm, Tặng quà (trừ hoàn HMDT nội bộ) chưa sweep khỏi VAN Tổng", val: 2164000000, cls: "val-pos" },
+                    { label: "(+) Tiền khách Rút HMDT đã chi từ TK Chi Hộ, chờ kết chuyển hoàn ứng từ VAN Tổng", val: 1020000000, cls: "val-pos" },
+                    { label: "(+) Thu hồi / Điều chỉnh giảm HMDT thủ công (STT 6) chờ kết chuyển", val: 30000000, cls: "val-pos" },
+                    { label: "(−) Tiền nạp qua VNPAY (260tr), Viettel Pay (220tr), VNPT Money (120tr) chờ quyết toán T+n về VPBank", val: -600000000, cls: "val-neg" },
+                    { label: "(−) Hoàn tiền vào HMDT của đơn mua từ Kênh TT khác HMDT (STT 8,9,10,13,15,17,18) chờ bù nguồn", val: -174000000, cls: "val-neg" },
+                    { label: "(−) Tặng tiền chiến dịch Marketing tự động không qua Bank (STT 19) chờ trích quỹ bù bảo chứng", val: -85000000, cls: "val-neg" },
+                    { label: "(=) Tổng Khoản Trung Gian Hợp Lệ Chờ Kết Chuyển (D)", val: 2355000000, cls: "fw-800" }
+                ],
+                inflowGroups: [
+                    {
+                        id: "IN_TOPUP",
+                        name: "1. Nạp tiền vào hạn mức dự thưởng",
+                        items: [
+                            { stt: "Vào #01", name: "Nạp tiền bằng mã QR qua VPBank", count: 28450, hmdt: 5420000000, bank: 5432000000, bankNote: "TĂNG (+) VAN Tổng VPBank", err: 3 },
+                            { stt: "Vào #02", name: "Nạp tiền bằng mã QR qua BIDV", count: 19120, hmdt: 3850000000, bank: 3856500000, bankNote: "TĂNG (+) VAN Tổng BIDV", err: 2 },
+                            { stt: "Vào #03", name: "Nạp tiền qua cổng thanh toán VNPAY", count: 4820, hmdt: 980000000, bank: 720000000, bankNote: "Chờ về T+n: 260.000.000 đ (VNPAY → VPBank)", err: 1 },
+                            { stt: "Vào #04", name: "Nạp tiền qua cổng thanh toán Viettel Pay", count: 3410, hmdt: 620000000, bank: 400000000, bankNote: "Chờ về T+n: 220.000.000 đ (VTPay → VPBank)", err: 1 },
+                            { stt: "Vào #05", name: "Nạp tiền qua cổng thanh toán VNPT Money", count: 1690, hmdt: 310000000, bank: 190000000, bankNote: "Chờ về T+n: 120.000.000 đ (VNPT → VPBank)", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "IN_PRIZE",
+                        name: "2. Nhận giải thưởng",
+                        items: [
+                            { stt: "Vào #06", name: "Nhận thưởng giải <= 10 triệu vào HMDT", count: 6420, hmdt: 945000000, bank: 942000000, bankNote: "Trích nội bộ TK Chi Hộ → VAN Tổng Thu", err: 1 }
+                        ]
+                    },
+                    {
+                        id: "IN_REFUND",
+                        name: "3. Hoàn tiền (12 kịch bản hoàn về HMDT)",
+                        items: [
+                            { stt: "Vào #07", name: "Mua vé bằng HMDT xuất vé lỗi → Nhả tiền block về HMDT", count: 1420, hmdt: 185000000, bank: 0, bankNote: "KHÔNG ĐỔI (Tiền sẵn tại VAN Tổng)", err: 2 },
+                            { stt: "Vào #08", name: "Mua vé kênh TT khác HMDT lỗi → Hoàn tiền về HMDT", count: 510, hmdt: 64000000, bank: 0, bankNote: "KHÔNG ĐỔI (Cần đối chiếu nguồn kênh ngoài)", err: 1 },
+                            { stt: "Vào #09", name: "Mua combo kênh khác HMDT, lỗi tạo đơn → Hoàn về HMDT", count: 85, hmdt: 22000000, bank: 0, bankNote: "KHÔNG ĐỔI tại VAN Tổng", err: 0 },
+                            { stt: "Vào #10", name: "Mua combo kênh khác HMDT, đến kỳ lỗi xuất vé → Hoàn HMDT", count: 92, hmdt: 18000000, bank: 0, bankNote: "KHÔNG ĐỔI tại VAN Tổng", err: 0 },
+                            { stt: "Vào #11", name: "Mua combo bằng HMDT, đến kỳ lỗi xuất vé → Hoàn HMDT", count: 230, hmdt: 46000000, bank: 0, bankNote: "KHÔNG ĐỔI (Tiền sẵn tại VAN Tổng)", err: 0 },
+                            { stt: "Vào #12", name: "KH hủy mua combo (kênh HMDT) → Hoàn HMDT (trừ phí 8%, trần 10k)", count: 310, hmdt: 75000000, bank: 0, bankNote: "KHÔNG ĐỔI (Ghi nhận phí hủy 8%)", err: 1 },
+                            { stt: "Vào #13", name: "KH hủy mua combo (kênh khác HMDT) → Hoàn HMDT (trừ phí 8%)", count: 115, hmdt: 29000000, bank: 0, bankNote: "KHÔNG ĐỔI tại VAN Tổng", err: 0 },
+                            { stt: "Vào #14", name: "Tặng quà bằng HMDT từ chối/hết hạn → Hoàn Người tặng", count: 280, hmdt: 42000000, bank: 0, bankNote: "KHÔNG ĐỔI (Tiền sẵn tại TK Chuyên Thu)", err: 1 },
+                            { stt: "Vào #15", name: "Tặng quà kênh khác HMDT từ chối/hết hạn → Hoàn HMDT", count: 95, hmdt: 14000000, bank: 0, bankNote: "KHÔNG ĐỔI tại Bank", err: 0 },
+                            { stt: "Vào #16", name: "Giữ vé qua đêm (HMDT), 06h00 xuất vé lỗi → Nhả block HMDT", count: 340, hmdt: 38000000, bank: 0, bankNote: "KHÔNG ĐỔI (Tiền sẵn tại TK Chuyên Thu)", err: 0 },
+                            { stt: "Vào #17", name: "Giữ vé qua đêm (kênh khác), trừ tiền chưa tạo YC → Hoàn HMDT", count: 78, hmdt: 12000000, bank: 0, bankNote: "KHÔNG ĐỔI tại Bank", err: 0 },
+                            { stt: "Vào #18", name: "Giữ vé qua đêm (kênh khác), 06h00 xuất vé lỗi → Hoàn HMDT", count: 105, hmdt: 15000000, bank: 0, bankNote: "KHÔNG ĐỔI tại Bank", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "IN_MKT",
+                        name: "4. Tặng tiền vào HMDT (Marketing)",
+                        items: [
+                            { stt: "Vào #19", name: "Tặng tiền HMDT chiến dịch MKT tự động không qua Bank", count: 4250, hmdt: 85000000, bank: 0, bankNote: "KHÔNG CÓ SAO KÊ BANK (Chờ bù quỹ MKT)", err: 0 },
+                            { stt: "Vào #20", name: "Tặng tiền HMDT chiến dịch MKT thủ công qua Bank", count: 1000, hmdt: 50000000, bank: 50000000, bankNote: "CÓ SAO KÊ BANK đối chiếu khớp", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "IN_ADJ",
+                        name: "5. Điều chỉnh tăng HMDT thủ công",
+                        items: [
+                            { stt: "Vào #21", name: "Điều chỉnh tăng HMDT thủ công (Hủy TK & tạo TK mới cùng site)", count: 24, hmdt: 30000000, bank: 30000000, bankNote: "CÓ SAO KÊ BANK / Chứng từ Maker-Checker", err: 0 }
+                        ]
+                    }
+                ],
+                outflowGroups: [
+                    {
+                        id: "OUT_TICKET",
+                        name: "1. Mua vé (Thường, Nhiều kỳ, Giữ vé qua đêm)",
+                        items: [
+                            { stt: "Ra #01", name: "Mua vé thành công (BGT in vé)", count: 142500, hmdt: 7420000000, bank: 0, bankNote: "KHÔNG ĐỔI từng vé lẻ (Gom sweep cuối kỳ)", err: 0 },
+                            { stt: "Ra #02", name: "Mua vé nhiều kỳ (Trừ 100% giá trị gói combo)", count: 6840, hmdt: 1380000000, bank: 0, bankNote: "KHÔNG ĐỔI tại Bank", err: 0 },
+                            { stt: "Ra #03", name: "Mua giữ vé qua đêm (Sau 22h00 chờ 06h00 in vé)", count: 4120, hmdt: 460000000, bank: 0, bankNote: "KHÔNG ĐỔI tại Bank", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "OUT_GIFT",
+                        name: "2. Tặng quà",
+                        items: [
+                            { stt: "Ra #04", name: "Tặng quà / vé bằng tài khoản HMDT", count: 2150, hmdt: 290000000, bank: 0, bankNote: "KHÔNG ĐỔI tại Bank", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "OUT_WITHDRAW",
+                        name: "3. Rút tiền khỏi tài khoản HMDT",
+                        items: [
+                            { stt: "Ra #05", name: "Rút tiền khỏi HMDT về STK Ngân hàng chính chủ", count: 1280, hmdt: 1020000000, bank: 0, bankNote: "GIẢM tại TK Chi Hộ: 1.017.500.000 đ (Phí 0,015% min 2.200đ)", err: 1 }
+                        ]
+                    },
+                    {
+                        id: "OUT_ADJ",
+                        name: "4. Điều chỉnh giảm HMDT thủ công",
+                        items: [
+                            { stt: "Ra #06", name: "Điều chỉnh giảm HMDT thủ công (Thu hồi nạp trùng / Hủy TK)", count: 24, hmdt: 30000000, bank: 0, bankNote: "KHÔNG ĐỔI tại Bank (Maker - Checker)", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "OUT_SWEEP",
+                        name: "5. Kết chuyển doanh thu khỏi VAN Tổng (FL-ING-16)",
+                        items: [
+                            { stt: "FL-ING-16", name: "Kết chuyển doanh thu bán vé từ VAN Tổng → TK Doanh thu", count: 3, hmdt: 0, bank: 7000000000, bankNote: "GIẢM (−) trực tiếp tại VAN Tổng (3 lệnh 3 site)", err: 0 }
+                        ]
+                    }
+                ]
+            },
+
+            // KỲ ĐÃ KHÓA SỔ - CÂN BẰNG TUYỆT ĐỐI 100% (VAN TỔNG = HMDT)
+            K20261031: {
+                label: "Kỳ K20261031 — Ngày 31/10/2026",
+                statusHtml: `<span class="badge badge-success">🔒 Đã khóa sổ Cut-off — Khớp 100% (Σ VAN Tổng = Σ HMDT)</span>`,
+                openingHmdt: 141500000000,
+                openingVan: 141500000000,
+                sites: [
+                    { site: "Viettel", dot: "dot-vtt", accounts: 1082100, hmdt: 81200000000, vpb: 52800000000, bidv: 28400000000, transit: 0, netErr: 0, errCount: 0 },
+                    { site: "Mobifone", dot: "dot-mbf", accounts: 510900, hmdt: 38800000000, vpb: 25200000000, bidv: 13600000000, transit: 0, netErr: 0, errCount: 0 },
+                    { site: "Vinaphone", dot: "dot-vnp", accounts: 325400, hmdt: 24000000000, vpb: 15600000000, bidv: 8400000000, transit: 0, netErr: 0, errCount: 0 }
+                ],
+                bridgeItems: [
+                    { label: "(+) Doanh thu vé bán đã kết chuyển 100% sang TK Doanh thu (FL-ING-16)", val: 0, cls: "val-zero" },
+                    { label: "(+) Hoàn ứng chi rút tiền giữa VAN Tổng và TK Chi Hộ đã tất toán cuối kỳ", val: 0, cls: "val-zero" },
+                    { label: "(−) Quyết toán Cổng VNPAY / Viettel Pay / VNPT Money đã về đủ VAN Tổng VPBank", val: 0, cls: "val-zero" },
+                    { label: "(−) Quỹ Marketing đã nạp bù 100% cho các giao dịch tặng HMDT tự động", val: 0, cls: "val-zero" },
+                    { label: "(=) Tổng Khoản Trung Gian Chờ Kết Chuyển (D)", val: 0, cls: "fw-800" }
+                ],
+                inflowGroups: [
+                    {
+                        id: "IN_TOPUP",
+                        name: "1. Nạp tiền vào hạn mức dự thưởng",
+                        items: [
+                            { stt: "Vào #01", name: "Nạp tiền bằng mã QR qua VPBank", count: 26900, hmdt: 5100000000, bank: 5100000000, bankNote: "Khớp 100% sao kê VAN VPBank", err: 0 },
+                            { stt: "Vào #02", name: "Nạp tiền bằng mã QR qua BIDV", count: 18400, hmdt: 3600000000, bank: 3600000000, bankNote: "Khớp 100% sao kê VAN BIDV", err: 0 },
+                            { stt: "Vào #03", name: "Nạp tiền qua cổng thanh toán VNPAY", count: 4500, hmdt: 900000000, bank: 900000000, bankNote: "Đã quyết toán đủ về VAN VPBank", err: 0 },
+                            { stt: "Vào #04", name: "Nạp tiền qua cổng thanh toán Viettel Pay", count: 3100, hmdt: 580000000, bank: 580000000, bankNote: "Đã quyết toán đủ về VAN VPBank", err: 0 },
+                            { stt: "Vào #05", name: "Nạp tiền qua cổng thanh toán VNPT Money", count: 1550, hmdt: 290000000, bank: 290000000, bankNote: "Đã quyết toán đủ về VAN VPBank", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "IN_PRIZE",
+                        name: "2. Nhận giải thưởng",
+                        items: [
+                            { stt: "Vào #06", name: "Nhận thưởng giải <= 10 triệu vào HMDT", count: 6100, hmdt: 890000000, bank: 890000000, bankNote: "Đã trích đủ TK Chi Hộ → VAN Tổng", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "IN_REFUND",
+                        name: "3. Hoàn tiền (12 kịch bản hoàn về HMDT)",
+                        items: [
+                            { stt: "Vào #07..#18", name: "Tổng hợp 12 nghiệp vụ hoàn tiền vé / combo / quà / giữ đêm", count: 3120, hmdt: 490000000, bank: 150000000, bankNote: "Đã kết chuyển bù 150tr đơn kênh ngoài", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "IN_MKT",
+                        name: "4. Tặng tiền vào HMDT (Marketing)",
+                        items: [
+                            { stt: "Vào #19..#20", name: "Tặng tiền chiến dịch MKT (Đã trích quỹ nạp bù bảo chứng)", count: 4800, hmdt: 120000000, bank: 120000000, bankNote: "Quỹ MKT đã chuyển đủ vào VAN Tổng", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "IN_ADJ",
+                        name: "5. Điều chỉnh tăng HMDT thủ công",
+                        items: [
+                            { stt: "Vào #21", name: "Điều chỉnh tăng HMDT thủ công (Maker - Checker)", count: 18, hmdt: 30000000, bank: 30000000, bankNote: "Khớp chứng từ điều chỉnh", err: 0 }
+                        ]
+                    }
+                ],
+                outflowGroups: [
+                    {
+                        id: "OUT_TICKET",
+                        name: "1. Mua vé (Thường, Nhiều kỳ, Giữ vé qua đêm)",
+                        items: [
+                            { stt: "Ra #01..#03", name: "Tổng mua vé thường, vé nhiều kỳ & giữ vé qua đêm", count: 146200, hmdt: 8320000000, bank: 0, bankNote: "Đã kết chuyển qua FL-ING-16 bên dưới", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "OUT_GIFT",
+                        name: "2. Tặng quà",
+                        items: [
+                            { stt: "Ra #04", name: "Tặng quà / vé bằng tài khoản HMDT", count: 1980, hmdt: 250000000, bank: 0, bankNote: "Đã tất toán đối ứng", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "OUT_WITHDRAW",
+                        name: "3. Rút tiền khỏi tài khoản HMDT",
+                        items: [
+                            { stt: "Ra #05", name: "Rút tiền khỏi HMDT (Đã hoàn ứng VAN Tổng → TK Chi Hộ)", count: 1190, hmdt: 900000000, bank: 900000000, bankNote: "Đã kết chuyển hoàn ứng TK Chi Hộ", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "OUT_ADJ",
+                        name: "4. Điều chỉnh giảm HMDT thủ công",
+                        items: [
+                            { stt: "Ra #06", name: "Điều chỉnh giảm HMDT thủ công (Maker - Checker)", count: 18, hmdt: 30000000, bank: 30000000, bankNote: "Đã tất toán đối ứng hủy-tạo TK", err: 0 }
+                        ]
+                    },
+                    {
+                        id: "OUT_SWEEP",
+                        name: "5. Kết chuyển doanh thu khỏi VAN Tổng (FL-ING-16)",
+                        items: [
+                            { stt: "FL-ING-16", name: "Kết chuyển ròng doanh thu vé bán từ VAN Tổng → TK Doanh thu", count: 3, hmdt: 0, bank: 8230000000, bankNote: "Khớp 100% doanh thu ròng sau hoàn HMDT", err: 0 }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // DANH SÁCH GIAO DỊCH CHI TIẾT MẪU (PHỦ ĐỦ 9 NHÓM NGHIỆP VỤ & CÁC MÃ LỆCH TRONG SHEET)
+        const TRANSACTIONS = [
+            {
+                id: "TX01", period: "K20261101", time: "01/11/2026 08:14:22", site: "Viettel",
+                group: "IN_TOPUP", groupLabel: "Nạp tiền HMDT", stt: "Vào #01 — QR VPBank",
+                msisdn: "0988234567", vanAcc: "0638988234567",
+                coreRef: " Chưa sinh GD ", hmdtAmt: 0,
+                channel: "VPBank", bankRef: "FT26305881209", bankAmt: 15000000,
+                diff: 15000000, statusCat: "CODE_01",
+                statusBadge: `<span class="badge badge-warning">Mã 01: Bank có, SMS không</span>`,
+                sources: ["1. Biến động số dư HMDT", "2. Sao kê VAN Tổng VPBank"],
+                ruleNote: "Tiền đã ghi Có tại VAN Tổng Chuyên Thu VPBank nhưng rớt Webhook/timeout → Chưa tăng HMDT cho khách.",
+                actionLabel: "Lập lệnh Nạp bù"
+            },
+            {
+                id: "TX02", period: "K20261101", time: "01/11/2026 09:05:11", site: "Mobifone",
+                group: "IN_TOPUP", groupLabel: "Nạp tiền HMDT", stt: "Vào #01 — QR VPBank",
+                msisdn: "0903456789", vanAcc: "0638903456789",
+                coreRef: "TOP_20261101_9012", hmdtAmt: 3000000,
+                channel: "VPBank", bankRef: "Không có trên sao kê", bankAmt: 0,
+                diff: -3000000, statusCat: "CODE_02",
+                statusBadge: `<span class="badge badge-danger">Mã 02: SMS có, Bank không</span>`,
+                sources: ["1. Biến động số dư HMDT", "2. Sao kê VAN Tổng VPBank"],
+                ruleNote: "CẢNH BÁO ĐỎ: Core SMS đã tăng HMDT +3.000.000đ nhưng sao kê VPBank không có (nguy cơ nạp khống / callback giả mạo hoặc trễ sao kê).",
+                actionLabel: "Phong tỏa & Tra soát"
+            },
+            {
+                id: "TX03", period: "K20261101", time: "01/11/2026 09:42:50", site: "Vinaphone",
+                group: "IN_TOPUP", groupLabel: "Nạp tiền HMDT", stt: "Vào #02 — QR BIDV",
+                msisdn: "0912345888", vanAcc: "SMSVNPT912345888",
+                coreRef: "Chưa sinh GD", hmdtAmt: 0,
+                channel: "BIDV", bankRef: "BIDV26110177412", bankAmt: 8000000,
+                diff: 8000000, statusCat: "CODE_01",
+                statusBadge: `<span class="badge badge-warning">Mã 01: Bank có, SMS không</span>`,
+                sources: ["1. Biến động số dư HMDT", "2. Sao kê VAN Tổng BIDV"],
+                ruleNote: "Sao kê BIDV đã ghi Có 8.000.000đ nhưng rớt IPN Webhook về Core SMS.",
+                actionLabel: "Lập lệnh Nạp bù"
+            },
+            {
+                id: "TX04", period: "K20261101", time: "01/11/2026 10:18:05", site: "Vinaphone",
+                group: "IN_TOPUP", groupLabel: "Nạp tiền HMDT", stt: "Vào #02 — QR BIDV",
+                msisdn: "0919888777", vanAcc: "SMSVNPT919888777",
+                coreRef: "TOP_20261101_4410", hmdtAmt: 5000000,
+                channel: "BIDV", bankRef: "BIDV26110188301", bankAmt: 3500000,
+                diff: -1500000, statusCat: "CODE_03",
+                statusBadge: `<span class="badge badge-danger">Mã 03: Lệch giá trị GD</span>`,
+                sources: ["1. Biến động số dư HMDT", "2. Sao kê VAN Tổng BIDV"],
+                ruleNote: "Có mã giao dịch cả 2 bên nhưng lệch số tiền (SMS ghi +5.000.000đ, sao kê BIDV ghi +3.500.000đ).",
+                actionLabel: "Điều chỉnh lệch"
+            },
+            {
+                id: "TX05", period: "K20261101", time: "01/11/2026 11:02:39", site: "Viettel",
+                group: "IN_TOPUP", groupLabel: "Nạp tiền HMDT", stt: "Vào #03 — Cổng VNPAY",
+                msisdn: "0977112233", vanAcc: "0638977112233",
+                coreRef: "VNPAY_TOP_7721", hmdtAmt: 2000000,
+                channel: "VNPAY → VPBank", bankRef: "VNP14599201 (T+1)", bankAmt: 0,
+                diff: -2000000, statusCat: "TRANSIT_MKT",
+                statusBadge: `<span class="badge badge-info">Chờ quyết toán VNPAY T+1</span>`,
+                sources: ["1. Biến động HMDT", "2. Lịch sử GD VNPAY", "3. Sao kê VAN Tổng VPBank"],
+                ruleNote: "Khớp lịch sử GD VNPAY (2.000.000đ). Tiền đang ở TK trung gian VNPAY, sẽ chuyển về VAN Tổng VPBank vào kỳ T+1.",
+                actionLabel: "Xem đối chiếu 3 nguồn"
+            },
+            {
+                id: "TX06", period: "K20261101", time: "01/11/2026 12:30:00", site: "Viettel",
+                group: "IN_PRIZE", groupLabel: "Nhận giải thưởng", stt: "Vào #06 — Thưởng <= 10tr",
+                msisdn: "0966554433", vanAcc: "0638966554433",
+                coreRef: "WIN_BGT_992014", hmdtAmt: 3000000,
+                channel: "TK Chi Hộ → VPBank", bankRef: "Chờ trích chuyển", bankAmt: 0,
+                diff: -3000000, statusCat: "CODE_02",
+                statusBadge: `<span class="badge badge-warning">Lệch trích thưởng Bank</span>`,
+                sources: ["1. Biến động HMDT", "2. Sao kê TK Chi tiết/Chi hộ", "3. Sao kê VAN chuyên thu"],
+                ruleNote: "Vé trúng hợp lệ trên Ticket Winning BGT; Core SMS đã cộng +3.000.000đ HMDT nhưng lệnh trích từ TK Chi Hộ sang VAN Tổng Thu bị timeout.",
+                actionLabel: "Đẩy lại lệnh trích"
+            },
+            {
+                id: "TX07", period: "K20261101", time: "01/11/2026 14:15:44", site: "Mobifone",
+                group: "IN_REFUND", groupLabel: "Hoàn tiền", stt: "Vào #07 — Vé HMDT lỗi",
+                msisdn: "0909123123", vanAcc: "0638909123123",
+                coreRef: "TIK_ERR_55109", hmdtAmt: 0,
+                channel: "Nội bộ VAN Tổng", bankRef: "BGT_TIMEOUT_55109", bankAmt: 0,
+                diff: 0, statusCat: "REFUND_ISSUE",
+                statusBadge: `<span class="badge badge-danger">Lỗi chưa Unlock 500.000đ</span>`,
+                sources: ["1. Dữ liệu tăng HMDT", "2. Giao dịch mua vé lỗi BGT"],
+                ruleNote: "Mua vé bằng HMDT 500.000đ bị BGT từ chối/timeout nhưng số tiền vẫn bị lock, chưa unlock trả về tài khoản HMDT.",
+                actionLabel: "Mở khóa (Unlock)"
+            },
+            {
+                id: "TX08", period: "K20261101", time: "01/11/2026 15:20:10", site: "Viettel",
+                group: "IN_REFUND", groupLabel: "Hoàn tiền", stt: "Vào #08 — Vé kênh khác lỗi",
+                msisdn: "0983999111", vanAcc: "0638983999111",
+                coreRef: "RF_CROSS_3301", hmdtAmt: 200000,
+                channel: "Ví ngoài → HMDT", bankRef: "PAY_EXT_88120", bankAmt: 0,
+                diff: -200000, statusCat: "TRANSIT_MKT",
+                statusBadge: `<span class="badge badge-indigo">Hoàn kênh ngoài → Chờ bù VAN</span>`,
+                sources: ["1. Dữ liệu tăng HMDT", "2. Giao dịch mua vé lỗi kênh ngoài"],
+                ruleNote: "Khách mua vé bằng kênh TT khác HMDT bị lỗi xuất vé → Hoàn +200.000đ về HMDT. Cần kết chuyển tiền gốc từ TK kênh bán về VAN Tổng.",
+                actionLabel: "Xem chi tiết"
+            },
+            {
+                id: "TX09", period: "K20261101", time: "01/11/2026 16:05:33", site: "Viettel",
+                group: "IN_REFUND", groupLabel: "Hoàn tiền", stt: "Vào #12 — Hủy Combo HMDT",
+                msisdn: "0388776655", vanAcc: "0638388776655",
+                coreRef: "CMB_CAN_1108", hmdtAmt: 92000,
+                channel: "Nội bộ HMDT", bankRef: "COMBO_100K_FEE_8K", bankAmt: 0,
+                diff: 0, statusCat: "MATCHED",
+                statusBadge: `<span class="badge badge-success">Khớp (Đã trừ phí hủy 8%)</span>`,
+                sources: ["1. Biến động HMDT", "2. DS vé combo chưa xuất đã hủy"],
+                ruleNote: "Hủy kỳ chưa quay trị giá 100.000đ trước cutoff. Phí hủy 8% = 8.000đ (<= trần 10.000đ). HMDT tăng đúng 92.000đ.",
+                actionLabel: "Xem chi tiết"
+            },
+            {
+                id: "TX10", period: "K20261101", time: "01/11/2026 16:40:19", site: "Vinaphone",
+                group: "IN_REFUND", groupLabel: "Hoàn tiền", stt: "Vào #14 — Quà HMDT hết hạn",
+                msisdn: "0913222444", vanAcc: "SMSVNPT913222444",
+                coreRef: "GIFT_EXP_7710", hmdtAmt: 0,
+                channel: "Nội bộ HMDT", bankRef: "GIFT_300K_EXPIRED", bankAmt: 0,
+                diff: 0, statusCat: "REFUND_ISSUE",
+                statusBadge: `<span class="badge badge-warning">Quà hết hạn chưa hoàn 300k</span>`,
+                sources: ["1. Biến động số dư HMDT", "2. Dữ liệu quà tặng hết hạn / từ chối"],
+                ruleNote: "Quà tặng 300.000đ đã hết hạn sử dụng nhưng tài khoản HMDT của Người tặng chưa ghi nhận bút toán tăng hoàn tiền.",
+                actionLabel: "Hoàn quà bù"
+            },
+            {
+                id: "TX11", period: "K20261101", time: "01/11/2026 18:00:00", site: "Viettel",
+                group: "IN_MKT", groupLabel: "Tặng tiền MKT", stt: "Vào #19 — MKT tự động",
+                msisdn: "Lô 4.250 KH đạt chuẩn", vanAcc: "Nhiều VAN con",
+                coreRef: "CMP_AUTO_202611", hmdtAmt: 85000000,
+                channel: "Không qua Bank", bankRef: "NO_BANK_STATEMENT", bankAmt: 0,
+                diff: -85000000, statusCat: "TRANSIT_MKT",
+                statusBadge: `<span class="badge badge-indigo">Không sao kê — Chờ bù quỹ MKT</span>`,
+                sources: ["1. Biến động số dư HMDT", "2. Giao dịch tặng tiền chiến dịch MKT"],
+                ruleNote: "HMDT tăng +85.000.000đ theo CTKM tự động. Không có sao kê ngân hàng → Kế toán lập UNC trích quỹ MKT nạp bù vào VAN Tổng.",
+                actionLabel: "Lập UNC Bù quỹ"
+            },
+            {
+                id: "TX12", period: "K20261101", time: "01/11/2026 17:12:08", site: "Viettel",
+                group: "IN_ADJ", groupLabel: "ĐC Tăng thủ công", stt: "Vào #21 — ĐC Tăng (4 mắt)",
+                msisdn: "0981000999", vanAcc: "0638981000999",
+                coreRef: "ADJ_INC_0024", hmdtAmt: 5000000,
+                channel: "VPBank", bankRef: "UNC_CHUYEN_TK_0024", bankAmt: 5000000,
+                diff: 0, statusCat: "MATCHED",
+                statusBadge: `<span class="badge badge-success">Khớp chứng từ 4 mắt</span>`,
+                sources: ["1. Biến động số dư HMDT", "2. Sao kê tài khoản chuyên thu & Lệnh Maker-Checker"],
+                ruleNote: "KH hủy TK cũ & tạo TK mới cùng site Viettel, phê duyệt 4 mắt Maker-Checker khớp chứng từ.",
+                actionLabel: "Xem chi tiết"
+            },
+            {
+                id: "TX13", period: "K20261101", time: "01/11/2026 17:32:45", site: "Mobifone",
+                group: "OUT_TICKET", groupLabel: "Mua vé", stt: "Ra #01 — Mua vé thường",
+                msisdn: "0908777666", vanAcc: "0638908777666",
+                coreRef: "BGT_TIK_6645012", hmdtAmt: -100000,
+                channel: "VAN Tổng (Chờ sweep)", bankRef: "Gom kết chuyển EOD", bankAmt: 0,
+                diff: 100000, statusCat: "MATCHED",
+                statusBadge: `<span class="badge badge-success">Khớp vé BGT (Chờ sweep)</span>`,
+                sources: ["1. Biến động số dư HMDT", "2. Giao dịch mua vé thành công BGT"],
+                ruleNote: "BGT in vé thành công 100.000đ, HMDT trừ đúng 100.000đ. Tiền mặt nằm tại VAN Tổng chờ kết chuyển doanh thu (FL-ING-16).",
+                actionLabel: "Xem chi tiết"
+            },
+            {
+                id: "TX14", period: "K20261101", time: "01/11/2026 22:18:30", site: "Vinaphone",
+                group: "OUT_TICKET", groupLabel: "Mua vé", stt: "Ra #03 — Giữ vé qua đêm",
+                msisdn: "0915666888", vanAcc: "SMSVNPT915666888",
+                coreRef: "HOLD_NIGHT_9921", hmdtAmt: -200000,
+                channel: "VAN Tổng (Giữ đêm)", bankRef: "QUEUE_06AM_BGT", bankAmt: 0,
+                diff: 200000, statusCat: "MATCHED",
+                statusBadge: `<span class="badge badge-success">Khớp lệnh giữ vé 22h</span>`,
+                sources: ["1. Biến động số dư HMDT", "2. Giao dịch đặt giữ vé qua đêm"],
+                ruleNote: "Đặt sau 22h00, đã trừ HMDT 200.000đ, chờ 06h00 sáng mở ca BGT xuất vé.",
+                actionLabel: "Xem chi tiết"
+            },
+            {
+                id: "TX15", period: "K20261101", time: "01/11/2026 19:05:14", site: "Mobifone",
+                group: "OUT_GIFT", groupLabel: "Tặng quà", stt: "Ra #04 — Tặng quà/vé",
+                msisdn: "0933445566", vanAcc: "0638933445566",
+                coreRef: "GIFT_SEND_4402", hmdtAmt: -150000,
+                channel: "VAN Tổng", bankRef: "GIFT_PENDING_CLAIM", bankAmt: 0,
+                diff: 150000, statusCat: "MATCHED",
+                statusBadge: `<span class="badge badge-success">Khớp GD Tặng quà</span>`,
+                sources: ["1. Biến động số dư HMDT", "2. Dữ liệu tặng quà/vé"],
+                ruleNote: "HMDT Người tặng giảm đúng 150.000đ, hiển thị quà trên mục Quà tặng của Người nhận.",
+                actionLabel: "Xem chi tiết"
+            },
+            {
+                id: "TX16", period: "K20261101", time: "01/11/2026 14:50:02", site: "Viettel",
+                group: "OUT_WITHDRAW", groupLabel: "Rút tiền", stt: "Ra #05 — Rút tiền HMDT",
+                msisdn: "0989111222", vanAcc: "0638989111222",
+                coreRef: "WD_20261101_088", hmdtAmt: -2500000,
+                channel: "TK Chi Hộ", bankRef: "Không thấy báo Nợ Chi hộ", bankAmt: 0,
+                diff: 2500000, statusCat: "CODE_02",
+                statusBadge: `<span class="badge badge-warning">HMDT đã trừ — Chi hộ chưa có</span>`,
+                sources: ["1. Biến động HMDT", "2. Sao kê TK chuyên chi", "3. Sao kê TK chuyên thu"],
+                ruleNote: "Tài khoản HMDT đã giảm 2.500.000đ (phí rút tối thiểu 2.200đ đã gồm VAT), nhưng sao kê Ngân hàng Chi hộ chưa có bút toán giải ngân.",
+                actionLabel: "Chi lại / Hoàn HMDT"
+            },
+            {
+                id: "TX17", period: "K20261101", time: "01/11/2026 17:10:00", site: "Viettel",
+                group: "OUT_ADJ", groupLabel: "ĐC Giảm thủ công", stt: "Ra #06 — ĐC Giảm (4 mắt)",
+                msisdn: "0981000888", vanAcc: "0638981000888",
+                coreRef: "ADJ_DEC_0024", hmdtAmt: -5000000,
+                channel: "Nội bộ HMDT", bankRef: "BB_HUY_TK_0024", bankAmt: 0,
+                diff: 5000000, statusCat: "MATCHED",
+                statusBadge: `<span class="badge badge-success">Khớp lệnh duyệt 4 mắt</span>`,
+                sources: ["1. Biến động số dư HMDT", "2. Sao kê chuyên thu & Biên bản Maker-Checker"],
+                ruleNote: "Giảm HMDT thủ công 5.000.000đ do hủy tài khoản cũ chuyển sang tài khoản mới cùng site.",
+                actionLabel: "Xem chi tiết"
+            },
+            {
+                id: "TX18", period: "K20261101", time: "01/11/2026 20:00:00", site: "Viettel",
+                group: "OUT_SWEEP", groupLabel: "Kết chuyển Doanh thu", stt: "FL-ING-16 — Sweep DT",
+                msisdn: "Toàn site Viettel", vanAcc: "VAN Tổng Viettel",
+                coreRef: "SWEEP_VTT_T1", hmdtAmt: 0,
+                channel: "VPBank + BIDV", bankRef: "UNC_DT_20261101_01", bankAmt: -4000000000,
+                diff: -4000000000, statusCat: "MATCHED",
+                statusBadge: `<span class="badge badge-success">Khớp UNC Kết chuyển DT</span>`,
+                sources: ["1. Báo cáo doanh thu BGT", "2. Sao kê Nợ VAN Tổng", "3. Sao kê Có TK Doanh thu"],
+                ruleNote: "Tạm kết chuyển lô 4,0 tỷ doanh thu bán vé trong ngày từ VAN Tổng sang Tài khoản Doanh thu.",
+                actionLabel: "Xem chi tiết"
+            },
+            // Bản ghi mẫu cho kỳ K20261031 (Đã khóa sổ khớp 100%)
+            {
+                id: "TX19", period: "K20261031", time: "31/10/2026 10:12:00", site: "Viettel",
+                group: "IN_TOPUP", groupLabel: "Nạp tiền HMDT", stt: "Vào #01 — QR VPBank",
+                msisdn: "0988777111", vanAcc: "0638988777111",
+                coreRef: "TOP_20261031_101", hmdtAmt: 500000,
+                channel: "VPBank", bankRef: "FT26304112098", bankAmt: 500000,
+                diff: 0, statusCat: "MATCHED",
+                statusBadge: `<span class="badge badge-success">Khớp 100% (Happy Case)</span>`,
+                sources: ["1. Biến động số dư HMDT", "2. Sao kê VAN Tổng VPBank"],
+                ruleNote: "Khớp 1-1 mã giao dịch, số tiền nạp và ngày giá trị.",
+                actionLabel: "Xem chi tiết"
+            },
+            {
+                id: "TX20", period: "K20261031", time: "31/10/2026 23:55:00", site: "Viettel",
+                group: "OUT_SWEEP", groupLabel: "Kết chuyển Doanh thu", stt: "FL-ING-16 — Sweep EOD",
+                msisdn: "3 Site Nhà mạng", vanAcc: "6 TK VAN Tổng",
+                coreRef: "SWEEP_EOD_3110", hmdtAmt: 0,
+                channel: "VPBank + BIDV", bankRef: "UNC_EOD_3110_FINAL", bankAmt: -8230000000,
+                diff: -8230000000, statusCat: "MATCHED",
+                statusBadge: `<span class="badge badge-success">Đã chốt sổ Cut-off (Δ = 0)</span>`,
+                sources: ["1. Tổng hợp Doanh thu BGT", "2. Sao kê VAN Tổng VPBank & BIDV"],
+                ruleNote: "Đã kết chuyển toàn bộ doanh thu ròng trong kỳ, đưa Tổng số dư VAN Tổng = Tổng số dư HMDT = 144.000.000.000 VNĐ.",
+                actionLabel: "Xem chi tiết"
+            }
+        ];
+
+        // STATE HIỆN TẠI
+        let activeTxGroup = "ALL";
+        let expandedGroups = new Set(["IN_TOPUP", "OUT_TICKET", "OUT_WITHDRAW", "OUT_SWEEP"]);
+        let bridgeOpen = true;
+
+        function fmtVnd(n, showPlus = false) {
+            if (n === 0) return "0 đ";
+            const sign = n > 0 ? (showPlus ? "+" : "") : "−";
+            return sign + Math.abs(n).toLocaleString("vi-VN") + " đ";
+        }
+
+        function fmtCount(n) {
+            return n.toLocaleString("vi-VN");
+        }
+
+        function getSiteRatio(periodKey, selectedSite) {
+            if (selectedSite === "ALL") return 1;
+            const p = PERIOD_DATA[periodKey];
+            const totalHmdt = p.sites.reduce((s, x) => s + x.hmdt, 0);
+            const found = p.sites.find(x => x.site === selectedSite);
+            return found ? (found.hmdt / totalHmdt) : 1;
+        }
+
+        function handleGlobalFilterChange() {
+            renderSummaryCard();
+            renderCashflowCard();
+            renderGroupTabs();
+            renderTransactions();
+        }
+
+        // =========================================================================
+        // RENDER THẺ 1: THẺ THÔNG TIN TỔNG HỢP
+        // =========================================================================
+        function renderSummaryCard() {
+            const periodKey = document.getElementById("periodSelect").value;
+            const siteFilter = document.getElementById("siteSelect").value;
+            const bankFilter = document.getElementById("bankSelect").value;
+            const p = PERIOD_DATA[periodKey];
+
+            document.getElementById("periodStatusBadge").innerHTML = p.statusHtml;
+
+            const filteredSites = siteFilter === "ALL" ? p.sites : p.sites.filter(s => s.site === siteFilter);
+
+            let sumAcc = 0, sumHmdt = 0, sumVpb = 0, sumBidv = 0, sumVan = 0, sumTransit = 0, sumNetErr = 0, sumErrCnt = 0;
+
+            let rowsHtml = "";
+            filteredSites.forEach(s => {
+                const vpbVal = bankFilter === "BIDV" ? 0 : s.vpb;
+                const bidvVal = bankFilter === "VPBank" ? 0 : s.bidv;
+                const vanTotal = vpbVal + bidvVal;
+                const rawDiff = vanTotal - s.hmdt;
+                const netErr = bankFilter === "ALL" ? s.netErr : rawDiff;
+
+                sumAcc += s.accounts;
+                sumHmdt += s.hmdt;
+                sumVpb += vpbVal;
+                sumBidv += bidvVal;
+                sumVan += vanTotal;
+                sumTransit += s.transit;
+                sumNetErr += s.netErr;
+                sumErrCnt += s.errCount;
+
+                const diffCls = rawDiff === 0 ? "val-pos" : "val-warn";
+                const errBadge = s.netErr === 0
+                    ? `<span class="badge badge-success">0 đ (Khớp)</span>`
+                    : `<span class="badge badge-danger">${fmtVnd(s.netErr, true)} (${s.errCount} GD)</span>`;
+
+                rowsHtml += `
+                    <tr>
+                        <td class="fw-700"><span class="site-dot ${s.dot}"></span>Site ${s.site}</td>
+                        <td class="text-right mono">${fmtCount(s.accounts)}</td>
+                        <td class="text-right mono fw-700">${fmtVnd(s.hmdt)}</td>
+                        <td class="text-right mono">${fmtVnd(vpbVal)}</td>
+                        <td class="text-right mono">${fmtVnd(bidvVal)}</td>
+                        <td class="text-right mono fw-700">${fmtVnd(vanTotal)}</td>
+                        <td class="text-right mono ${diffCls}">${fmtVnd(rawDiff, true)}</td>
+                        <td class="text-right mono">${bankFilter === "ALL" ? fmtVnd(s.transit, true) : "—"}</td>
+                        <td class="text-right mono">${bankFilter === "ALL" ? errBadge : "Đang lọc 1 NH"}</td>
+                    </tr>
+                `;
+            });
+
+            const totalRawDiff = sumVan - sumHmdt;
+            rowsHtml += `
+                <tr class="total-row">
+                    <td>TỔNG CỘNG (${siteFilter === "ALL" ? "CẢ 3 NHÀ MẠNG" : siteFilter.toUpperCase()})</td>
+                    <td class="text-right mono">${fmtCount(sumAcc)}</td>
+                    <td class="text-right mono">${fmtVnd(sumHmdt)}</td>
+                    <td class="text-right mono">${fmtVnd(sumVpb)}</td>
+                    <td class="text-right mono">${fmtVnd(sumBidv)}</td>
+                    <td class="text-right mono">${fmtVnd(sumVan)}</td>
+                    <td class="text-right mono" style="color:${totalRawDiff === 0 ? '#6ee7b7' : '#fde047'};">${fmtVnd(totalRawDiff, true)}</td>
+                    <td class="text-right mono">${bankFilter === "ALL" ? fmtVnd(sumTransit, true) : "—"}</td>
+                    <td class="text-right mono" style="color:${sumNetErr === 0 ? '#6ee7b7' : '#fda4af'};">
+                        ${bankFilter === "ALL" ? fmtVnd(sumNetErr, true) : "—"}
+                    </td>
+                </tr>
+            `;
+            document.getElementById("summaryTableBody").innerHTML = rowsHtml;
+
+            // Banner Solvency
+            const solvencyRatio = sumHmdt > 0 ? ((sumVan / sumHmdt) * 100).toFixed(2) : "100.00";
+            document.getElementById("solvencyBanner").innerHTML = totalRawDiff >= 0
+                ? `<span class="badge badge-success">🛡️ Tỷ lệ bảo chứng VAN Tổng / HMDT: ${solvencyRatio}% (Đảm bảo thanh khoản >= 100%)</span>`
+                : `<span class="badge badge-danger">🚨 Cảnh báo: Đang lọc 1 Ngân hàng hoặc VAN Tổng < HMDT (${solvencyRatio}%)</span>`;
+
+            // 4 KPI Cards
+            document.getElementById("kpiSummaryStrip").innerHTML = `
+                <div class="kpi-box van">
+                    <div class="kpi-label"><span>1. Tổng Số Dư VAN Tổng (Ngân Hàng)</span> <span class="badge badge-info">VPBank + BIDV</span></div>
+                    <div class="kpi-value mono">${fmtVnd(sumVan)}</div>
+                    <div class="kpi-meta mono">
+                        <span>VPBank: <b>${fmtVnd(sumVpb)}</b></span> • <span>BIDV: <b>${fmtVnd(sumBidv)}</b></span>
+                    </div>
+                </div>
+                <div class="kpi-box hmdt">
+                    <div class="kpi-label"><span>2. Tổng Số Dư Tài Khoản HMDT</span> <span class="badge badge-indigo">3 Nhà Mạng</span></div>
+                    <div class="kpi-value mono">${fmtVnd(sumHmdt)}</div>
+                    <div class="kpi-meta">
+                        <span>Tổng <b>${fmtCount(sumAcc)}</b> TK HMDT đang hoạt động</span>
+                    </div>
+                </div>
+                <div class="kpi-box ${totalRawDiff === 0 ? 'delta-ok' : 'delta-warn'}">
+                    <div class="kpi-label"><span>3. Chênh Lệch (VAN Tổng − HMDT)</span> <span>Công thức gốc</span></div>
+                    <div class="kpi-value mono" style="color:${totalRawDiff === 0 ? 'var(--emerald-600)' : 'var(--amber-600)'};">${fmtVnd(totalRawDiff, true)}</div>
+                    <div class="kpi-meta">
+                        <span>${totalRawDiff === 0 ? 'Cân bằng tuyệt đối giữa Bank và HMDT' : 'Bao gồm khoản chờ kết chuyển & lệch GD'}</span>
+                    </div>
+                </div>
+                <div class="kpi-box ${sumNetErr === 0 ? 'net-ok' : 'net-err'}">
+                    <div class="kpi-label"><span>4. Lệch Đối Soát Cần Xử Lý</span> <span>Sau trừ trung gian</span></div>
+                    <div class="kpi-value mono" style="color:${sumNetErr === 0 ? 'var(--emerald-600)' : 'var(--rose-600)'};">${bankFilter === "ALL" ? fmtVnd(sumNetErr, true) : "Lọc 2 NH để xem"}</div>
+                    <div class="kpi-meta">
+                        <span>${sumNetErr === 0 ? '0 giao dịch sai lệch tồn đọng' : `<b>${sumErrCnt} giao dịch</b> cần Kế toán / VHNV xử lý`}</span>
+                    </div>
+                </div>
+            `;
+
+            // Render Bridge & Roll-forward
+            const ratio = getSiteRatio(periodKey, siteFilter);
+            const openH = Math.round(p.openingHmdt * ratio);
+            const openV = Math.round(p.openingVan * ratio);
+            const inH = p.inflowGroups.reduce((acc, g) => acc + g.items.reduce((s, i) => s + Math.round(i.hmdt * ratio), 0), 0);
+            const outH = p.outflowGroups.reduce((acc, g) => acc + g.items.reduce((s, i) => s + Math.round(i.hmdt * ratio), 0), 0);
+            const inV = p.inflowGroups.reduce((acc, g) => acc + g.items.reduce((s, i) => s + Math.round(i.bank * ratio), 0), 0);
+            const outV = p.outflowGroups.reduce((acc, g) => acc + g.items.reduce((s, i) => s + Math.round(i.bank * ratio), 0), 0);
+
+            const bridgeListHtml = p.bridgeItems.map(b => {
+                const scaled = Math.round(b.val * ratio);
+                return `<li><span>${b.label}</span><span class="mono ${b.cls}">${fmtVnd(scaled, scaled !== 0)}</span></li>`;
+            }).join("");
+
+            document.getElementById("bridgeContent").innerHTML = `
+                <div class="bridge-card">
+                    <h4>A. Cấu thành Chênh lệch (C = VAN Tổng − HMDT = ${fmtVnd(totalRawDiff, true)})</h4>
+                    <ul class="bridge-list">
+                        ${bridgeListHtml}
+                        <li style="color:var(--rose-600);">
+                            <span>(+) Lệch giao dịch sai sót cần tra soát xử lý (E = C − D)</span>
+                            <span class="mono">${fmtVnd(Math.round(sumNetErr), true)}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bridge-card">
+                    <h4>B. Đối chiếu Biến động Đầu kỳ → Cuối kỳ (Chuẩn FL-ING-17)</h4>
+                    <ul class="bridge-list">
+                        <li><span>1. Số dư Đầu kỳ (HMDT vs VAN Tổng)</span><span class="mono">${fmtVnd(openH)} | ${fmtVnd(openV)}</span></li>
+                        <li><span>2. (+) Tổng Luồng Tiền Vào trong kỳ</span><span class="mono val-pos">+${fmtVnd(inH)} | +${fmtVnd(inV)}</span></li>
+                        <li><span>3. (−) Tổng Luồng Tiền Ra / Kết chuyển trong kỳ</span><span class="mono val-neg">−${fmtVnd(outH)} | −${fmtVnd(outV)}</span></li>
+                        <li><span>4. (=) Số dư Cuối kỳ (Đầu kỳ + Vào − Ra)</span><span class="mono">${fmtVnd(openH + inH - outH)} | ${fmtVnd(openV + inV - outV)}</span></li>
+                    </ul>
+                </div>
+            `;
+        }
+
+        function toggleBridge() {
+            bridgeOpen = !bridgeOpen;
+            document.getElementById("bridgeContent").style.display = bridgeOpen ? "grid" : "none";
+            document.getElementById("bridgeToggleText").textContent = bridgeOpen ? "Thu gọn ▲" : "Mở rộng ▼";
+        }
+
+        // =========================================================================
+        // RENDER THẺ 2: THẺ LUỒNG TIỀN THEO NHÓM NGHIỆP VỤ
+        // =========================================================================
+        function renderCashflowCard() {
+            const periodKey = document.getElementById("periodSelect").value;
+            const siteFilter = document.getElementById("siteSelect").value;
+            const ratio = getSiteRatio(periodKey, siteFilter);
+            const p = PERIOD_DATA[periodKey];
+
+            const buildFlowHtml = (groups, isOutflow) => {
+                let totalCnt = 0, totalHmdt = 0, totalBank = 0, totalErr = 0;
+                let html = "";
+
+                groups.forEach(g => {
+                    const isExp = expandedGroups.has(g.id);
+                    let gCnt = 0, gHmdt = 0, gBank = 0, gErr = 0;
+                    let subHtml = "";
+
+                    g.items.forEach(item => {
+                        const c = Math.max(1, Math.round(item.count * ratio));
+                        const h = Math.round(item.hmdt * ratio);
+                        const b = Math.round(item.bank * ratio);
+                        const diff = isOutflow ? (h - b) : (b - h); // tác động lên (VAN - HMDT)
+                        gCnt += c; gHmdt += h; gBank += b; gErr += item.err;
+
+                        subHtml += `
+                            <tr class="sub-item-row ${isExp ? '' : 'hidden'}" data-parent="${g.id}">
+                                <td><span class="mono fw-700" style="color:var(--primary);">${item.stt}:</span> ${item.name}</td>
+                                <td class="text-right mono">${fmtCount(c)}</td>
+                                <td class="text-right mono fw-700">${fmtVnd(h)}</td>
+                                <td class="text-right mono fw-700">${fmtVnd(b)}</td>
+                                <td><span class="bank-behavior-tag">${item.bankNote}</span></td>
+                                <td class="text-right mono ${diff === 0 ? 'val-zero' : (diff > 0 ? 'val-pos' : 'val-warn')}">${fmtVnd(diff, true)}</td>
+                                <td class="text-center">${item.err > 0 ? `<span class="badge badge-danger">${item.err} GD lệch</span>` : `<span class="badge badge-success">Khớp</span>`}</td>
+                                <td class="text-center"><button class="btn btn-outline btn-xs" onclick="jumpToGroup('${g.id}')">Chi tiết →</button></td>
+                            </tr>
+                        `;
+                    });
+
+                    totalCnt += gCnt; totalHmdt += gHmdt; totalBank += gBank; totalErr += gErr;
+                    const gDiff = isOutflow ? (gHmdt - gBank) : (gBank - gHmdt);
+
+                    html += `
+                        <tr class="group-row ${isExp ? 'expanded' : ''}" onclick="toggleGroupRow('${g.id}')">
+                            <td><span class="toggle-icon">▶</span>${g.name} <span style="font-weight:500; color:var(--slate-500);">(${g.items.length} NV)</span></td>
+                            <td class="text-right mono">${fmtCount(gCnt)}</td>
+                            <td class="text-right mono">${fmtVnd(gHmdt)}</td>
+                            <td class="text-right mono">${fmtVnd(gBank)}</td>
+                            <td><span style="font-size:11.5px; color:var(--slate-500);">Tổng hợp nhóm nghiệp vụ</span></td>
+                            <td class="text-right mono ${gDiff === 0 ? 'val-zero' : 'val-warn'}">${fmtVnd(gDiff, true)}</td>
+                            <td class="text-center">${gErr > 0 ? `<span class="badge badge-warning">${gErr} cảnh báo</span>` : `<span class="badge badge-success">0 lệch</span>`}</td>
+                            <td class="text-center" onclick="event.stopPropagation(); jumpToGroup('${g.id}')">
+                                <button class="btn btn-navy btn-xs">Lọc GD ↓</button>
+                            </td>
+                        </tr>
+                        ${subHtml}
+                    `;
+                });
+
+                const totalDiff = isOutflow ? (totalHmdt - totalBank) : (totalBank - totalHmdt);
+                html += `
+                    <tr class="total-row">
+                        <td>TỔNG CỘNG ${isOutflow ? 'LUỒNG TIỀN RA' : 'LUỒNG TIỀN VÀO'}</td>
+                        <td class="text-right mono">${fmtCount(totalCnt)}</td>
+                        <td class="text-right mono">${fmtVnd(totalHmdt)}</td>
+                        <td class="text-right mono">${fmtVnd(totalBank)}</td>
+                        <td><span class="sub-note">${isOutflow ? 'Tác động ròng làm tăng (VAN − HMDT) khi chưa sweep' : 'Tác động ròng lên chênh lệch (VAN − HMDT)'}</span></td>
+                        <td class="text-right mono" style="color:#fde047;">${fmtVnd(totalDiff, true)}</td>
+                        <td class="text-center">${totalErr > 0 ? `<span class="badge badge-danger">${totalErr} GD lệch</span>` : `<span class="badge badge-success">Khớp 100%</span>`}</td>
+                        <td></td>
+                    </tr>
+                `;
+                return { html, totalHmdt, totalBank };
+            };
+
+            const inRes = buildFlowHtml(p.inflowGroups, false);
+            const outRes = buildFlowHtml(p.outflowGroups, true);
+
+            document.getElementById("inflowTableBody").innerHTML = inRes.html;
+            document.getElementById("outflowTableBody").innerHTML = outRes.html;
+
+            document.getElementById("cashflowTopStrip").innerHTML = `
+                <div class="cf-pill-card cf-in">
+                    <div>
+                        <div style="font-size:11px; font-weight:700; color:#065f46; text-transform:uppercase;">Tổng Luồng Tiền Vào (5 Nhóm)</div>
+                        <div class="mono fw-800" style="font-size:16px; color:#065f46; margin-top:3px;">HMDT: +${fmtVnd(inRes.totalHmdt)}</div>
+                    </div>
+                    <div class="text-right mono" style="font-size:12px; color:#047857;">
+                        <div>VAN Bank: <b>+${fmtVnd(inRes.totalBank)}</b></div>
+                        <div>Lệch Vào: <b>${fmtVnd(inRes.totalBank - inRes.totalHmdt, true)}</b></div>
+                    </div>
+                </div>
+                <div class="cf-pill-card cf-out">
+                    <div>
+                        <div style="font-size:11px; font-weight:700; color:#9f1239; text-transform:uppercase;">Tổng Luồng Tiền Ra & Sweep (5 Nhóm)</div>
+                        <div class="mono fw-800" style="font-size:16px; color:#9f1239; margin-top:3px;">HMDT: −${fmtVnd(outRes.totalHmdt)}</div>
+                    </div>
+                    <div class="text-right mono" style="font-size:12px; color:#be123c;">
+                        <div>VAN Bank: <b>−${fmtVnd(outRes.totalBank)}</b></div>
+                        <div>Chưa Sweep/Hoàn ứng: <b>${fmtVnd(outRes.totalHmdt - outRes.totalBank, true)}</b></div>
+                    </div>
+                </div>
+                <div class="cf-pill-card cf-net">
+                    <div>
+                        <div style="font-size:11px; font-weight:700; color:#1e40af; text-transform:uppercase;">Biến Động Thuần Trong Kỳ (Vào − Ra)</div>
+                        <div class="mono fw-800" style="font-size:16px; color:#1e3a8a; margin-top:3px;">HMDT: ${fmtVnd(inRes.totalHmdt - outRes.totalHmdt, true)}</div>
+                    </div>
+                    <div class="text-right mono" style="font-size:12px; color:#1d4ed8;">
+                        <div>VAN Bank: <b>${fmtVnd(inRes.totalBank - outRes.totalBank, true)}</b></div>
+                        <div>Δ Kỳ: <b>${fmtVnd((inRes.totalBank - outRes.totalBank) - (inRes.totalHmdt - outRes.totalHmdt), true)}</b></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleGroupRow(groupId) {
+            if (expandedGroups.has(groupId)) expandedGroups.delete(groupId);
+            else expandedGroups.add(groupId);
+            renderCashflowCard();
+        }
+
+        function expandAllGroups(expand) {
+            const periodKey = document.getElementById("periodSelect").value;
+            const p = PERIOD_DATA[periodKey];
+            expandedGroups.clear();
+            if (expand) {
+                [...p.inflowGroups, ...p.outflowGroups].forEach(g => expandedGroups.add(g.id));
+            }
+            renderCashflowCard();
+        }
+
+        function jumpToGroup(groupId) {
+            activeTxGroup = groupId;
+            renderGroupTabs();
+            renderTransactions();
+            document.getElementById("cardTransactions").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+
+        // =========================================================================
+        // RENDER THẺ 3: GIAO DỊCH CHI TIẾT THEO NHÓM NGHIỆP VỤ
+        // =========================================================================
+        const GROUP_TAB_DEFS = [
+            { id: "ALL", label: "Tất cả nhóm nghiệp vụ" },
+            { id: "IN_TOPUP", label: "Vào 1: Nạp tiền HMDT" },
+            { id: "IN_PRIZE", label: "Vào 2: Nhận giải thưởng" },
+            { id: "IN_REFUND", label: "Vào 3: Hoàn tiền (12 NV)" },
+            { id: "IN_MKT", label: "Vào 4: Tặng tiền MKT" },
+            { id: "IN_ADJ", label: "Vào 5: ĐC Tăng thủ công" },
+            { id: "OUT_TICKET", label: "Ra 1: Mua vé" },
+            { id: "OUT_GIFT", label: "Ra 2: Tặng quà" },
+            { id: "OUT_WITHDRAW", label: "Ra 3: Rút tiền" },
+            { id: "OUT_ADJ", label: "Ra 4: ĐC Giảm thủ công" },
+            { id: "OUT_SWEEP", label: "Bank: Kết chuyển DT" }
+        ];
+
+        function renderGroupTabs() {
+            const periodKey = document.getElementById("periodSelect").value;
+            const siteFilter = document.getElementById("siteSelect").value;
+
+            const baseList = TRANSACTIONS.filter(t =>
+                t.period === periodKey && (siteFilter === "ALL" || t.site === siteFilter || t.site.includes("3 Site"))
+            );
+
+            document.getElementById("groupTabs").innerHTML = GROUP_TAB_DEFS.map(tab => {
+                const cnt = tab.id === "ALL" ? baseList.length : baseList.filter(t => t.group === tab.id).length;
+                const activeCls = activeTxGroup === tab.id ? "active" : "";
+                return `<button class="tab-btn ${activeCls}" onclick="selectTxTab('${tab.id}')">${tab.label} <span class="mono">(${cnt})</span></button>`;
+            }).join("");
+        }
+
+        function selectTxTab(tabId) {
+            activeTxGroup = tabId;
+            renderGroupTabs();
+            renderTransactions();
+        }
+
+        function resetTxFilters() {
+            activeTxGroup = "ALL";
+            document.getElementById("txSearchInput").value = "";
+            document.getElementById("txStatusFilter").value = "ALL";
+            renderGroupTabs();
+            renderTransactions();
+        }
+
+        function renderTransactions() {
+            const periodKey = document.getElementById("periodSelect").value;
+            const siteFilter = document.getElementById("siteSelect").value;
+            const bankFilter = document.getElementById("bankSelect").value;
+            const q = document.getElementById("txSearchInput").value.trim().toLowerCase();
+            const stFilter = document.getElementById("txStatusFilter").value;
+
+            const filtered = TRANSACTIONS.filter(t => {
+                if (t.period !== periodKey) return false;
+                if (siteFilter !== "ALL" && t.site !== siteFilter && !t.site.includes("3 Site")) return false;
+                if (bankFilter !== "ALL" && !t.channel.includes(bankFilter) && !t.channel.includes("Nội bộ") && !t.channel.includes("Không qua")) return false;
+                if (activeTxGroup !== "ALL" && t.group !== activeTxGroup) return false;
+                if (stFilter === "MISMATCH_ONLY" && t.statusCat === "MATCHED") return false;
+                if (stFilter !== "ALL" && stFilter !== "MISMATCH_ONLY" && t.statusCat !== stFilter) return false;
+                if (q) {
+                    const hay = `${t.stt} ${t.msisdn} ${t.vanAcc} ${t.coreRef} ${t.bankRef} ${t.channel} ${t.groupLabel}`.toLowerCase();
+                    if (!hay.includes(q)) return false;
+                }
+                return true;
+            });
+
+            const mismatchCnt = filtered.filter(t => t.statusCat !== "MATCHED").length;
+            document.getElementById("txCountSummary").innerHTML = `
+                <span class="badge badge-info">Hiển thị: ${filtered.length} bản ghi mẫu</span>
+                ${mismatchCnt > 0 ? `<span class="badge badge-danger" style="margin-left:6px;">⚠️ ${mismatchCnt} bản ghi cần chú ý / xử lý</span>` : `<span class="badge badge-success" style="margin-left:6px;">🟢 Tất cả khớp</span>`}
+            `;
+
+            if (filtered.length === 0) {
+                document.getElementById("txTableBody").innerHTML = `
+                    <tr><td colspan="12" class="text-center" style="padding:28px; color:var(--slate-500);">Không có giao dịch nào khớp với điều kiện lọc hiện tại.</td></tr>
+                `;
+                return;
+            }
+
+            document.getElementById("txTableBody").innerHTML = filtered.map(t => {
+                const rowCls = t.statusCat === "CODE_02" ? "row-critical" : (t.statusCat !== "MATCHED" ? "row-discrepancy" : "");
+                const btnStyle = t.statusCat === "MATCHED" ? "btn-outline" : "btn-primary";
+                return `
+                    <tr class="${rowCls}">
+                        <td class="mono" style="white-space:nowrap;">${t.time}</td>
+                        <td class="fw-700">${t.site}</td>
+                        <td>
+                            <div class="fw-700">${t.groupLabel}</div>
+                            <div style="font-size:11px; color:var(--slate-500);">${t.stt}</div>
+                        </td>
+                        <td class="mono">
+                            <div class="fw-700">${t.msisdn}</div>
+                            <div style="font-size:11px; color:var(--slate-500);">${t.vanAcc}</div>
+                        </td>
+                        <td class="mono">${t.coreRef}</td>
+                        <td class="text-right mono fw-700 ${t.hmdtAmt > 0 ? 'val-pos' : (t.hmdtAmt < 0 ? 'val-neg' : 'val-zero')}">${fmtVnd(t.hmdtAmt, true)}</td>
+                        <td class="fw-700">${t.channel}</td>
+                        <td class="mono">${t.bankRef}</td>
+                        <td class="text-right mono fw-700 ${t.bankAmt > 0 ? 'val-pos' : (t.bankAmt < 0 ? 'val-neg' : 'val-zero')}">${fmtVnd(t.bankAmt, true)}</td>
+                        <td class="text-right mono fw-700 ${t.diff === 0 ? 'val-zero' : 'val-warn'}">${fmtVnd(t.diff, true)}</td>
+                        <td>${t.statusBadge}</td>
+                        <td class="text-center">
+                            <button class="btn ${btnStyle} btn-xs" onclick="openTxModal('${t.id}')">${t.actionLabel}</button>
+                        </td>
+                    </tr>
+                `;
+            }).join("");
+        }
+
+        // =========================================================================
+        // MODAL ĐỐI CHIẾU ĐA NGUỒN & QUY TRÌNH XỬ LÝ 4 MẮT (MAKER - CHECKER)
+        // =========================================================================
+        function openTxModal(txId) {
+            const t = TRANSACTIONS.find(x => x.id === txId);
+            if (!t) return;
+
+            document.getElementById("modalTitle").textContent = `Đối chiếu chi tiết giao dịch [${t.id}] — ${t.stt}`;
+            document.getElementById("modalBody").innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                    <div><strong>Khách hàng / Định danh:</strong> <span class="mono">${t.msisdn}</span> • <strong>TK VAN con:</strong> <span class="mono">${t.vanAcc}</span> (${t.site})</div>
+                    <div>${t.statusBadge}</div>
+                </div>
+
+                <div class="compare-3col">
+                    <div class="source-box">
+                        <h4>1. Sổ Cái HMDT (Core Vietlott SMS)</h4>
+                        <div class="kv-row"><span>Mã GD HMDT / Vé:</span><span class="mono">${t.coreRef}</span></div>
+                        <div class="kv-row"><span>Biến động HMDT:</span><span class="mono">${fmtVnd(t.hmdtAmt, true)}</span></div>
+                        <div class="kv-row"><span>Thời gian ghi nhận:</span><span class="mono">${t.time}</span></div>
+                    </div>
+                    <div class="source-box">
+                        <h4>2. Ngân Hàng / Cổng Thanh Toán</h4>
+                        <div class="kv-row"><span>Kênh / Ngân hàng:</span><span>${t.channel}</span></div>
+                        <div class="kv-row"><span>Mã tham chiếu:</span><span class="mono">${t.bankRef}</span></div>
+                        <div class="kv-row"><span>Biến động Bank:</span><span class="mono">${fmtVnd(t.bankAmt, true)}</span></div>
+                    </div>
+                    <div class="source-box">
+                        <h4>3. Kết Quả & Nguồn Đối Soát Chuẩn</h4>
+                        <div class="kv-row"><span>Chênh lệch (Bank−HMDT):</span><span class="mono">${fmtVnd(t.diff, true)}</span></div>
+                        <div style="margin-top:6px; font-size:11.5px; color:var(--slate-600);">
+                            <strong>Nguồn đối chiếu bắt buộc (Google Sheet):</strong>
+                            <ul style="padding-left:16px; margin-top:4px;">
+                                ${t.sources.map(s => `<li>${s}</li>`).join("")}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:8px; padding:12px; font-size:12.5px;">
+                    <strong>📋 Phân tích nghiệp vụ & Hướng xử lý:</strong>
+                    <p style="margin-top:4px; color:var(--slate-800);">${t.ruleNote}</p>
+                </div>
+
+                <div>
+                    <label style="font-size:11.5px; font-weight:700; display:block; margin-bottom:4px;">Ghi chú chứng từ / Đề xuất xử lý trình Checker phê duyệt (4 mắt):</label>
+                    <input type="text" style="width:100%;" value="Đề xuất thực hiện [${t.actionLabel}] cho mã [${t.id}] căn cứ đối chiếu kỳ ${t.period}.">
+                </div>
+            `;
+
+            document.getElementById("modalFoot").innerHTML = `
+                <button class="btn btn-outline" onclick="closeModal()">Đóng</button>
+                ${t.statusCat !== "MATCHED"
+                    ? `<button class="btn btn-primary" onclick="closeModal(); showToast('Đã tạo phiếu [${t.actionLabel}] cho GD ${t.id} và chuyển sang Hàng đợi Checker ký duyệt!')">📤 Gửi Lệnh Xử Lý (Maker → Checker)</button>`
+                    : `<button class="btn btn-navy" onclick="closeModal()">✓ Xác nhận Đã xem</button>`
+                }
+            `;
+            document.getElementById("detailModal").classList.add("open");
+        }
+
+        function closeModal() {
+            document.getElementById("detailModal").classList.remove("open");
+        }
+
+        function showToast(msg) {
+            const el = document.getElementById("toastMsg");
+            el.textContent = msg;
+            el.style.display = "block";
+            clearTimeout(window.__toastTimer);
+            window.__toastTimer = setTimeout(() => { el.style.display = "none"; }, 3600);
+        }
+
+        // =========================================================================
+        // SIDEBAR & NAVIGATION INTERACTIONS
+        // =========================================================================
+        function toggleSidebar() {
+            const sidebar = document.getElementById("appSidebar");
+            const btn = document.getElementById("sidebarCollapseBtn");
+            sidebar.classList.toggle("collapsed");
+            if (sidebar.classList.contains("collapsed")) {
+                btn.innerHTML = "›";
+                btn.title = "Mở rộng menu";
+            } else {
+                btn.innerHTML = "‹";
+                btn.title = "Thu gọn menu";
+            }
+        }
+
+        function toggleNavMenu(id) {
+            const sidebar = document.getElementById("appSidebar");
+            if (sidebar.classList.contains("collapsed")) {
+                sidebar.classList.remove("collapsed");
+                document.getElementById("sidebarCollapseBtn").innerHTML = "‹";
+                document.getElementById("sidebarCollapseBtn").title = "Thu gọn menu";
+            }
+            const el = document.getElementById(id);
+            const parent = el ? el.closest(".nav-item") : null;
+            if (!parent) return;
+            parent.classList.toggle("open");
+            if (parent.classList.contains("open")) {
+                el.style.display = "block";
+            } else {
+                el.style.display = "none";
+            }
+        }
+
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                const headerOffset = 110;
+                const elementPosition = el.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+                // Update active state in submenus
+                document.querySelectorAll(".submenu-link").forEach(l => l.classList.remove("active"));
+                if (window.event && window.event.currentTarget) {
+                    window.event.currentTarget.classList.add("active");
+                }
+            }
+        }
+
+        // KHỞI TẠO GIAO DIỆN
+        handleGlobalFilterChange();
+    </script>
+</body>
+</html>

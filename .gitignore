@@ -1,0 +1,16 @@
+# Secrets — không bao giờ commit
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+
+# Runtime state của validators/hooks (sinh tự động)
+validators/.gate_state.json
+hooks/.gate_hook_state.json
+
+# OS / editor
+Thumbs.db
+.DS_Store

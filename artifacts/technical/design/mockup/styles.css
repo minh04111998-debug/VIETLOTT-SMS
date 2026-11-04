@@ -1,0 +1,2368 @@
+/* ==========================================================================
+   VIETLOTT SMS 2.0 - HIGH-FIDELITY MOBILE APP MOCKUP STYLESHEET
+   Includes: Design System Tokens, Dual Theme Support, Glassmorphism, 
+   Responsive Viewport, Micro-animations, & 6 Interactive Screen Styles.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS & CSS VARIABLES
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand Colors */
+  --vietlott-red: #E31937;
+  --vietlott-red-dark: #B71C1C;
+  --vietlott-red-light: #FFEBEE;
+  --vietlott-gold: #FFD700;
+  --vietlott-gold-dark: #FF8F00;
+  --vietlott-green: #00C853;
+  --vietlott-green-dark: #1B5E20;
+
+  /* Neutral Grays */
+  --gray-100: #F8F9FA;
+  --gray-200: #E9ECEF;
+  --gray-300: #DEE2E6;
+  --gray-400: #CED4DA;
+  --gray-500: #ADB5BD;
+  --gray-600: #6C757D;
+  --gray-700: #495057;
+  --gray-800: #343A40;
+  --gray-900: #212529;
+
+  /* Light Mode Semantic Variables */
+  --bg-body-demo: #0F172A; /* Dark slate outer demo background */
+  --bg-app: #F5F5F5;
+  --bg-surface: #FFFFFF;
+  --bg-surface-subtle: #F8F9FA;
+  --bg-card: #FFFFFF;
+  --bg-input: #FFFFFF;
+  --bg-header-gradient: linear-gradient(135deg, #E31937 0%, #B71C1C 100%);
+  --bg-gold-gradient: linear-gradient(135deg, #FFF8E1 0%, #FFE082 100%);
+  --bg-glass: rgba(255, 255, 255, 0.88);
+
+  --text-primary: #212529;
+  --text-secondary: #495057;
+  --text-tertiary: #6C757D;
+  --text-on-red: #FFFFFF;
+  --text-gold-highlight: #D84315;
+
+  --border-color: #E9ECEF;
+  --border-color-active: #E31937;
+  --border-color-glass: rgba(255, 255, 255, 0.3);
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.12);
+  --shadow-jackpot-glow: 0 0 16px rgba(255, 215, 0, 0.6);
+  --shadow-red-glow: 0 4px 16px rgba(227, 25, 55, 0.4);
+
+  /* Layout Spacing */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Dark Mode Overrides */
+.dark-theme {
+  --bg-app: #121212;
+  --bg-surface: #1E1E1E;
+  --bg-surface-subtle: #262626;
+  --bg-card: #1E1E1E;
+  --bg-input: #2A2A2A;
+  --bg-header-gradient: linear-gradient(135deg, #8E0E22 0%, #1A0507 100%);
+  --bg-gold-gradient: linear-gradient(135deg, #3E2723 0%, #5D4037 100%);
+  --bg-glass: rgba(30, 30, 30, 0.90);
+
+  --text-primary: #F8F9FA;
+  --text-secondary: #CED4DA;
+  --text-tertiary: #ADB5BD;
+  --text-on-red: #FFFFFF;
+  --text-gold-highlight: #FFD700;
+
+  --border-color: #333333;
+  --border-color-active: #FF5252;
+  --border-color-glass: rgba(255, 255, 255, 0.1);
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.7);
+  --shadow-jackpot-glow: 0 0 20px rgba(255, 215, 0, 0.4);
+  --shadow-red-glow: 0 4px 16px rgba(227, 25, 55, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   2. GLOBAL RESET & BASE STYLES
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg-body-demo);
+  color: #F8F9FA;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* Helper hidden class */
+.hidden {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. DEMO TOP CONTROL BAR
+   -------------------------------------------------------------------------- */
+.demo-top-bar {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.demo-branding {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge-role {
+  background: #7C3AED;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.demo-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #F8F9FA;
+}
+
+.demo-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.demo-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s var(--ease-standard);
+}
+
+.demo-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.quick-nav-dropdown label {
+  font-size: 13px;
+  margin-right: 8px;
+  color: #94A3B8;
+}
+
+.quick-nav-dropdown select {
+  background: #1E293B;
+  color: #FFF;
+  border: 1px solid #334155;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  outline: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. SMARTPHONE VIEWPORT & FRAME MOCKUP
+   -------------------------------------------------------------------------- */
+.app-viewport-wrapper {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 16px;
+}
+
+.smartphone-frame {
+  width: 100%;
+  max-width: 420px;
+  height: 860px;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  border-radius: 48px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 12px #1E293B, 0 0 0 14px #475569;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s var(--ease-standard);
+}
+
+/* Smartphone Notch */
+.smartphone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 28px;
+  background-color: #1E293B;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  z-index: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.camera-lens {
+  width: 10px;
+  height: 10px;
+  background-color: #0F172A;
+  border-radius: 50%;
+  border: 1px solid #334155;
+}
+
+.speaker-grill {
+  width: 40px;
+  height: 4px;
+  background-color: #334155;
+  border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   5. APP HEADER & STATUS BAR
+   -------------------------------------------------------------------------- */
+.app-header-container {
+  background: var(--bg-header-gradient);
+  color: var(--text-on-red);
+  padding-top: 28px; /* Safe space for notch */
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  z-index: 800;
+}
+
+.status-bar {
+  padding: 6px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.app-nav-bar {
+  padding: 12px 16px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-circle {
+  width: 38px;
+  height: 38px;
+  background: #FFFFFF;
+  color: var(--vietlott-red);
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.3px;
+}
+
+.v2-tag {
+  background: var(--vietlott-gold);
+  color: #000;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+}
+
+.brand-sub {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.verified-shield-badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: #FFF;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.theme-toggle-switch {
+  width: 44px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  padding: 2px;
+}
+
+.switch-ball {
+  width: 18px;
+  height: 18px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.dark-theme .switch-ball {
+  transform: translateX(20px);
+  background: var(--vietlott-gold);
+}
+
+/* --------------------------------------------------------------------------
+   6. APP CONTENT SCROLL & SCREENS
+   -------------------------------------------------------------------------- */
+.app-content-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  padding-bottom: 90px; /* Space for bottom nav */
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for clean UI */
+.app-content-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.app-content-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+}
+
+.screen-view {
+  display: none;
+  animation: fadeInScreen 0.3s var(--ease-standard);
+}
+
+.screen-view.active {
+  display: block;
+}
+
+@keyframes fadeInScreen {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.screen-header {
+  margin-bottom: 16px;
+}
+
+.screen-header h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.screen-header p {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Section Title Bar */
+.section-title-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0 12px;
+}
+
+.section-title-bar h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.2px;
+}
+
+.live-pulse {
+  background: var(--vietlott-red);
+  color: #FFF;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  animation: pulseBadge 1.5s infinite;
+}
+
+@keyframes pulseBadge {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.link-more {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--vietlott-red);
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   7. SCREEN 1: HOME & CARDS
+   -------------------------------------------------------------------------- */
+.user-greeting-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.greeting-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+  color: #FFF;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.vip-badge-mini {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  font-size: 14px;
+}
+
+.greeting-info h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.vip-tag-gold {
+  background: var(--vietlott-gold);
+  color: #000;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  margin-left: 4px;
+}
+
+.greeting-info p {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.btn-checkin-quick {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.checkin-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--vietlott-green);
+  border-radius: 50%;
+}
+
+/* 6-Year Promo Banner */
+.promo-banner-6year {
+  background: linear-gradient(135deg, #B71C1C 0%, #E31937 60%, #FF8F00 100%);
+  color: #FFF;
+  border-radius: var(--radius-xl);
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 20px;
+}
+
+.promo-pill {
+  background: rgba(255, 255, 255, 0.25);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.5px;
+}
+
+.promo-content h3 {
+  font-size: 17px;
+  font-weight: 800;
+  margin: 8px 0 4px;
+}
+
+.promo-content p {
+  font-size: 12px;
+  opacity: 0.9;
+  margin-bottom: 12px;
+}
+
+.btn-banner-action {
+  background: var(--vietlott-gold);
+  color: #000;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.promo-badge-glow {
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  font-size: 42px;
+  font-weight: 900;
+  opacity: 0.15;
+  color: #FFF;
+}
+
+/* Jackpots Grid */
+.jackpots-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.jackpot-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s var(--ease-standard);
+}
+
+.jackpot-card:hover {
+  transform: translateY(-2px);
+}
+
+.card-header-game {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.game-badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  color: #FFF;
+}
+
+.game-badge.power { background: #B71C1C; }
+.game-badge.mega { background: #E31937; }
+.game-badge.bingo { background: #00C853; }
+.game-badge.lotto { background: #FF8F00; color: #000; }
+.game-badge.max { background: #6A1B9A; }
+
+.draw-time {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.jackpot-amount-box {
+  margin: 6px 0 10px;
+}
+
+.jackpot-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+}
+
+.jackpot-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--vietlott-red);
+  text-shadow: 0 0 12px rgba(227, 25, 55, 0.2);
+  animation: jackpotPulse 3s infinite;
+}
+
+.dark-theme .jackpot-value {
+  color: var(--vietlott-gold);
+  text-shadow: var(--shadow-jackpot-glow);
+}
+
+@keyframes jackpotPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.01); }
+  100% { transform: scale(1); }
+}
+
+.card-footer-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  padding-top: 8px;
+}
+
+.jackpot-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.btn-play-sm {
+  background: var(--vietlott-red);
+  color: #FFF;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  min-height: 38px;
+}
+
+/* BINGO18 Turbo Widget */
+.turbo-bingo-widget {
+  background: var(--bg-surface);
+  border: 2px solid var(--vietlott-green);
+  border-radius: var(--radius-xl);
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(0, 200, 83, 0.15);
+  margin-bottom: 20px;
+}
+
+.turbo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.turbo-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bingo-icon {
+  font-size: 24px;
+}
+
+.turbo-title h5 {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.turbo-title p {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.countdown-pill {
+  background: rgba(0, 200, 83, 0.12);
+  color: var(--vietlott-green-dark);
+  border: 1px solid var(--vietlott-green);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.dark-theme .countdown-pill {
+  color: #00E676;
+}
+
+.turbo-options-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.turbo-opt-btn {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 10px 4px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.2s var(--ease-standard);
+}
+
+.turbo-opt-btn.active {
+  background: var(--vietlott-green);
+  color: #FFF;
+  border-color: var(--vietlott-green);
+  box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);
+}
+
+.turbo-opt-btn strong {
+  font-size: 14px;
+}
+
+.turbo-opt-btn span {
+  font-size: 10px;
+  opacity: 0.85;
+}
+
+.turbo-bet-amount {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.turbo-bet-amount span {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.chip-group {
+  display: flex;
+  gap: 6px;
+}
+
+.chip {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+}
+
+.chip.active {
+  background: var(--vietlott-red);
+  color: #FFF;
+  border-color: var(--vietlott-red);
+}
+
+.btn-turbo-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #00C853 0%, #1B5E20 100%);
+  color: #FFF;
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(0, 200, 83, 0.4);
+  min-height: 48px;
+  transition: transform 0.15s var(--ease-standard);
+}
+
+.btn-turbo-submit:active {
+  transform: scale(0.97);
+}
+
+.btn-turbo-submit .btn-text {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.btn-turbo-submit .btn-sub {
+  font-size: 10px;
+  opacity: 0.9;
+}
+
+/* Spotlight Lotto 5/35 */
+.spotlight-card {
+  background: var(--bg-gold-gradient);
+  color: #000;
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  border: 1px solid var(--vietlott-gold);
+  margin-bottom: 20px;
+}
+
+.spotlight-badge {
+  font-size: 10px;
+  font-weight: 800;
+  color: #D84315;
+  margin-bottom: 4px;
+}
+
+.spotlight-content h4 {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.spotlight-content p {
+  font-size: 12px;
+  opacity: 0.85;
+  margin-bottom: 10px;
+}
+
+.spotlight-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price-tag {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.btn-outline-gold {
+  background: #000;
+  color: var(--vietlott-gold);
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+/* Game Shortcuts Grid */
+.game-shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.game-shortcut-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.shortcut-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  color: #FFF;
+  font-weight: 800;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.mega-bg { background: #E31937; }
+.power-bg { background: #B71C1C; }
+.bingo-bg { background: #00C853; }
+.lotto-bg { background: #FF8F00; }
+.max-bg { background: #6A1B9A; }
+
+.game-shortcut-item span {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   8. SCREEN 2: GAME CATALOG
+   -------------------------------------------------------------------------- */
+.catalog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.catalog-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+.catalog-card.highlight-border {
+  border: 2px solid var(--vietlott-green);
+}
+
+.catalog-card-header {
+  padding: 10px 14px;
+  color: #FFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mega-bg-gradient { background: linear-gradient(135deg, #E31937, #B71C1C); }
+.power-bg-gradient { background: linear-gradient(135deg, #B71C1C, #4A0007); }
+.bingo-bg-gradient { background: linear-gradient(135deg, #00C853, #1B5E20); }
+.lotto-bg-gradient { background: linear-gradient(135deg, #FF8F00, #E65100); }
+.max-bg-gradient { background: linear-gradient(135deg, #6A1B9A, #4A148C); }
+
+.game-title {
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.draw-badge {
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.draw-badge.pulse { animation: pulseBadge 1.5s infinite; }
+
+.catalog-card-body {
+  padding: 14px;
+}
+
+.prize-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.prize-label {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.prize-value {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.red-text { color: var(--vietlott-red); }
+.green-text { color: var(--vietlott-green); }
+.gold-text { color: var(--vietlott-gold-dark); }
+.dark-theme .gold-text { color: var(--vietlott-gold); }
+
+.game-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.catalog-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.btn-secondary-sm {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.btn-primary-sm {
+  background: var(--vietlott-red);
+  color: #FFF;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  min-height: 38px;
+}
+
+.btn-primary-sm.green-bg { background: var(--vietlott-green); }
+.btn-primary-sm.gold-bg { background: var(--vietlott-gold); color: #000; }
+
+/* --------------------------------------------------------------------------
+   9. SCREEN 3: STREAMLINED PURCHASE FLOW
+   -------------------------------------------------------------------------- */
+.purchase-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  background: var(--bg-surface);
+  padding: 10px 16px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.5;
+}
+
+.step-item.active {
+  opacity: 1;
+}
+
+.step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--border-color);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.step-item.active .step-num {
+  background: var(--vietlott-red);
+  color: #FFF;
+}
+
+.step-lbl {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.step-line {
+  flex: 1;
+  height: 2px;
+  background: var(--border-color);
+  margin: 0 8px;
+}
+
+.step-header {
+  margin-bottom: 14px;
+}
+
+.game-title-selected {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--vietlott-red);
+  display: block;
+}
+
+.number-picker-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.btn-picker-tool {
+  flex: 1;
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 4px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.selected-balls-display {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  background: var(--bg-surface);
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+
+.ball-slot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+  font-size: 16px;
+  transition: all 0.2s var(--ease-spring);
+}
+
+.ball-slot.empty {
+  border: 2px dashed var(--border-color);
+  color: var(--text-tertiary);
+}
+
+.ball-slot.filled {
+  background: var(--vietlott-red);
+  color: #FFF;
+  box-shadow: 0 4px 10px rgba(227, 25, 55, 0.3);
+}
+
+.balls-grid-selector {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.ball-choice {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.15s var(--ease-standard);
+}
+
+.ball-choice:hover {
+  border-color: var(--vietlott-red);
+}
+
+.ball-choice.selected {
+  background: var(--vietlott-red);
+  color: #FFF;
+  border-color: var(--vietlott-red);
+  transform: scale(1.1);
+  box-shadow: var(--shadow-red-glow);
+}
+
+.step1-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.total-preview {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.btn-primary {
+  width: 100%;
+  background: var(--vietlott-red);
+  color: #FFF;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  box-shadow: var(--shadow-red-glow);
+  min-height: 48px;
+  transition: transform 0.15s var(--ease-standard);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-primary.green-bg { background: var(--vietlott-green); }
+
+.btn-secondary {
+  width: 100%;
+  background: var(--bg-surface-subtle);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  min-height: 44px;
+}
+
+/* Step 2 Summary & Cross Sell */
+.order-summary-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.summary-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 13px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.summary-item-row:last-child {
+  border-bottom: none;
+}
+
+.balls-inline-mini {
+  display: flex;
+  gap: 4px;
+}
+
+.ball-mini {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--vietlott-red);
+  color: #FFF;
+  font-weight: 700;
+  font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cross-sell-box {
+  background: var(--bg-gold-gradient);
+  border: 1px solid var(--vietlott-gold);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  color: #000;
+  margin-bottom: 16px;
+}
+
+.cross-tag {
+  font-size: 10px;
+  font-weight: 800;
+  color: #D84315;
+}
+
+.cross-sell-header h5 {
+  font-size: 14px;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.cross-sell-box p {
+  font-size: 12px;
+  margin: 6px 0;
+}
+
+.cross-sell-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.payment-method-selector {
+  margin-bottom: 20px;
+}
+
+.payment-method-selector h5 {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.payment-opt-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.payment-opt-card.active {
+  border-color: var(--vietlott-red);
+  background: rgba(227, 25, 55, 0.05);
+}
+
+.opt-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.opt-info strong {
+  font-size: 13px;
+}
+
+.opt-info span {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.step2-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.final-price-box {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.step2-btns {
+  display: flex;
+  gap: 10px;
+}
+
+/* Step 3 Idempotent Processing */
+.idempotent-processing-box {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  padding: 24px 16px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+}
+
+.idempotent-badge {
+  background: rgba(0, 200, 83, 0.12);
+  color: var(--vietlott-green-dark);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.idempotent-processing-box h3 {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.idempotent-processing-box p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 6px 0 16px;
+}
+
+.countdown-spinner-circle {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 16px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.countdown-number {
+  position: absolute;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--vietlott-red);
+}
+
+.processing-note {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-bottom: 16px;
+}
+
+.btn-biometric-auth {
+  width: 100%;
+  background: #1E293B;
+  color: #FFF;
+  border: 1px solid #334155;
+  padding: 12px;
+  border-radius: var(--radius-lg);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+/* Payment Success Invoice */
+.payment-success-invoice {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  padding: 20px 16px;
+  text-align: center;
+  border: 2px solid var(--vietlott-green);
+  animation: fadeInScreen 0.4s var(--ease-standard);
+}
+
+.success-icon-animated {
+  width: 60px;
+  height: 60px;
+  background: var(--vietlott-green);
+  color: #FFF;
+  border-radius: 50%;
+  font-size: 32px;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 12px;
+  box-shadow: 0 4px 16px rgba(0, 200, 83, 0.4);
+}
+
+.payment-success-invoice h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--vietlott-green);
+}
+
+.success-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.invoice-details-card {
+  background: var(--bg-surface-subtle);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.invoice-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+.invoice-row:last-child { border-bottom: none; }
+
+.invoice-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   10. SCREEN 4: RESULTS & NOTIFICATIONS
+   -------------------------------------------------------------------------- */
+.latest-result-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.result-card-header {
+  padding: 10px 14px;
+  color: #FFF;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.result-winning-balls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 14px;
+}
+
+.ball-result {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--vietlott-red);
+  color: #FFF;
+  font-weight: 800;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-red-glow);
+}
+
+.result-jackpot-won {
+  background: var(--bg-surface-subtle);
+  padding: 10px 14px;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  font-size: 12px;
+}
+
+.result-jackpot-won strong {
+  font-size: 16px;
+  display: block;
+}
+
+.win-count {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.badge-click-test {
+  background: var(--vietlott-gold);
+  color: #000;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.ticket-interactive-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--vietlott-gold);
+  padding: 14px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  box-shadow: var(--shadow-jackpot-glow);
+  transition: transform 0.2s var(--ease-standard);
+}
+
+.ticket-interactive-card:active {
+  transform: scale(0.98);
+}
+
+.ticket-status-badge {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--vietlott-gold-dark);
+  margin-bottom: 8px;
+}
+
+.ticket-game {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.ticket-balls-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.ball-mini.match {
+  background: var(--vietlott-gold);
+  color: #000;
+  font-weight: 800;
+}
+
+.ball-mini.no-match {
+  background: var(--gray-400);
+  color: #FFF;
+}
+
+.ticket-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.history-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.history-item {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   11. SCREEN 5: GAMIFICATION & SYNDICATE
+   -------------------------------------------------------------------------- */
+.streaks-hub-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.streaks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.streaks-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fire-icon { font-size: 22px; }
+
+.streaks-title h4 {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.streaks-title p {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.streak-badge {
+  background: var(--vietlott-gold);
+  color: #000;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.streaks-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.day-box {
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.day-box.checked {
+  background: rgba(0, 200, 83, 0.15);
+  border-color: var(--vietlott-green);
+  color: var(--vietlott-green);
+}
+
+.day-box.today-gift {
+  background: var(--bg-gold-gradient);
+  border-color: var(--vietlott-gold);
+  cursor: pointer;
+  animation: pulseBadge 1.5s infinite;
+}
+
+/* Lucky Wheel */
+.lucky-wheel-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.wheel-tag {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--vietlott-red);
+}
+
+.lucky-wheel-card h4 {
+  font-size: 16px;
+  font-weight: 800;
+  margin: 2px 0;
+}
+
+.lucky-wheel-card p {
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.wheel-container {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: var(--vietlott-red);
+  z-index: 10;
+}
+
+.wheel-disc {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 6px solid var(--vietlott-gold);
+  position: relative;
+  overflow: hidden;
+  transition: transform 3s cubic-bezier(0.15, 0.9, 0.3, 1);
+  background: conic-gradient(
+    #E31937 0deg 60deg,
+    #FF8F00 60deg 120deg,
+    #00C853 120deg 180deg,
+    #6A1B9A 180deg 240deg,
+    #1D4ED8 240deg 300deg,
+    #FFD700 300deg 360deg
+  );
+}
+
+.wheel-sector {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  color: #FFF;
+  font-size: 9px;
+  font-weight: 800;
+  transform-origin: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px;
+}
+
+.sec1 { transform: rotate(0deg); }
+.sec2 { transform: rotate(60deg); }
+.sec3 { transform: rotate(120deg); }
+.sec4 { transform: rotate(180deg); }
+.sec5 { transform: rotate(240deg); }
+.sec6 { transform: rotate(300deg); }
+
+.btn-spin-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  color: var(--vietlott-red);
+  border: 3px solid var(--vietlott-gold);
+  font-size: 11px;
+  font-weight: 900;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Syndicate Rooms */
+.btn-xs-gold {
+  background: var(--vietlott-gold);
+  color: #000;
+  border: none;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.syndicate-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.syndicate-card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.room-title strong {
+  font-size: 13px;
+  display: block;
+}
+
+.ticket-type {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.progress-pill {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--vietlott-green);
+}
+
+.syndicate-progress-bar {
+  height: 8px;
+  background: var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--vietlott-green);
+  border-radius: 4px;
+}
+
+.syndicate-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.syndicate-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* VIP Tiers */
+.vip-tiers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.vip-tier-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+
+.vip-tier-card.active {
+  border: 2px solid var(--vietlott-gold);
+  background: var(--bg-gold-gradient);
+  color: #000;
+}
+
+.active-badge {
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  background: #000;
+  color: var(--vietlott-gold);
+  font-size: 8px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.vip-tier-card h5 {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.vip-tier-card p { font-size: 11px; opacity: 0.8; }
+.vip-tier-card span { font-size: 12px; font-weight: 700; display: block; margin-top: 4px; }
+
+/* --------------------------------------------------------------------------
+   12. SCREEN 6: PROFILE & HISTORY
+   -------------------------------------------------------------------------- */
+.profile-user-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  margin-bottom: 16px;
+}
+
+.user-avatar-lg {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+  color: #FFF;
+  font-weight: 900;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-user-info h3 {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.profile-user-info p {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.user-vip-pill {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--vietlott-gold-dark);
+  margin-top: 4px;
+}
+
+.verified-security-card {
+  background: rgba(0, 200, 83, 0.1);
+  border: 1px solid var(--vietlott-green);
+  border-radius: var(--radius-lg);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.shield-icon { font-size: 24px; }
+
+.shield-text h5 {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--vietlott-green-dark);
+}
+
+.dark-theme .shield-text h5 { color: #00E676; }
+
+.shield-text p {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.chevron {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-tertiary);
+  margin-left: auto;
+}
+
+.stats-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stat-box {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-lbl {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.stat-val {
+  font-size: 15px;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.settings-group {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 20px;
+}
+
+.settings-group h5 {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text-tertiary);
+  margin-bottom: 10px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 13px;
+}
+
+.setting-item:last-child { border-bottom: none; }
+
+.status-active {
+  font-size: 12px;
+  color: var(--vietlott-green);
+  font-weight: 700;
+}
+
+.ticket-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.history-ticket-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.tkt-row-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.tkt-status.won { color: var(--vietlott-green); }
+.tkt-status.pending { color: var(--vietlott-gold-dark); }
+
+.tkt-balls {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.tkt-row-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+/* --------------------------------------------------------------------------
+   13. APP BOTTOM NAVIGATION BAR (5 TABS)
+   -------------------------------------------------------------------------- */
+.app-bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 900;
+}
+
+.nav-tab {
+  background: transparent;
+  border: none;
+  color: var(--text-tertiary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  flex: 1;
+  padding: 8px 0;
+  transition: color 0.2s var(--ease-standard);
+  min-height: 48px;
+}
+
+.nav-tab.active {
+  color: var(--vietlott-red);
+}
+
+.dark-theme .nav-tab.active {
+  color: #FF5252;
+}
+
+.nav-icon {
+  font-size: 20px;
+  transition: transform 0.2s var(--ease-spring);
+}
+
+.nav-tab.active .nav-icon {
+  transform: translateY(-2px) scale(1.15);
+}
+
+.nav-label {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* Indicator line under active tab */
+.nav-active-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 20%;
+  height: 3px;
+  background: var(--vietlott-red);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Đặt Trang chủ ở trung tâm thanh điều hướng: Danh mục • Kết quả • Trang chủ • Mua nhóm • Tài khoản */
+.nav-tab[data-target="catalog"] { order: 1; }
+.nav-tab[data-target="results"] { order: 2; }
+.nav-tab[data-target="home"] { order: 3; }
+.nav-tab[data-target="gamification"] { order: 4; }
+.nav-tab[data-target="profile"] { order: 5; }
+
+/* --------------------------------------------------------------------------
+   14. CONFETTI CANVAS & MODALS
+   -------------------------------------------------------------------------- */
+.confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2000;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 1500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  animation: fadeInScreen 0.25s var(--ease-standard);
+}
+
+.modal-dialog {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-radius: var(--radius-xl);
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.modal-header h4 {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.btn-close-modal {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: var(--text-tertiary);
+  cursor: pointer;
+}
+
+.modal-body {
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.sha256-code {
+  background: var(--bg-surface-subtle);
+  padding: 10px;
+  border-radius: var(--radius-md);
+  margin: 10px 0;
+  font-size: 11px;
+}
+
+.sha256-code code {
+  word-break: break-all;
+  color: var(--vietlott-red);
+  font-family: monospace;
+}
+
+.verified-note {
+  font-size: 12px;
+  color: var(--vietlott-green);
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.form-control {
+  width: 100%;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  outline: none;
+}
+
+.syn-note {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 8px;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* --------------------------------------------------------------------------
+   15. RESPONSIVE BREAKPOINTS (375px → 768px → 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .demo-top-bar {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  .app-viewport-wrapper {
+    padding: 0;
+  }
+  .smartphone-frame {
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 100%;
+    height: 100vh;
+  }
+  .smartphone-notch {
+    display: none;
+  }
+  .app-header-container {
+    padding-top: 10px;
+    border-radius: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .app-viewport-wrapper {
+    padding: 32px;
+  }
+}
